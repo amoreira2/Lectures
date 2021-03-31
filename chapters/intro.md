@@ -1,6 +1,6 @@
 # Quantitative Investing
 
-By [Alan Moreira](http://statistics.berkeley.edu/people/ani-adhikari)
+By [Alan Moreira](https://sites.google.com/view/alanmoreira/)
 
 
 This text was originally developed for the UC Berkeley course [Data 8: Foundations of Data Science][data8].
