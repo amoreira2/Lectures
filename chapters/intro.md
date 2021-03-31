@@ -1,7 +1,9 @@
 # Quantitative Investing
 
+
 By [Alan Moreira](https://sites.google.com/view/alanmoreira/)
 
+## This is work in progress and not intended for distribution. Currently most of the material here comes directly from the book https://inferentialthinking.com/.
 
 This text was originally developed for the University of Rochester course  [Fin 418: Quantitative Investing with Python][fin418].
 
