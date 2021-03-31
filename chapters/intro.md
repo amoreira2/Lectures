@@ -1,7 +1,7 @@
 # Quantitative Investing
 
 By [Alan Moreira](http://statistics.berkeley.edu/people/ani-adhikari)
-with contributions by [David Wagner](https://www.cs.berkeley.edu/~daw/) and Henry Milner.
+
 
 This text was originally developed for the UC Berkeley course [Data 8: Foundations of Data Science][data8].
 
