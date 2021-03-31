@@ -2,8 +2,8 @@
   file: chapters/intro
   numbered: true
 
-- title: Data Science
-  file: chapters/01/what-is-data-science
+- title: Quantitative Investing
+  file: chapters/01/what-is-quant-investing
   sections:
   - title: Introduction
     file: chapters/01/1/intro
