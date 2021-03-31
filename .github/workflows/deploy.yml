@@ -40,6 +40,7 @@ jobs:
         github_token: ${{ secrets.GITHUB_TOKEN }}
         publish_branch: master
         publish_dir: ./_build/html
-        cname: inferentialthinking.com
         external_repository: inferentialthinking/inferentialthinking.github.io
+        cname: https://amoreira2.github.io/quantitativeinvesting
+        external_repository: quantitativeinvesting.github.io
         deploy_key: ${{ secrets.DEPLOY_DOCS }}
