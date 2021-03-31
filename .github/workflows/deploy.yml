@@ -42,4 +42,4 @@ jobs:
         publish_dir: ./_build/html
         cname: https://amoreira2.github.io/quantitativeinvesting
         external_repository: amoreira2/quantitativeinvesting.github.io
-        deploy_key: ${{ secrets.DEPLOY_DOCS }}
+        deploy_key: ${{ secrets.DEPLOY_DOC }}
