@@ -40,5 +40,5 @@ jobs:
         github_token: ${{ secrets.GITHUB_TOKEN }}
         publish_branch: master
         publish_dir: ./_build/html
-        external_repository: amoreira2/quantitativeinvesting.github.io
+        external_repository: amoreira2/quantitativeinvesting
         deploy_key: ${{ secrets.DEPLOY_DOC }}
