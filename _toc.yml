@@ -20,8 +20,6 @@
       - title: Cloud Setup
         file: chapters/02/cloud_setup
 
-
-
 - title: Programming in Python
   file: chapters/03/programming-in-python
   sections:
@@ -34,7 +32,6 @@
       file: chapters/03/2/1/Growth
   - title: Call Expressions
     file: chapters/03/3/Calls
-
 
 - title: Data Types
   file: chapters/04/Data_Types
