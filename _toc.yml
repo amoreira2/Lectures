@@ -5,20 +5,20 @@
 - title: What is Quantitative Investing?
   file: chapters/01/what-is-quant-investing
   sections:
-    - title: Statistical Techniques
-      file: chapters/01/statistical-techniques
-    - title: Computational tools
-      file: chapters/01/computational-tools
-    - title: Finance
-      file: chapters/01/finance
+  - title: Statistical Techniques
+    file: chapters/01/statistical-techniques
+  - title: Computational tools
+    file: chapters/01/computational-tools
+  - title: Finance
+    file: chapters/01/finance
 
 - title: Getting Started
   file: chapters/02/getting_started
-    sections:
-      - title: Local installation
-        file: chapters/02/local_install
-      - title: Cloud Setup
-        file: chapters/02/cloud_setup
+  sections:
+  - title: Local installation
+    file: chapters/02/local_install
+  - title: Cloud Setup
+    file: chapters/02/cloud_setup
 
 - title: Programming in Python
   file: chapters/03/programming-in-python
