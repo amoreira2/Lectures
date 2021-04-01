@@ -75,27 +75,27 @@
   - title: Randomness
     file: chapters/scientific/randomness1
 
-- title: Working with Data: Pandas
-  file: chapters/Pandas/intro
+- title: Working with Data 
+  file: chapters/pandas/intro
   sections:
   - title: Pandas Basics
-    file: chapters/Pandas/basics
+    file: chapters/pandas/basics
   - title: Indexing
-    file: chapters/Pandas/the_index
+    file: chapters/pandas/the_index
   - title: Cleaning data
-    file: chapters/Pandas/data_clean
+    file: chapters/pandas/data_clean
   - title: Reshape
-    file: chapters/Pandas/reshape
+    file: chapters/pandas/reshape
   - title: Merge
-    file: chapters/Pandas/merge
+    file: chapters/pandas/merge
   - title: Group-by
-    file: chapters/Pandas/groupby
+    file: chapters/pandas/groupby
   - title: Time-Series
-    file: chapters/Pandas/timeseries
+    file: chapters/pandas/timeseries
   - title: Plotting
-    file: chapters/Pandas/matplotlib
+    file: chapters/pandas/matplotlib
   - title: Data Storage
-    file: chapters/Pandas/storage
+    file: chapters/pandas/storage
 
 - title: Additional Statistics Material
   file: chapters/additional/additional
@@ -109,7 +109,6 @@
       file: chapters/10/2/Sampling_from_a_Population
     - title: Empirical Distibution of a Statistic
       file: chapters/10/3/Empirical_Distribution_of_a_Statistic
-
   - title: Testing Hypotheses
     file: chapters/11/Testing_Hypotheses
     sections:
@@ -121,8 +120,6 @@
       file: chapters/11/3/Decisions_and_Uncertainty
     - title: Error Probabilities
       file: chapters/11/4/Error_Probabilities
-
-
   - title: Estimation
     file: chapters/13/Estimation
     sections:
@@ -134,7 +131,6 @@
       file: chapters/13/3/Confidence_Intervals
     - title: Using Confidence Intervals
       file: chapters/13/4/Using_Confidence_Intervals
-
   - title: Why the Mean Matters
     file: chapters/14/Why_the_Mean_Matters
     sections:
@@ -150,7 +146,6 @@
       file: chapters/14/5/Variability_of_the_Sample_Mean
     - title: Choosing a Sample Size
       file: chapters/14/6/Choosing_a_Sample_Size
-
   - title: Prediction
     file: chapters/15/Prediction
     sections:
@@ -166,7 +161,6 @@
       file: chapters/15/5/Visual_Diagnostics
     - title: Numerical Diagnostics
       file: chapters/15/6/Numerical_Diagnostics
-
   - title: Inference for Regression
     file: chapters/16/Inference_for_Regression
     sections:
