@@ -5,12 +5,12 @@
 - title: Introduction
   file: chapters/01/what-is-quant-investing
   sections:
-    - title: What is Quantitative Investing?
-      file: chapters/01/what-is-quant-investing
     - title: Statistical Techniques
       file: chapters/01/statistical-techniques
     - title: Computational tools
       file: chapters/01/computational-tools
+    - title: Finance
+      file: chapters/01/finance
 
 - title: Getting Started
     file: chapters/02/getting_started
