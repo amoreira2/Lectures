@@ -3,7 +3,7 @@
 title: Quantitative Investing
 author: Alan Moreira
 email: ''
-logo                        : "figuremain.jpg"  # A path to the book logo
+logo                        : "figuremain2.jpg"  # A path to the book logo
 exclude_patterns            : ["README.md"]  # Patterns to skip when building the book. Can be glob-style (e.g. "*skip.ipynb")
 
 #######################################################################################
@@ -15,7 +15,7 @@ execute:
 #######################################################################################
 # HTML-specific settings
 html:
-  favicon                   : "figuremain.jpg"  # A path to a favicon image
+  favicon                   : "figuremain2.jpg"  # A path to a favicon image
   navbar_number_sections    : True  # Add a number to each section in your left navbar
   google_analytics_id       : "UA-148221575-1"  # A GA id that can be used to track book views.
   home_page_in_navbar       : false  # Whether to include your home page in the left Navigation Bar
