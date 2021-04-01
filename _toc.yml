@@ -8,8 +8,13 @@
   - title: Introduction
     file: chapters/01/1/intro
     sections:
-    - title: Computational Tools
-      file: chapters/01/1/1/computational-tools
+    - title: Getting Started
+      file: chapters/01/1/1/getting_started
+        sections:
+        - title: Local installation
+          file: chapters/01/1/1/local_install
+        - title: Cloud Setup
+              file: chapters/01/1/1/getting_started
     - title: Statistical Techniques
       file: chapters/01/1/2/statistical-techniques
   - title: Why Data Science?
@@ -22,19 +27,7 @@
     - title: Another Kind of Character
       file: chapters/01/3/2/Another_Kind_Of_Character
 
-- title: Causality and Experiments
-  file: chapters/02/causality-and-experiments
-  sections:
-  - title: John Snow and the Broad Street Pump
-    file: chapters/02/1/observation-and-visualization-john-snow-and-the-broad-street-pump
-  - title: "Snow\u2019s \u201CGrand Experiment\u201D"
-    file: chapters/02/2/snow-s-grand-experiment
-  - title: Establishing Causality
-    file: chapters/02/3/establishing-causality
-  - title: Randomization
-    file: chapters/02/4/randomization
-  - title: Endnote
-    file: chapters/02/5/endnote
+
 
 - title: Programming in Python
   file: chapters/03/programming-in-python
@@ -48,8 +41,7 @@
       file: chapters/03/2/1/Growth
   - title: Call Expressions
     file: chapters/03/3/Calls
-  - title: Introduction to Tables
-    file: chapters/03/4/Introduction_to_Tables
+
 
 - title: Data Types
   file: chapters/04/Data_Types
