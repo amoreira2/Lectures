@@ -27,6 +27,7 @@ html:
 #######################################################################################
 # Launch button settings
 launch_buttons:
+  notebook_interface:        "jupyterlab"
   jupyterhub_url            : "https://pims.syzygy.ca/jupyter"
   colab_url              : "https://colab.research.google.com" # The URL of the BinderHub (e.g., https://mybinder.org)
 
