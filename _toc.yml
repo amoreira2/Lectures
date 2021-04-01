@@ -13,7 +13,7 @@
       file: chapters/01/finance
 
 - title: Getting Started
-    file: chapters/02/getting_started
+  file: chapters/02/getting_started
     sections:
       - title: Local installation
         file: chapters/02/local_install
