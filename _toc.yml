@@ -10,23 +10,16 @@
     sections:
     - title: Getting Started
       file: chapters/01/1/1/getting_started
-        sections:
-        - title: Local installation
-          file: chapters/01/1/1/local_install
-        - title: Cloud Setup
-              file: chapters/01/1/1/getting_started
-    - title: Statistical Techniques
-      file: chapters/01/1/2/statistical-techniques
+      sections:
+      - title: Local installation
+        file: chapters/01/1/1/local_install
+      - title: Cloud Setup
+        file: chapters/01/1/1/getting_started
+
+  - title: Statistical Techniques
+    file: chapters/01/1/2/statistical-techniques
   - title: Why Data Science?
     file: chapters/01/2/why-data-science
-  - title: Plotting the Classics
-    file: chapters/01/3/Plotting_the_Classics
-    sections:
-    - title: Literary Characters
-      file: chapters/01/3/1/Literary_Characters
-    - title: Another Kind of Character
-      file: chapters/01/3/2/Another_Kind_Of_Character
-
 
 
 - title: Programming in Python

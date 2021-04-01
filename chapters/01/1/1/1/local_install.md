@@ -10,7 +10,7 @@ the 2.7 version.
 
 <img src="https://datascience.quantecon.org/assets/_static/introduction_files/install_python.png" style="">
 
-  
+
 <br>
 
 Make sure that during the installation [Anaconda](https://www.anaconda.com/distribution/)
@@ -22,41 +22,11 @@ For Windows users, we recommend installing for “just me” instead of “all u
 
 <img src="https://datascience.quantecon.org/assets/_static/introduction_files/install_python_path.png" style="">
 
-## Downloading the QuantEcon Data Science Lectures
+## Downloading the Quantitative investing notebooks
 
-To download the QuantEcon Data Science lectures, we use the `Clone` button on the toolbar
-as seen in the following image.
-
-<br>
-
-<img src="https://datascience.quantecon.org/assets/_static/introduction_files/clone_button.png" style="">
-
-  
-<br>
-
-You can download the lectures through either **Github Desktop** or **Terminal**:
-
-**Github Desktop** (Mac/Windows only), recommended for most users.
-
-1. Install [Github Desktop](https://desktop.github.com/).  
-1. Click the “Open in Github Desktop” option in the clone button menu. It should open a Github
-  Desktop popup that looks like this:  
-  <img src="https://datascience.quantecon.org/assets/_static/introduction_files/download_lectures_github_desktop.png" style="">
-  
-    
-  You should choose the path (folder) where you would like to download the repository. The default path on
-  Windows should be `C:/Users/YOUR_USERNAME/Documents/GitHub`.  
+TBD
 
 
-**Terminal**
-
-1. Make sure that `git` is installed on your computer. (`git` is not installed on Windows by default. You can download and install it from [here](https://git-scm.com/download/win)).  
-1. Open a terminal.  
-1. Set the path to where you would like to download the lectures. The default one is your home directory.  
-1. Run `git clone https://github.com/QuantEcon/quantecon-notebooks-datascience` which will
-  download the repository with notebooks in your working directory. *Pro tip*: If you would rather
-  not type this command on your own, you can click “Copy clone command to clipboard” on the clone
-  button menu and paste it into the terminal.  
 
 ## Package Management
 
@@ -172,14 +142,14 @@ notebook by clicking Python 3 when you see something like the following image in
 
 <img src="https://datascience.quantecon.org/assets/_static/introduction_files/jupyter_lab.png" style="">
 
-  
+
 <br>
 
 Once the notebook is open, you should something similar to the following image:
 
 <img src="https://datascience.quantecon.org/assets/_static/introduction_files/jupyter_lab_notebook.png" style="">
 
-  
+
 <br>
 
 Note that:
@@ -198,7 +168,4 @@ Note that:
 <a id='exerciselist-0'></a>
 **Exercise 1**
 
-Open this file in Jupyter by navigating to the QuantEcon Data Science folder that we downloaded
-earlier, then click on the `introduction` folder, and select the `getting_started.ipynb` file.
-
-([*back to text*](#exercise-0))
+TBD
