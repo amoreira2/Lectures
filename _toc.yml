@@ -2,7 +2,7 @@
   file: chapters/intro
   numbered: true
 
-- title: Introduction
+- title: What is Quantitative Investing?
   file: chapters/01/what-is-quant-investing
   sections:
     - title: Statistical Techniques
