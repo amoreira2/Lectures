@@ -1,2 +1,2 @@
-Scientific Computing
+basics
 ====================
