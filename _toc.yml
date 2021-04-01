@@ -51,8 +51,8 @@
     - title: More on Arrays
       file: chapters/05/3/More_on_Arrays
 
-- title: Python
-  file: chapters/essentials/essentials
+- title: Programing with Python
+  file: chapters/essentials/intro
   sections:
   - title: Python Essentials
     file: chapters/essentials/essentials
