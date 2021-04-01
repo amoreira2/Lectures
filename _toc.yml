@@ -51,51 +51,52 @@
     - title: More on Arrays
       file: chapters/05/3/More_on_Arrays
 
-- title: Python Essentials
+- title: Python
   file: chapters/essentials/essentials
   sections:
-  - title: Basics
-    file: chapters/essentials/basics
-  - title: Collections
-    file: chapters/essentials/collections
-  - title: Flow control
-    file: chapters/essentials/control_flow
-  - title: Functions
-    file: chapters/essentials/functions
-
-- title: Scientific Computing
-  file: chapters/scientific/scientific
-  sections:
-  - title: Numpy
-    file: chapters/scientific/numpy1
-  - title: Plotting
-    file: chapters/scientific/plotting1
-  - title: Linear algebra
-    file: chapters/scientific/linear_algebra1
-  - title: Randomness
-    file: chapters/scientific/randomness1
-
-- title: Working with Data 
-  file: chapters/pandas/intro
-  sections:
-  - title: Pandas Basics
-    file: chapters/pandas/basics
-  - title: Indexing
-    file: chapters/pandas/the_index
-  - title: Cleaning data
-    file: chapters/pandas/data_clean
-  - title: Reshape
-    file: chapters/pandas/reshape
-  - title: Merge
-    file: chapters/pandas/merge
-  - title: Group-by
-    file: chapters/pandas/groupby
-  - title: Time-Series
-    file: chapters/pandas/timeseries
-  - title: Plotting
-    file: chapters/pandas/matplotlib
-  - title: Data Storage
-    file: chapters/pandas/storage
+  - title: Python Essentials
+    file: chapters/essentials/essentials
+    sections:
+    - title: Basics
+      file: chapters/essentials/basics
+    - title: Collections
+      file: chapters/essentials/collections
+    - title: Flow control
+      file: chapters/essentials/control_flow
+    - title: Functions
+      file: chapters/essentials/functions
+  - title: Scientific Computing
+    file: chapters/scientific/intro
+    sections:
+    - title: Numpy
+      file: chapters/scientific/numpy1
+    - title: Plotting
+      file: chapters/scientific/plotting1
+    - title: Linear algebra
+      file: chapters/scientific/linear_algebra1
+    - title: Randomness
+      file: chapters/scientific/randomness1
+  - title: Working with Data
+    file: chapters/pandas/intro
+    sections:
+    - title: Pandas Basics
+      file: chapters/pandas/basics
+    - title: Indexing
+      file: chapters/pandas/the_index
+    - title: Cleaning data
+      file: chapters/pandas/data_clean
+    - title: Reshape
+      file: chapters/pandas/reshape
+    - title: Merge
+      file: chapters/pandas/merge
+    - title: Group-by
+      file: chapters/pandas/groupby
+    - title: Time-Series
+      file: chapters/pandas/timeseries
+    - title: Plotting
+      file: chapters/pandas/matplotlib
+    - title: Data Storage
+      file: chapters/pandas/storage_formats
 
 - title: Additional Statistics Material
   file: chapters/additional/additional
