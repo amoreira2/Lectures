@@ -5,22 +5,16 @@
 - title: Quantitative Investing
   file: chapters/01/what-is-quant-investing
   sections:
-  - title: Introduction
-    file: chapters/01/1/intro
+  - title: Getting Started
+    file: chapters/01/1/getting_started
     sections:
-    - title: Getting Started
-      file: chapters/01/1/1/getting_started
-      sections:
       - title: Local installation
         file: chapters/01/1/1/local_install
       - title: Cloud Setup
-        file: chapters/01/1/1/getting_started
+        file: chapters/01/1/2/cloud_setup
 
   - title: Statistical Techniques
-    file: chapters/01/1/2/statistical-techniques
-  - title: Why Data Science?
-    file: chapters/01/2/why-data-science
-
+    file: chapters/01/2/statistical-techniques
 
 - title: Programming in Python
   file: chapters/03/programming-in-python
