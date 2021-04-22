@@ -96,6 +96,58 @@
   - title: Data Storage
     file: chapters/pandas/storage_formats
 
+- title: Asset Returns
+  file: chapters/finance/Notebook3
+  sections:
+  - title: The Choice of Frequency and Annualization of Returns
+    file: chapters/finance/Notebook3_TheChoiceofFrequency
+
+- title: Portfolio Math
+  file: chapters/finance/Notebook4_PortfolioMath
+
+- title: Capital Allocation
+  file: chapters/finance/Notebook4_CapitalAllocation
+
+- title: Mean Variance Efficient Portfolios
+  file: chapters/finance/Notebook4_MeanVariance
+  - title: Case Study in International Diversification
+    file: chapters/finance/Notebook4_CaseStudy
+  - title: Portfolio Optimization with constraints
+    file: chapters/finance/Notebook5_Portfoliooptimizationwithconstraints
+
+- title: Estimation Uncertainty and It's Implications for investing
+  file: chapters/finance/Notebook5_EstimationUncertainty
+  - title: Practical Approaches to Deal with Estimation Uncertainty
+    file: chapters/finance/Notebook5_PracticalApproaches
+
+- title: Trading Strategies
+  file: chapters/finance/Notebook6A_TradingStrategies
+
+- title: Evaluating a Trading Strategy
+  file: chapters/finance/Notebook6A_TradingStrategies
+
+- title: Timing Strategies
+  file: chapters/finance/TBD
+  - title: Volatility Timing
+    file: chapters/finance/Notebook6A_Volatilitytiming
+
+- title: Cross-Sectional Equity Strategies
+  file: chapters/finance/Notebook6B_crosssectionalequitystrategies
+  - title: Value
+    file: chapters/finance/Notebook6B_Valeuinvesting
+  - title: Momentum
+    file: chapters/finance/Notebook6B_Momentum
+
+- title: Equilbrium Thinking
+  file: chapters/finance/Notebook5_equilibrium
+
+- title: Multifactor Models
+  file: chapters/finance/TBD
+
+- title: Money Management
+  file: chapters/finance/TBD
+
+
 - title: Additional Statistics Material
   file: chapters/additional/additional
   sections:
