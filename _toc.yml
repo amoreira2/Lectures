@@ -110,6 +110,7 @@
 
 - title: Mean Variance Efficient Portfolios
   file: chapters/finance/Notebook4_MeanVariance
+  sections:
   - title: Case Study in International Diversification
     file: chapters/finance/Notebook4_CaseStudy
   - title: Portfolio Optimization with constraints
@@ -117,6 +118,7 @@
 
 - title: Estimation Uncertainty and It's Implications for investing
   file: chapters/finance/Notebook5_EstimationUncertainty
+  sections:
   - title: Practical Approaches to Deal with Estimation Uncertainty
     file: chapters/finance/Notebook5_PracticalApproaches
 
@@ -128,11 +130,13 @@
 
 - title: Timing Strategies
   file: chapters/finance/TBD
+  sections:
   - title: Volatility Timing
     file: chapters/finance/Notebook6A_Volatilitytiming
 
 - title: Cross-Sectional Equity Strategies
   file: chapters/finance/Notebook6B_crosssectionalequitystrategies
+  sections:
   - title: Value
     file: chapters/finance/Notebook6B_Valeuinvesting
   - title: Momentum
