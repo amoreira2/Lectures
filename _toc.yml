@@ -51,7 +51,6 @@
     - title: More on Arrays
       file: chapters/05/3/More_on_Arrays
 
-
 - title: Python Essentials
   file: chapters/essentials/essentials
   sections:
@@ -97,53 +96,53 @@
     file: chapters/pandas/storage_formats
 
 - title: Asset Returns
-  file: chapters/finance/Notebook3
+  file: chapters/Finance/Notebook3
   sections:
   - title: The Choice of Frequency and Annualization of Returns
-    file: chapters/finance/Notebook3_TheChoiceofFrequency
+    file: chapters/Finance/Notebook3_TheChoiceofFrequency
 
 - title: Portfolio Math
-  file: chapters/finance/Notebook4_PortfolioMath
+  file: chapters/Finance/Notebook4_PortfolioMath
 
 - title: Capital Allocation
-  file: chapters/finance/Notebook4_CapitalAllocation
+  file: chapters/Finance/Notebook4_CapitalAllocation
 
 - title: Mean Variance Efficient Portfolios
-  file: chapters/finance/Notebook4_MeanVariance
+  file: chapters/Finance/Notebook4_MeanVariance
   sections:
   - title: Case Study in International Diversification
-    file: chapters/finance/Notebook4_CaseStudy
+    file: chapters/Finance/Notebook4_CaseStudy
   - title: Portfolio Optimization with constraints
-    file: chapters/finance/Notebook5_Portfoliooptimizationwithconstraints
+    file: chapters/Finance/Notebook5_Portfoliooptimizationwithconstraints
 
 - title: Estimation Uncertainty and It's Implications for investing
-  file: chapters/finance/Notebook5_EstimationUncertainty
+  file: chapters/Finance/Notebook5_EstimationUncertainty
 #  sections:
   #- title: Practical Approaches to Deal with Estimation Uncertainty
   #  file: chapters/finance/Notebook5_PracticalApproaches
 
 - title: Trading Strategies
-  file: chapters/finance/Notebook6A_TradingStrategies
+  file: chapters/Finance/Notebook6A_TradingStrategies
 
 - title: Evaluating a Trading Strategy
-  file: chapters/finance/Notebook6A_TradingStrategies
+  file: chapters/Finance/Notebook6A_TradingStrategies
 
 - title: Timing Strategies
-  file: chapters/finance/TBD
+  file: chapters/Finance/TBD
   sections:
   - title: Volatility Timing
-    file: chapters/finance/Notebook6A_Volatilitytiming
+    file: chapters/Finance/Notebook6A_Volatilitytiming
 
 - title: Cross-Sectional Equity Strategies
-  file: chapters/finance/Notebook6B_crosssectionalequitystrategies
+  file: chapters/Finance/Notebook6B_crosssectionalequitystrategies
   sections:
   - title: Value
-    file: chapters/finance/Notebook6B_Valeuinvesting
+    file: chapters/Finance/Notebook6B_Valeuinvesting
   - title: Momentum
-    file: chapters/finance/Notebook6B_Momentum
+    file: chapters/Finance/Notebook6B_Momentum
 
 - title: Equilbrium Thinking
-  file: chapters/finance/Notebook5_equilibrium
+  file: chapters/Finance/Notebook5_equilibrium
 
 # - title: Multifactor Models
 #   file: chapters/finance/TBD
