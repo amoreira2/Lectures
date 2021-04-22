@@ -119,8 +119,8 @@
 - title: Estimation Uncertainty and It's Implications for investing
   file: chapters/finance/Notebook5_EstimationUncertainty
   sections:
-  - title: Practical Approaches to Deal with Estimation Uncertainty
-    file: chapters/finance/Notebook5_PracticalApproaches
+  #- title: Practical Approaches to Deal with Estimation Uncertainty
+  #  file: chapters/finance/Notebook5_PracticalApproaches
 
 - title: Trading Strategies
   file: chapters/finance/Notebook6A_TradingStrategies
