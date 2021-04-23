@@ -1,3 +1,8 @@
 jupyter-book
 numpy
-datascience
+pandas
+scipy
+matplotlib
+skit-learn
+fredapi
+wrds

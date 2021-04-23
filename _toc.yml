@@ -106,6 +106,9 @@
 
 - title: Capital Allocation
   file: chapters/Finance/Notebook4_CapitalAllocation
+  sections:
+  - title: Using APIs
+    file: chapters/Finance/UsingAPI
 
 - title: Mean Variance Efficient Portfolios
   file: chapters/Finance/Notebook4_MeanVariance
