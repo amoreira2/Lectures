@@ -128,10 +128,10 @@
   file: chapters/Finance/Notebook6A_TradingStrategies
 
 - title: Evaluating a Trading Strategy
-  file: chapters/Finance/Notebook6A_TradingStrategies
+  file: chapters/Finance/Notebook7
 
 - title: Timing Strategies
-  file: chapters/Finance/TBD
+  file: chapters/Finance/Notebook6A_Volatilitytiming
   sections:
   - title: Volatility Timing
     file: chapters/Finance/Notebook6A_Volatilitytiming
