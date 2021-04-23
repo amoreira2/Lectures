@@ -3,6 +3,5 @@ numpy
 pandas
 scipy
 matplotlib
-skit-learn
+scikit-learn
 fredapi
-wrds
