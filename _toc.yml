@@ -105,7 +105,7 @@
   file: chapters/Finance/Notebook4_PortfolioMath
 
 - title: Capital Allocation
-  file: chapters/Finance/Notebook4_CapitalAllocation
+  file: chapters/Finance/Notebook4_CapitalAllocationLine
   sections:
   - title: Using APIs
     file: chapters/Finance/UsingAPI
