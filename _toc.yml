@@ -131,7 +131,7 @@
 #  file: chapters/Finance/Notebook7
 
 - title: Timing Strategies
-  file: chapters/Finance/Notebook6A_Volatilitytiming
+  file: chapters/Finance/Timing
   sections:
   - title: Volatility Timing
     file: chapters/Finance/Notebook6A_Volatilitytiming
