@@ -83,7 +83,7 @@
     file: chapters/pandas/basics
   - title: Indexing
     file: chapters/pandas/the_index
-  - title: Cleaning data
+  - title: Cleaning data (o)
     file: chapters/pandas/data_clean
   - title: Reshape
     file: chapters/pandas/reshape
