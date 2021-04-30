@@ -76,6 +76,8 @@
 - title: Working with Data
   file: chapters/pandas/intro
   sections:
+  - title: Introduction
+     file: chapters/pandas/intro
   - title: Pandas Basics
     file: chapters/pandas/basics
   - title: Indexing
