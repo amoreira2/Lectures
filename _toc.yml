@@ -73,11 +73,11 @@
     file: chapters/scientific/linear_algebra1
   - title: Randomness
     file: chapters/scientific/randomness1
+
 - title: Working with Data
-  file: chapters/pandas/intro
   sections:
   - title: Introduction
-     file: chapters/pandas/intro
+    file: chapters/pandas/intro
   - title: Pandas Basics
     file: chapters/pandas/basics
   - title: Indexing
