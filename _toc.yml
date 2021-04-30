@@ -127,8 +127,7 @@
 - title: Trading Strategies
   file: chapters/Finance/Notebook6A_TradingStrategies
 
-#- title: Evaluating a Trading Strategy
-#  file: chapters/Finance/Notebook7
+
 
 - title: Timing Strategies
   file: chapters/Finance/Timing
@@ -143,6 +142,14 @@
     file: chapters/Finance/Notebook6B_Valueinvesting
   - title: Momentum
     file: chapters/Finance/Notebook6B_Momentum
+
+- title: Evaluating a Trading Strategy
+  file: chapters/Finance/Evaluation
+  sections:
+  - title: The Econometrics of Strategy Evalaution
+    file: chapters/Finance/Econometrics
+  - title: Out of Sample Analysis
+    file: chapters/Finance/outofsample
 
 - title: Equilbrium Thinking
   file: chapters/Finance/Notebook5_equilibrium
