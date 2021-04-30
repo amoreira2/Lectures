@@ -75,7 +75,7 @@
     file: chapters/scientific/randomness1
 
 - title: Working with Data
-  file:chapters/pandas/workingwithdata
+  file: chapters/pandas/workingwithdata
   sections:
   - title: Introduction
     file: chapters/pandas/intro
