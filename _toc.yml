@@ -83,19 +83,19 @@
     file: chapters/pandas/basics
   - title: Indexing
     file: chapters/pandas/the_index
-  - title: Cleaning data (o)
+  - title: Cleaning data (opt)
     file: chapters/pandas/data_clean
-  - title: Reshape
+  - title: Reshape (opt)
     file: chapters/pandas/reshape
-  - title: Merge
+  - title: Merge (opt)
     file: chapters/pandas/merge
-  - title: Group-by
+  - title: Group-by (opt)
     file: chapters/pandas/groupby
   - title: Time-Series
     file: chapters/pandas/timeseries
-  - title: Plotting
+  - title: Plotting (opt)
     file: chapters/pandas/matplotlib
-  - title: Data Storage
+  - title: Data Storage (opt)
     file: chapters/pandas/storage_formats
 
 - title: Asset Returns
