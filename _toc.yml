@@ -118,8 +118,11 @@
   sections:
   - title: Case Study in International Diversification
     file: chapters/Finance/Notebook4_CaseStudy
+  - title: Leverage and Shorting
+    file: chapters/Finance/LeverageandShorting
   - title: Portfolio Optimization with constraints
     file: chapters/Finance/Notebook5_Portfoliooptimizationwithconstraints
+
 
 - title: Estimation Uncertainty and It's Implications for investing
   file: chapters/Finance/Notebook5_EstimationUncertainty
