@@ -160,6 +160,11 @@
 - title: Equilbrium Thinking
   file: chapters/Finance/Notebook5_equilibrium
 
+- title: Topics in Quantitative Investing
+  file: chapters/Finance/Topics
+  sections:
+  - title: Strategy Implementation
+    file: chapters/Finance/Implementation
 # - title: Multifactor Models
 #   file: chapters/finance/TBD
 #
