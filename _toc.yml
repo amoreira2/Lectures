@@ -133,8 +133,6 @@
 - title: Trading Strategies
   file: chapters/Finance/Notebook6A_TradingStrategies
 
-
-
 - title: Timing Strategies
   file: chapters/Finance/Timing
   sections:
@@ -161,9 +159,9 @@
   file: chapters/Finance/Topics
   sections:
   - title: Multifactor Models
-    file: chapters/finance/Multifactormodels
+    file: chapters/finance/Mulitfactormodels
   - title: Intepreting Factor models
-    file: chapters/Finance/equilibrium
+    file: chapters/Finance/Equilbrium
   - title: Strategy Implementation
     file: chapters/Finance/Implementation
 
