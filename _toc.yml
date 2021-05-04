@@ -102,7 +102,7 @@
   file: chapters/Finance/Returns
   sections:
   - title: The Choice of Frequency and Annualization of Returns
-    file: chapters/Finance/Notebook3_TheChoiceofFrequency
+    file: chapters/Finance/TheChoiceofFrequency
 
 - title: Portfolio Math
   file: chapters/Finance/PortfolioMath
@@ -146,6 +146,8 @@
     file: chapters/Finance/Valueinvesting
   - title: Momentum
     file: chapters/Finance/Momentum
+  - title: Other Equity strategies
+    file: chapters/Finance/OtherEquityStrategies
 
 - title: Evaluating a Trading Strategy
   file: chapters/Finance/Evaluation
