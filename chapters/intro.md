@@ -3,13 +3,19 @@
 
 By [Alan Moreira](https://sites.google.com/view/alanmoreira/)
 
-## This is work in progress and not intended for distribution. Currently most of the material here comes directly from the book https://inferentialthinking.com/.
 
-This text was originally developed for the University of Rochester course  [Fin 418: Quantitative Investing with Python][fin418].
+**The material from Chapters 2,3,4,5 and 6 are from the course on Python from https://datascience.quantecon.org/.**
+
+
+**The material from Chapter 3 and 17 is from https://inferentialthinking.com/.**
+
+**Chapters 7 to 16 were developed for the course and are free to use with proper reference**
+
+This text was originally developed for the University of Rochester course  Fin 418: Quantitative Investing with Python.
 
 You can [view this text online][ghpages] or [view the source][source].
 
-[fin418]: http://data8.org/
+
 [ghpages]: https://amoreira2.github.io/quantitativeinvesting
 [source]: https://amoreira2.github.io/Lectures
 

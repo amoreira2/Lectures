@@ -9,4 +9,4 @@ Computers cannot study the world on their own. People must describe precisely wh
 steps the computer should take in order to collect and analyze data, and those steps
 are expressed through programs.
 
-
+**The material from Chapter 3 is from https://inferentialthinking.com/.**
