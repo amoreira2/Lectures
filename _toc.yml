@@ -99,53 +99,53 @@
     file: chapters/pandas/storage_formats
 
 - title: Asset Returns
-  file: chapters/Finance/Notebook3
+  file: chapters/Finance/Returns
   sections:
   - title: The Choice of Frequency and Annualization of Returns
     file: chapters/Finance/Notebook3_TheChoiceofFrequency
 
 - title: Portfolio Math
-  file: chapters/Finance/Notebook4_PortfolioMath
+  file: chapters/Finance/PortfolioMath
 
 - title: Capital Allocation
-  file: chapters/Finance/Notebook4_CapitalAllocationLine
+  file: chapters/Finance/CapitalAllocationLine
   sections:
   - title: Using APIs
     file: chapters/Finance/UsingAPI
 
 - title: Mean Variance Efficient Portfolios
-  file: chapters/Finance/Notebook4_MeanVariance
+  file: chapters/Finance/MeanVariance
   sections:
   - title: Case Study in International Diversification
-    file: chapters/Finance/Notebook4_CaseStudy
+    file: chapters/Finance/CaseStudy
   - title: Leverage and Shorting
     file: chapters/Finance/LeverageandShorting
   - title: Portfolio Optimization with constraints
-    file: chapters/Finance/Notebook5_Portfoliooptimizationwithconstraints
+    file: chapters/Finance/Portfoliooptimizationwithconstraints
 
 
 - title: Estimation Uncertainty and It's Implications for investing
-  file: chapters/Finance/Notebook5_EstimationUncertainty
+  file: chapters/Finance/EstimationUncertainty
 #  sections:
   #- title: Practical Approaches to Deal with Estimation Uncertainty
   #  file: chapters/finance/Notebook5_PracticalApproaches
 
 - title: Trading Strategies
-  file: chapters/Finance/Notebook6A_TradingStrategies
+  file: chapters/Finance/TradingStrategies
 
 - title: Timing Strategies
   file: chapters/Finance/Timing
   sections:
   - title: Volatility Timing
-    file: chapters/Finance/Notebook6A_Volatilitytiming
+    file: chapters/Finance/Volatilitytiming
 
 - title: Cross-Sectional Equity Strategies
-  file: chapters/Finance/Notebook6B_crosssectionalequitystrategies
+  file: chapters/Finance/crosssectionalequitystrategies
   sections:
   - title: Value
-    file: chapters/Finance/Notebook6B_Valueinvesting
+    file: chapters/Finance/Valueinvesting
   - title: Momentum
-    file: chapters/Finance/Notebook6B_Momentum
+    file: chapters/Finance/Momentum
 
 - title: Evaluating a Trading Strategy
   file: chapters/Finance/Evaluation
@@ -159,7 +159,7 @@
   file: chapters/Finance/Topics
   sections:
   - title: Multifactor Models
-    file: chapters/finance/Mulitfactormodels
+    file: chapters/finance/MultiFactorModels
   - title: Intepreting Factor models
     file: chapters/Finance/Equilbrium
   - title: Strategy Implementation
