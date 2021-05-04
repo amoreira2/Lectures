@@ -3,6 +3,12 @@ april30- I did most of chapter 15
      There still need some clean up
      In particular need to shift the data pointers to github
      I believe it is only GFD and the pike data sets that I download from WRDS
-     The the mateiral for equilbrium thinking is mostly in the LEFTOVERS notebook
+     ok: The the mateiral for equilbrium thinking is mostly in the LEFTOVERS notebook
      Maybe I should add to the using API datareader and wrds
      Have to decide I am goign to do code snippets thing
+may2
+     need to add info to other tradign strategies PEAD and Profitabiltiy
+     Implementation needs work, perhaps use the AQR ppaper for plots to illustrate how transaction costs can impact stuff
+
+    ok: Multifactor is close to good, I think
+     ok: didn't start on equilbrium. Only created file

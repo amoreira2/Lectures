@@ -157,16 +157,16 @@
   - title: Out of Sample Analysis
     file: chapters/Finance/outofsample
 
-- title: Equilbrium Thinking
-  file: chapters/Finance/Notebook5_equilibrium
-
 - title: Topics in Quantitative Investing
   file: chapters/Finance/Topics
   sections:
+  - title: Multifactor Models
+    file: chapters/finance/Multifactormodels
+  - title: Intepreting Factor models
+    file: chapters/Finance/equilibrium
   - title: Strategy Implementation
     file: chapters/Finance/Implementation
-# - title: Multifactor Models
-#   file: chapters/finance/TBD
+
 #
 # - title: Money Management
 #   file: chapters/finance/TBD
