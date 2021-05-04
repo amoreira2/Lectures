@@ -6,3 +6,6 @@ matplotlib
 scikit-learn
 fredapi
 statsmodels
+wrds
+datascience
+pandas_datareader
