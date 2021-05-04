@@ -159,7 +159,7 @@
   file: chapters/Finance/Topics
   sections:
   - title: Multifactor Models
-    file: chapters/finance/MultiFactorModels
+    file: chapters/Finance/MultiFactorModels
   - title: Intepreting Factor models
     file: chapters/Finance/Equilbrium
   - title: Strategy Implementation
