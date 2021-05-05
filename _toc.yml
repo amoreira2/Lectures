@@ -156,6 +156,8 @@
     file: chapters/Finance/Econometrics
   - title: Out of Sample Analysis
     file: chapters/Finance/outofsample
+  - title: Tail Risks and Background Risks
+    file: chapters/Finance/TailandBackground
 
 - title: Topics in Quantitative Investing
   file: chapters/Finance/Topics
@@ -166,7 +168,8 @@
     file: chapters/Finance/Equilbrium
   - title: Strategy Implementation
     file: chapters/Finance/Implementation
-
+  - title: Investment horizon effects
+    file: chapters/Finance/Horizon
 #
 # - title: Money Management
 #   file: chapters/finance/TBD
