@@ -4,7 +4,7 @@
 By [Alan Moreira](https://sites.google.com/view/alanmoreira/)
 
 
-**The material from Chapters 2,3,4,5 and 6 are from the course on Python from https://datascience.quantecon.org/.**
+**The material from Chapters 2,4,5 and 6 are from the course on Python from https://datascience.quantecon.org/.**
 
 
 **The material from Chapter 3 and 17 is from https://inferentialthinking.com/.**
