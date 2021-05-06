@@ -21,8 +21,12 @@ identifying patterns in asset prices.
 
 Sometimes referred to as smart beta in the industry:
 
+:::{figure-md} markdown-fig
+<img src="../../assets/plots/intro1.jpg" alt="fishy" class="bg-primary mb-1" width="200px">
 
-![fig](../../assets/plots/intro1.jpg)
+This is a caption in **Markdown**!
+:::
+
 
 * Does the media attention reflect investor appetite?
 
