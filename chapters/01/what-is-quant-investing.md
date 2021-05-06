@@ -51,7 +51,7 @@ There are different types of "quants":
 - High frequency traders (Citadel, Virtu, Susquehanna, Wolverine )
 
  They trade in and out within minutes, hours. Their edge comes mostly from information technology and being able to process information extremely quickly.
- 
+
  - Statistical arbitrage (ADR arbitrage, ETF arbitrage, twin stocks, index arbitrage, Merger arbitrage, event arbitrage)
 
  Trading horizon is days to weeks. Edge comes of having reliable statistical models of these relationships and understanding when past relationships might breakdown.
@@ -61,6 +61,7 @@ There are different types of "quants":
  Trading horizon is months/year. Combines use of statistics with economic analysis. Use information similar to that used by  long/short equity managers (balance-sheet data, stock-return data, stock relevant events), but systematize it in a way that the  computer can replixated what a good equity analysts does. Scale methodology  across thousands of stocks around the world to reap benefits of diversification.
 
  ![fig](../../assets/plots/intro4.jpg)
+
  *Jack Bogle, founder of Vanguard*
 
  In some ways the father of quantitative investing is Jack Bogle who operationalized the index fund in a way that is cheap and acessible. This essentially build the conditions for showing that active managers were mostly big losers realtive to easy/cheap index fund, and induce the quant investing revolution that moved from a personality centric culture to a data centric culture.
@@ -69,4 +70,5 @@ There are different types of "quants":
 
 
  ![fig](../../assets/plots/intro5.jpg)
+
  *Gene Fama and Ken French*
