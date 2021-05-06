@@ -49,27 +49,24 @@ What is distictive about quantitative investing in it's best form?
 There are different types of "quants":
 
 - High frequency traders (Citadel, Virtu, Susquehanna, Wolverine )
- 
+
  They trade in and out within minutes, hours. Their edge comes mostly from information technology and being able to process information extremely quickly.
  
  - Statistical arbitrage (ADR arbitrage, ETF arbitrage, twin stocks, index arbitrage, Merger arbitrage, event arbitrage)
- 
+
  Trading horizon is days to weeks. Edge comes of having reliable statistical models of these relationships and understanding when past relationships might breakdown.
- 
+
  - Fundamental quant (Blackrock, DFA, Bridgewater, AQR,Vanguard)
- 
- Trading horizon is months/year. Combines use of statistics with economic analysis. Use information similar to that used by  long/short equity managers (balance-sheet data, stock-return data, stock relevant events), but systematize it in a way that the  computer can replixated what a good equity analysts does. Scale methodology  across thousands of stocks around the world to reap benefits of diversification. 
- 
+
+ Trading horizon is months/year. Combines use of statistics with economic analysis. Use information similar to that used by  long/short equity managers (balance-sheet data, stock-return data, stock relevant events), but systematize it in a way that the  computer can replixated what a good equity analysts does. Scale methodology  across thousands of stocks around the world to reap benefits of diversification.
+
  ![fig](../../assets/plots/intro4.jpg)
  *Jack Bogle, founder of Vanguard*
- 
+
  In some ways the father of quantitative investing is Jack Bogle who operationalized the index fund in a way that is cheap and acessible. This essentially build the conditions for showing that active managers were mostly big losers realtive to easy/cheap index fund, and induce the quant investing revolution that moved from a personality centric culture to a data centric culture.
- 
+
  In lots of ways Eugene Fama and Kenneth French (**UofR Simon** grad!) are the academic founders that in lots of ways were way ahead of what was beign done in the industry at the time. They developed or perfected most of the techiques used to construct and evalaute quant strategies and were instrumental in building clean and organized data repositories for financial data.
- 
- 
+
+
  ![fig](../../assets/plots/intro5.jpg)
- *Gene Fama and Ken Frecnh*
- 
- 
- 
+ *Gene Fama and Ken French*
