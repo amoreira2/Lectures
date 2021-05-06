@@ -48,13 +48,13 @@ What is distictive about quantitative investing in it's best form?
 
 There are different types of "quants":
 
-- High frequency traders (Citadel, Virtu)
+- High frequency traders (Citadel, Virtu, Susquehanna, Wolverine )
  
- They trade in and out within minutes, hours. Their edge comes mostly from information technlogy and being able to process information extremely quickly.
+ They trade in and out within minutes, hours. Their edge comes mostly from information technology and being able to process information extremely quickly.
  
- - Statistical arbitrage (ADR arbitrage, ETF arbitrage, twin stocks, index arbitrage)
+ - Statistical arbitrage (ADR arbitrage, ETF arbitrage, twin stocks, index arbitrage, Merger arbitrage, event arbitrage)
  
- Trading horizon is days to weeks. Edge comes of having reliable statistical models of these relationships and understanding when past relationships might breakdown
+ Trading horizon is days to weeks. Edge comes of having reliable statistical models of these relationships and understanding when past relationships might breakdown.
  
  - Fundamental quant (Blackrock, DFA, Bridgewater, AQR,Vanguard)
  
