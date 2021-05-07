@@ -1,26 +1,7 @@
-april30- I did most of chapter 15
-     IT remains to add section on tail risks and background risks
-     There still need some clean up
-     on it: In particular need to shift the data pointers to github
-     on it: I believe it is only GFD and the pike data sets that I download from WRDS
-     ok: The the mateiral for equilbrium thinking is mostly in the LEFTOVERS notebook
-     Maybe I should add to the using API datareader and wrds
-     Have to decide I am goign to do code snippets thing
-may2
-     need to add info to other tradign strategies PEAD and Profitabiltiy
-     Implementation needs work, perhaps use the AQR ppaper for plots to illustrate how transaction costs can impact stuff
-
-    ok: Multifactor is close to good, I think
-     ok: didn't start on equilbrium. Only created file
-may 4
-    ok: need to work on portfolio optimization wiht constraints
-    need to check choice frequency notebook
 
 to do
-     ok need to check choice frequency notebook
      IT remains to add section on tail risks and background risks
      There still need some clean up
      saving used data sets on github, did a few
-     add to the using API datareader (Ken french) and wrds
-    ok need to add info to other tradign strategies PEAD and Profitabiltiy
      Implementation needs work, perhaps use the AQR ppaper for plots to illustrate how transaction costs can impact stuff
+     What should I ask in assigment 2?
