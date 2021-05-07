@@ -85,4 +85,6 @@ Some books:
 
  Here some recent newspapers articles on Quantitative Investing:
 
-  [no good year for quants](../../assets/papers/A terrible, horrible, no-good year for quants _ Financial Times.pdf), [And they are back](../../assets/papers/‘Quant winter’ thaw ends long spell of drab returns for funds _ Financial Times.pdf), [But things are not quite the same](../../assets/papers/Investors brace for ‘major shift’ as momentum and value collide _ Financial Times.pdf)
+* [no good year for quants]('../../assets/papers/A terrible, horrible, no-good year for quants _ Financial Times.pdf'),
+* [And they are back]('../../assets/papers/‘Quant winter’ thaw ends long spell of drab returns for funds _ Financial Times.pdf'),
+* [But things are not quite the same]('../../assets/papers/Investors brace for ‘major shift’ as momentum and value collide _ Financial Times.pdf')
