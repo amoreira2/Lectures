@@ -157,12 +157,12 @@
     file: chapters/Finance/outofsample
   - title: Tail Risks and Background Risks
     file: chapters/Finance/TailandBackground
+  - title: Multifactor Models
+    file: chapters/Finance/MultiFactorModels
 
 - title: Topics in Quantitative Investing
   file: chapters/Finance/Topics
   sections:
-  - title: Multifactor Models
-    file: chapters/Finance/MultiFactorModels
   - title: Intepreting Factor models
     file: chapters/Finance/Equilbrium
   - title: Strategy Implementation

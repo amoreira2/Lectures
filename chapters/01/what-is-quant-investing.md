@@ -79,10 +79,6 @@ Some books:
 
 * Trillions: written by a pretty smart Financial Times journalist. I haven't read it yet, but should be good.
 
-* The Quants: not very good, but fun.
-
- ![fig](../../assets/plots/intro6.jpg)
-
  Here some recent newspapers articles on Quantitative Investing:
 
 * [no good year for quants](https://github.com/amoreira2/Lectures/blob/09526a0cdfc6c60b6b2ad63389f266ac7b5433fa/assets/papers/A%20terrible,%C2%A0horrible,%20no-good%C2%A0year%20for%20quants%20_%20Financial%20Times.pdf),
