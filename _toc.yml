@@ -61,6 +61,7 @@
     file: chapters/essentials/control_flow
   - title: Functions
     file: chapters/essentials/functions
+
 - title: Scientific Computing
   file: chapters/scientific/intro
   sections:
