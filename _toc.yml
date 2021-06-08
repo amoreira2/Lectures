@@ -4,7 +4,7 @@ title: Introduction
 options:
   numbered: true
 
-sections:
+chapters:
 - file: chapters/01/what-is-quant-investing
   sections:
   - file: chapters/01/statistical-techniques
