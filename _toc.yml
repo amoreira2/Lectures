@@ -1,4 +1,4 @@
-format: jb-article
+format: jb-book
 root: chapters/intro
 title: Introduction
 options:
@@ -6,7 +6,6 @@ options:
 
 sections:
 - file: chapters/01/what-is-quant-investing
-  title: What is Quantitative Investing?
   sections:
   - file: chapters/01/statistical-techniques
     title: Statistical Techniques
