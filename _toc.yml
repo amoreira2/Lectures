@@ -1,7 +1,7 @@
 format: jb-book
 root: chapters/intro
 title: Introduction
-options:
+defaults:
   numbered: true
 parts:
   - caption: Course Intro
