@@ -2,7 +2,7 @@ format: jb-book
 root: chapters/intro
 title: Introduction
 defaults:
-  numbered: true
+  numbered: True
 parts:
   - caption: Course Intro
     chapters:
@@ -39,6 +39,7 @@ parts:
       - file: chapters/essentials/collections
       - file: chapters/essentials/control_flow
       - file: chapters/essentials/functions
+
     - file: chapters/scientific/intro
       sections:
       - file: chapters/scientific/numpy1
@@ -111,6 +112,7 @@ parts:
         title: Tail Risks and Background Risks
       - file: chapters/Finance/MultiFactorModels
         title: Multifactor Models
+
     - file: chapters/Finance/Topics
       title: Topics in Quantitative Investing
       sections:
@@ -120,6 +122,7 @@ parts:
         title: Strategy Implementation
       - file: chapters/Finance/Horizon
         title: Investment horizon effects
+
   - caption: Additional Statistics Material
     chapters:
     - file: chapters/additional/10/Sampling_and_Empirical_Distributions
