@@ -39,8 +39,8 @@ parts:
       - file: chapters/essentials/collections
       - file: chapters/essentials/control_flow
       - file: chapters/essentials/functions
-
     - file: chapters/scientific/intro
+      title: Scientific Computing
       sections:
       - file: chapters/scientific/numpy1
       - file: chapters/scientific/plotting1
