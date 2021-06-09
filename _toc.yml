@@ -3,202 +3,198 @@ root: chapters/intro
 title: Introduction
 options:
   numbered: true
-parts:
-  - caption: Course Intro
-    chapters:
-    - file: chapters/01/what-is-quant-investing
-      sections:
-      - file: chapters/01/statistical-techniques
-      - file: chapters/01/computational-tools
-    - file: chapters/02/getting_started
-      sections:
-      - file: chapters/02/local_install
-      - file: chapters/02/cloud_setup
-  - caption: Intro to Python
-    - file: chapters/03/programming-in-python
-      sections:
-      - file: chapters/03/1/Expressions
-      - file: chapters/03/2/Names
-        sections:
-        - file: chapters/03/2/1/Growth
-      - file: chapters/03/3/Calls
-      - file: chapters/03/4/Data_Types
-        sections:
-        - file: chapters/03/4/1/Numbers
-        - file: chapters/03/4/2/Strings
-        - file: chapters/04/4/3/Comparison
-      - file: chapters/03/5/Sequences
-        sections:
-        - file: chapters/03/5/1/Arrays
-        - file: chapters/03/5/2/Ranges
-        - file: chapters/03/5/3/More_on_Arrays
-    - file: chapters/essentials/essentials
-      sections:
-      - file: chapters/essentials/basics
-      - file: chapters/essentials/collections
-      - file: chapters/essentials/control_flow
-      - file: chapters/essentials/functions
-    - file: chapters/scientific/intro
-      title: Scientific Computing
-      sections:
-      - file: chapters/scientific/numpy1
-      - file: chapters/scientific/plotting1
-      - file: chapters/scientific/linear_algebra1
-      - file: chapters/scientific/randomness1
-    - file: chapters/pandas/workingwithdata
-      title: Working with Data
-      sections:
-      - file: chapters/pandas/intro
-        title: Introduction
-      - file: chapters/pandas/basics
-        title: Pandas Basics
-      - file: chapters/pandas/the_index
-        title: Indexing
-      - file: chapters/pandas/data_clean
-        title: Cleaning data (opt)
-      - file: chapters/pandas/reshape
-        title: Reshape (opt)
-      - file: chapters/pandas/merge
-        title: Merge (opt)
-      - file: chapters/pandas/groupby
-        title: Group-by (opt)
-      - file: chapters/pandas/timeseries
-        title: Time-Series
-      - file: chapters/pandas/matplotlib
-        title: Plotting (opt)
-      - file: chapters/pandas/storage_formats
-        title: Data Storage (opt)
-  - caption: Finance
-    - file: chapters/Finance/Returns
-      title: Asset Returns
-      sections:
-      - file: chapters/Finance/TheChoiceofFrequency
-        title: The Choice of Frequency and Annualization of Returns
-    - file: chapters/Finance/PortfolioMath
-      title: Portfolio Math
-    - file: chapters/Finance/CapitalAllocationLine
-      title: Capital Allocation
-      sections:
-      - file: chapters/Finance/UsingAPI
-        title: Using APIs
-    - file: chapters/Finance/MeanVariance
-      title: Mean Variance Efficient Portfolios
-      sections:
-      - file: chapters/Finance/CaseStudy
-        title: Case Study in International Diversification
-      - file: chapters/Finance/LeverageandShorting
-        title: Leverage and Shorting
-      - file: chapters/Finance/Portfoliooptimizationwithconstraints
-        title: Portfolio Optimization with constraints
-    - file: chapters/Finance/EstimationUncertainty
-      title: Estimation Uncertainty and It's Implications for investing
-    - file: chapters/Finance/TradingStrategies
-      title: Trading Strategies
-    - file: chapters/Finance/Timing
-      title: Timing Strategies
-      sections:
-      - file: chapters/Finance/Volatilitytiming
-        title: Volatility Timing
-    - file: chapters/Finance/crosssectionalequitystrategies
-      title: Cross-Sectional Equity Strategies
-      sections:
-      - file: chapters/Finance/Valueinvesting
-        title: Value
-      - file: chapters/Finance/Momentum
-        title: Momentum
-      - file: chapters/Finance/OtherEquityStrategies
-        title: Other Equity strategies
-    - file: chapters/Finance/Evaluation
-      title: Evaluating a Trading Strategy
-      sections:
-      - file: chapters/Finance/Econometrics
-        title: The Econometrics of Strategy Evalaution
-      - file: chapters/Finance/outofsample
-        title: Out of Sample Analysis
-      - file: chapters/Finance/TailandBackground
-        title: Tail Risks and Background Risks
-      - file: chapters/Finance/MultiFactorModels
-        title: Multifactor Models
-    - file: chapters/Finance/Topics
-      title: Topics in Quantitative Investing
-      sections:
-      - file: chapters/Finance/Equilbrium
-        title: Intepreting Factor models
-      - file: chapters/Finance/Implementation
-        title: Strategy Implementation
-      - file: chapters/Finance/Horizon
-        title: Investment horizon effects
-  - caption: Additional Statistics Material
-    - file: chapters/additional/additional
-      title: Additional Statistics Material
-      sections:
-      - file: chapters/additional/10/Sampling_and_Empirical_Distributions
-        title: Sampling and Empirical Distributions
-        sections:
-        - file: chapters/additional/10/1/Empirical_Distributions
-          title: Empirical Distributions
-        - file: chapters/additional/10/2/Sampling_from_a_Population
-          title: Sampling from a Population
-        - file: chapters/additional/10/3/Empirical_Distribution_of_a_Statistic
-          title: Empirical Distibution of a Statistic
-      - file: chapters/additional/11/Testing_Hypotheses
-        title: Testing Hypotheses
-        sections:
-        - file: chapters/additional/11/1/Assessing_Models
-          title: Assessing Models
-        - file: chapters/additional/11/2/Multiple_Categories
-          title: Multiple Categories
-        - file: chapters/additional/11/3/Decisions_and_Uncertainty
-          title: Decisions and Uncertainty
-        - file: chapters/additional/11/4/Error_Probabilities
-          title: Error Probabilities
-      - file: chapters/additional/13/Estimation
-        title: Estimation
-        sections:
-        - file: chapters/additional/13/1/Percentiles
-          title: Percentiles
-        - file: chapters/additional/13/2/Bootstrap
-          title: The Bootstrap
-        - file: chapters/additional/13/3/Confidence_Intervals
-          title: Confidence Intervals
-        - file: chapters/additional/13/4/Using_Confidence_Intervals
-          title: Using Confidence Intervals
-      - file: chapters/additional/14/Why_the_Mean_Matters
-        title: Why the Mean Matters
-        sections:
-        - file: chapters/additional/14/1/Properties_of_the_Mean
-          title: Properties of the Mean
-        - file: chapters/additional/14/2/Variability
-          title: Variability
-        - file: chapters/additional/14/3/SD_and_the_Normal_Curve
-          title: The SD and the Normal Curve
-        - file: chapters/additional/14/4/Central_Limit_Theorem
-          title: The Central Limit Theorem
-        - file: chapters/additional/14/5/Variability_of_the_Sample_Mean
-          title: The Variability of the Sample Mean
-        - file: chapters/additional/14/6/Choosing_a_Sample_Size
-          title: Choosing a Sample Size
-      - file: chapters/additional/15/Prediction
-        title: Prediction
-        sections:
-        - file: chapters/additional/15/1/Correlation
-          title: Correlation
-        - file: chapters/additional/15/2/Regression_Line
-          title: The Regression Line
-        - file: chapters/additional/15/3/Method_of_Least_Squares
-          title: The Method of Least Squares
-        - file: chapters/additional/15/4/Least_Squares_Regression
-          title: Least Squares Regression
-        - file: chapters/additional/15/5/Visual_Diagnostics
-          title: Visual Diagnostics
-        - file: chapters/additional/15/6/Numerical_Diagnostics
-          title: Numerical Diagnostics
-      - file: chapters/additional/16/Inference_for_Regression
-        title: Inference for Regression
-        sections:
-        - file: chapters/additional/16/1/Regression_Model
-          title: A Regression Model
-        - file: chapters/additional/16/2/Inference_for_the_True_Slope
-          title: Inference for the True Slope
-        - file: chapters/additional/16/3/Prediction_Intervals
-          title: Prediction Intervals
+
+chapters:
+- file: chapters/01/what-is-quant-investing
+  sections:
+  - file: chapters/01/statistical-techniques
+  - file: chapters/01/computational-tools
+- file: chapters/02/getting_started
+  sections:
+  - file: chapters/02/local_install
+  - file: chapters/02/cloud_setup
+- file: chapters/03/programming-in-python
+  sections:
+  - file: chapters/03/1/Expressions
+  - file: chapters/03/2/Names
+    sections:
+    - file: chapters/03/2/1/Growth
+  - file: chapters/03/3/Calls
+  - file: chapters/03/4/Data_Types
+    sections:
+    - file: chapters/03/4/1/Numbers
+    - file: chapters/03/4/2/Strings
+    - file: chapters/04/4/3/Comparison
+  - file: chapters/03/5/Sequences
+    sections:
+    - file: chapters/03/5/1/Arrays
+    - file: chapters/03/5/2/Ranges
+    - file: chapters/03/5/3/More_on_Arrays
+- file: chapters/essentials/essentials
+  sections:
+  - file: chapters/essentials/basics
+  - file: chapters/essentials/collections
+  - file: chapters/essentials/control_flow
+  - file: chapters/essentials/functions
+- file: chapters/scientific/intro
+  title: Scientific Computing
+  sections:
+  - file: chapters/scientific/numpy1
+  - file: chapters/scientific/plotting1
+  - file: chapters/scientific/linear_algebra1
+  - file: chapters/scientific/randomness1
+- file: chapters/pandas/workingwithdata
+  title: Working with Data
+  sections:
+  - file: chapters/pandas/intro
+    title: Introduction
+  - file: chapters/pandas/basics
+    title: Pandas Basics
+  - file: chapters/pandas/the_index
+    title: Indexing
+  - file: chapters/pandas/data_clean
+    title: Cleaning data (opt)
+  - file: chapters/pandas/reshape
+    title: Reshape (opt)
+  - file: chapters/pandas/merge
+    title: Merge (opt)
+  - file: chapters/pandas/groupby
+    title: Group-by (opt)
+  - file: chapters/pandas/timeseries
+    title: Time-Series
+  - file: chapters/pandas/matplotlib
+    title: Plotting (opt)
+  - file: chapters/pandas/storage_formats
+    title: Data Storage (opt)
+- file: chapters/Finance/Returns
+  title: Asset Returns
+  sections:
+  - file: chapters/Finance/TheChoiceofFrequency
+    title: The Choice of Frequency and Annualization of Returns
+- file: chapters/Finance/PortfolioMath
+  title: Portfolio Math
+- file: chapters/Finance/CapitalAllocationLine
+  title: Capital Allocation
+  sections:
+  - file: chapters/Finance/UsingAPI
+    title: Using APIs
+- file: chapters/Finance/MeanVariance
+  title: Mean Variance Efficient Portfolios
+  sections:
+  - file: chapters/Finance/CaseStudy
+    title: Case Study in International Diversification
+  - file: chapters/Finance/LeverageandShorting
+    title: Leverage and Shorting
+  - file: chapters/Finance/Portfoliooptimizationwithconstraints
+    title: Portfolio Optimization with constraints
+- file: chapters/Finance/EstimationUncertainty
+  title: Estimation Uncertainty and It's Implications for investing
+- file: chapters/Finance/TradingStrategies
+  title: Trading Strategies
+- file: chapters/Finance/Timing
+  title: Timing Strategies
+  sections:
+  - file: chapters/Finance/Volatilitytiming
+    title: Volatility Timing
+- file: chapters/Finance/crosssectionalequitystrategies
+  title: Cross-Sectional Equity Strategies
+  sections:
+  - file: chapters/Finance/Valueinvesting
+    title: Value
+  - file: chapters/Finance/Momentum
+    title: Momentum
+  - file: chapters/Finance/OtherEquityStrategies
+    title: Other Equity strategies
+- file: chapters/Finance/Evaluation
+  title: Evaluating a Trading Strategy
+  sections:
+  - file: chapters/Finance/Econometrics
+    title: The Econometrics of Strategy Evalaution
+  - file: chapters/Finance/outofsample
+    title: Out of Sample Analysis
+  - file: chapters/Finance/TailandBackground
+    title: Tail Risks and Background Risks
+  - file: chapters/Finance/MultiFactorModels
+    title: Multifactor Models
+- file: chapters/Finance/Topics
+  title: Topics in Quantitative Investing
+  sections:
+  - file: chapters/Finance/Equilbrium
+    title: Intepreting Factor models
+  - file: chapters/Finance/Implementation
+    title: Strategy Implementation
+  - file: chapters/Finance/Horizon
+    title: Investment horizon effects
+- file: chapters/additional/additional
+  title: Additional Statistics Material
+  sections:
+  - file: chapters/additional/10/Sampling_and_Empirical_Distributions
+    title: Sampling and Empirical Distributions
+    sections:
+    - file: chapters/additional/10/1/Empirical_Distributions
+      title: Empirical Distributions
+    - file: chapters/additional/10/2/Sampling_from_a_Population
+      title: Sampling from a Population
+    - file: chapters/additional/10/3/Empirical_Distribution_of_a_Statistic
+      title: Empirical Distibution of a Statistic
+  - file: chapters/additional/11/Testing_Hypotheses
+    title: Testing Hypotheses
+    sections:
+    - file: chapters/additional/11/1/Assessing_Models
+      title: Assessing Models
+    - file: chapters/additional/11/2/Multiple_Categories
+      title: Multiple Categories
+    - file: chapters/additional/11/3/Decisions_and_Uncertainty
+      title: Decisions and Uncertainty
+    - file: chapters/additional/11/4/Error_Probabilities
+      title: Error Probabilities
+  - file: chapters/additional/13/Estimation
+    title: Estimation
+    sections:
+    - file: chapters/additional/13/1/Percentiles
+      title: Percentiles
+    - file: chapters/additional/13/2/Bootstrap
+      title: The Bootstrap
+    - file: chapters/additional/13/3/Confidence_Intervals
+      title: Confidence Intervals
+    - file: chapters/additional/13/4/Using_Confidence_Intervals
+      title: Using Confidence Intervals
+  - file: chapters/additional/14/Why_the_Mean_Matters
+    title: Why the Mean Matters
+    sections:
+    - file: chapters/additional/14/1/Properties_of_the_Mean
+      title: Properties of the Mean
+    - file: chapters/additional/14/2/Variability
+      title: Variability
+    - file: chapters/additional/14/3/SD_and_the_Normal_Curve
+      title: The SD and the Normal Curve
+    - file: chapters/additional/14/4/Central_Limit_Theorem
+      title: The Central Limit Theorem
+    - file: chapters/additional/14/5/Variability_of_the_Sample_Mean
+      title: The Variability of the Sample Mean
+    - file: chapters/additional/14/6/Choosing_a_Sample_Size
+      title: Choosing a Sample Size
+  - file: chapters/additional/15/Prediction
+    title: Prediction
+    sections:
+    - file: chapters/additional/15/1/Correlation
+      title: Correlation
+    - file: chapters/additional/15/2/Regression_Line
+      title: The Regression Line
+    - file: chapters/additional/15/3/Method_of_Least_Squares
+      title: The Method of Least Squares
+    - file: chapters/additional/15/4/Least_Squares_Regression
+      title: Least Squares Regression
+    - file: chapters/additional/15/5/Visual_Diagnostics
+      title: Visual Diagnostics
+    - file: chapters/additional/15/6/Numerical_Diagnostics
+      title: Numerical Diagnostics
+  - file: chapters/additional/16/Inference_for_Regression
+    title: Inference for Regression
+    sections:
+    - file: chapters/additional/16/1/Regression_Model
+      title: A Regression Model
+    - file: chapters/additional/16/2/Inference_for_the_True_Slope
+      title: Inference for the True Slope
+    - file: chapters/additional/16/3/Prediction_Intervals
+      title: Prediction Intervals
