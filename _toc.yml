@@ -3,8 +3,7 @@ root: chapters/intro
 title: Introduction
 options:
   numbered: true
-
-chapters:
+sections:
 - file: chapters/01/what-is-quant-investing
   title: What is Quantitative Investing?
   sections:
