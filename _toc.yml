@@ -135,16 +135,25 @@ parts:
   - caption: Additional Statistics Material
     chapters:
     - file: chapters/additional/10/Sampling_and_Empirical_Distributions
+      title: Sampling and Empirical Distributions
       sections:
       - file: chapters/additional/10/1/Empirical_Distributions
+        title: Empirical Distributions
       - file: chapters/additional/10/2/Sampling_from_a_Population
+        title: Sampling from a Population
       - file: chapters/additional/10/3/Empirical_Distribution_of_a_Statistic
+        title: Empirical Distibution of a Statistic
     - file: chapters/additional/11/Testing_Hypotheses
+      title: Testing Hypotheses
       sections:
       - file: chapters/additional/11/1/Assessing_Models
+        title: Assessing Models
       - file: chapters/additional/11/2/Multiple_Categories
+        title: Multiple Categories
       - file: chapters/additional/11/3/Decisions_and_Uncertainty
+        title: Decisions and Uncertainty
       - file: chapters/additional/11/4/Error_Probabilities
+        title: Error Probabilities
     - file: chapters/additional/13/Estimation
       title: Estimation
       sections:
