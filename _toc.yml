@@ -70,7 +70,7 @@ parts:
       - file: chapters/pandas/storage_formats
         title: Data Storage (opt)
   - caption: Finance
-    chapters:
+  chapters:
     - file: chapters/Finance/Returns
       title: Asset Returns
       sections:
@@ -131,7 +131,7 @@ parts:
       - file: chapters/Finance/Horizon
         title: Investment horizon effects
   - caption: Additional Statistics Material
-    chapters:
+  chapters:
     - file: chapters/additional/additional
       title: Additional Statistics Material
       sections:
