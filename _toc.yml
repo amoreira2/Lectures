@@ -15,6 +15,7 @@ parts:
       - file: chapters/02/local_install
       - file: chapters/02/cloud_setup
   - caption: Intro to Python
+    chapters:
     - file: chapters/03/programming-in-python
       sections:
       - file: chapters/03/1/Expressions
@@ -69,6 +70,7 @@ parts:
       - file: chapters/pandas/storage_formats
         title: Data Storage (opt)
   - caption: Finance
+  chapters:
     - file: chapters/Finance/Returns
       title: Asset Returns
       sections:
@@ -129,6 +131,7 @@ parts:
       - file: chapters/Finance/Horizon
         title: Investment horizon effects
   - caption: Additional Statistics Material
+  chapters:
     - file: chapters/additional/additional
       title: Additional Statistics Material
       sections:
