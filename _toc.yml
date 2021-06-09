@@ -134,73 +134,76 @@ parts:
 
   - caption: Additional Statistics Material
     chapters:
-    - file: chapters/additional/10/Sampling_and_Empirical_Distributions
-      title: Sampling and Empirical Distributions
+    - file: chapters/additional/additional
+      title: Additional Statistics Material
       sections:
-      - file: chapters/additional/10/1/Empirical_Distributions
-        title: Empirical Distributions
-      - file: chapters/additional/10/2/Sampling_from_a_Population
-        title: Sampling from a Population
-      - file: chapters/additional/10/3/Empirical_Distribution_of_a_Statistic
-        title: Empirical Distibution of a Statistic
-    - file: chapters/additional/11/Testing_Hypotheses
-      title: Testing Hypotheses
-      sections:
-      - file: chapters/additional/11/1/Assessing_Models
-        title: Assessing Models
-      - file: chapters/additional/11/2/Multiple_Categories
-        title: Multiple Categories
-      - file: chapters/additional/11/3/Decisions_and_Uncertainty
-        title: Decisions and Uncertainty
-      - file: chapters/additional/11/4/Error_Probabilities
-        title: Error Probabilities
-    - file: chapters/additional/13/Estimation
-      title: Estimation
-      sections:
-      - file: chapters/additional/13/1/Percentiles
-        title: Percentiles
-      - file: chapters/additional/13/2/Bootstrap
-        title: The Bootstrap
-      - file: chapters/additional/13/3/Confidence_Intervals
-        title: Confidence Intervals
-      - file: chapters/additional/13/4/Using_Confidence_Intervals
-        title: Using Confidence Intervals
-    - file: chapters/additional/14/Why_the_Mean_Matters
-      title: Why the Mean Matters
-      sections:
-      - file: chapters/additional/14/1/Properties_of_the_Mean
-        title: Properties of the Mean
-      - file: chapters/additional/14/2/Variability
-        title: Variability
-      - file: chapters/additional/14/3/SD_and_the_Normal_Curve
-        title: The SD and the Normal Curve
-      - file: chapters/additional/14/4/Central_Limit_Theorem
-        title: The Central Limit Theorem
-      - file: chapters/additional/14/5/Variability_of_the_Sample_Mean
-        title: The Variability of the Sample Mean
-      - file: chapters/additional/14/6/Choosing_a_Sample_Size
-        title: Choosing a Sample Size
-    - file: chapters/additional/15/Prediction
-      title: Prediction
-      sections:
-      - file: chapters/additional/15/1/Correlation
-        title: Correlation
-      - file: chapters/additional/15/2/Regression_Line
-        title: The Regression Line
-      - file: chapters/additional/15/3/Method_of_Least_Squares
-        title: The Method of Least Squares
-      - file: chapters/additional/15/4/Least_Squares_Regression
-        title: Least Squares Regression
-      - file: chapters/additional/15/5/Visual_Diagnostics
-        title: Visual Diagnostics
-      - file: chapters/additional/15/6/Numerical_Diagnostics
-        title: Numerical Diagnostics
-    - file: chapters/additional/16/Inference_for_Regression
-      title: Inference for Regression
-      sections:
-      - file: chapters/additional/16/1/Regression_Model
-        title: A Regression Model
-      - file: chapters/additional/16/2/Inference_for_the_True_Slope
-        title: Inference for the True Slope
-      - file: chapters/additional/16/3/Prediction_Intervals
-        title: Prediction Intervals
+      - file: chapters/additional/10/Sampling_and_Empirical_Distributions
+        title: Sampling and Empirical Distributions
+        sections:
+        - file: chapters/additional/10/1/Empirical_Distributions
+          title: Empirical Distributions
+        - file: chapters/additional/10/2/Sampling_from_a_Population
+          title: Sampling from a Population
+        - file: chapters/additional/10/3/Empirical_Distribution_of_a_Statistic
+          title: Empirical Distibution of a Statistic
+      - file: chapters/additional/11/Testing_Hypotheses
+        title: Testing Hypotheses
+        sections:
+        - file: chapters/additional/11/1/Assessing_Models
+          title: Assessing Models
+        - file: chapters/additional/11/2/Multiple_Categories
+          title: Multiple Categories
+        - file: chapters/additional/11/3/Decisions_and_Uncertainty
+          title: Decisions and Uncertainty
+        - file: chapters/additional/11/4/Error_Probabilities
+          title: Error Probabilities
+      - file: chapters/additional/13/Estimation
+        title: Estimation
+        sections:
+        - file: chapters/additional/13/1/Percentiles
+          title: Percentiles
+        - file: chapters/additional/13/2/Bootstrap
+          title: The Bootstrap
+        - file: chapters/additional/13/3/Confidence_Intervals
+          title: Confidence Intervals
+        - file: chapters/additional/13/4/Using_Confidence_Intervals
+          title: Using Confidence Intervals
+      - file: chapters/additional/14/Why_the_Mean_Matters
+        title: Why the Mean Matters
+        sections:
+        - file: chapters/additional/14/1/Properties_of_the_Mean
+          title: Properties of the Mean
+        - file: chapters/additional/14/2/Variability
+          title: Variability
+        - file: chapters/additional/14/3/SD_and_the_Normal_Curve
+          title: The SD and the Normal Curve
+        - file: chapters/additional/14/4/Central_Limit_Theorem
+          title: The Central Limit Theorem
+        - file: chapters/additional/14/5/Variability_of_the_Sample_Mean
+          title: The Variability of the Sample Mean
+        - file: chapters/additional/14/6/Choosing_a_Sample_Size
+          title: Choosing a Sample Size
+      - file: chapters/additional/15/Prediction
+        title: Prediction
+        sections:
+        - file: chapters/additional/15/1/Correlation
+          title: Correlation
+        - file: chapters/additional/15/2/Regression_Line
+          title: The Regression Line
+        - file: chapters/additional/15/3/Method_of_Least_Squares
+          title: The Method of Least Squares
+        - file: chapters/additional/15/4/Least_Squares_Regression
+          title: Least Squares Regression
+        - file: chapters/additional/15/5/Visual_Diagnostics
+          title: Visual Diagnostics
+        - file: chapters/additional/15/6/Numerical_Diagnostics
+          title: Numerical Diagnostics
+      - file: chapters/additional/16/Inference_for_Regression
+        title: Inference for Regression
+        sections:
+        - file: chapters/additional/16/1/Regression_Model
+          title: A Regression Model
+        - file: chapters/additional/16/2/Inference_for_the_True_Slope
+          title: Inference for the True Slope
+        - file: chapters/additional/16/3/Prediction_Intervals
+          title: Prediction Intervals
