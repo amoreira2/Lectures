@@ -14,7 +14,7 @@ parts:
       sections:
       - file: chapters/02/local_install
       - file: chapters/02/cloud_setup
-  - caption: Intro to Python
+  - caption: Python
     chapters:
     - file: chapters/03/programming-in-python
       sections:
@@ -121,6 +121,7 @@ parts:
         title: Tail Risks and Background Risks
       - file: chapters/Finance/MultiFactorModels
         title: Multifactor Models
+
     - file: chapters/Finance/Topics
       title: Topics in Quantitative Investing
       sections:
@@ -130,6 +131,7 @@ parts:
         title: Strategy Implementation
       - file: chapters/Finance/Horizon
         title: Investment horizon effects
+
   - caption: Additional Statistics Material
     chapters:
     - file: chapters/additional/additional
