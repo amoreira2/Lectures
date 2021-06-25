@@ -16,5 +16,5 @@ You can [view this text online][ghpages] or [view the source][source].
 [ghpages]: https://amoreira2.github.io/quantitativeinvesting
 [source]: https://amoreira2.github.io/Lectures
 
-<!-- The contents of this book are licensed for free consumption under the following license:
-[Creative Commons Attribution-NonCommercial-NoDerivatives 4.0 International (CC BY-NC-ND 4.0)](https://creativecommons.org/licenses/by-nc-nd/4.0/). -->
+The contents of this book are licensed under the following license:
+[Creative Commons Attribution-ShareAlike 4.0 International (CC BY-SA 4.0)](https://https://creativecommons.org/licenses/by-sa/4.0/).
