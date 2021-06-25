@@ -5,7 +5,8 @@ author: Alan Moreira
 email: ''
 logo                        : "figuremain2.jpg"  # A path to the book logo
 exclude_patterns            : ["README.md"]  # Patterns to skip when building the book. Can be glob-style (e.g. "*skip.ipynb")
-
+copyright                   : The contents of this book are licensed under the following license:
+[Creative Commons Attribution-ShareAlike 4.0 International (CC BY-SA 4.0)](https://https://creativecommons.org/licenses/by-sa/4.0/).
 #######################################################################################
 # Execution settings
 execute:
