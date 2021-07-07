@@ -3,4 +3,4 @@ to do
      IT remains to add section on tail risks and background risks
      Simplify! There is still too many complicated things early on
      Implementation needs work, perhaps use the AQR ppaper for plots to illustrate how transaction costs can impact stuff
-     What should I ask in assigment 4?
+     Merge and groupby section should be changed. Certainly simplified and perhaps adapted to use finance data. I am still not sture whether I want to explicit cover this though.
