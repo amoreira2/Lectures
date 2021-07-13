@@ -4,3 +4,6 @@ to do
      Simplify! There is still too many complicated things early on
      Implementation needs work, perhaps use the AQR ppaper for plots to illustrate how transaction costs can impact stuff
      Merge and groupby section should be changed. Certainly simplified and perhaps adapted to use finance data. I am still not sture whether I want to explicit cover this though.
+     The discussion of probabilities in chapter 7 should come up on a revamped, more focused chapter 5.4
+     Portfolio construction notation should from chapter 8 and also the variance of a portfolio shoudl come up in chapter 5.3,
+     modify the example to be about returns (or linear algebra shoudl just be moved later/keept simpler?)
