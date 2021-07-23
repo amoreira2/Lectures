@@ -53,21 +53,21 @@ sections:
   sections:
   - file: chapters/essentials/basics
     title: Basics
-  - file: chapters/essentials/collections
+  - file: chapters/essentials/collectionsS
     title: Collections
   - file: chapters/essentials/control_flow
     title: Flow control
-  - file: chapters/essentials/functions
+  - file: chapters/essentials/functionsS
     title: Functions
 - file: chapters/scientific/intro
   title: Scientific Computing
   sections:
   - file: chapters/scientific/numpy1
     title: Numpy
-#  - file: chapters/scientific/plotting1
-#    title: Plotting
-#  - file: chapters/scientific/linear_algebra1
-#    title: Linear algebra
+  - file: chapters/scientific/plotting1
+    title: Plotting
+  - file: chapters/scientific/linear_algebra1
+    title: Linear algebra
   - file: chapters/scientific/randomness1
     title: Randomness
 - file: chapters/pandas/workingwithdata
