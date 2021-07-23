@@ -74,7 +74,9 @@
   },
   {
    "cell_type": "markdown",
-   "metadata": {},
+   "metadata": {
+    "tags": []
+   },
    "source": [
     "Note above that we are using `matplotlib.pyplot` rather than just `matplotlib`.\n",
     "\n",
@@ -191,13 +193,6 @@
     "## The APIs\n",
     "\n",
     "\n",
-    "<a id='index-2'></a>"
-   ]
-  },
-  {
-   "cell_type": "markdown",
-   "metadata": {},
-   "source": [
     "### The simple API\n",
     "\n",
     "Here’s the kind of easy example you might find in introductory treatments"
