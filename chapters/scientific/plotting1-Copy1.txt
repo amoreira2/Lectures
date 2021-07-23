@@ -482,19 +482,19 @@
   {
    "cell_type": "markdown",
    "metadata": {},
+   "source": []
+  },
+  {
+   "cell_type": "markdown",
+   "metadata": {},
    "source": [
     "## More Features \n",
     "\n",
     "Matplotlib has a huge array of functions and features, which you can discover\n",
     "over time as you have need for them.\n",
     "\n",
-    "We mention just a few."
-   ]
-  },
-  {
-   "cell_type": "markdown",
-   "metadata": {},
-   "source": [
+    "We mention just a few.\n",
+    "\n",
     "### Multiple Plots on One Axis \n",
     "\n",
     "\n",
