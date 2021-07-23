@@ -20,34 +20,6 @@ sections:
     title: Cloud Setup
 - file: chapters/03/programming-in-python
   title: First Steps with Python
-  # sections:
-  # - file: chapters/03/1/Expressions
-  #   title: Expressions
-  # - file: chapters/03/2/Names
-  #   title: Names
-  #   sections:
-  #   - file: chapters/03/2/1/Growth
-  #     title: 'Example: Growth Rates'
-  # - file: chapters/03/3/Calls
-  #   title: Call Expressions
-  # - file: chapters/03/4/Data_Types
-  #   title: Data Types
-  #   sections:
-  #   - file: chapters/03/4/1/Numbers
-  #     title: Numbers
-  #   - file: chapters/03/4/2/Strings
-  #     title: Strings
-  #   - file: chapters/04/4/3/Comparison
-  #     title: Comparisons
-  # - file: chapters/03/5/Sequences
-  #   title: Sequences
-  #   sections:
-  #   - file: chapters/03/5/1/Arrays
-  #     title: Arrays
-  #   - file: chapters/03/5/2/Ranges
-  #     title: Ranges
-  #   - file: chapters/03/5/3/More_on_Arrays
-  #     title: More on Arrays
 - file: chapters/essentials/essentials
   title: Python Essentials
   sections:
@@ -79,6 +51,8 @@ sections:
     title: Pandas Basics
   - file: chapters/pandas/the_index
     title: Indexing
+  - file: chapters/pandas/timeseries
+    title: Time-Series
   - file: chapters/pandas/data_clean
     title: Cleaning data (opt)
   - file: chapters/pandas/reshape
@@ -87,8 +61,6 @@ sections:
     title: Merge (opt)
   - file: chapters/pandas/groupby
     title: Group-by (opt)
-  - file: chapters/pandas/timeseries
-    title: Time-Series
   - file: chapters/pandas/matplotlib
     title: Plotting (opt)
   - file: chapters/pandas/storage_formats
