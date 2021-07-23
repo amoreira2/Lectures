@@ -64,10 +64,10 @@ sections:
   sections:
   - file: chapters/scientific/numpy1
     title: Numpy
-  - file: chapters/scientific/plotting1
-    title: Plotting
-  - file: chapters/scientific/linear_algebra1
-    title: Linear algebra
+#  - file: chapters/scientific/plotting1
+#    title: Plotting
+#  - file: chapters/scientific/linear_algebra1
+#    title: Linear algebra
   - file: chapters/scientific/randomness1
     title: Randomness
 - file: chapters/pandas/workingwithdata
