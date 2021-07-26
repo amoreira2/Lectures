@@ -23,14 +23,14 @@ sections:
 - file: chapters/essentials/essentials
   title: Python Essentials
   sections:
-    
+
   - file: chapters/essentials/basics
     title: Basics
-  - file: chapters/essentials/collectionsS
+  - file: chapters/essentials/collections
     title: Collections
   - file: chapters/essentials/control_flow
     title: Flow control
-  - file: chapters/essentials/functionsS
+  - file: chapters/essentials/functions
     title: Functions
 
 - file: chapters/scientific/intro
