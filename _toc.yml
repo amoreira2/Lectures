@@ -23,6 +23,7 @@ sections:
 - file: chapters/essentials/essentials
   title: Python Essentials
   sections:
+    
   - file: chapters/essentials/basics
     title: Basics
   - file: chapters/essentials/collectionsS
@@ -31,6 +32,7 @@ sections:
     title: Flow control
   - file: chapters/essentials/functionsS
     title: Functions
+
 - file: chapters/scientific/intro
   title: Scientific Computing
   sections:
