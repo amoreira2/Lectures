@@ -32,14 +32,15 @@ sections:
     title: Flow control
   - file: chapters/essentials/functions
     title: Functions
-
-- file: chapters/scientific/intro
-  title: Scientific Computing
-  sections:
   - file: chapters/scientific/numpy1
     title: Numpy
   - file: chapters/scientific/plotting1
     title: Plotting
+
+
+# - file: chapters/scientific/intro
+#   title: Scientific Computing
+#   sections:
 
   #- file: chapters/scientific/randomness1
     #title: Randomness
