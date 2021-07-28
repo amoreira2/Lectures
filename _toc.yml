@@ -40,10 +40,9 @@ sections:
     title: Numpy
   - file: chapters/scientific/plotting1
     title: Plotting
-  - file: chapters/scientific/linear_algebra1
-    title: Linear algebra
-  - file: chapters/scientific/randomness1
-    title: Randomness
+
+  #- file: chapters/scientific/randomness1
+    #title: Randomness
 - file: chapters/pandas/workingwithdata
   title: Working with Data
   sections:
@@ -74,6 +73,9 @@ sections:
     title: The Choice of Frequency and Annualization of Returns
 - file: chapters/Finance/PortfolioMath
   title: Portfolio Math
+  sections:
+      - file: chapters/scientific/linear_algebra1
+        title: Linear algebra Review
 - file: chapters/Finance/CapitalAllocationLine
   title: Capital Allocation
   sections:
