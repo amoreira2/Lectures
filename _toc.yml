@@ -70,6 +70,8 @@ sections:
 - file: chapters/Finance/Returns
   title: Asset Returns
   sections:
+  - file: chapters/scientific/randomness1
+    title: Modeling randomness
   - file: chapters/Finance/TheChoiceofFrequency
     title: The Choice of Frequency and Annualization of Returns
 - file: chapters/Finance/PortfolioMath
