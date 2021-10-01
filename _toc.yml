@@ -83,7 +83,7 @@ sections:
   title: Capital Allocation
   sections:
   - file: chapters/Finance/UsingAPI
-    title: Using APIs
+    title: Data APIs
 - file: chapters/Finance/MeanVariance
   title: Mean Variance Efficient Portfolios
   sections:
