@@ -74,16 +74,17 @@ sections:
     title: Modeling randomness
   - file: chapters/Finance/TheChoiceofFrequency
     title: The Choice of Frequency and Annualization of Returns
-- file: chapters/Finance/PortfolioMath
-  title: Portfolio Math
-  sections:
-      - file: chapters/scientific/linear_algebra1
-        title: Linear algebra Review
-- file: chapters/Finance/CapitalAllocationLine
-  title: Capital Allocation
-  sections:
+  - file: chapters/scientific/linear_algebra1
+    title: Linear algebra Review
   - file: chapters/Finance/UsingAPI
     title: Data APIs
+- file: chapters/Finance/PortfolioMath
+  title: Portfolio Math
+
+
+- file: chapters/Finance/CapitalAllocationLine
+  title: Capital Allocation
+
 - file: chapters/Finance/MeanVariance
   title: Mean Variance Efficient Portfolios
   sections:
