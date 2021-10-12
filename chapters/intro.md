@@ -4,9 +4,9 @@
 By [Alan Moreira](https://sites.google.com/view/alanmoreira/)
 
 
-**The material from Chapters 2,4,5 and 6 are from the course on Python from https://datascience.quantecon.org/.**
+**The material from Chapters 2,3,4, and 5 are from the course on Python from https://datascience.quantecon.org/.**
 
-**Chapters 7 to 16 were developed for the course and are free to use with proper reference**
+**Chapters 6 to 16 were developed for the course and are free to use with proper reference**
 
 This text was originally developed for the University of Rochester course  Fin 418: Quantitative Investing with Python.
 
