@@ -23,7 +23,6 @@ sections:
 - file: chapters/essentials/essentials
   title: Python Essentials
   sections:
-
   - file: chapters/essentials/basics
     title: Basics
   - file: chapters/essentials/collections
@@ -32,9 +31,9 @@ sections:
     title: Flow control
   - file: chapters/essentials/functions
     title: Functions
-  - file: chapters/scientific/numpy1
+  - file: chapters/essentials/numpy1
     title: Numpy
-  - file: chapters/scientific/plotting1
+  - file: chapters/essentials/plotting1
     title: Plotting
 
 
