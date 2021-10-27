@@ -1,4 +1,4 @@
-Working with Data
+Assignments
 ====================
 
-**The material is from from https://datascience.quantecon.org/.**
+Please see below the class Assignments
