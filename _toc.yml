@@ -142,6 +142,16 @@ sections:
     title: Assignment 1
   - file: chapters/Assignments/Assignment2
     title: Assignment 2
+  - file: chapters/Assignments/Assignment3
+    title: Assignment 3
+  - file: chapters/Assignments/Assignment4
+    title: Assignment 4
+  - file: chapters/Assignments/Assignment5
+    title: Assignment 5
+  - file: chapters/Assignments/Assignment6
+    title: Assignment 6
+  - file: chapters/Assignments/Assignment7
+    title: Assignment 7
   # sections:
   # - file: chapters/additional/10/Sampling_and_Empirical_Distributions
   #   title: Sampling and Empirical Distributions
