@@ -1,5 +1,9 @@
 
-to do
+Fall 2021
+     Numpy examples could be streamlined to have only vectors first and later matrixes
+     or at least not have matrixes broadcast and elementwise repeated
+
+After summer 2021
      IT remains to add section on tail risks and background risks
      Simplify! There is still too many complicated things early on
      Implementation needs work, perhaps use the AQR ppaper for plots to illustrate how transaction costs can impact stuff
