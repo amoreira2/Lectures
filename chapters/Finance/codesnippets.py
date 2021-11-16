@@ -6,6 +6,9 @@ def SR(R,W=[],freq=12):
         sr=r.mean()/r.std()*freq**0.5
     return sr
 
+
+
+
 def get_returns_daily(tickers,conn,startdate,enddate,variable='ret'):
     ticker=tickers[0]
     df = conn.raw_sql("""
