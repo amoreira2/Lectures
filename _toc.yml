@@ -148,8 +148,8 @@ sections:
     title: Assignment 4
   - file: chapters/Assignments/Assignment5
     title: Assignment 5
-  # - file: chapters/Assignments/Assignment6
-  #   title: Assignment 6
+  - file: chapters/Assignments/Assignment6
+    title: Assignment 6
   # - file: chapters/Assignments/Assignment7
   #   title: Assignment 7
   # sections:
