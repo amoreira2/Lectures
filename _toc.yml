@@ -150,8 +150,8 @@ sections:
     title: Assignment 5
   - file: chapters/Assignments/Assignment6
     title: Assignment 6
-  # - file: chapters/Assignments/Assignment7
-  #   title: Assignment 7
+  - file: chapters/Assignments/Assignment7
+    title: Assignment 7
   # sections:
   # - file: chapters/additional/10/Sampling_and_Empirical_Distributions
   #   title: Sampling and Empirical Distributions
