@@ -66,9 +66,11 @@ sections:
     title: Plotting (opt)
   - file: chapters/pandas/storage_formats
     title: Data Storage (opt)
-- file: chapters/Finance/Returns
+- file: chapters/Finance/Returns.md
   title: Asset Returns
   sections:
+  - file: chapters/Finance/Returns.ipynb
+    title: Basics
   - file: chapters/scientific/randomness1
     title: Modeling randomness
   - file: chapters/Finance/TheChoiceofFrequency
