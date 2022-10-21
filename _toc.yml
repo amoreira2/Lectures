@@ -69,8 +69,8 @@ sections:
 - file: chapters/Finance/Returns.md
   title: Asset Returns
   sections:
-  - file: chapters/Finance/Returns.ipynb
-    title: Basics
+  - file: chapters/Finance/Returns1
+    title: Returns
   - file: chapters/scientific/randomness1
     title: Modeling randomness
   - file: chapters/Finance/TheChoiceofFrequency
