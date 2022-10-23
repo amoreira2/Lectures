@@ -86,9 +86,11 @@ sections:
 - file: chapters/Finance/CapitalAllocationLine
   title: Capital Allocation
 
-- file: chapters/Finance/MeanVariance
-  title: Mean Variance Efficient Portfolios
+- file: chapters/Finance/meanvariance1
+  title: Mean Variance Frontier
   sections:
+  - file: chapters/Finance/MeanVariance
+    title: Mean Variance Efficient Portfolios
   - file: chapters/Finance/CaseStudy
     title: Case Study in International Diversification
   - file: chapters/Finance/LeverageandShorting
