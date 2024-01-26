@@ -1,0 +1,1481 @@
+
+
+<!DOCTYPE html>
+
+
+<html lang="en" >
+
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
+
+    <title>4.1. Basics &#8212; Quantitative Investing</title>
+  
+  
+  
+  <script data-cfasync="false">
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "light";
+  </script>
+  
+  <!-- Loaded before other Sphinx assets -->
+  <link href="../../_static/styles/theme.css?digest=e353d410970836974a52" rel="stylesheet" />
+<link href="../../_static/styles/bootstrap.css?digest=e353d410970836974a52" rel="stylesheet" />
+<link href="../../_static/styles/pydata-sphinx-theme.css?digest=e353d410970836974a52" rel="stylesheet" />
+
+  
+  <link href="../../_static/vendor/fontawesome/6.1.2/css/all.min.css?digest=e353d410970836974a52" rel="stylesheet" />
+  <link rel="preload" as="font" type="font/woff2" crossorigin href="../../_static/vendor/fontawesome/6.1.2/webfonts/fa-solid-900.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../../_static/vendor/fontawesome/6.1.2/webfonts/fa-brands-400.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../../_static/vendor/fontawesome/6.1.2/webfonts/fa-regular-400.woff2" />
+
+    <link rel="stylesheet" type="text/css" href="../../_static/pygments.css" />
+    <link rel="stylesheet" href="../../_static/styles/sphinx-book-theme.css?digest=14f4ca6b54d191a8c7657f6c759bf11a5fb86285" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/togglebutton.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/copybutton.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/sphinx-thebe.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/book.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/design-style.4045f2051d55cab465a707391d5b2007.min.css" />
+  
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="../../_static/scripts/bootstrap.js?digest=e353d410970836974a52" />
+<link rel="preload" as="script" href="../../_static/scripts/pydata-sphinx-theme.js?digest=e353d410970836974a52" />
+
+    <script data-url_root="../../" id="documentation_options" src="../../_static/documentation_options.js"></script>
+    <script src="../../_static/jquery.js"></script>
+    <script src="../../_static/underscore.js"></script>
+    <script src="../../_static/_sphinx_javascript_frameworks_compat.js"></script>
+    <script src="../../_static/doctools.js"></script>
+    <script src="../../_static/clipboard.min.js"></script>
+    <script src="../../_static/copybutton.js"></script>
+    <script src="../../_static/scripts/sphinx-book-theme.js?digest=5a5c038af52cf7bc1a1ec88eea08e6366ee68824"></script>
+    <script>let toggleHintShow = 'Click to show';</script>
+    <script>let toggleHintHide = 'Click to hide';</script>
+    <script>let toggleOpenOnPrint = 'true';</script>
+    <script src="../../_static/togglebutton.js"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script src="../../_static/design-tabs.js"></script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"
+const thebe_selector = ".thebe,.cell"
+const thebe_selector_input = "pre"
+const thebe_selector_output = ".output, .cell_output"
+</script>
+    <script async="async" src="../../_static/sphinx-thebe.js"></script>
+    <script>window.MathJax = {"options": {"processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
+    <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'chapters/essentials/basics';</script>
+    <link rel="canonical" href="https://amoreira2.github.io/quantitativeinvesting/chapters/essentials/basics.html" />
+    <link rel="shortcut icon" href="../../_static/figuremain2.jpg"/>
+    <link rel="index" title="Index" href="../../genindex.html" />
+    <link rel="search" title="Search" href="../../search.html" />
+    <link rel="next" title="4.2. Collections" href="collections.html" />
+    <link rel="prev" title="4. Python essentials" href="essentials.html" />
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta name="docsearch:language" content="en"/>
+  </head>
+  
+  
+  <body data-bs-spy="scroll" data-bs-target=".bd-toc-nav" data-offset="180" data-bs-root-margin="0px 0px -60%" data-default-mode="">
+
+  
+  
+  <a class="skip-link" href="#main-content">Skip to main content</a>
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          name="__primary"
+          id="__primary"/>
+  <label class="overlay overlay-primary" for="__primary"></label>
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          name="__secondary"
+          id="__secondary"/>
+  <label class="overlay overlay-secondary" for="__secondary"></label>
+  
+  <div class="search-button__wrapper">
+    <div class="search-button__overlay"></div>
+    <div class="search-button__search-container">
+<form class="bd-search d-flex align-items-center"
+      action="../../search.html"
+      method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search"
+         class="form-control"
+         name="q"
+         id="search-input"
+         placeholder="Search this book..."
+         aria-label="Search this book..."
+         autocomplete="off"
+         autocorrect="off"
+         autocapitalize="off"
+         spellcheck="false"/>
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form></div>
+  </div>
+  
+    <nav class="bd-header navbar navbar-expand-lg bd-navbar">
+    </nav>
+  
+  <div class="bd-container">
+    <div class="bd-container__inner bd-page-width">
+      
+      <div class="bd-sidebar-primary bd-sidebar">
+        
+
+  
+  <div class="sidebar-header-items sidebar-primary__section">
+    
+    
+    
+    
+  </div>
+  
+    <div class="sidebar-primary-items__start sidebar-primary__section">
+        <div class="sidebar-primary-item">
+  
+
+<a class="navbar-brand logo" href="../intro.html">
+  
+  
+  
+  
+    
+    
+      
+    
+    
+    <img src="../../_static/figuremain2.jpg" class="logo__image only-light" alt="Logo image"/>
+    <script>document.write(`<img src="../../_static/figuremain2.jpg" class="logo__image only-dark" alt="Logo image"/>`);</script>
+  
+  
+</a></div>
+        <div class="sidebar-primary-item"><nav class="bd-links" id="bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item navbar-nav active">
+        <ul class="current nav bd-sidenav">
+<li class="toctree-l1 has-children"><a class="reference internal" href="../01/what-is-quant-investing.html">1. What is Quantitative Investing?</a><input class="toctree-checkbox" id="toctree-checkbox-1" name="toctree-checkbox-1" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-1"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l2"><a class="reference internal" href="../01/statistical-techniques.html">1.1. Statistical Techniques</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../01/computational-tools.html">1.2. Computational tools</a></li>
+</ul>
+</li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../02/getting_started.html">2. Getting Started</a><input class="toctree-checkbox" id="toctree-checkbox-2" name="toctree-checkbox-2" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-2"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l2"><a class="reference internal" href="../02/local_install.html">2.3. Local installation</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../02/cloud_setup.html">2.4. Cloud Setup</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../03/programming-in-python.html">3. First Steps with Python</a></li>
+<li class="toctree-l1 current active has-children"><a class="reference internal" href="essentials.html">4. Python Essentials</a><input checked="" class="toctree-checkbox" id="toctree-checkbox-3" name="toctree-checkbox-3" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-3"><i class="fa-solid fa-chevron-down"></i></label><ul class="current">
+<li class="toctree-l2 current active"><a class="current reference internal" href="#">4.1. Basics</a></li>
+<li class="toctree-l2"><a class="reference internal" href="collections.html">4.2. Collections</a></li>
+<li class="toctree-l2"><a class="reference internal" href="control_flow.html">4.3. Flow control</a></li>
+<li class="toctree-l2"><a class="reference internal" href="functions.html">4.4. Functions</a></li>
+<li class="toctree-l2"><a class="reference internal" href="numpy1.html">4.5. Numpy</a></li>
+<li class="toctree-l2"><a class="reference internal" href="plotting1.html">4.6. Plotting</a></li>
+</ul>
+</li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../pandas/workingwithdata.html">5. Working with Data</a><input class="toctree-checkbox" id="toctree-checkbox-4" name="toctree-checkbox-4" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-4"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l2"><a class="reference internal" href="../pandas/intro.html">5.1. Introduction</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../pandas/basics.html">5.2. Pandas Basics</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../pandas/the_index.html">5.3. Indexing</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../pandas/timeseries.html">5.4. Time-Series</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../pandas/data_clean.html">5.5. Cleaning data (opt)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../pandas/reshape.html">5.6. Reshape (opt)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../pandas/merge.html">5.7. Merge (opt)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../pandas/groupby.html">5.8. Group-by (opt)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../pandas/matplotlib.html">5.9. Plotting (opt)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../pandas/storage_formats.html">5.10. Data Storage (opt)</a></li>
+</ul>
+</li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../Finance/Returns.html">6. Asset Returns</a><input class="toctree-checkbox" id="toctree-checkbox-5" name="toctree-checkbox-5" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-5"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l2"><a class="reference internal" href="../Finance/Returns1.html">6.1. Returns</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../scientific/randomness1.html">6.2. Modeling randomness</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../Finance/TheChoiceofFrequency.html">6.3. The Choice of Frequency and Annualization of Returns</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../scientific/linear_algebra1.html">6.4. Linear algebra Review</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../Finance/UsingAPI.html">6.5. Data APIs</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../Finance/PortfolioMath.html">7. Portfolio Math</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../Finance/CapitalAllocationLine.html">8. Capital Allocation</a></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../Finance/meanvariance1.html">9. Mean Variance Frontier</a><input class="toctree-checkbox" id="toctree-checkbox-6" name="toctree-checkbox-6" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-6"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l2"><a class="reference internal" href="../Finance/MeanVariance.html">9.1. Mean Variance Efficient Portfolios</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../Finance/CaseStudy.html">9.2. Case Study in International Diversification</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../Finance/LeverageandShorting.html">9.3. Leverage and Shorting</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../Finance/Portfoliooptimizationwithconstraints.html">9.4. Portfolio Optimization with constraints</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../Finance/EstimationUncertainty.html">10. Estimation Uncertainty and It's Implications for investing</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../Finance/TradingStrategies.html">11. Trading Strategies</a></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../Finance/Timing.html">12. Timing Strategies</a><input class="toctree-checkbox" id="toctree-checkbox-7" name="toctree-checkbox-7" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-7"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l2"><a class="reference internal" href="../Finance/Volatilitytiming.html">12.1. Volatility Timing</a></li>
+</ul>
+</li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../Finance/crosssectionalequitystrategies.html">13. Cross-Sectional Equity Strategies</a><input class="toctree-checkbox" id="toctree-checkbox-8" name="toctree-checkbox-8" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-8"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l2"><a class="reference internal" href="../Finance/Valueinvesting.html">13.1. Value</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../Finance/Momentum.html">13.2. Momentum</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../Finance/OtherEquityStrategies.html">13.3. Other Equity strategies</a></li>
+</ul>
+</li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../Finance/Evaluation.html">14. Evaluating a Trading Strategy</a><input class="toctree-checkbox" id="toctree-checkbox-9" name="toctree-checkbox-9" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-9"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l2"><a class="reference internal" href="../Finance/Econometrics.html">14.1. The Econometrics of Strategy Evalaution</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../Finance/outofsample.html">14.2. Out of Sample Analysis</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../Finance/TailandBackground.html">14.3. Tail Risks and Background Risks</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../Finance/MultiFactorModels.html">14.4. Multifactor Models</a></li>
+</ul>
+</li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../Finance/Topics.html">15. Topics in Quantitative Investing</a><input class="toctree-checkbox" id="toctree-checkbox-10" name="toctree-checkbox-10" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-10"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l2"><a class="reference internal" href="../Finance/Equilbrium.html">15.1. Intepreting Factor models</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../Finance/Implementation.html">15.2. Strategy Implementation</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../Finance/Horizon.html">15.3. Investment horizon effects</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../additional/additional.html">16. Additional Statistics Material</a></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../Assignments/Assignments.html">17. Assignments</a><input class="toctree-checkbox" id="toctree-checkbox-11" name="toctree-checkbox-11" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-11"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l2"><a class="reference internal" href="../Assignments/Assignment0.html">17.1. Assigment 0</a></li>
+
+
+
+
+
+<li class="toctree-l2"><a class="reference internal" href="../Assignments/Assignment1.html">17.7. Assignment 1</a></li>
+
+
+
+
+<li class="toctree-l2"><a class="reference internal" href="../Assignments/Assignment2.html">17.12. Assigment 2</a></li>
+
+
+
+<li class="toctree-l2"><a class="reference internal" href="../Assignments/Assignment3.html">17.16. Assignment 3</a></li>
+
+
+
+<li class="toctree-l2"><a class="reference internal" href="../Assignments/Assignment4.html">17.20. Assignment 4</a></li>
+
+
+
+<li class="toctree-l2"><a class="reference internal" href="../Assignments/Assignment5.html">17.24. Assigment 5</a></li>
+
+
+
+<li class="toctree-l2"><a class="reference internal" href="../Assignments/Assignment6.html">17.28. Assignment 6</a></li>
+
+
+
+<li class="toctree-l2"><a class="reference internal" href="../Assignments/Assignment7.html">17.32. Assignment 7</a></li>
+
+</ul>
+</li>
+</ul>
+
+    </div>
+</nav></div>
+    </div>
+  
+  
+  <div class="sidebar-primary-items__end sidebar-primary__section">
+  </div>
+  
+  <div id="rtd-footer-container"></div>
+
+
+      </div>
+      
+      <main id="main-content" class="bd-main">
+        
+        
+
+<div class="sbt-scroll-pixel-helper"></div>
+
+          <div class="bd-content">
+            <div class="bd-article-container">
+              
+              <div class="bd-header-article">
+<div class="header-article-items header-article__inner">
+  
+    <div class="header-article-items__start">
+      
+        <div class="header-article-item"><label class="sidebar-toggle primary-toggle btn btn-sm" for="__primary" title="Toggle primary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <span class="fa-solid fa-bars"></span>
+</label></div>
+      
+    </div>
+  
+  
+    <div class="header-article-items__end">
+      
+        <div class="header-article-item">
+
+<div class="article-header-buttons">
+
+
+
+
+
+<div class="dropdown dropdown-launch-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Launch interactive content">
+    <i class="fas fa-rocket"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="https://colab.research.google.com/github/amoreira2/Lectures/blob/main/chapters/essentials/basics.ipynb" target="_blank"
+   class="btn btn-sm dropdown-item"
+   title="Launch onColab"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  
+    <img src="../../_static/images/logo_colab.png">
+  </span>
+<span class="btn__text-container">Colab</span>
+</a>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+
+
+<div class="dropdown dropdown-source-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Source repositories">
+    <i class="fab fa-github"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="https://github.com/amoreira2/Lectures" target="_blank"
+   class="btn btn-sm btn-source-repository-button dropdown-item"
+   title="Source repository"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fab fa-github"></i>
+  </span>
+<span class="btn__text-container">Repository</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li><a href="https://github.com/amoreira2/Lectures/issues/new?title=Issue%20on%20page%20%2Fchapters/essentials/basics.html&body=Your%20issue%20content%20here." target="_blank"
+   class="btn btn-sm btn-source-issues-button dropdown-item"
+   title="Open an issue"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-lightbulb"></i>
+  </span>
+<span class="btn__text-container">Open issue</span>
+</a>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+
+
+<div class="dropdown dropdown-download-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Download this page">
+    <i class="fas fa-download"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="../../_sources/chapters/essentials/basics.ipynb" target="_blank"
+   class="btn btn-sm btn-download-source-button dropdown-item"
+   title="Download source file"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file"></i>
+  </span>
+<span class="btn__text-container">.ipynb</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li>
+<button onclick="window.print()"
+  class="btn btn-sm btn-download-pdf-button dropdown-item"
+  title="Print to PDF"
+  data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file-pdf"></i>
+  </span>
+<span class="btn__text-container">.pdf</span>
+</button>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+<button onclick="toggleFullScreen()"
+  class="btn btn-sm btn-fullscreen-button"
+  title="Fullscreen mode"
+  data-bs-placement="bottom" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-expand"></i>
+  </span>
+
+</button>
+
+
+<script>
+document.write(`
+  <button class="theme-switch-button btn btn-sm btn-outline-primary navbar-btn rounded-circle" title="light/dark" aria-label="light/dark" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="theme-switch" data-mode="light"><i class="fa-solid fa-sun"></i></span>
+    <span class="theme-switch" data-mode="dark"><i class="fa-solid fa-moon"></i></span>
+    <span class="theme-switch" data-mode="auto"><i class="fa-solid fa-circle-half-stroke"></i></span>
+  </button>
+`);
+</script>
+
+<script>
+document.write(`
+  <button class="btn btn-sm navbar-btn search-button search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass"></i>
+  </button>
+`);
+</script>
+<label class="sidebar-toggle secondary-toggle btn btn-sm" for="__secondary"title="Toggle secondary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="fa-solid fa-list"></span>
+</label>
+</div></div>
+      
+    </div>
+  
+</div>
+</div>
+              
+              
+
+<div id="jb-print-docs-body" class="onlyprint">
+    <h1>Basics</h1>
+    <!-- Table of contents -->
+    <div id="print-main-content">
+        <div id="jb-print-toc">
+            
+            <div>
+                <h2> Contents </h2>
+            </div>
+            <nav aria-label="Page">
+                <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#first-steps">4.1.1. First Steps</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#variable-assignment">4.1.1.1. Variable Assignment</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#code-comments">4.1.1.2. Code Comments</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#functions">4.1.2. Functions</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#getting-help">4.1.2.1. Getting Help</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#objects-and-types">4.1.3. Objects and Types</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#modules">4.1.4. Modules</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#module-aliases">4.1.4.1. Module Aliases</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#good-code-habits">4.1.5. Good Code Habits</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#numbers">4.1.6. Numbers</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#python-as-a-calculator">4.1.6.1. Python as a Calculator</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#strings">4.1.7. Strings</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#string-operations">4.1.7.1. String Operations</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#string-methods">4.1.7.2. String Methods</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#string-formatting">4.1.7.3. String Formatting</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#booleans">4.1.8. Booleans</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#comparison-operators">4.1.8.1. Comparison Operators</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#negation">4.1.8.2. Negation</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#multiple-comparisons-and-or">4.1.8.3. Multiple Comparisons (and/or)</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#all-and-any">4.1.8.4. <code class="docutils literal notranslate"><span class="pre">all</span></code> and <code class="docutils literal notranslate"><span class="pre">any</span></code></a></li>
+</ul>
+</li>
+</ul>
+            </nav>
+        </div>
+    </div>
+</div>
+
+              
+                
+<div id="searchbox"></div>
+                <article class="bd-article" role="main">
+                  
+  <section class="tex2jax_ignore mathjax_ignore" id="basics">
+<h1><span class="section-number">4.1. </span>Basics<a class="headerlink" href="#basics" title="Permalink to this heading">#</a></h1>
+<section id="first-steps">
+<h2><span class="section-number">4.1.1. </span>First Steps<a class="headerlink" href="#first-steps" title="Permalink to this heading">#</a></h2>
+<p>We are ready to begin writing code!</p>
+<p>In this section, we will teach you some basic concepts of programming
+and where to search for help.</p>
+<section id="variable-assignment">
+<h3><span class="section-number">4.1.1.1. </span>Variable Assignment<a class="headerlink" href="#variable-assignment" title="Permalink to this heading">#</a></h3>
+<p>The first thing we will learn is the idea of <em>variable assignment</em>.</p>
+<p>Variable assignment associates a value to a variable.</p>
+<p>Below, we assign the value “Hello World” to the variable <code class="docutils literal notranslate"><span class="pre">x</span></code></p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">x</span> <span class="o">=</span> <span class="s2">&quot;Hello World&quot;</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>Once we have assigned a value to a variable, Python will remember this
+variable as long as the <em>current</em> session of Python is still running.</p>
+<p>Notice how writing <code class="docutils literal notranslate"><span class="pre">x</span></code> into the prompt below outputs the value
+“Hello World”.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">x</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&#39;Hello World&#39;
+</pre></div>
+</div>
+</div>
+</div>
+<p>However, Python returns an error if we ask it about variables that have not yet
+been created.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># uncomment (delete the # and the space) the line below and run</span>
+<span class="c1"># y</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>It is also useful to understand the order in which operations happen.</p>
+<p>First, the right side of the equal sign is computed.</p>
+<p>Then, that computed value is stored as the variable to the left of the
+equal sign.</p>
+<p>Keep in mind that the variable binds a name to something stored in memory.</p>
+<p>The name can even be bound to a value of a completely different type.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">x</span> <span class="o">=</span> <span class="mi">2</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">x</span><span class="p">)</span>
+<span class="n">x</span> <span class="o">=</span> <span class="s2">&quot;something else&quot;</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">x</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>2
+something else
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="code-comments">
+<h3><span class="section-number">4.1.1.2. </span>Code Comments<a class="headerlink" href="#code-comments" title="Permalink to this heading">#</a></h3>
+<p>Comments are short notes that you leave for yourself and for others who read your
+code.</p>
+<p>They should be used to explain what the code does.</p>
+<p>A comment is made with the <code class="docutils literal notranslate"><span class="pre">#</span></code>. Python ignores everything in a line that follows a <code class="docutils literal notranslate"><span class="pre">#</span></code>.</p>
+<p>Let’s practice making some comments.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">i</span> <span class="o">=</span> <span class="mi">1</span>  <span class="c1"># Assign the value 1 to variable i</span>
+<span class="n">j</span> <span class="o">=</span> <span class="mi">2</span>  <span class="c1"># Assign the value 2 to variable j</span>
+
+<span class="c1"># We add i and j below this line</span>
+<span class="n">i</span> <span class="o">+</span> <span class="n">j</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>3
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+</section>
+<section id="functions">
+<h2><span class="section-number">4.1.2. </span>Functions<a class="headerlink" href="#functions" title="Permalink to this heading">#</a></h2>
+<p>Functions are processes that take an input (or inputs) and produce an output.</p>
+<p>If we had a function called <code class="docutils literal notranslate"><span class="pre">f</span></code> that took two arguments <code class="docutils literal notranslate"><span class="pre">x</span></code> and
+<code class="docutils literal notranslate"><span class="pre">y</span></code>, we would write <code class="docutils literal notranslate"><span class="pre">f(x,</span> <span class="pre">y)</span></code> to use the function.</p>
+<p>For example, the function <code class="docutils literal notranslate"><span class="pre">print</span></code> simply prints whatever it is given.
+Recall the variable we created called <code class="docutils literal notranslate"><span class="pre">x</span></code>.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="n">x</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>something else
+</pre></div>
+</div>
+</div>
+</div>
+<section id="getting-help">
+<h3><span class="section-number">4.1.2.1. </span>Getting Help<a class="headerlink" href="#getting-help" title="Permalink to this heading">#</a></h3>
+<p>We can figure out what a function does by asking for help.</p>
+<p>In Jupyter notebooks, this is done by placing a <code class="docutils literal notranslate"><span class="pre">?</span></code> after the function
+name (without using parenthesis) and evaluating the cell.</p>
+<p>For example, we can ask for help on the print function by writing
+<code class="docutils literal notranslate"><span class="pre">print?</span></code>.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># print? # remove the comment and &lt;Shift-Enter&gt;</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>Easier to just google “python”+ function name or question you have</p>
+<p>For quick questions about a function google is the fastest method</p>
+<p>For complicated questions, Chatgpt is your to go help</p>
+</section>
+</section>
+<section id="objects-and-types">
+<h2><span class="section-number">4.1.3. </span>Objects and Types<a class="headerlink" href="#objects-and-types" title="Permalink to this heading">#</a></h2>
+<p>Everything in Python is an <em>object</em>.</p>
+<p>Objects are “things” that contain 1) data and 2) functions that can operate on
+the data.</p>
+<p>Sometimes we refer to the functions inside an object as <em>methods</em>.</p>
+<p>We can investigate what data is inside an object and which methods
+it supports by typing <code class="docutils literal notranslate"><span class="pre">.</span></code> after that particular variable, then
+hitting <code class="docutils literal notranslate"><span class="pre">TAB</span></code>.</p>
+<p>You can scroll through this list by using the up and down arrows.</p>
+<p>We often refer to this as “tab completion” or “introspection”.</p>
+<p>Let’s do this together below. Keep going down until you find the method
+<code class="docutils literal notranslate"><span class="pre">split</span></code>.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Type a period after `x` and then press TAB.</span>
+<span class="n">x</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&#39;something else&#39;
+</pre></div>
+</div>
+</div>
+</div>
+<p>Once you have found the method <code class="docutils literal notranslate"><span class="pre">split</span></code>, you can use the method by adding
+parenthesis after it.</p>
+<p>Let’s call the <code class="docutils literal notranslate"><span class="pre">split</span></code> method, which doesn’t have any other required
+parameters. (Quiz: how would we check that?)</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">x</span><span class="o">.</span><span class="n">split</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[&#39;something&#39;, &#39;else&#39;]
+</pre></div>
+</div>
+</div>
+</div>
+<p>We often want to identify what kind of object some value is–
+called its “type”.</p>
+<p>A “type” is an abstraction which defines a set of behavior for any
+“instance” of that type i.e. <code class="docutils literal notranslate"><span class="pre">2.0</span></code> and <code class="docutils literal notranslate"><span class="pre">3.0</span></code> are instances
+of <code class="docutils literal notranslate"><span class="pre">float</span></code>, where <code class="docutils literal notranslate"><span class="pre">float</span></code> has a set of particular common behaviors.</p>
+<p>In particular, the type determines:</p>
+<ul class="simple">
+<li><p>the available data for any “instance” of the type (where each
+instance may have different values of the data).</p></li>
+<li><p>the methods that can be applied on the object and its data.</p></li>
+</ul>
+<p>We can figure this out by using the <code class="docutils literal notranslate"><span class="pre">type</span></code> function.</p>
+<p>The <code class="docutils literal notranslate"><span class="pre">type</span></code> function takes a single argument and outputs the type of
+that argument.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="nb">type</span><span class="p">(</span><span class="mi">3</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>int
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="nb">type</span><span class="p">(</span><span class="s2">&quot;Hello World&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>str
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="nb">type</span><span class="p">([</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">])</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>list
+</pre></div>
+</div>
+</div>
+</div>
+<p>We will learn more about each of these types (and others!) and how to use them
+soon, so stay tuned!</p>
+<p><a id='modules'></a></p>
+</section>
+<section id="modules">
+<h2><span class="section-number">4.1.4. </span>Modules<a class="headerlink" href="#modules" title="Permalink to this heading">#</a></h2>
+<p>Python takes a modular approach to tools.</p>
+<p>By this we mean that sets of related tools are bundled together into <em>packages</em>.
+(You may also hear the term modules to describe the same thing.)</p>
+<p>For example:</p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">pandas</span></code> is a package that implements the tools necessary to do
+scalable data analysis.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">matplotlib</span></code> is a package that implements visualization tools.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">requests</span></code> and <code class="docutils literal notranslate"><span class="pre">urllib</span></code> are packages that allow Python to
+interface with the internet.</p></li>
+</ul>
+<p>As we move further into the class, being able to
+access these packages will become very important.</p>
+<p>We can bring a package’s functionality into our current Python session
+by writing</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">package</span>
+</pre></div>
+</div>
+<p>Once we have done this, any function or object from that package can
+be accessed by using <code class="docutils literal notranslate"><span class="pre">package.name</span></code>.</p>
+<p>Here’s an example.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">sys</span>   <span class="c1"># for dealing with your computer&#39;s system</span>
+<span class="n">sys</span><span class="o">.</span><span class="n">version</span>  <span class="c1"># information about the Python version in use</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&#39;3.8.5 (default, Sep  3 2020, 21:29:08) [MSC v.1916 64 bit (AMD64)]&#39;
+</pre></div>
+</div>
+</div>
+</div>
+<section id="module-aliases">
+<h3><span class="section-number">4.1.4.1. </span>Module Aliases<a class="headerlink" href="#module-aliases" title="Permalink to this heading">#</a></h3>
+<p>Some packages have long names (see <code class="docutils literal notranslate"><span class="pre">matplotlib</span></code>, for example) which
+makes accessing the package functionality somewhat inconvenient.</p>
+<p>To ease this burden, Python allows us to give aliases or “nicknames” to packages.</p>
+<p>For example we can write:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">package</span> <span class="k">as</span> <span class="nn">p</span>
+</pre></div>
+</div>
+<p>This statement allows us to access the packages functionality as
+<code class="docutils literal notranslate"><span class="pre">p.function_name</span></code> rather than <code class="docutils literal notranslate"><span class="pre">package.function_name</span></code>.</p>
+<p>Some common aliases for packages are</p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">import</span> <span class="pre">pandas</span> <span class="pre">as</span> <span class="pre">pd</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">import</span> <span class="pre">numpy</span> <span class="pre">as</span> <span class="pre">np</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">import</span> <span class="pre">matplotlib</span> <span class="pre">as</span> <span class="pre">mpl</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">import</span> <span class="pre">datetime</span> <span class="pre">as</span> <span class="pre">dt</span></code></p></li>
+</ul>
+<p>While you <em>can</em> choose any name for an alias, we suggest that you stick
+to the common ones.</p>
+<p>You will learn what these common ones are over time.</p>
+</section>
+</section>
+<section id="good-code-habits">
+<h2><span class="section-number">4.1.5. </span>Good Code Habits<a class="headerlink" href="#good-code-habits" title="Permalink to this heading">#</a></h2>
+<p>A common saying in the software engineering world is:</p>
+<blockquote>
+<div><p>Always code as if the guy who ends up maintaining your code will be
+a violent psychopath who knows where you live. Code for readability.</p>
+</div></blockquote>
+<p>This might be a dramatic take, but the most important feature of your code
+after correctness is readability.</p>
+<p>We encourage you to do <strong>everything</strong> in your power to make your code as readable as possible.</p>
+<p>Here are some suggestions for how to do so:</p>
+<ul class="simple">
+<li><p>Comment frequently. Leaving short notes not only will help others who
+use your code, but will also help you interpret your code
+after some time has passed.</p></li>
+<li><p><strong>Anytime</strong> you use a comma, place a space immediately afterwards.</p></li>
+<li><p>Whitespace is your friend. Don’t write line after line of code – use
+blank lines to break it up.</p></li>
+<li><p>Don’t let your lines run too long. Some people reading your code will
+be on a laptop, so you want to ensure that they don’t need to scroll horizontally
+and right to read your code. We recommend no more than 80 characters per line.</p></li>
+</ul>
+</section>
+<section id="numbers">
+<h2><span class="section-number">4.1.6. </span>Numbers<a class="headerlink" href="#numbers" title="Permalink to this heading">#</a></h2>
+<p>Python has two types of numbers.</p>
+<ol class="arabic simple">
+<li><p>Integer (<code class="docutils literal notranslate"><span class="pre">int</span></code>): These can only take the values of the integers
+i.e. <span class="math notranslate nohighlight">\( \{\dots, -2, -1, 0, 1, 2, \dots\} \)</span></p></li>
+<li><p>Floating Point Number (<code class="docutils literal notranslate"><span class="pre">float</span></code>): Think of these as any real number
+such as <span class="math notranslate nohighlight">\( 1.0 \)</span>, <span class="math notranslate nohighlight">\( 3.1415 \)</span>, or <span class="math notranslate nohighlight">\( -100.022358923223 \)</span>…</p></li>
+</ol>
+<p>The easiest way to differentiate these types of numbers is to find a decimal place
+after the number.</p>
+<p>A float will have a decimal place, but an integer will not.</p>
+<p>Below, we assign integers to the variables <code class="docutils literal notranslate"><span class="pre">xi</span></code> and <code class="docutils literal notranslate"><span class="pre">zi</span></code> and assign
+floating point numbers to the variables <code class="docutils literal notranslate"><span class="pre">xf</span></code> and <code class="docutils literal notranslate"><span class="pre">zf</span></code>.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">xi</span> <span class="o">=</span> <span class="mi">1</span>
+<span class="n">xf</span> <span class="o">=</span> <span class="mf">1.0</span>
+<span class="n">zi</span> <span class="o">=</span> <span class="mi">123</span>
+<span class="n">zf</span> <span class="o">=</span> <span class="mf">1230.5</span>  <span class="c1"># Notice -- There are no commas!</span>
+</pre></div>
+</div>
+</div>
+</div>
+<section id="python-as-a-calculator">
+<h3><span class="section-number">4.1.6.1. </span>Python as a Calculator<a class="headerlink" href="#python-as-a-calculator" title="Permalink to this heading">#</a></h3>
+<p>You can use Python to perform mathematical calculations.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">a</span> <span class="o">=</span> <span class="mi">4</span>
+<span class="n">b</span> <span class="o">=</span> <span class="mi">2</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;a + b is&quot;</span><span class="p">,</span> <span class="n">a</span> <span class="o">+</span> <span class="n">b</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;a - b is&quot;</span><span class="p">,</span> <span class="n">a</span> <span class="o">-</span> <span class="n">b</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;a * b is&quot;</span><span class="p">,</span> <span class="n">a</span> <span class="o">*</span> <span class="n">b</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;a / b is&quot;</span><span class="p">,</span> <span class="n">a</span> <span class="o">/</span> <span class="n">b</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;a ** b is&quot;</span><span class="p">,</span> <span class="n">a</span><span class="o">**</span><span class="n">b</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;a ^ b is&quot;</span><span class="p">,</span> <span class="n">a</span><span class="o">^</span><span class="n">b</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>a + b is 6
+a - b is 2
+a * b is 8
+a / b is 2.0
+a ** b is 16
+a ^ b is 6
+</pre></div>
+</div>
+</div>
+</div>
+<p>You likely could have guessed all except the last two.</p>
+<p><strong>Warning</strong>: Python uses <code class="docutils literal notranslate"><span class="pre">**</span></code>, not <code class="docutils literal notranslate"><span class="pre">^</span></code>, for exponentiation (raising a number
+to a power)!</p>
+<p>Notice also that above <code class="docutils literal notranslate"><span class="pre">+</span></code>, <code class="docutils literal notranslate"><span class="pre">-</span></code> and <code class="docutils literal notranslate"><span class="pre">**</span></code> all returned an integer
+type, but <code class="docutils literal notranslate"><span class="pre">/</span></code> converted the result to a float.</p>
+<p>When possible, operations between integers return an integer type.</p>
+<p>All operations involving a float will result in a float.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">a</span> <span class="o">=</span> <span class="mi">4</span>
+<span class="n">b</span> <span class="o">=</span> <span class="mf">2.0</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;a + b is&quot;</span><span class="p">,</span> <span class="n">a</span> <span class="o">+</span> <span class="n">b</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;a - b is&quot;</span><span class="p">,</span> <span class="n">a</span> <span class="o">-</span> <span class="n">b</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;a * b is&quot;</span><span class="p">,</span> <span class="n">a</span> <span class="o">*</span> <span class="n">b</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;a / b is&quot;</span><span class="p">,</span> <span class="n">a</span> <span class="o">/</span> <span class="n">b</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;a ** b is&quot;</span><span class="p">,</span> <span class="n">a</span><span class="o">**</span><span class="n">b</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>a + b is 6.0
+a - b is 2.0
+a * b is 8.0
+a / b is 2.0
+a ** b is 16.0
+</pre></div>
+</div>
+</div>
+</div>
+<p>We can also chain together operations.</p>
+<p>When doing this, Python follows the standard <a class="reference external" href="https://en.wikipedia.org/wiki/Order_of_operations">order of operations</a> — parenthesis, exponents,
+multiplication and division, followed by addition and subtraction.</p>
+<p>For example,</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">x</span> <span class="o">=</span> <span class="mf">2.0</span>
+<span class="n">y</span> <span class="o">=</span> <span class="mf">3.0</span>
+<span class="n">z1</span> <span class="o">=</span> <span class="n">x</span> <span class="o">+</span> <span class="n">y</span> <span class="o">*</span> <span class="n">x</span>
+<span class="n">z2</span> <span class="o">=</span> <span class="p">(</span><span class="n">x</span> <span class="o">+</span> <span class="n">y</span><span class="p">)</span> <span class="o">*</span> <span class="n">x</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>What do you think <code class="docutils literal notranslate"><span class="pre">z1</span></code> is?</p>
+<p>How about <code class="docutils literal notranslate"><span class="pre">z2</span></code>?</p>
+</section>
+</section>
+<section id="strings">
+<h2><span class="section-number">4.1.7. </span>Strings<a class="headerlink" href="#strings" title="Permalink to this heading">#</a></h2>
+<p>Textual information is stored in a data type called a string.</p>
+<p>To denote that you would like something to be stored as a string, you place it
+inside of quotation marks.</p>
+<p>For example,</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="s2">&quot;this is a string&quot;</span>  <span class="c1"># Notice the quotation marks</span>
+<span class="s1">&#39;this is a string&#39;</span>  <span class="c1"># Notice the quotation marks</span>
+<span class="n">this</span> <span class="ow">is</span> <span class="ow">not</span> <span class="n">a</span> <span class="n">string</span>  <span class="c1"># No quotation marks</span>
+</pre></div>
+</div>
+<p>You can use either <code class="docutils literal notranslate"><span class="pre">&quot;</span></code> or <code class="docutils literal notranslate"><span class="pre">'</span></code> to create a string. Just make sure
+that you start and end the string with the same one!</p>
+<p>Notice that if we ask Python to tell us the type of a string, it abbreviates
+its answer to <code class="docutils literal notranslate"><span class="pre">str</span></code>.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="nb">type</span><span class="p">(</span><span class="s2">&quot;this is a string&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>str
+</pre></div>
+</div>
+</div>
+</div>
+<section id="string-operations">
+<h3><span class="section-number">4.1.7.1. </span>String Operations<a class="headerlink" href="#string-operations" title="Permalink to this heading">#</a></h3>
+<p>Some of the arithmetic operators we saw in the numbers lecture also work
+on strings:</p>
+<ul class="simple">
+<li><p>Put two strings together: <code class="docutils literal notranslate"><span class="pre">x</span> <span class="pre">+</span> <span class="pre">y</span></code>.</p></li>
+<li><p>We use this quite a bit</p></li>
+</ul>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">x</span> <span class="o">=</span> <span class="s2">&quot;Hello&quot;</span>
+<span class="n">y</span> <span class="o">=</span> <span class="s2">&quot;World&quot;</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">x</span> <span class="o">+</span> <span class="n">y</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&#39;HelloWorld&#39;
+</pre></div>
+</div>
+</div>
+</div>
+<p>What happens if we try <code class="docutils literal notranslate"><span class="pre">*</span></code>  or <code class="docutils literal notranslate"><span class="pre">-</span></code> or <code class="docutils literal notranslate"><span class="pre">/</span></code>?</p>
+<p>The best way to find out is to try it!</p>
+</section>
+<section id="string-methods">
+<h3><span class="section-number">4.1.7.2. </span>String Methods<a class="headerlink" href="#string-methods" title="Permalink to this heading">#</a></h3>
+<p>We can use many <em>methods</em> to manipulate strings.</p>
+<p>We will not be able to cover all of them here, but let’s take a look at
+some of the most useful ones.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">x</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&#39;Hello&#39;
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">x</span><span class="o">.</span><span class="n">lower</span><span class="p">()</span>  <span class="c1"># Makes all letters lower case</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&#39;hello&#39;
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="string-formatting">
+<h3><span class="section-number">4.1.7.3. </span>String Formatting<a class="headerlink" href="#string-formatting" title="Permalink to this heading">#</a></h3>
+<p>Sometimes we’d like to reuse some portion of a string repeatedly, but
+still make some relatively small changes at each usage.</p>
+<p>We can do this with <em>string formatting</em>, which done by using <code class="docutils literal notranslate"><span class="pre">{}</span></code> as a
+<em>placeholder</em> where we’d like to change the string, with a variable name
+or expression.</p>
+<p>Let’s look at an example.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">country</span> <span class="o">=</span> <span class="s2">&quot;Vietnam&quot;</span>
+<span class="n">GDP</span> <span class="o">=</span> <span class="mf">223.9</span>
+<span class="n">year</span> <span class="o">=</span> <span class="mi">2017</span>
+<span class="n">my_string</span> <span class="o">=</span> <span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">country</span><span class="si">}</span><span class="s2"> had $</span><span class="si">{</span><span class="n">GDP</span><span class="si">}</span><span class="s2"> billion GDP in </span><span class="si">{</span><span class="n">year</span><span class="si">}</span><span class="s2">&quot;</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">my_string</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Vietnam had $223.9 billion GDP in 2017
+</pre></div>
+</div>
+</div>
+</div>
+<p>Rather than just substituting a variable name, you can use a calculation
+or expression.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="mi">5</span><span class="si">}</span><span class="s2">**2 = </span><span class="si">{</span><span class="mi">5</span><span class="o">**</span><span class="mi">2</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>5**2 = 25
+</pre></div>
+</div>
+</div>
+</div>
+<p>Or, using our previous example</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">my_string</span> <span class="o">=</span> <span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">country</span><span class="si">}</span><span class="s2"> had $</span><span class="si">{</span><span class="n">GDP</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="mi">1_000_000</span><span class="si">}</span><span class="s2"> GDP in </span><span class="si">{</span><span class="n">year</span><span class="si">}</span><span class="s2">&quot;</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">my_string</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Vietnam had $223900000.0 GDP in 2017
+</pre></div>
+</div>
+</div>
+</div>
+<p>In these cases, the <code class="docutils literal notranslate"><span class="pre">f</span></code> in front of the string causes Python interpolate
+any valid expression within the <code class="docutils literal notranslate"><span class="pre">{}</span></code> braces.</p>
+<p>Alternatively, to reuse a formatted string, you can call the <code class="docutils literal notranslate"><span class="pre">format</span></code> method (noting that you do <strong>not</strong> put <code class="docutils literal notranslate"><span class="pre">f</span></code> in front).</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">gdp_string</span> <span class="o">=</span> <span class="s2">&quot;</span><span class="si">{country}</span><span class="s2"> had $</span><span class="si">{GDP}</span><span class="s2"> billion in </span><span class="si">{year}</span><span class="s2">&quot;</span>
+
+<span class="n">gdp_string</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">country</span> <span class="o">=</span> <span class="s2">&quot;Vietnam&quot;</span><span class="p">,</span> <span class="n">GDP</span> <span class="o">=</span> <span class="mf">223.9</span><span class="p">,</span> <span class="n">year</span> <span class="o">=</span> <span class="mi">2017</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&#39;Vietnam had $223.9 billion in 2017&#39;
+</pre></div>
+</div>
+</div>
+</div>
+<p>For more information on what you can do with string formatting (there is <em>a lot</em>
+that can be done…), see the <a class="reference external" href="https://docs.python.org/3.6/library/string.html">official Python documentation</a> on the subject.</p>
+</section>
+</section>
+<section id="booleans">
+<h2><span class="section-number">4.1.8. </span>Booleans<a class="headerlink" href="#booleans" title="Permalink to this heading">#</a></h2>
+<p>A boolean is a type that denotes true or false.</p>
+<p>As you will soon see in the <a class="reference internal" href="control_flow.html"><span class="doc std std-doc">control flow chapter</span></a>, using
+boolean values allows you to perform or skip operations depending on whether or
+not a condition is met.</p>
+<p>Let’s start by creating some booleans and looking at them.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">x</span> <span class="o">=</span> <span class="kc">True</span>
+<span class="n">y</span> <span class="o">=</span> <span class="kc">False</span>
+
+<span class="nb">type</span><span class="p">(</span><span class="n">x</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>bool
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">x</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>True
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">y</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>False
+</pre></div>
+</div>
+</div>
+</div>
+<section id="comparison-operators">
+<h3><span class="section-number">4.1.8.1. </span>Comparison Operators<a class="headerlink" href="#comparison-operators" title="Permalink to this heading">#</a></h3>
+<p>Rather than directly write <code class="docutils literal notranslate"><span class="pre">True</span></code> or <code class="docutils literal notranslate"><span class="pre">False</span></code>, you will usually
+create booleans by making a comparison.</p>
+<p>For example, you might want to evaluate whether the price of a particular asset
+is greater than or less than some price.</p>
+<p>For two variables <code class="docutils literal notranslate"><span class="pre">x</span></code> and <code class="docutils literal notranslate"><span class="pre">y</span></code>, we can do the following comparisons:</p>
+<ul class="simple">
+<li><p>Greater than: <code class="docutils literal notranslate"><span class="pre">x</span> <span class="pre">&gt;</span> <span class="pre">y</span></code></p></li>
+<li><p>Less than: <code class="docutils literal notranslate"><span class="pre">x</span> <span class="pre">&lt;</span> <span class="pre">y</span></code></p></li>
+<li><p>Equal to: <code class="docutils literal notranslate"><span class="pre">==</span></code></p></li>
+<li><p>Greater than or equal to: <code class="docutils literal notranslate"><span class="pre">x</span> <span class="pre">&gt;=</span> <span class="pre">y</span></code></p></li>
+<li><p>Less than or equal to: <code class="docutils literal notranslate"><span class="pre">x</span> <span class="pre">&lt;=</span> <span class="pre">y</span></code></p></li>
+</ul>
+<p>We demonstrate these below.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">a</span> <span class="o">=</span> <span class="mi">4</span>
+<span class="n">b</span> <span class="o">=</span> <span class="mi">3</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;a &gt; b&quot;</span><span class="p">,</span> <span class="s2">&quot;is&quot;</span><span class="p">,</span> <span class="n">a</span> <span class="o">&gt;</span> <span class="n">b</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;a &lt; b&quot;</span><span class="p">,</span> <span class="s2">&quot;is&quot;</span><span class="p">,</span> <span class="n">a</span> <span class="o">&lt;</span> <span class="n">b</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;a == b&quot;</span><span class="p">,</span> <span class="s2">&quot;is&quot;</span><span class="p">,</span> <span class="n">a</span> <span class="o">==</span> <span class="n">b</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;a &gt;= b&quot;</span><span class="p">,</span> <span class="s2">&quot;is&quot;</span><span class="p">,</span> <span class="n">a</span> <span class="o">&gt;=</span> <span class="n">b</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;a &lt;= b&quot;</span><span class="p">,</span> <span class="s2">&quot;is&quot;</span><span class="p">,</span> <span class="n">a</span> <span class="o">&lt;=</span> <span class="n">b</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>a &gt; b is True
+a &lt; b is False
+a == b is False
+a &gt;= b is True
+a &lt;= b is False
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="negation">
+<h3><span class="section-number">4.1.8.2. </span>Negation<a class="headerlink" href="#negation" title="Permalink to this heading">#</a></h3>
+<p>Occasionally, determining whether a statement is
+“not true” or “not false” is more convenient than simply “true” or “false”.</p>
+<p>This is known as <em>negating</em> a statement.</p>
+<p>In Python, we can negate a boolean using the word <code class="docutils literal notranslate"><span class="pre">not</span></code>.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="ow">not</span> <span class="kc">False</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>True
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="ow">not</span> <span class="kc">True</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>False
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="multiple-comparisons-and-or">
+<h3><span class="section-number">4.1.8.3. </span>Multiple Comparisons (and/or)<a class="headerlink" href="#multiple-comparisons-and-or" title="Permalink to this heading">#</a></h3>
+<p>Sometimes we need to evaluate multiple comparisons at once.</p>
+<p>This is done by using the words <code class="docutils literal notranslate"><span class="pre">and</span></code> and <code class="docutils literal notranslate"><span class="pre">or</span></code>.</p>
+<p>However, these are the “mathematical” <em>and</em>s and <em>or</em>s – so they
+don’t carry the same meaning as you’d use them in colloquial English.</p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">a</span> <span class="pre">and</span> <span class="pre">b</span></code> is true only when <strong>both</strong> <code class="docutils literal notranslate"><span class="pre">a</span></code> and <code class="docutils literal notranslate"><span class="pre">b</span></code> are true.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">a</span> <span class="pre">or</span> <span class="pre">b</span></code> is true whenever at least one of <code class="docutils literal notranslate"><span class="pre">a</span></code> or <code class="docutils literal notranslate"><span class="pre">b</span></code> is true.</p></li>
+</ul>
+<p>For example</p>
+<ul class="simple">
+<li><p>The statement “I will accept the new job if the salary is higher
+<em>and</em> I receive more vacation days” means that you would only accept
+the new job if you both receive a higher salary and are given more
+vacation days.</p></li>
+<li><p>The statement “I will accept the new job if the salary is higher <em>or</em>
+I receive more vacation days” means that you would accept the job if
+(1) they raised your salary, (2) you are given more vacation days, or
+(3) they raise your salary and give you more vacation days.</p></li>
+</ul>
+<p>Let’s see some examples.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kc">True</span> <span class="ow">and</span> <span class="kc">False</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>False
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kc">True</span> <span class="ow">and</span> <span class="kc">True</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>True
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kc">True</span> <span class="ow">or</span> <span class="kc">False</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>True
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kc">False</span> <span class="ow">or</span> <span class="kc">False</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>False
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Can chain multiple comparisons together.</span>
+<span class="kc">True</span> <span class="ow">and</span> <span class="p">(</span><span class="kc">False</span> <span class="ow">or</span> <span class="kc">True</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>True
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="all-and-any">
+<h3><span class="section-number">4.1.8.4. </span><code class="docutils literal notranslate"><span class="pre">all</span></code> and <code class="docutils literal notranslate"><span class="pre">any</span></code><a class="headerlink" href="#all-and-any" title="Permalink to this heading">#</a></h3>
+<p>We have seen how we can use the words <code class="docutils literal notranslate"><span class="pre">and</span></code> and <code class="docutils literal notranslate"><span class="pre">or</span></code> to process two booleans
+at a time.</p>
+<p>The functions <code class="docutils literal notranslate"><span class="pre">all</span></code> and <code class="docutils literal notranslate"><span class="pre">any</span></code> allow us to process an unlimited number of
+booleans at once.</p>
+<p><code class="docutils literal notranslate"><span class="pre">all(bools)</span></code> will return <code class="docutils literal notranslate"><span class="pre">True</span></code> if and only if all the booleans in <code class="docutils literal notranslate"><span class="pre">bools</span></code>
+is <code class="docutils literal notranslate"><span class="pre">True</span></code> and returns <code class="docutils literal notranslate"><span class="pre">False</span></code> otherwise.</p>
+<p><code class="docutils literal notranslate"><span class="pre">any(bools)</span></code> returns <code class="docutils literal notranslate"><span class="pre">True</span></code> whenever one or more of <code class="docutils literal notranslate"><span class="pre">bools</span></code> is <code class="docutils literal notranslate"><span class="pre">True</span></code>.</p>
+<p>What do you expect to get with</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="nb">all</span><span class="p">([</span><span class="kc">True</span><span class="p">,</span><span class="kc">True</span><span class="p">,</span><span class="kc">False</span><span class="p">])</span>
+
+<span class="nb">all</span><span class="p">([</span><span class="kc">True</span><span class="p">,</span><span class="kc">True</span><span class="p">,</span><span class="kc">True</span><span class="p">])</span>
+
+
+<span class="nb">any</span><span class="p">([</span><span class="kc">True</span><span class="p">,</span><span class="kc">True</span><span class="p">,</span><span class="kc">False</span><span class="p">])</span>
+
+<span class="nb">any</span><span class="p">([</span><span class="kc">True</span><span class="p">,</span><span class="kc">True</span><span class="p">,</span><span class="kc">True</span><span class="p">])</span>
+</pre></div>
+</div>
+</section>
+</section>
+</section>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "binder-examples/jupyter-stacks-datascience",
+            ref: "master",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "python"
+        },
+        kernelOptions: {
+            name: "python3",
+            path: "./chapters/essentials"
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'python3'</script>
+
+                </article>
+              
+
+              
+              
+                <footer class="bd-footer-article">
+                  
+<div class="footer-article-items footer-article__inner">
+  
+    <div class="footer-article-item"><!-- Previous / next buttons -->
+<div class="prev-next-area">
+    <a class="left-prev"
+       href="essentials.html"
+       title="previous page">
+      <i class="fa-solid fa-angle-left"></i>
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">previous</p>
+        <p class="prev-next-title"><span class="section-number">4. </span>Python essentials</p>
+      </div>
+    </a>
+    <a class="right-next"
+       href="collections.html"
+       title="next page">
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">next</p>
+        <p class="prev-next-title"><span class="section-number">4.2. </span>Collections</p>
+      </div>
+      <i class="fa-solid fa-angle-right"></i>
+    </a>
+</div></div>
+  
+</div>
+
+                </footer>
+              
+            </div>
+            
+            
+              
+                <div class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
+  <div class="sidebar-secondary-item">
+  <div class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> Contents
+  </div>
+  <nav class="bd-toc-nav page-toc">
+    <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#first-steps">4.1.1. First Steps</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#variable-assignment">4.1.1.1. Variable Assignment</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#code-comments">4.1.1.2. Code Comments</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#functions">4.1.2. Functions</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#getting-help">4.1.2.1. Getting Help</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#objects-and-types">4.1.3. Objects and Types</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#modules">4.1.4. Modules</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#module-aliases">4.1.4.1. Module Aliases</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#good-code-habits">4.1.5. Good Code Habits</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#numbers">4.1.6. Numbers</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#python-as-a-calculator">4.1.6.1. Python as a Calculator</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#strings">4.1.7. Strings</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#string-operations">4.1.7.1. String Operations</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#string-methods">4.1.7.2. String Methods</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#string-formatting">4.1.7.3. String Formatting</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#booleans">4.1.8. Booleans</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#comparison-operators">4.1.8.1. Comparison Operators</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#negation">4.1.8.2. Negation</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#multiple-comparisons-and-or">4.1.8.3. Multiple Comparisons (and/or)</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#all-and-any">4.1.8.4. <code class="docutils literal notranslate"><span class="pre">all</span></code> and <code class="docutils literal notranslate"><span class="pre">any</span></code></a></li>
+</ul>
+</li>
+</ul>
+  </nav></div>
+
+</div></div>
+              
+            
+          </div>
+          <footer class="bd-footer-content">
+            
+<div class="bd-footer-content__inner container">
+  
+  <div class="footer-item">
+    
+<p class="component-author">
+By Alan Moreira
+</p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+  <p class="copyright">
+    
+      © Copyright 2021 Creative Commons Attribution-ShareAlike 4.0 International (CC BY-SA 4.0).
+      <br/>
+    
+  </p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+</div>
+          </footer>
+        
+
+      </main>
+    </div>
+  </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script src="../../_static/scripts/bootstrap.js?digest=e353d410970836974a52"></script>
+<script src="../../_static/scripts/pydata-sphinx-theme.js?digest=e353d410970836974a52"></script>
+
+  <footer class="bd-footer">
+  </footer>
+  </body>
+</html>

@@ -1,0 +1,1072 @@
+
+
+<!DOCTYPE html>
+
+
+<html lang="en" >
+
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
+
+    <title>6.2. Randomness &#8212; Quantitative Investing</title>
+  
+  
+  
+  <script data-cfasync="false">
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "light";
+  </script>
+  
+  <!-- Loaded before other Sphinx assets -->
+  <link href="../../_static/styles/theme.css?digest=e353d410970836974a52" rel="stylesheet" />
+<link href="../../_static/styles/bootstrap.css?digest=e353d410970836974a52" rel="stylesheet" />
+<link href="../../_static/styles/pydata-sphinx-theme.css?digest=e353d410970836974a52" rel="stylesheet" />
+
+  
+  <link href="../../_static/vendor/fontawesome/6.1.2/css/all.min.css?digest=e353d410970836974a52" rel="stylesheet" />
+  <link rel="preload" as="font" type="font/woff2" crossorigin href="../../_static/vendor/fontawesome/6.1.2/webfonts/fa-solid-900.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../../_static/vendor/fontawesome/6.1.2/webfonts/fa-brands-400.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../../_static/vendor/fontawesome/6.1.2/webfonts/fa-regular-400.woff2" />
+
+    <link rel="stylesheet" type="text/css" href="../../_static/pygments.css" />
+    <link rel="stylesheet" href="../../_static/styles/sphinx-book-theme.css?digest=14f4ca6b54d191a8c7657f6c759bf11a5fb86285" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/togglebutton.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/copybutton.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/sphinx-thebe.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/book.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/design-style.4045f2051d55cab465a707391d5b2007.min.css" />
+  
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="../../_static/scripts/bootstrap.js?digest=e353d410970836974a52" />
+<link rel="preload" as="script" href="../../_static/scripts/pydata-sphinx-theme.js?digest=e353d410970836974a52" />
+
+    <script data-url_root="../../" id="documentation_options" src="../../_static/documentation_options.js"></script>
+    <script src="../../_static/jquery.js"></script>
+    <script src="../../_static/underscore.js"></script>
+    <script src="../../_static/_sphinx_javascript_frameworks_compat.js"></script>
+    <script src="../../_static/doctools.js"></script>
+    <script src="../../_static/clipboard.min.js"></script>
+    <script src="../../_static/copybutton.js"></script>
+    <script src="../../_static/scripts/sphinx-book-theme.js?digest=5a5c038af52cf7bc1a1ec88eea08e6366ee68824"></script>
+    <script>let toggleHintShow = 'Click to show';</script>
+    <script>let toggleHintHide = 'Click to hide';</script>
+    <script>let toggleOpenOnPrint = 'true';</script>
+    <script src="../../_static/togglebutton.js"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script src="../../_static/design-tabs.js"></script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"
+const thebe_selector = ".thebe,.cell"
+const thebe_selector_input = "pre"
+const thebe_selector_output = ".output, .cell_output"
+</script>
+    <script async="async" src="../../_static/sphinx-thebe.js"></script>
+    <script>window.MathJax = {"options": {"processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
+    <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'chapters/scientific/randomness1';</script>
+    <link rel="canonical" href="https://amoreira2.github.io/quantitativeinvesting/chapters/scientific/randomness1.html" />
+    <link rel="shortcut icon" href="../../_static/figuremain2.jpg"/>
+    <link rel="index" title="Index" href="../../genindex.html" />
+    <link rel="search" title="Search" href="../../search.html" />
+    <link rel="next" title="6.3. The choice of frequency and Annualization of returns" href="../Finance/TheChoiceofFrequency.html" />
+    <link rel="prev" title="6.1. Returns" href="../Finance/Returns1.html" />
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta name="docsearch:language" content="en"/>
+  </head>
+  
+  
+  <body data-bs-spy="scroll" data-bs-target=".bd-toc-nav" data-offset="180" data-bs-root-margin="0px 0px -60%" data-default-mode="">
+
+  
+  
+  <a class="skip-link" href="#main-content">Skip to main content</a>
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          name="__primary"
+          id="__primary"/>
+  <label class="overlay overlay-primary" for="__primary"></label>
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          name="__secondary"
+          id="__secondary"/>
+  <label class="overlay overlay-secondary" for="__secondary"></label>
+  
+  <div class="search-button__wrapper">
+    <div class="search-button__overlay"></div>
+    <div class="search-button__search-container">
+<form class="bd-search d-flex align-items-center"
+      action="../../search.html"
+      method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search"
+         class="form-control"
+         name="q"
+         id="search-input"
+         placeholder="Search this book..."
+         aria-label="Search this book..."
+         autocomplete="off"
+         autocorrect="off"
+         autocapitalize="off"
+         spellcheck="false"/>
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form></div>
+  </div>
+  
+    <nav class="bd-header navbar navbar-expand-lg bd-navbar">
+    </nav>
+  
+  <div class="bd-container">
+    <div class="bd-container__inner bd-page-width">
+      
+      <div class="bd-sidebar-primary bd-sidebar">
+        
+
+  
+  <div class="sidebar-header-items sidebar-primary__section">
+    
+    
+    
+    
+  </div>
+  
+    <div class="sidebar-primary-items__start sidebar-primary__section">
+        <div class="sidebar-primary-item">
+  
+
+<a class="navbar-brand logo" href="../intro.html">
+  
+  
+  
+  
+    
+    
+      
+    
+    
+    <img src="../../_static/figuremain2.jpg" class="logo__image only-light" alt="Logo image"/>
+    <script>document.write(`<img src="../../_static/figuremain2.jpg" class="logo__image only-dark" alt="Logo image"/>`);</script>
+  
+  
+</a></div>
+        <div class="sidebar-primary-item"><nav class="bd-links" id="bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item navbar-nav active">
+        <ul class="current nav bd-sidenav">
+<li class="toctree-l1 has-children"><a class="reference internal" href="../01/what-is-quant-investing.html">1. What is Quantitative Investing?</a><input class="toctree-checkbox" id="toctree-checkbox-1" name="toctree-checkbox-1" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-1"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l2"><a class="reference internal" href="../01/statistical-techniques.html">1.1. Statistical Techniques</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../01/computational-tools.html">1.2. Computational tools</a></li>
+</ul>
+</li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../02/getting_started.html">2. Getting Started</a><input class="toctree-checkbox" id="toctree-checkbox-2" name="toctree-checkbox-2" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-2"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l2"><a class="reference internal" href="../02/local_install.html">2.3. Local installation</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../02/cloud_setup.html">2.4. Cloud Setup</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../03/programming-in-python.html">3. First Steps with Python</a></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../essentials/essentials.html">4. Python Essentials</a><input class="toctree-checkbox" id="toctree-checkbox-3" name="toctree-checkbox-3" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-3"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l2"><a class="reference internal" href="../essentials/basics.html">4.1. Basics</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../essentials/collections.html">4.2. Collections</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../essentials/control_flow.html">4.3. Flow control</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../essentials/functions.html">4.4. Functions</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../essentials/numpy1.html">4.5. Numpy</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../essentials/plotting1.html">4.6. Plotting</a></li>
+</ul>
+</li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../pandas/workingwithdata.html">5. Working with Data</a><input class="toctree-checkbox" id="toctree-checkbox-4" name="toctree-checkbox-4" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-4"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l2"><a class="reference internal" href="../pandas/intro.html">5.1. Introduction</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../pandas/basics.html">5.2. Pandas Basics</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../pandas/the_index.html">5.3. Indexing</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../pandas/timeseries.html">5.4. Time-Series</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../pandas/data_clean.html">5.5. Cleaning data (opt)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../pandas/reshape.html">5.6. Reshape (opt)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../pandas/merge.html">5.7. Merge (opt)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../pandas/groupby.html">5.8. Group-by (opt)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../pandas/matplotlib.html">5.9. Plotting (opt)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../pandas/storage_formats.html">5.10. Data Storage (opt)</a></li>
+</ul>
+</li>
+<li class="toctree-l1 current active has-children"><a class="reference internal" href="../Finance/Returns.html">6. Asset Returns</a><input checked="" class="toctree-checkbox" id="toctree-checkbox-5" name="toctree-checkbox-5" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-5"><i class="fa-solid fa-chevron-down"></i></label><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="../Finance/Returns1.html">6.1. Returns</a></li>
+<li class="toctree-l2 current active"><a class="current reference internal" href="#">6.2. Modeling randomness</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../Finance/TheChoiceofFrequency.html">6.3. The Choice of Frequency and Annualization of Returns</a></li>
+<li class="toctree-l2"><a class="reference internal" href="linear_algebra1.html">6.4. Linear algebra Review</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../Finance/UsingAPI.html">6.5. Data APIs</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../Finance/PortfolioMath.html">7. Portfolio Math</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../Finance/CapitalAllocationLine.html">8. Capital Allocation</a></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../Finance/meanvariance1.html">9. Mean Variance Frontier</a><input class="toctree-checkbox" id="toctree-checkbox-6" name="toctree-checkbox-6" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-6"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l2"><a class="reference internal" href="../Finance/MeanVariance.html">9.1. Mean Variance Efficient Portfolios</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../Finance/CaseStudy.html">9.2. Case Study in International Diversification</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../Finance/LeverageandShorting.html">9.3. Leverage and Shorting</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../Finance/Portfoliooptimizationwithconstraints.html">9.4. Portfolio Optimization with constraints</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../Finance/EstimationUncertainty.html">10. Estimation Uncertainty and It's Implications for investing</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../Finance/TradingStrategies.html">11. Trading Strategies</a></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../Finance/Timing.html">12. Timing Strategies</a><input class="toctree-checkbox" id="toctree-checkbox-7" name="toctree-checkbox-7" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-7"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l2"><a class="reference internal" href="../Finance/Volatilitytiming.html">12.1. Volatility Timing</a></li>
+</ul>
+</li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../Finance/crosssectionalequitystrategies.html">13. Cross-Sectional Equity Strategies</a><input class="toctree-checkbox" id="toctree-checkbox-8" name="toctree-checkbox-8" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-8"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l2"><a class="reference internal" href="../Finance/Valueinvesting.html">13.1. Value</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../Finance/Momentum.html">13.2. Momentum</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../Finance/OtherEquityStrategies.html">13.3. Other Equity strategies</a></li>
+</ul>
+</li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../Finance/Evaluation.html">14. Evaluating a Trading Strategy</a><input class="toctree-checkbox" id="toctree-checkbox-9" name="toctree-checkbox-9" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-9"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l2"><a class="reference internal" href="../Finance/Econometrics.html">14.1. The Econometrics of Strategy Evalaution</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../Finance/outofsample.html">14.2. Out of Sample Analysis</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../Finance/TailandBackground.html">14.3. Tail Risks and Background Risks</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../Finance/MultiFactorModels.html">14.4. Multifactor Models</a></li>
+</ul>
+</li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../Finance/Topics.html">15. Topics in Quantitative Investing</a><input class="toctree-checkbox" id="toctree-checkbox-10" name="toctree-checkbox-10" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-10"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l2"><a class="reference internal" href="../Finance/Equilbrium.html">15.1. Intepreting Factor models</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../Finance/Implementation.html">15.2. Strategy Implementation</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../Finance/Horizon.html">15.3. Investment horizon effects</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../additional/additional.html">16. Additional Statistics Material</a></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../Assignments/Assignments.html">17. Assignments</a><input class="toctree-checkbox" id="toctree-checkbox-11" name="toctree-checkbox-11" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-11"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l2"><a class="reference internal" href="../Assignments/Assignment0.html">17.1. Assigment 0</a></li>
+
+
+
+
+
+<li class="toctree-l2"><a class="reference internal" href="../Assignments/Assignment1.html">17.7. Assignment 1</a></li>
+
+
+
+
+<li class="toctree-l2"><a class="reference internal" href="../Assignments/Assignment2.html">17.12. Assigment 2</a></li>
+
+
+
+<li class="toctree-l2"><a class="reference internal" href="../Assignments/Assignment3.html">17.16. Assignment 3</a></li>
+
+
+
+<li class="toctree-l2"><a class="reference internal" href="../Assignments/Assignment4.html">17.20. Assignment 4</a></li>
+
+
+
+<li class="toctree-l2"><a class="reference internal" href="../Assignments/Assignment5.html">17.24. Assigment 5</a></li>
+
+
+
+<li class="toctree-l2"><a class="reference internal" href="../Assignments/Assignment6.html">17.28. Assignment 6</a></li>
+
+
+
+<li class="toctree-l2"><a class="reference internal" href="../Assignments/Assignment7.html">17.32. Assignment 7</a></li>
+
+</ul>
+</li>
+</ul>
+
+    </div>
+</nav></div>
+    </div>
+  
+  
+  <div class="sidebar-primary-items__end sidebar-primary__section">
+  </div>
+  
+  <div id="rtd-footer-container"></div>
+
+
+      </div>
+      
+      <main id="main-content" class="bd-main">
+        
+        
+
+<div class="sbt-scroll-pixel-helper"></div>
+
+          <div class="bd-content">
+            <div class="bd-article-container">
+              
+              <div class="bd-header-article">
+<div class="header-article-items header-article__inner">
+  
+    <div class="header-article-items__start">
+      
+        <div class="header-article-item"><label class="sidebar-toggle primary-toggle btn btn-sm" for="__primary" title="Toggle primary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <span class="fa-solid fa-bars"></span>
+</label></div>
+      
+    </div>
+  
+  
+    <div class="header-article-items__end">
+      
+        <div class="header-article-item">
+
+<div class="article-header-buttons">
+
+
+
+
+
+<div class="dropdown dropdown-launch-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Launch interactive content">
+    <i class="fas fa-rocket"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="https://colab.research.google.com/github/amoreira2/Lectures/blob/main/chapters/scientific/randomness1.ipynb" target="_blank"
+   class="btn btn-sm dropdown-item"
+   title="Launch onColab"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  
+    <img src="../../_static/images/logo_colab.png">
+  </span>
+<span class="btn__text-container">Colab</span>
+</a>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+
+
+<div class="dropdown dropdown-source-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Source repositories">
+    <i class="fab fa-github"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="https://github.com/amoreira2/Lectures" target="_blank"
+   class="btn btn-sm btn-source-repository-button dropdown-item"
+   title="Source repository"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fab fa-github"></i>
+  </span>
+<span class="btn__text-container">Repository</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li><a href="https://github.com/amoreira2/Lectures/issues/new?title=Issue%20on%20page%20%2Fchapters/scientific/randomness1.html&body=Your%20issue%20content%20here." target="_blank"
+   class="btn btn-sm btn-source-issues-button dropdown-item"
+   title="Open an issue"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-lightbulb"></i>
+  </span>
+<span class="btn__text-container">Open issue</span>
+</a>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+
+
+<div class="dropdown dropdown-download-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Download this page">
+    <i class="fas fa-download"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="../../_sources/chapters/scientific/randomness1.ipynb" target="_blank"
+   class="btn btn-sm btn-download-source-button dropdown-item"
+   title="Download source file"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file"></i>
+  </span>
+<span class="btn__text-container">.ipynb</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li>
+<button onclick="window.print()"
+  class="btn btn-sm btn-download-pdf-button dropdown-item"
+  title="Print to PDF"
+  data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file-pdf"></i>
+  </span>
+<span class="btn__text-container">.pdf</span>
+</button>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+<button onclick="toggleFullScreen()"
+  class="btn btn-sm btn-fullscreen-button"
+  title="Fullscreen mode"
+  data-bs-placement="bottom" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-expand"></i>
+  </span>
+
+</button>
+
+
+<script>
+document.write(`
+  <button class="theme-switch-button btn btn-sm btn-outline-primary navbar-btn rounded-circle" title="light/dark" aria-label="light/dark" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="theme-switch" data-mode="light"><i class="fa-solid fa-sun"></i></span>
+    <span class="theme-switch" data-mode="dark"><i class="fa-solid fa-moon"></i></span>
+    <span class="theme-switch" data-mode="auto"><i class="fa-solid fa-circle-half-stroke"></i></span>
+  </button>
+`);
+</script>
+
+<script>
+document.write(`
+  <button class="btn btn-sm navbar-btn search-button search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass"></i>
+  </button>
+`);
+</script>
+<label class="sidebar-toggle secondary-toggle btn btn-sm" for="__secondary"title="Toggle secondary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="fa-solid fa-list"></span>
+</label>
+</div></div>
+      
+    </div>
+  
+</div>
+</div>
+              
+              
+
+<div id="jb-print-docs-body" class="onlyprint">
+    <h1>Randomness</h1>
+    <!-- Table of contents -->
+    <div id="print-main-content">
+        <div id="jb-print-toc">
+            
+            <div>
+                <h2> Contents </h2>
+            </div>
+            <nav aria-label="Page">
+                <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id1">6.2.1. Randomness</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#probability">6.2.1.1. Probability</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#simulating-randomness-in-python">6.2.1.2. Simulating Randomness in Python</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#why-do-we-need-randomness">6.2.1.3. Why Do We Need Randomness?</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#continuous-distributions">6.2.1.4. Continuous Distributions</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#optional-content-discrete-distributions">6.2.1.5. Optional content: Discrete Distributions</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#advanced-content-the-extreme-benefits-of-vectorized-computations">6.2.1.5.1. Advanced content: The extreme benefits of Vectorized Computations</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+            </nav>
+        </div>
+    </div>
+</div>
+
+              
+                
+<div id="searchbox"></div>
+                <article class="bd-article" role="main">
+                  
+  <section class="tex2jax_ignore mathjax_ignore" id="randomness">
+<h1><span class="section-number">6.2. </span>Randomness<a class="headerlink" href="#randomness" title="Permalink to this heading">#</a></h1>
+<section id="id1">
+<h2><span class="section-number">6.2.1. </span>Randomness<a class="headerlink" href="#id1" title="Permalink to this heading">#</a></h2>
+<p>We will use the <code class="docutils literal notranslate"><span class="pre">numpy.random</span></code> package to simulate randomness in Python.</p>
+<p>This lecture will present various probability distributions and then use
+numpy.random to numerically verify some of the facts associated with them.</p>
+<p>We import <code class="docutils literal notranslate"><span class="pre">numpy</span></code> as usual</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+<span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
+<span class="o">%</span><span class="k">matplotlib</span> inline
+</pre></div>
+</div>
+</div>
+</div>
+<section id="probability">
+<h3><span class="section-number">6.2.1.1. </span>Probability<a class="headerlink" href="#probability" title="Permalink to this heading">#</a></h3>
+<p>Before we learn how to use Python to generate randomness, we should make sure
+that we all agree on some basic concepts of probability.</p>
+<p>To think about the probability of some event occurring, we must understand what possible
+events could occur – mathematicians refer to this as the <em>event space</em>.</p>
+<p>Some examples are</p>
+<ul class="simple">
+<li><p>For a coin flip, the coin could either come up heads, tails, or land on its side.</p></li>
+<li><p>The inches of rain falling in a certain location on a given day could be any real
+number between 0 and <span class="math notranslate nohighlight">\( \infty \)</span>.</p></li>
+<li><p>The change in an S&amp;P500 stock price could be any real number between
+<span class="math notranslate nohighlight">\( - \)</span> opening price and <span class="math notranslate nohighlight">\( \infty \)</span>.</p></li>
+<li><p>An individual’s employment status tomorrow could either be employed or unemployed.</p></li>
+<li><p>And the list goes on…</p></li>
+</ul>
+<p>Notice that in some of these cases, the event space can be counted (coin flip and employment status)
+while in others, the event space cannot be counted (rain and stock prices).</p>
+<p>We refer to random variables with countable event spaces as <em>discrete random variables</em> and
+random variables with uncountable event spaces as <em>continuous random variables</em>.</p>
+<p>We then call certain numbers ‘probabilities’ and associate them with events from the event space.</p>
+<p>The following is true about probabilities.</p>
+<ol class="arabic simple">
+<li><p>The probability of any event must be greater than or equal to 0.</p></li>
+<li><p>The probability of all events from the event space must sum (or integrate) to 1.</p></li>
+<li><p>If two events cannot occur at same time, then the probability that at least one of them occurs is
+the sum of the probabilities that each event occurs (known as independence).</p></li>
+</ol>
+<p>We won’t rely on these for much of what we learn in this class, but occasionally, these facts will
+help us reason through what is happening.</p>
+</section>
+<section id="simulating-randomness-in-python">
+<h3><span class="section-number">6.2.1.2. </span>Simulating Randomness in Python<a class="headerlink" href="#simulating-randomness-in-python" title="Permalink to this heading">#</a></h3>
+<p>One of the most basic random numbers is a variable that has equal probability of being any value
+between 0 and 1.</p>
+<p>You may have previously learned about this probability distribution as the Uniform(0, 1).</p>
+<p>Let’s dive into generating some random numbers.</p>
+<p>Run the code below multiple times and see what numbers you get.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">rand</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>0.7861231768856889
+</pre></div>
+</div>
+</div>
+</div>
+<p>We can also generate arrays of random numbers.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">rand</span><span class="p">(</span><span class="mi">25</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>array([0.80741591, 0.2414606 , 0.84430431, 0.66926319, 0.3655989 ,
+       0.65405617, 0.62557491, 0.53152612, 0.28019645, 0.35207087,
+       0.73278887, 0.12497625, 0.06393882, 0.3274459 , 0.52779755,
+       0.89017999, 0.46144369, 0.6994162 , 0.22780065, 0.09016095,
+       0.62091438, 0.79016224, 0.44779656, 0.10708325, 0.00984452])
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">rand</span><span class="p">(</span><span class="mi">5</span><span class="p">,</span> <span class="mi">5</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>array([[0.01523257, 0.53493136, 0.93989972, 0.06885106, 0.26380146],
+       [0.83308775, 0.45212772, 0.50914628, 0.28005659, 0.4640297 ],
+       [0.03546809, 0.35908938, 0.71130438, 0.98707699, 0.06626503],
+       [0.6114508 , 0.55178832, 0.93122069, 0.1212634 , 0.63745596],
+       [0.50782802, 0.20273609, 0.42801359, 0.29403367, 0.34484808]])
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">rand</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">4</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>array([[[0.80654196, 0.33543474, 0.67812728, 0.10922672],
+        [0.87563335, 0.59962314, 0.96866144, 0.54953366],
+        [0.53313724, 0.70226717, 0.96371935, 0.86167311]],
+
+       [[0.50909714, 0.07516694, 0.06580736, 0.5436356 ],
+        [0.10754751, 0.59794248, 0.65163124, 0.87937045],
+        [0.70196581, 0.18642059, 0.63469207, 0.8524823 ]]])
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="why-do-we-need-randomness">
+<h3><span class="section-number">6.2.1.3. </span>Why Do We Need Randomness?<a class="headerlink" href="#why-do-we-need-randomness" title="Permalink to this heading">#</a></h3>
+<p>As economists and data scientists, we study complex systems.</p>
+<p>These systems have inherent randomness, but they do not readily reveal their underlying distribution
+to us.</p>
+<p>In cases where we face this difficulty, we turn to a set of tools known as Monte Carlo
+methods.</p>
+<p>These methods effectively boil down to repeatedly simulating some event (or events) and looking at
+the outcome distribution.</p>
+<p>This tool is used to inform decisions in search and rescue missions, election predictions, sports,
+and even by the Federal Reserve.</p>
+<p>The reasons that Monte Carlo methods work is a mathematical theorem known as the <em>Law of Large
+Numbers</em>.</p>
+<p>The Law of Large Numbers basically says that under relatively general conditions, the distribution of simulated outcomes will mimic the true distribution as the number of simulated events goes to infinity.</p>
+<p>We already know how the uniform distribution looks, so let’s demonstrate the Law of Large Numbers by approximating the uniform distribution.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Draw various numbers of uniform[0, 1] random variables</span>
+<span class="n">draws_10</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">rand</span><span class="p">(</span><span class="mi">10</span><span class="p">)</span>
+<span class="n">draws_200</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">rand</span><span class="p">(</span><span class="mi">200</span><span class="p">)</span>
+<span class="n">draws_10000</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">rand</span><span class="p">(</span><span class="mi">10_000</span><span class="p">)</span>
+
+<span class="c1"># Plot their histograms</span>
+<span class="n">fig</span><span class="p">,</span> <span class="n">ax</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">(</span><span class="mi">3</span><span class="p">)</span>
+
+<span class="n">ax</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">set_title</span><span class="p">(</span><span class="s2">&quot;Histogram with 10 draws&quot;</span><span class="p">)</span>
+<span class="n">ax</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">hist</span><span class="p">(</span><span class="n">draws_10</span><span class="p">)</span>
+
+<span class="n">ax</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">set_title</span><span class="p">(</span><span class="s2">&quot;Histogram with 200 draws&quot;</span><span class="p">)</span>
+<span class="n">ax</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">hist</span><span class="p">(</span><span class="n">draws_200</span><span class="p">)</span>
+
+<span class="n">ax</span><span class="p">[</span><span class="mi">2</span><span class="p">]</span><span class="o">.</span><span class="n">set_title</span><span class="p">(</span><span class="s2">&quot;Histogram with 10,000 draws&quot;</span><span class="p">)</span>
+<span class="n">ax</span><span class="p">[</span><span class="mi">2</span><span class="p">]</span><span class="o">.</span><span class="n">hist</span><span class="p">(</span><span class="n">draws_10000</span><span class="p">)</span>
+
+<span class="n">fig</span><span class="o">.</span><span class="n">tight_layout</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../../_images/9e59665c1846f70a309d25c557bdd4e66b78bafb47c16a15475e7bf63d4e3856.png" src="../../_images/9e59665c1846f70a309d25c557bdd4e66b78bafb47c16a15475e7bf63d4e3856.png" />
+</div>
+</div>
+</section>
+<section id="continuous-distributions">
+<h3><span class="section-number">6.2.1.4. </span>Continuous Distributions<a class="headerlink" href="#continuous-distributions" title="Permalink to this heading">#</a></h3>
+<p>Recall that a continuous distribution is one where the value can take on an uncountable number of values.</p>
+<p>It differs from a discrete distribution in that the events are not
+countable.</p>
+<p>We can use simulation to learn things about continuous distributions as we did with discrete
+distributions.</p>
+<p>Let’s use simulation to study what is arguably the most commonly encountered
+distributions – the normal distribution.</p>
+<p>The Normal (sometimes referred to as the Gaussian distribution) is bell-shaped and completely
+described by the mean and variance of that distribution.</p>
+<p>The mean is often referred to as <span class="math notranslate nohighlight">\( \mu \)</span> and the variance as <span class="math notranslate nohighlight">\( \sigma^2 \)</span>.</p>
+<p>Let’s take a look at the normal distribution.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># scipy is an extension of numpy, and the stats</span>
+<span class="c1"># subpackage has tools for working with various probability distributions</span>
+<span class="kn">import</span> <span class="nn">scipy.stats</span> <span class="k">as</span> <span class="nn">st</span>
+
+<span class="n">x</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="o">-</span><span class="mi">5</span><span class="p">,</span> <span class="mi">5</span><span class="p">,</span> <span class="mi">100</span><span class="p">)</span>
+
+<span class="c1"># NOTE: first argument to st.norm is mean, second is standard deviation sigma (not sigma^2)</span>
+<span class="n">pdf_x</span> <span class="o">=</span> <span class="n">st</span><span class="o">.</span><span class="n">norm</span><span class="p">(</span><span class="mf">0.0</span><span class="p">,</span> <span class="mf">1.0</span><span class="p">)</span><span class="o">.</span><span class="n">pdf</span><span class="p">(</span><span class="n">x</span><span class="p">)</span>
+
+<span class="n">fig</span><span class="p">,</span> <span class="n">ax</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">()</span>
+
+<span class="n">ax</span><span class="o">.</span><span class="n">set_title</span><span class="p">(</span><span class="sa">r</span><span class="s2">&quot;Normal Distribution ($\mu = 0, \sigma = 1$)&quot;</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">pdf_x</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[&lt;matplotlib.lines.Line2D at 0x20a9ede1400&gt;]
+</pre></div>
+</div>
+<img alt="../../_images/e3c2d982e740856f6e749d28e2b975bfa6e99a8e02510b0d88054e3c0045937a.png" src="../../_images/e3c2d982e740856f6e749d28e2b975bfa6e99a8e02510b0d88054e3c0045937a.png" />
+</div>
+</div>
+<p>You can use the <code class="docutils literal notranslate"><span class="pre">isf</span></code> method to get the inverst cumulative density function of the distribution and recover the threshold associated with a particular probability mass in the tails</p>
+<p>Here you passe the probability, say 5% and the function returns the threshold so there is exactly this probability mass to the right of it.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># right tail</span>
+<span class="n">st</span><span class="o">.</span><span class="n">norm</span><span class="p">(</span><span class="mf">0.</span><span class="p">,</span><span class="mf">1.</span><span class="p">)</span><span class="o">.</span><span class="n">isf</span><span class="p">(</span><span class="mf">0.05</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>1.6448536269514729
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># left tail</span>
+<span class="n">st</span><span class="o">.</span><span class="n">norm</span><span class="p">(</span><span class="mf">0.</span><span class="p">,</span><span class="mf">1.</span><span class="p">)</span><span class="o">.</span><span class="n">isf</span><span class="p">(</span><span class="mf">0.95</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>-1.6448536269514722
+</pre></div>
+</div>
+</div>
+</div>
+<p>And you can obvioulsy simulate as well</p>
+<p>Here I simualte a standard normal vector with 3 rows and 4 columns</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">st</span><span class="o">.</span><span class="n">norm</span><span class="p">(</span><span class="mf">0.</span><span class="p">,</span><span class="mf">1.</span><span class="p">)</span><span class="o">.</span><span class="n">rvs</span><span class="p">(</span><span class="n">size</span><span class="o">=</span><span class="p">(</span><span class="mi">3</span><span class="p">,</span><span class="mi">4</span><span class="p">))</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>array([[-1.94292854,  0.53350177, -0.95225937, -0.81668611],
+       [ 0.41954983, -2.05398858, -1.25605238,  1.18249787],
+       [ 0.01225393, -1.53787579, -0.89654655, -2.01561892]])
+</pre></div>
+</div>
+</div>
+</div>
+<p>Here a column vector</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">st</span><span class="o">.</span><span class="n">norm</span><span class="p">(</span><span class="mf">0.</span><span class="p">,</span><span class="mf">1.</span><span class="p">)</span><span class="o">.</span><span class="n">rvs</span><span class="p">(</span><span class="n">size</span><span class="o">=</span><span class="mi">10</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>array([-0.38103522, -1.88341677, -1.42194613, -0.07887213, -0.17482899,
+        0.4912504 ,  0.02407146, -2.69009789, -1.08301844,  1.68147818])
+</pre></div>
+</div>
+</div>
+</div>
+<p>You can also this to compute means (in the case of the normal is silly)</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">st</span><span class="o">.</span><span class="n">norm</span><span class="p">(</span><span class="mf">0.</span><span class="p">,</span><span class="mf">1.</span><span class="p">)</span><span class="o">.</span><span class="n">mean</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>0.0
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">st</span><span class="o">.</span><span class="n">norm</span><span class="p">(</span><span class="mf">0.</span><span class="p">,</span><span class="mf">1.</span><span class="p">)</span><span class="o">.</span><span class="n">std</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>1.0
+</pre></div>
+</div>
+</div>
+</div>
+<p>But also higher order moments!</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># kurtosis!</span>
+<span class="n">st</span><span class="o">.</span><span class="n">norm</span><span class="p">(</span><span class="mf">0.</span><span class="p">,</span><span class="mf">1.</span><span class="p">)</span><span class="o">.</span><span class="n">moment</span><span class="p">(</span><span class="mi">4</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>3.0
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="optional-content-discrete-distributions">
+<h3><span class="section-number">6.2.1.5. </span>Optional content: Discrete Distributions<a class="headerlink" href="#optional-content-discrete-distributions" title="Permalink to this heading">#</a></h3>
+<p>Sometimes we will encounter variables that can only take one of a
+few possible values.</p>
+<p>We refer to this type of random variable as a discrete distribution.</p>
+<p>For example, consider a small business loan company.</p>
+<p>Imagine that the company’s loan requires a repayment of <span class="math notranslate nohighlight">\( \\\)</span>25,000 $ and must be repaid 1 year
+after the loan was made.</p>
+<p>The company discounts the future at 5%.</p>
+<p>Additionally, the loans made are repaid in full with 75% probability, while
+<span class="math notranslate nohighlight">\( \\\)</span>12,500 $ of loans is repaid with probability 20%, and no repayment with 5%
+probability.</p>
+<p>How much would the small business loan company be willing to loan if they’d like to
+– on average – break even?</p>
+<p>In this case, we can compute this by hand:</p>
+<p>The amount repaid, on average, is: <span class="math notranslate nohighlight">\( 0.75(25,000) + 0.2(12,500) + 0.05(0) = 21,250 \)</span>.</p>
+<p>Since we’ll receive that amount in one year, we have to discount it:
+<span class="math notranslate nohighlight">\( \frac{1}{1+0.05} 21,250 \approx 20238 \)</span>.</p>
+<p>We can now verify by simulating the outcomes of many loans.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># You&#39;ll see why we call it `_slow` soon :)</span>
+<span class="k">def</span> <span class="nf">simulate_loan_repayments_slow</span><span class="p">(</span><span class="n">N</span><span class="p">,</span> <span class="n">r</span><span class="o">=</span><span class="mf">0.05</span><span class="p">,</span> <span class="n">repayment_full</span><span class="o">=</span><span class="mf">25_000.0</span><span class="p">,</span>
+                                  <span class="n">repayment_part</span><span class="o">=</span><span class="mf">12_500.0</span><span class="p">):</span>
+    <span class="n">repayment_sims</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">(</span><span class="n">N</span><span class="p">)</span>
+    <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">N</span><span class="p">):</span>
+        <span class="n">x</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">rand</span><span class="p">()</span>  <span class="c1"># Draw a random number</span>
+
+        <span class="c1"># Full repayment 75% of time</span>
+        <span class="k">if</span> <span class="n">x</span> <span class="o">&lt;</span> <span class="mf">0.75</span><span class="p">:</span>
+            <span class="n">repaid</span> <span class="o">=</span> <span class="n">repayment_full</span>
+        <span class="k">elif</span> <span class="n">x</span> <span class="o">&lt;</span> <span class="mf">0.95</span><span class="p">:</span>
+            <span class="n">repaid</span> <span class="o">=</span> <span class="n">repayment_part</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="n">repaid</span> <span class="o">=</span> <span class="mf">0.0</span>
+
+        <span class="n">repayment_sims</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">=</span> <span class="p">(</span><span class="mi">1</span> <span class="o">/</span> <span class="p">(</span><span class="mi">1</span> <span class="o">+</span> <span class="n">r</span><span class="p">))</span> <span class="o">*</span> <span class="n">repaid</span>
+
+    <span class="k">return</span> <span class="n">repayment_sims</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">mean</span><span class="p">(</span><span class="n">simulate_loan_repayments_slow</span><span class="p">(</span><span class="mi">25_000</span><span class="p">)))</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>20195.23809523809
+</pre></div>
+</div>
+</div>
+</div>
+<section id="advanced-content-the-extreme-benefits-of-vectorized-computations">
+<h4><span class="section-number">6.2.1.5.1. </span>Advanced content: The extreme benefits of Vectorized Computations<a class="headerlink" href="#advanced-content-the-extreme-benefits-of-vectorized-computations" title="Permalink to this heading">#</a></h4>
+<p>The code above illustrates the concepts we were discussing but is much slower than
+necessary.</p>
+<p>Below is a version of our function that uses numpy arrays to perform computations
+instead of only storing the values.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">simulate_loan_repayments</span><span class="p">(</span><span class="n">N</span><span class="p">,</span> <span class="n">r</span><span class="o">=</span><span class="mf">0.05</span><span class="p">,</span> <span class="n">repayment_full</span><span class="o">=</span><span class="mf">25_000.0</span><span class="p">,</span>
+                             <span class="n">repayment_part</span><span class="o">=</span><span class="mf">12_500.0</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Simulate present value of N loans given values for discount rate and</span>
+<span class="sd">    repayment values</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="n">random_numbers</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">rand</span><span class="p">(</span><span class="n">N</span><span class="p">)</span>
+
+    <span class="c1"># start as 0 -- no repayment</span>
+    <span class="n">repayment_sims</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">(</span><span class="n">N</span><span class="p">)</span>
+
+    <span class="c1"># adjust for full and partial repayment</span>
+    <span class="n">partial</span> <span class="o">=</span> <span class="n">random_numbers</span> <span class="o">&lt;=</span> <span class="mf">0.20</span>
+    <span class="n">repayment_sims</span><span class="p">[</span><span class="n">partial</span><span class="p">]</span> <span class="o">=</span> <span class="n">repayment_part</span>
+
+    <span class="n">full</span> <span class="o">=</span> <span class="o">~</span><span class="n">partial</span> <span class="o">&amp;</span> <span class="p">(</span><span class="n">random_numbers</span> <span class="o">&lt;=</span> <span class="mf">0.95</span><span class="p">)</span>
+    <span class="n">repayment_sims</span><span class="p">[</span><span class="n">full</span><span class="p">]</span> <span class="o">=</span> <span class="n">repayment_full</span>
+
+    <span class="n">repayment_sims</span> <span class="o">=</span> <span class="p">(</span><span class="mi">1</span> <span class="o">/</span> <span class="p">(</span><span class="mi">1</span> <span class="o">+</span> <span class="n">r</span><span class="p">))</span> <span class="o">*</span> <span class="n">repayment_sims</span>
+
+    <span class="k">return</span> <span class="n">repayment_sims</span>
+
+<span class="n">np</span><span class="o">.</span><span class="n">mean</span><span class="p">(</span><span class="n">simulate_loan_repayments</span><span class="p">(</span><span class="mi">25_000</span><span class="p">))</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>20240.476190476187
+</pre></div>
+</div>
+</div>
+</div>
+<p>We’ll quickly demonstrate the time difference in running both function versions.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="o">%</span><span class="k">timeit</span> simulate_loan_repayments_slow(250_000)
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>117 ms ± 1.36 ms per loop (mean ± std. dev. of 7 runs, 10 loops each)
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="o">%</span><span class="k">timeit</span> simulate_loan_repayments(250_000)
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>4.21 ms ± 81.8 µs per loop (mean ± std. dev. of 7 runs, 100 loops each)
+</pre></div>
+</div>
+</div>
+</div>
+<p>The timings for my computer were 1114 ms for <code class="docutils literal notranslate"><span class="pre">simulate_loan_repayments_slow</span></code> and 4.2 ms for
+<code class="docutils literal notranslate"><span class="pre">simulate_loan_repayments</span></code>.</p>
+<p>This function is simple enough that both times are acceptable, but the 33x time difference could
+matter in a more complicated operation.</p>
+<p>This illustrates a concept called <em>vectorization</em>, which is when computations
+operate on an entire array at a time.</p>
+<p>In general, numpy code that is <em>vectorized</em> will perform better than numpy code that operates on one
+element at a time.</p>
+</section>
+</section>
+</section>
+</section>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "binder-examples/jupyter-stacks-datascience",
+            ref: "master",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "python"
+        },
+        kernelOptions: {
+            name: "python3",
+            path: "./chapters/scientific"
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'python3'</script>
+
+                </article>
+              
+
+              
+              
+                <footer class="bd-footer-article">
+                  
+<div class="footer-article-items footer-article__inner">
+  
+    <div class="footer-article-item"><!-- Previous / next buttons -->
+<div class="prev-next-area">
+    <a class="left-prev"
+       href="../Finance/Returns1.html"
+       title="previous page">
+      <i class="fa-solid fa-angle-left"></i>
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">previous</p>
+        <p class="prev-next-title"><span class="section-number">6.1. </span>Returns</p>
+      </div>
+    </a>
+    <a class="right-next"
+       href="../Finance/TheChoiceofFrequency.html"
+       title="next page">
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">next</p>
+        <p class="prev-next-title"><span class="section-number">6.3. </span>The choice of frequency and Annualization of returns</p>
+      </div>
+      <i class="fa-solid fa-angle-right"></i>
+    </a>
+</div></div>
+  
+</div>
+
+                </footer>
+              
+            </div>
+            
+            
+              
+                <div class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
+  <div class="sidebar-secondary-item">
+  <div class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> Contents
+  </div>
+  <nav class="bd-toc-nav page-toc">
+    <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id1">6.2.1. Randomness</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#probability">6.2.1.1. Probability</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#simulating-randomness-in-python">6.2.1.2. Simulating Randomness in Python</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#why-do-we-need-randomness">6.2.1.3. Why Do We Need Randomness?</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#continuous-distributions">6.2.1.4. Continuous Distributions</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#optional-content-discrete-distributions">6.2.1.5. Optional content: Discrete Distributions</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#advanced-content-the-extreme-benefits-of-vectorized-computations">6.2.1.5.1. Advanced content: The extreme benefits of Vectorized Computations</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+  </nav></div>
+
+</div></div>
+              
+            
+          </div>
+          <footer class="bd-footer-content">
+            
+<div class="bd-footer-content__inner container">
+  
+  <div class="footer-item">
+    
+<p class="component-author">
+By Alan Moreira
+</p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+  <p class="copyright">
+    
+      © Copyright 2021 Creative Commons Attribution-ShareAlike 4.0 International (CC BY-SA 4.0).
+      <br/>
+    
+  </p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+</div>
+          </footer>
+        
+
+      </main>
+    </div>
+  </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script src="../../_static/scripts/bootstrap.js?digest=e353d410970836974a52"></script>
+<script src="../../_static/scripts/pydata-sphinx-theme.js?digest=e353d410970836974a52"></script>
+
+  <footer class="bd-footer">
+  </footer>
+  </body>
+</html>

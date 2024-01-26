@@ -1,0 +1,790 @@
+
+
+<!DOCTYPE html>
+
+
+<html lang="en" >
+
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
+
+    <title>Making Decisions &#8212; Quantitative Investing</title>
+  
+  
+  
+  <script data-cfasync="false">
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "light";
+  </script>
+  
+  <!-- Loaded before other Sphinx assets -->
+  <link href="../../../_static/styles/theme.css?digest=e353d410970836974a52" rel="stylesheet" />
+<link href="../../../_static/styles/bootstrap.css?digest=e353d410970836974a52" rel="stylesheet" />
+<link href="../../../_static/styles/pydata-sphinx-theme.css?digest=e353d410970836974a52" rel="stylesheet" />
+
+  
+  <link href="../../../_static/vendor/fontawesome/6.1.2/css/all.min.css?digest=e353d410970836974a52" rel="stylesheet" />
+  <link rel="preload" as="font" type="font/woff2" crossorigin href="../../../_static/vendor/fontawesome/6.1.2/webfonts/fa-solid-900.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../../../_static/vendor/fontawesome/6.1.2/webfonts/fa-brands-400.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../../../_static/vendor/fontawesome/6.1.2/webfonts/fa-regular-400.woff2" />
+
+    <link rel="stylesheet" type="text/css" href="../../../_static/pygments.css" />
+    <link rel="stylesheet" href="../../../_static/styles/sphinx-book-theme.css?digest=14f4ca6b54d191a8c7657f6c759bf11a5fb86285" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="../../../_static/togglebutton.css" />
+    <link rel="stylesheet" type="text/css" href="../../../_static/copybutton.css" />
+    <link rel="stylesheet" type="text/css" href="../../../_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css" />
+    <link rel="stylesheet" type="text/css" href="../../../_static/sphinx-thebe.css" />
+    <link rel="stylesheet" type="text/css" href="../../../_static/book.css" />
+    <link rel="stylesheet" type="text/css" href="../../../_static/design-style.4045f2051d55cab465a707391d5b2007.min.css" />
+  
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="../../../_static/scripts/bootstrap.js?digest=e353d410970836974a52" />
+<link rel="preload" as="script" href="../../../_static/scripts/pydata-sphinx-theme.js?digest=e353d410970836974a52" />
+
+    <script data-url_root="../../../" id="documentation_options" src="../../../_static/documentation_options.js"></script>
+    <script src="../../../_static/jquery.js"></script>
+    <script src="../../../_static/underscore.js"></script>
+    <script src="../../../_static/_sphinx_javascript_frameworks_compat.js"></script>
+    <script src="../../../_static/doctools.js"></script>
+    <script src="../../../_static/clipboard.min.js"></script>
+    <script src="../../../_static/copybutton.js"></script>
+    <script src="../../../_static/scripts/sphinx-book-theme.js?digest=5a5c038af52cf7bc1a1ec88eea08e6366ee68824"></script>
+    <script>let toggleHintShow = 'Click to show';</script>
+    <script>let toggleHintHide = 'Click to hide';</script>
+    <script>let toggleOpenOnPrint = 'true';</script>
+    <script src="../../../_static/togglebutton.js"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script src="../../../_static/design-tabs.js"></script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"
+const thebe_selector = ".thebe,.cell"
+const thebe_selector_input = "pre"
+const thebe_selector_output = ".output, .cell_output"
+</script>
+    <script async="async" src="../../../_static/sphinx-thebe.js"></script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'notused/18/2/Making_Decisions';</script>
+    <link rel="canonical" href="https://amoreira2.github.io/quantitativeinvesting/notused/18/2/Making_Decisions.html" />
+    <link rel="shortcut icon" href="../../../_static/figuremain2.jpg"/>
+    <link rel="index" title="Index" href="../../../genindex.html" />
+    <link rel="search" title="Search" href="../../../search.html" />
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta name="docsearch:language" content="en"/>
+  </head>
+  
+  
+  <body data-bs-spy="scroll" data-bs-target=".bd-toc-nav" data-offset="180" data-bs-root-margin="0px 0px -60%" data-default-mode="">
+
+  
+  
+  <a class="skip-link" href="#main-content">Skip to main content</a>
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          name="__primary"
+          id="__primary"/>
+  <label class="overlay overlay-primary" for="__primary"></label>
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          name="__secondary"
+          id="__secondary"/>
+  <label class="overlay overlay-secondary" for="__secondary"></label>
+  
+  <div class="search-button__wrapper">
+    <div class="search-button__overlay"></div>
+    <div class="search-button__search-container">
+<form class="bd-search d-flex align-items-center"
+      action="../../../search.html"
+      method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search"
+         class="form-control"
+         name="q"
+         id="search-input"
+         placeholder="Search this book..."
+         aria-label="Search this book..."
+         autocomplete="off"
+         autocorrect="off"
+         autocapitalize="off"
+         spellcheck="false"/>
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form></div>
+  </div>
+  
+    <nav class="bd-header navbar navbar-expand-lg bd-navbar">
+    </nav>
+  
+  <div class="bd-container">
+    <div class="bd-container__inner bd-page-width">
+      
+      <div class="bd-sidebar-primary bd-sidebar">
+        
+
+  
+  <div class="sidebar-header-items sidebar-primary__section">
+    
+    
+    
+    
+  </div>
+  
+    <div class="sidebar-primary-items__start sidebar-primary__section">
+        <div class="sidebar-primary-item">
+  
+
+<a class="navbar-brand logo" href="../../../chapters/intro.html">
+  
+  
+  
+  
+    
+    
+      
+    
+    
+    <img src="../../../_static/figuremain2.jpg" class="logo__image only-light" alt="Logo image"/>
+    <script>document.write(`<img src="../../../_static/figuremain2.jpg" class="logo__image only-dark" alt="Logo image"/>`);</script>
+  
+  
+</a></div>
+        <div class="sidebar-primary-item"><nav class="bd-links" id="bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item navbar-nav active">
+        <ul class="nav bd-sidenav">
+<li class="toctree-l1 has-children"><a class="reference internal" href="../../../chapters/01/what-is-quant-investing.html">1. What is Quantitative Investing?</a><input class="toctree-checkbox" id="toctree-checkbox-1" name="toctree-checkbox-1" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-1"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../../chapters/01/statistical-techniques.html">1.1. Statistical Techniques</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../chapters/01/computational-tools.html">1.2. Computational tools</a></li>
+</ul>
+</li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../../../chapters/02/getting_started.html">2. Getting Started</a><input class="toctree-checkbox" id="toctree-checkbox-2" name="toctree-checkbox-2" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-2"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../../chapters/02/local_install.html">2.3. Local installation</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../chapters/02/cloud_setup.html">2.4. Cloud Setup</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../../chapters/03/programming-in-python.html">3. First Steps with Python</a></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../../../chapters/essentials/essentials.html">4. Python Essentials</a><input class="toctree-checkbox" id="toctree-checkbox-3" name="toctree-checkbox-3" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-3"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../../chapters/essentials/basics.html">4.1. Basics</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../chapters/essentials/collections.html">4.2. Collections</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../chapters/essentials/control_flow.html">4.3. Flow control</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../chapters/essentials/functions.html">4.4. Functions</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../chapters/essentials/numpy1.html">4.5. Numpy</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../chapters/essentials/plotting1.html">4.6. Plotting</a></li>
+</ul>
+</li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../../../chapters/pandas/workingwithdata.html">5. Working with Data</a><input class="toctree-checkbox" id="toctree-checkbox-4" name="toctree-checkbox-4" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-4"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../../chapters/pandas/intro.html">5.1. Introduction</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../chapters/pandas/basics.html">5.2. Pandas Basics</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../chapters/pandas/the_index.html">5.3. Indexing</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../chapters/pandas/timeseries.html">5.4. Time-Series</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../chapters/pandas/data_clean.html">5.5. Cleaning data (opt)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../chapters/pandas/reshape.html">5.6. Reshape (opt)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../chapters/pandas/merge.html">5.7. Merge (opt)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../chapters/pandas/groupby.html">5.8. Group-by (opt)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../chapters/pandas/matplotlib.html">5.9. Plotting (opt)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../chapters/pandas/storage_formats.html">5.10. Data Storage (opt)</a></li>
+</ul>
+</li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../../../chapters/Finance/Returns.html">6. Asset Returns</a><input class="toctree-checkbox" id="toctree-checkbox-5" name="toctree-checkbox-5" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-5"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../../chapters/Finance/Returns1.html">6.1. Returns</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../chapters/scientific/randomness1.html">6.2. Modeling randomness</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../chapters/Finance/TheChoiceofFrequency.html">6.3. The Choice of Frequency and Annualization of Returns</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../chapters/scientific/linear_algebra1.html">6.4. Linear algebra Review</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../chapters/Finance/UsingAPI.html">6.5. Data APIs</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../../chapters/Finance/PortfolioMath.html">7. Portfolio Math</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../chapters/Finance/CapitalAllocationLine.html">8. Capital Allocation</a></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../../../chapters/Finance/meanvariance1.html">9. Mean Variance Frontier</a><input class="toctree-checkbox" id="toctree-checkbox-6" name="toctree-checkbox-6" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-6"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../../chapters/Finance/MeanVariance.html">9.1. Mean Variance Efficient Portfolios</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../chapters/Finance/CaseStudy.html">9.2. Case Study in International Diversification</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../chapters/Finance/LeverageandShorting.html">9.3. Leverage and Shorting</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../chapters/Finance/Portfoliooptimizationwithconstraints.html">9.4. Portfolio Optimization with constraints</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../../chapters/Finance/EstimationUncertainty.html">10. Estimation Uncertainty and It's Implications for investing</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../chapters/Finance/TradingStrategies.html">11. Trading Strategies</a></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../../../chapters/Finance/Timing.html">12. Timing Strategies</a><input class="toctree-checkbox" id="toctree-checkbox-7" name="toctree-checkbox-7" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-7"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../../chapters/Finance/Volatilitytiming.html">12.1. Volatility Timing</a></li>
+</ul>
+</li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../../../chapters/Finance/crosssectionalequitystrategies.html">13. Cross-Sectional Equity Strategies</a><input class="toctree-checkbox" id="toctree-checkbox-8" name="toctree-checkbox-8" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-8"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../../chapters/Finance/Valueinvesting.html">13.1. Value</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../chapters/Finance/Momentum.html">13.2. Momentum</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../chapters/Finance/OtherEquityStrategies.html">13.3. Other Equity strategies</a></li>
+</ul>
+</li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../../../chapters/Finance/Evaluation.html">14. Evaluating a Trading Strategy</a><input class="toctree-checkbox" id="toctree-checkbox-9" name="toctree-checkbox-9" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-9"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../../chapters/Finance/Econometrics.html">14.1. The Econometrics of Strategy Evalaution</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../chapters/Finance/outofsample.html">14.2. Out of Sample Analysis</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../chapters/Finance/TailandBackground.html">14.3. Tail Risks and Background Risks</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../chapters/Finance/MultiFactorModels.html">14.4. Multifactor Models</a></li>
+</ul>
+</li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../../../chapters/Finance/Topics.html">15. Topics in Quantitative Investing</a><input class="toctree-checkbox" id="toctree-checkbox-10" name="toctree-checkbox-10" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-10"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../../chapters/Finance/Equilbrium.html">15.1. Intepreting Factor models</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../chapters/Finance/Implementation.html">15.2. Strategy Implementation</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../chapters/Finance/Horizon.html">15.3. Investment horizon effects</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../../chapters/additional/additional.html">16. Additional Statistics Material</a></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../../../chapters/Assignments/Assignments.html">17. Assignments</a><input class="toctree-checkbox" id="toctree-checkbox-11" name="toctree-checkbox-11" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-11"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../../chapters/Assignments/Assignment0.html">17.1. Assigment 0</a></li>
+
+
+
+
+
+<li class="toctree-l2"><a class="reference internal" href="../../../chapters/Assignments/Assignment1.html">17.7. Assignment 1</a></li>
+
+
+
+
+<li class="toctree-l2"><a class="reference internal" href="../../../chapters/Assignments/Assignment2.html">17.12. Assigment 2</a></li>
+
+
+
+<li class="toctree-l2"><a class="reference internal" href="../../../chapters/Assignments/Assignment3.html">17.16. Assignment 3</a></li>
+
+
+
+<li class="toctree-l2"><a class="reference internal" href="../../../chapters/Assignments/Assignment4.html">17.20. Assignment 4</a></li>
+
+
+
+<li class="toctree-l2"><a class="reference internal" href="../../../chapters/Assignments/Assignment5.html">17.24. Assigment 5</a></li>
+
+
+
+<li class="toctree-l2"><a class="reference internal" href="../../../chapters/Assignments/Assignment6.html">17.28. Assignment 6</a></li>
+
+
+
+<li class="toctree-l2"><a class="reference internal" href="../../../chapters/Assignments/Assignment7.html">17.32. Assignment 7</a></li>
+
+</ul>
+</li>
+</ul>
+
+    </div>
+</nav></div>
+    </div>
+  
+  
+  <div class="sidebar-primary-items__end sidebar-primary__section">
+  </div>
+  
+  <div id="rtd-footer-container"></div>
+
+
+      </div>
+      
+      <main id="main-content" class="bd-main">
+        
+        
+
+<div class="sbt-scroll-pixel-helper"></div>
+
+          <div class="bd-content">
+            <div class="bd-article-container">
+              
+              <div class="bd-header-article">
+<div class="header-article-items header-article__inner">
+  
+    <div class="header-article-items__start">
+      
+        <div class="header-article-item"><label class="sidebar-toggle primary-toggle btn btn-sm" for="__primary" title="Toggle primary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <span class="fa-solid fa-bars"></span>
+</label></div>
+      
+    </div>
+  
+  
+    <div class="header-article-items__end">
+      
+        <div class="header-article-item">
+
+<div class="article-header-buttons">
+
+
+
+
+
+<div class="dropdown dropdown-launch-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Launch interactive content">
+    <i class="fas fa-rocket"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="https://colab.research.google.com/github/amoreira2/Lectures/blob/main/notused/18/2/Making_Decisions.ipynb" target="_blank"
+   class="btn btn-sm dropdown-item"
+   title="Launch onColab"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  
+    <img src="../../../_static/images/logo_colab.png">
+  </span>
+<span class="btn__text-container">Colab</span>
+</a>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+
+
+<div class="dropdown dropdown-source-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Source repositories">
+    <i class="fab fa-github"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="https://github.com/amoreira2/Lectures" target="_blank"
+   class="btn btn-sm btn-source-repository-button dropdown-item"
+   title="Source repository"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fab fa-github"></i>
+  </span>
+<span class="btn__text-container">Repository</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li><a href="https://github.com/amoreira2/Lectures/issues/new?title=Issue%20on%20page%20%2Fnotused/18/2/Making_Decisions.html&body=Your%20issue%20content%20here." target="_blank"
+   class="btn btn-sm btn-source-issues-button dropdown-item"
+   title="Open an issue"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-lightbulb"></i>
+  </span>
+<span class="btn__text-container">Open issue</span>
+</a>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+
+
+<div class="dropdown dropdown-download-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Download this page">
+    <i class="fas fa-download"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="../../../_sources/notused/18/2/Making_Decisions.ipynb" target="_blank"
+   class="btn btn-sm btn-download-source-button dropdown-item"
+   title="Download source file"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file"></i>
+  </span>
+<span class="btn__text-container">.ipynb</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li>
+<button onclick="window.print()"
+  class="btn btn-sm btn-download-pdf-button dropdown-item"
+  title="Print to PDF"
+  data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file-pdf"></i>
+  </span>
+<span class="btn__text-container">.pdf</span>
+</button>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+<button onclick="toggleFullScreen()"
+  class="btn btn-sm btn-fullscreen-button"
+  title="Fullscreen mode"
+  data-bs-placement="bottom" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-expand"></i>
+  </span>
+
+</button>
+
+
+<script>
+document.write(`
+  <button class="theme-switch-button btn btn-sm btn-outline-primary navbar-btn rounded-circle" title="light/dark" aria-label="light/dark" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="theme-switch" data-mode="light"><i class="fa-solid fa-sun"></i></span>
+    <span class="theme-switch" data-mode="dark"><i class="fa-solid fa-moon"></i></span>
+    <span class="theme-switch" data-mode="auto"><i class="fa-solid fa-circle-half-stroke"></i></span>
+  </button>
+`);
+</script>
+
+<script>
+document.write(`
+  <button class="btn btn-sm navbar-btn search-button search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass"></i>
+  </button>
+`);
+</script>
+<label class="sidebar-toggle secondary-toggle btn btn-sm" for="__secondary"title="Toggle secondary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="fa-solid fa-list"></span>
+</label>
+</div></div>
+      
+    </div>
+  
+</div>
+</div>
+              
+              
+
+<div id="jb-print-docs-body" class="onlyprint">
+    <h1>Making Decisions</h1>
+    <!-- Table of contents -->
+    <div id="print-main-content">
+        <div id="jb-print-toc">
+            
+            <div>
+                <h2> Contents </h2>
+            </div>
+            <nav aria-label="Page">
+                <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#a-test-for-a-rare-disease">A Test for a Rare Disease</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#a-subjective-prior">A Subjective Prior</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#confirming-the-answer">Confirming the Answer</a></li>
+</ul>
+            </nav>
+        </div>
+    </div>
+</div>
+
+              
+                
+<div id="searchbox"></div>
+                <article class="bd-article" role="main">
+                  
+  <div class="cell tag_remove-input docutils container">
+</div>
+<section class="tex2jax_ignore mathjax_ignore" id="making-decisions">
+<h1>Making Decisions<a class="headerlink" href="#making-decisions" title="Permalink to this heading">#</a></h1>
+<p>A primary use of Bayes’ Rule is to make decisions based on incomplete information, incorporating new information as it comes in. This section points out the importance of keeping your assumptions in mind as you make decisions.</p>
+<div class="cell tag_remove-input docutils container">
+</div>
+<p>Many medical tests for diseases return Positive or Negative results. A Positive result means that according to the test, the patient has the disease. A Negative result means the test concludes that the patient doesn’t have the disease.</p>
+<p>Medical tests are carefully designed to be very accurate. But few tests are accurate 100% of the time. Almost all tests make errors of two kinds:</p>
+<ul class="simple">
+<li><p>A <strong>false positive</strong> is an error in which the test concludes Positive but the patient doesn’t have the disease.</p></li>
+<li><p>A <strong>false negative</strong> is an error in which the test concludes Negative but the patient does have the disease.</p></li>
+</ul>
+<p>These errors can affect people’s decisions. False positives can cause anxiety and unnecessary treatment (which in some cases is expensive or dangerous). False negatives can have even more serious consequences if the patient doesn’t receive treatment because of their Negative test result.</p>
+<section id="a-test-for-a-rare-disease">
+<h2>A Test for a Rare Disease<a class="headerlink" href="#a-test-for-a-rare-disease" title="Permalink to this heading">#</a></h2>
+<p>Suppose there is a large population and a disease that strikes a tiny proportion of the population. The tree diagram below summarizes information about such a disease and about a medical test for it.</p>
+<p><img alt="Tree Rare Disease" src="../../../_images/tree_disease_rare.png" /></p>
+<p>Overall, only 4 in 1000 of the population has the disease. The test is quite accurate: it has a very small false positive rate of 5 in 1000, and a somewhat larger (though still small) false negative rate of 1 in 100.</p>
+<p>Individuals might or might not know whether they have the disease; typically, people get tested to find out whether they have it.</p>
+<p>So <strong>suppose a person is picked at random from the population</strong> and tested. If the test result is Positive, how would you classify them: Disease, or No disease?</p>
+<p>We can answer this by applying Bayes’ Rule and using our “more likely than not” classifier. Given that the person has tested Positive, the chance that he or she has the disease is the proportion in the top branch, relative to the total proportion in the Test Positive branches.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="p">(</span><span class="mf">0.004</span> <span class="o">*</span> <span class="mf">0.99</span><span class="p">)</span><span class="o">/</span><span class="p">(</span><span class="mf">0.004</span> <span class="o">*</span> <span class="mf">0.99</span>  <span class="o">+</span>  <span class="mf">0.996</span><span class="o">*</span><span class="mf">0.005</span> <span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>0.44295302013422816
+</pre></div>
+</div>
+</div>
+</div>
+<p>Given that the person has tested Positive, the chance that he or she has the disease is about 44%. So we will classify them as: No disease.</p>
+<p>This is a strange conclusion. We have a pretty accurate test, and a person who has tested Positive, and our classification is … that they <strong>don’t</strong> have the disease? That doesn’t seem to make any sense.</p>
+<p>When faced with a disturbing answer, the first thing to do is to check the calculations. The arithmetic above is correct. Let’s see if we can get the same answer in a different way.</p>
+<p>The function <code class="docutils literal notranslate"><span class="pre">population</span></code> returns a table of outcomes for 100,000 patients, with columns that show the <code class="docutils literal notranslate"><span class="pre">True</span> <span class="pre">Condition</span></code> and <code class="docutils literal notranslate"><span class="pre">Test</span> <span class="pre">Result</span></code>. The test is the same as the one described in the tree. But the proportion who have the disease is an argument to the function.</p>
+<p>We will call <code class="docutils literal notranslate"><span class="pre">population</span></code> with 0.004 as the argument, and then pivot to cross-classify each of the 100,000 people.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">population</span><span class="p">(</span><span class="mf">0.004</span><span class="p">)</span><span class="o">.</span><span class="n">pivot</span><span class="p">(</span><span class="s1">&#39;Test Result&#39;</span><span class="p">,</span> <span class="s1">&#39;True Condition&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><table border="1" class="dataframe">
+    <thead>
+        <tr>
+            <th>True Condition</th> <th>Negative</th> <th>Positive</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr>
+            <td>Disease       </td> <td>4       </td> <td>396     </td>
+        </tr>
+        <tr>
+            <td>No Disease    </td> <td>99102   </td> <td>498     </td>
+        </tr>
+    </tbody>
+</table></div></div>
+</div>
+<p>The cells of the table have the right counts. For example, according to the description of the population, 4 in 1000 people have the disease. There are 100,000 people in the table, so 400 should have the disease. That’s what the table shows: 4 + 396 = 400. Of these 400, 99% get a Positive test result: 0.99 x 400 = 396.</p>
+<p>Among the Positives, the proportion that have the disease is:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="mi">396</span><span class="o">/</span><span class="p">(</span><span class="mi">396</span> <span class="o">+</span> <span class="mi">498</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>0.4429530201342282
+</pre></div>
+</div>
+</div>
+</div>
+<p>That’s the answer we got by using Bayes’ Rule. The counts in the Positives column show why it is less than 1/2. Among the Positives, more people <strong>don’t</strong> have the disease than do have the disease.</p>
+<p>The reason is that a huge fraction of the population doesn’t have the disease in the first place. The tiny fraction of those that falsely test Positive are still greater in number than the people who correctly test Positive. This is easier to visualize in the tree diagram:</p>
+<p><img alt="Tree Rare Disease" src="../../../_images/tree_disease_rare.png" /></p>
+<ul class="simple">
+<li><p>The proportion of true Positives is a large fraction (0.99) of a tiny fraction (0.004) of the population.</p></li>
+<li><p>The proportion of false Positives is a tiny fraction (0.005) of a large fraction (0.996) of the population.</p></li>
+</ul>
+<p>These two proportions are comparable; the second is a little larger.</p>
+<p>So, given that the randomly chosen person tested positive, we were right to classify them as more likely than not to <strong>not</strong> have the disease.</p>
+</section>
+<section id="a-subjective-prior">
+<h2>A Subjective Prior<a class="headerlink" href="#a-subjective-prior" title="Permalink to this heading">#</a></h2>
+<p>Being right isn’t always satisfying. Classifying a Positive patient as not having the disease still seems somehow wrong, for such an accurate test. Since the calculations are right, let’s take a look at the basis of our probability calculation: the assumption of randomness.</p>
+<p>Our assumption was that a randomly chosen person was tested and got a Positive result. But this doesn’t happen in reality. People go in to get tested because they think they might have the disease, or because their doctor thinks they might have the disease. <strong>People getting tested are not randomly chosen members of the population.</strong></p>
+<p>That is why our intuition about people getting tested was not fitting well with the answer that we got. We were imagining a realistic situation of a patient going in to get tested because there was some reason for them to do so, whereas the calculation was based on a randomly chosen person being tested.</p>
+<p>So let’s redo our calculation under the more realistic assumption that the patient is getting tested because the doctor thinks there’s a chance the patient has the disease.</p>
+<p>Here it’s important to note that “the doctor thinks there’s a chance” means that the chance is the doctor’s opinion, not the proportion in the population. It is called a <em>subjective probability</em>. In our context of whether or not the patient has the disease, it is also a <em>subective prior</em> probability.</p>
+<p>Some researchers insist that all probabilities must be relative frequencies, but subjective probabilities abound. The chance that a candidate wins the next election, the chance that a big earthquake will hit the Bay Area in the next decade, the chance that a particular country wins the next soccer World Cup: none of these are based on relative frequencies or long run frequencies. Each one contains a subjective element. All calculations involving them thus have a subjective element too.</p>
+<p>Suppose the doctor’s subjective opinion is that there is a 5% chance that the patient has the disease. Then just the prior probabilities in the tree diagram will change:</p>
+<p><img alt="Tree: Subjective Prior" src="../../../_images/tree_disease_subj.png" /></p>
+<p>Given that the patient tests Positive, the chance that he or she has the disease is given by Bayes’ Rule.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="p">(</span><span class="mf">0.05</span> <span class="o">*</span> <span class="mf">0.99</span><span class="p">)</span><span class="o">/</span><span class="p">(</span><span class="mf">0.05</span> <span class="o">*</span> <span class="mf">0.99</span>  <span class="o">+</span>  <span class="mf">0.95</span> <span class="o">*</span> <span class="mf">0.005</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>0.9124423963133641
+</pre></div>
+</div>
+</div>
+</div>
+<p>The effect of changing the prior is stunning. Even though the doctor has a pretty low prior probability (5%) that the patient has the disease, once the patient tests Positive the posterior probability of having the disease shoots up to more than 91%.</p>
+<p>If the patient tests Positive, it would be reasonable for the doctor to proceed as though the patient has the disease.</p>
+</section>
+<section id="confirming-the-answer">
+<h2>Confirming the Answer<a class="headerlink" href="#confirming-the-answer" title="Permalink to this heading">#</a></h2>
+<p>Though the doctor’s opinion is subjective, we can generate an artificial population in which 5% of the people have the disease and are tested using the same test. Then we can count people in different categories to see if the counts are consistent with the answer we got by using Bayes’ Rule.</p>
+<p>We can use <code class="docutils literal notranslate"><span class="pre">population(0.05)</span></code> and <code class="docutils literal notranslate"><span class="pre">pivot</span></code> to construct the corresponding population and look at the counts in the four cells.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">population</span><span class="p">(</span><span class="mf">0.05</span><span class="p">)</span><span class="o">.</span><span class="n">pivot</span><span class="p">(</span><span class="s1">&#39;Test Result&#39;</span><span class="p">,</span> <span class="s1">&#39;True Condition&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><table border="1" class="dataframe">
+    <thead>
+        <tr>
+            <th>True Condition</th> <th>Negative</th> <th>Positive</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr>
+            <td>Disease       </td> <td>50      </td> <td>4950    </td>
+        </tr>
+        <tr>
+            <td>No Disease    </td> <td>94525   </td> <td>475     </td>
+        </tr>
+    </tbody>
+</table></div></div>
+</div>
+<p>In this artificially created population of 100,000 people, 5000 people (5%) have the disease, and 99% of them test Positive, leading to 4950 true Positives. Compare this with 475 false Positives: among the Positives, the proportion that have the disease is the same as what we got by Bayes’ Rule.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="mi">4950</span><span class="o">/</span><span class="p">(</span><span class="mi">4950</span> <span class="o">+</span> <span class="mi">475</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>0.9124423963133641
+</pre></div>
+</div>
+</div>
+</div>
+<p>Because we can generate a population that has the right proportions, we can also use simulation to confirm that our answer is reasonable. The table <code class="docutils literal notranslate"><span class="pre">pop_05</span></code> contains a population of 100,000 people generated with the doctor’s prior disease probability of 5% and the error rates of the test. We take a simple random sample of size 10,000 from the population, and extract the table <code class="docutils literal notranslate"><span class="pre">positive</span></code> consisting only of those in the sample that had Positive test results.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">pop_05</span> <span class="o">=</span> <span class="n">population</span><span class="p">(</span><span class="mf">0.05</span><span class="p">)</span>
+
+<span class="n">sample</span> <span class="o">=</span> <span class="n">pop_05</span><span class="o">.</span><span class="n">sample</span><span class="p">(</span><span class="mi">10000</span><span class="p">,</span> <span class="n">with_replacement</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+
+<span class="n">positive</span> <span class="o">=</span> <span class="n">sample</span><span class="o">.</span><span class="n">where</span><span class="p">(</span><span class="s1">&#39;Test Result&#39;</span><span class="p">,</span> <span class="n">are</span><span class="o">.</span><span class="n">equal_to</span><span class="p">(</span><span class="s1">&#39;Positive&#39;</span><span class="p">))</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>Among these Positive results, what proportion were true Positives? That’s the proportion of Positives that had the disease:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">positive</span><span class="o">.</span><span class="n">where</span><span class="p">(</span><span class="s1">&#39;True Condition&#39;</span><span class="p">,</span> <span class="n">are</span><span class="o">.</span><span class="n">equal_to</span><span class="p">(</span><span class="s1">&#39;Disease&#39;</span><span class="p">))</span><span class="o">.</span><span class="n">num_rows</span><span class="o">/</span><span class="n">positive</span><span class="o">.</span><span class="n">num_rows</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>0.9218181818181819
+</pre></div>
+</div>
+</div>
+</div>
+<p>Run the two cells a few times and you will see that the proportion of true Positives among the Positives hovers around the value of 0.912 that we calculated by Bayes’ Rule.</p>
+<p>You can also use the <code class="docutils literal notranslate"><span class="pre">population</span></code> function with a different argument to change the prior disease probability and see how the posterior probabilities are affected.</p>
+</section>
+</section>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "binder-examples/jupyter-stacks-datascience",
+            ref: "master",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "python"
+        },
+        kernelOptions: {
+            name: "python3",
+            path: "./notused/18/2"
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'python3'</script>
+
+                </article>
+              
+
+              
+              
+                <footer class="bd-footer-article">
+                  
+<div class="footer-article-items footer-article__inner">
+  
+    <div class="footer-article-item"><!-- Previous / next buttons -->
+<div class="prev-next-area">
+</div></div>
+  
+</div>
+
+                </footer>
+              
+            </div>
+            
+            
+              
+                <div class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
+  <div class="sidebar-secondary-item">
+  <div class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> Contents
+  </div>
+  <nav class="bd-toc-nav page-toc">
+    <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#a-test-for-a-rare-disease">A Test for a Rare Disease</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#a-subjective-prior">A Subjective Prior</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#confirming-the-answer">Confirming the Answer</a></li>
+</ul>
+  </nav></div>
+
+</div></div>
+              
+            
+          </div>
+          <footer class="bd-footer-content">
+            
+<div class="bd-footer-content__inner container">
+  
+  <div class="footer-item">
+    
+<p class="component-author">
+By Alan Moreira
+</p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+  <p class="copyright">
+    
+      © Copyright 2021 Creative Commons Attribution-ShareAlike 4.0 International (CC BY-SA 4.0).
+      <br/>
+    
+  </p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+</div>
+          </footer>
+        
+
+      </main>
+    </div>
+  </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script src="../../../_static/scripts/bootstrap.js?digest=e353d410970836974a52"></script>
+<script src="../../../_static/scripts/pydata-sphinx-theme.js?digest=e353d410970836974a52"></script>
+
+  <footer class="bd-footer">
+  </footer>
+  </body>
+</html>

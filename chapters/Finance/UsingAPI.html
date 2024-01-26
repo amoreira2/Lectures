@@ -1,0 +1,1877 @@
+
+
+<!DOCTYPE html>
+
+
+<html lang="en" >
+
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
+
+    <title>6.5. Dat APIs &#8212; Quantitative Investing</title>
+  
+  
+  
+  <script data-cfasync="false">
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "light";
+  </script>
+  
+  <!-- Loaded before other Sphinx assets -->
+  <link href="../../_static/styles/theme.css?digest=e353d410970836974a52" rel="stylesheet" />
+<link href="../../_static/styles/bootstrap.css?digest=e353d410970836974a52" rel="stylesheet" />
+<link href="../../_static/styles/pydata-sphinx-theme.css?digest=e353d410970836974a52" rel="stylesheet" />
+
+  
+  <link href="../../_static/vendor/fontawesome/6.1.2/css/all.min.css?digest=e353d410970836974a52" rel="stylesheet" />
+  <link rel="preload" as="font" type="font/woff2" crossorigin href="../../_static/vendor/fontawesome/6.1.2/webfonts/fa-solid-900.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../../_static/vendor/fontawesome/6.1.2/webfonts/fa-brands-400.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../../_static/vendor/fontawesome/6.1.2/webfonts/fa-regular-400.woff2" />
+
+    <link rel="stylesheet" type="text/css" href="../../_static/pygments.css" />
+    <link rel="stylesheet" href="../../_static/styles/sphinx-book-theme.css?digest=14f4ca6b54d191a8c7657f6c759bf11a5fb86285" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/togglebutton.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/copybutton.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/sphinx-thebe.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/book.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/design-style.4045f2051d55cab465a707391d5b2007.min.css" />
+  
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="../../_static/scripts/bootstrap.js?digest=e353d410970836974a52" />
+<link rel="preload" as="script" href="../../_static/scripts/pydata-sphinx-theme.js?digest=e353d410970836974a52" />
+
+    <script data-url_root="../../" id="documentation_options" src="../../_static/documentation_options.js"></script>
+    <script src="../../_static/jquery.js"></script>
+    <script src="../../_static/underscore.js"></script>
+    <script src="../../_static/_sphinx_javascript_frameworks_compat.js"></script>
+    <script src="../../_static/doctools.js"></script>
+    <script src="../../_static/clipboard.min.js"></script>
+    <script src="../../_static/copybutton.js"></script>
+    <script src="../../_static/scripts/sphinx-book-theme.js?digest=5a5c038af52cf7bc1a1ec88eea08e6366ee68824"></script>
+    <script>let toggleHintShow = 'Click to show';</script>
+    <script>let toggleHintHide = 'Click to hide';</script>
+    <script>let toggleOpenOnPrint = 'true';</script>
+    <script src="../../_static/togglebutton.js"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script src="../../_static/design-tabs.js"></script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"
+const thebe_selector = ".thebe,.cell"
+const thebe_selector_input = "pre"
+const thebe_selector_output = ".output, .cell_output"
+</script>
+    <script async="async" src="../../_static/sphinx-thebe.js"></script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'chapters/Finance/UsingAPI';</script>
+    <link rel="canonical" href="https://amoreira2.github.io/quantitativeinvesting/chapters/Finance/UsingAPI.html" />
+    <link rel="shortcut icon" href="../../_static/figuremain2.jpg"/>
+    <link rel="index" title="Index" href="../../genindex.html" />
+    <link rel="search" title="Search" href="../../search.html" />
+    <link rel="next" title="7. Portfolios" href="PortfolioMath.html" />
+    <link rel="prev" title="6.4. Applied Linear Algebra" href="../scientific/linear_algebra1.html" />
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta name="docsearch:language" content="en"/>
+  </head>
+  
+  
+  <body data-bs-spy="scroll" data-bs-target=".bd-toc-nav" data-offset="180" data-bs-root-margin="0px 0px -60%" data-default-mode="">
+
+  
+  
+  <a class="skip-link" href="#main-content">Skip to main content</a>
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          name="__primary"
+          id="__primary"/>
+  <label class="overlay overlay-primary" for="__primary"></label>
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          name="__secondary"
+          id="__secondary"/>
+  <label class="overlay overlay-secondary" for="__secondary"></label>
+  
+  <div class="search-button__wrapper">
+    <div class="search-button__overlay"></div>
+    <div class="search-button__search-container">
+<form class="bd-search d-flex align-items-center"
+      action="../../search.html"
+      method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search"
+         class="form-control"
+         name="q"
+         id="search-input"
+         placeholder="Search this book..."
+         aria-label="Search this book..."
+         autocomplete="off"
+         autocorrect="off"
+         autocapitalize="off"
+         spellcheck="false"/>
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form></div>
+  </div>
+  
+    <nav class="bd-header navbar navbar-expand-lg bd-navbar">
+    </nav>
+  
+  <div class="bd-container">
+    <div class="bd-container__inner bd-page-width">
+      
+      <div class="bd-sidebar-primary bd-sidebar">
+        
+
+  
+  <div class="sidebar-header-items sidebar-primary__section">
+    
+    
+    
+    
+  </div>
+  
+    <div class="sidebar-primary-items__start sidebar-primary__section">
+        <div class="sidebar-primary-item">
+  
+
+<a class="navbar-brand logo" href="../intro.html">
+  
+  
+  
+  
+    
+    
+      
+    
+    
+    <img src="../../_static/figuremain2.jpg" class="logo__image only-light" alt="Logo image"/>
+    <script>document.write(`<img src="../../_static/figuremain2.jpg" class="logo__image only-dark" alt="Logo image"/>`);</script>
+  
+  
+</a></div>
+        <div class="sidebar-primary-item"><nav class="bd-links" id="bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item navbar-nav active">
+        <ul class="current nav bd-sidenav">
+<li class="toctree-l1 has-children"><a class="reference internal" href="../01/what-is-quant-investing.html">1. What is Quantitative Investing?</a><input class="toctree-checkbox" id="toctree-checkbox-1" name="toctree-checkbox-1" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-1"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l2"><a class="reference internal" href="../01/statistical-techniques.html">1.1. Statistical Techniques</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../01/computational-tools.html">1.2. Computational tools</a></li>
+</ul>
+</li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../02/getting_started.html">2. Getting Started</a><input class="toctree-checkbox" id="toctree-checkbox-2" name="toctree-checkbox-2" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-2"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l2"><a class="reference internal" href="../02/local_install.html">2.3. Local installation</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../02/cloud_setup.html">2.4. Cloud Setup</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../03/programming-in-python.html">3. First Steps with Python</a></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../essentials/essentials.html">4. Python Essentials</a><input class="toctree-checkbox" id="toctree-checkbox-3" name="toctree-checkbox-3" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-3"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l2"><a class="reference internal" href="../essentials/basics.html">4.1. Basics</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../essentials/collections.html">4.2. Collections</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../essentials/control_flow.html">4.3. Flow control</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../essentials/functions.html">4.4. Functions</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../essentials/numpy1.html">4.5. Numpy</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../essentials/plotting1.html">4.6. Plotting</a></li>
+</ul>
+</li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../pandas/workingwithdata.html">5. Working with Data</a><input class="toctree-checkbox" id="toctree-checkbox-4" name="toctree-checkbox-4" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-4"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l2"><a class="reference internal" href="../pandas/intro.html">5.1. Introduction</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../pandas/basics.html">5.2. Pandas Basics</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../pandas/the_index.html">5.3. Indexing</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../pandas/timeseries.html">5.4. Time-Series</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../pandas/data_clean.html">5.5. Cleaning data (opt)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../pandas/reshape.html">5.6. Reshape (opt)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../pandas/merge.html">5.7. Merge (opt)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../pandas/groupby.html">5.8. Group-by (opt)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../pandas/matplotlib.html">5.9. Plotting (opt)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../pandas/storage_formats.html">5.10. Data Storage (opt)</a></li>
+</ul>
+</li>
+<li class="toctree-l1 current active has-children"><a class="reference internal" href="Returns.html">6. Asset Returns</a><input checked="" class="toctree-checkbox" id="toctree-checkbox-5" name="toctree-checkbox-5" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-5"><i class="fa-solid fa-chevron-down"></i></label><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="Returns1.html">6.1. Returns</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../scientific/randomness1.html">6.2. Modeling randomness</a></li>
+<li class="toctree-l2"><a class="reference internal" href="TheChoiceofFrequency.html">6.3. The Choice of Frequency and Annualization of Returns</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../scientific/linear_algebra1.html">6.4. Linear algebra Review</a></li>
+<li class="toctree-l2 current active"><a class="current reference internal" href="#">6.5. Data APIs</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="PortfolioMath.html">7. Portfolio Math</a></li>
+<li class="toctree-l1"><a class="reference internal" href="CapitalAllocationLine.html">8. Capital Allocation</a></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="meanvariance1.html">9. Mean Variance Frontier</a><input class="toctree-checkbox" id="toctree-checkbox-6" name="toctree-checkbox-6" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-6"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l2"><a class="reference internal" href="MeanVariance.html">9.1. Mean Variance Efficient Portfolios</a></li>
+<li class="toctree-l2"><a class="reference internal" href="CaseStudy.html">9.2. Case Study in International Diversification</a></li>
+<li class="toctree-l2"><a class="reference internal" href="LeverageandShorting.html">9.3. Leverage and Shorting</a></li>
+<li class="toctree-l2"><a class="reference internal" href="Portfoliooptimizationwithconstraints.html">9.4. Portfolio Optimization with constraints</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="EstimationUncertainty.html">10. Estimation Uncertainty and It's Implications for investing</a></li>
+<li class="toctree-l1"><a class="reference internal" href="TradingStrategies.html">11. Trading Strategies</a></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="Timing.html">12. Timing Strategies</a><input class="toctree-checkbox" id="toctree-checkbox-7" name="toctree-checkbox-7" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-7"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l2"><a class="reference internal" href="Volatilitytiming.html">12.1. Volatility Timing</a></li>
+</ul>
+</li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="crosssectionalequitystrategies.html">13. Cross-Sectional Equity Strategies</a><input class="toctree-checkbox" id="toctree-checkbox-8" name="toctree-checkbox-8" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-8"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l2"><a class="reference internal" href="Valueinvesting.html">13.1. Value</a></li>
+<li class="toctree-l2"><a class="reference internal" href="Momentum.html">13.2. Momentum</a></li>
+<li class="toctree-l2"><a class="reference internal" href="OtherEquityStrategies.html">13.3. Other Equity strategies</a></li>
+</ul>
+</li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="Evaluation.html">14. Evaluating a Trading Strategy</a><input class="toctree-checkbox" id="toctree-checkbox-9" name="toctree-checkbox-9" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-9"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l2"><a class="reference internal" href="Econometrics.html">14.1. The Econometrics of Strategy Evalaution</a></li>
+<li class="toctree-l2"><a class="reference internal" href="outofsample.html">14.2. Out of Sample Analysis</a></li>
+<li class="toctree-l2"><a class="reference internal" href="TailandBackground.html">14.3. Tail Risks and Background Risks</a></li>
+<li class="toctree-l2"><a class="reference internal" href="MultiFactorModels.html">14.4. Multifactor Models</a></li>
+</ul>
+</li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="Topics.html">15. Topics in Quantitative Investing</a><input class="toctree-checkbox" id="toctree-checkbox-10" name="toctree-checkbox-10" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-10"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l2"><a class="reference internal" href="Equilbrium.html">15.1. Intepreting Factor models</a></li>
+<li class="toctree-l2"><a class="reference internal" href="Implementation.html">15.2. Strategy Implementation</a></li>
+<li class="toctree-l2"><a class="reference internal" href="Horizon.html">15.3. Investment horizon effects</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../additional/additional.html">16. Additional Statistics Material</a></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../Assignments/Assignments.html">17. Assignments</a><input class="toctree-checkbox" id="toctree-checkbox-11" name="toctree-checkbox-11" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-11"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l2"><a class="reference internal" href="../Assignments/Assignment0.html">17.1. Assigment 0</a></li>
+
+
+
+
+
+<li class="toctree-l2"><a class="reference internal" href="../Assignments/Assignment1.html">17.7. Assignment 1</a></li>
+
+
+
+
+<li class="toctree-l2"><a class="reference internal" href="../Assignments/Assignment2.html">17.12. Assigment 2</a></li>
+
+
+
+<li class="toctree-l2"><a class="reference internal" href="../Assignments/Assignment3.html">17.16. Assignment 3</a></li>
+
+
+
+<li class="toctree-l2"><a class="reference internal" href="../Assignments/Assignment4.html">17.20. Assignment 4</a></li>
+
+
+
+<li class="toctree-l2"><a class="reference internal" href="../Assignments/Assignment5.html">17.24. Assigment 5</a></li>
+
+
+
+<li class="toctree-l2"><a class="reference internal" href="../Assignments/Assignment6.html">17.28. Assignment 6</a></li>
+
+
+
+<li class="toctree-l2"><a class="reference internal" href="../Assignments/Assignment7.html">17.32. Assignment 7</a></li>
+
+</ul>
+</li>
+</ul>
+
+    </div>
+</nav></div>
+    </div>
+  
+  
+  <div class="sidebar-primary-items__end sidebar-primary__section">
+  </div>
+  
+  <div id="rtd-footer-container"></div>
+
+
+      </div>
+      
+      <main id="main-content" class="bd-main">
+        
+        
+
+<div class="sbt-scroll-pixel-helper"></div>
+
+          <div class="bd-content">
+            <div class="bd-article-container">
+              
+              <div class="bd-header-article">
+<div class="header-article-items header-article__inner">
+  
+    <div class="header-article-items__start">
+      
+        <div class="header-article-item"><label class="sidebar-toggle primary-toggle btn btn-sm" for="__primary" title="Toggle primary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <span class="fa-solid fa-bars"></span>
+</label></div>
+      
+    </div>
+  
+  
+    <div class="header-article-items__end">
+      
+        <div class="header-article-item">
+
+<div class="article-header-buttons">
+
+
+
+
+
+<div class="dropdown dropdown-launch-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Launch interactive content">
+    <i class="fas fa-rocket"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="https://colab.research.google.com/github/amoreira2/Lectures/blob/main/chapters/Finance/UsingAPI.ipynb" target="_blank"
+   class="btn btn-sm dropdown-item"
+   title="Launch onColab"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  
+    <img src="../../_static/images/logo_colab.png">
+  </span>
+<span class="btn__text-container">Colab</span>
+</a>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+
+
+<div class="dropdown dropdown-source-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Source repositories">
+    <i class="fab fa-github"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="https://github.com/amoreira2/Lectures" target="_blank"
+   class="btn btn-sm btn-source-repository-button dropdown-item"
+   title="Source repository"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fab fa-github"></i>
+  </span>
+<span class="btn__text-container">Repository</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li><a href="https://github.com/amoreira2/Lectures/issues/new?title=Issue%20on%20page%20%2Fchapters/Finance/UsingAPI.html&body=Your%20issue%20content%20here." target="_blank"
+   class="btn btn-sm btn-source-issues-button dropdown-item"
+   title="Open an issue"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-lightbulb"></i>
+  </span>
+<span class="btn__text-container">Open issue</span>
+</a>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+
+
+<div class="dropdown dropdown-download-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Download this page">
+    <i class="fas fa-download"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="../../_sources/chapters/Finance/UsingAPI.ipynb" target="_blank"
+   class="btn btn-sm btn-download-source-button dropdown-item"
+   title="Download source file"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file"></i>
+  </span>
+<span class="btn__text-container">.ipynb</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li>
+<button onclick="window.print()"
+  class="btn btn-sm btn-download-pdf-button dropdown-item"
+  title="Print to PDF"
+  data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file-pdf"></i>
+  </span>
+<span class="btn__text-container">.pdf</span>
+</button>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+<button onclick="toggleFullScreen()"
+  class="btn btn-sm btn-fullscreen-button"
+  title="Fullscreen mode"
+  data-bs-placement="bottom" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-expand"></i>
+  </span>
+
+</button>
+
+
+<script>
+document.write(`
+  <button class="theme-switch-button btn btn-sm btn-outline-primary navbar-btn rounded-circle" title="light/dark" aria-label="light/dark" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="theme-switch" data-mode="light"><i class="fa-solid fa-sun"></i></span>
+    <span class="theme-switch" data-mode="dark"><i class="fa-solid fa-moon"></i></span>
+    <span class="theme-switch" data-mode="auto"><i class="fa-solid fa-circle-half-stroke"></i></span>
+  </button>
+`);
+</script>
+
+<script>
+document.write(`
+  <button class="btn btn-sm navbar-btn search-button search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass"></i>
+  </button>
+`);
+</script>
+
+</div></div>
+      
+    </div>
+  
+</div>
+</div>
+              
+              
+
+<div id="jb-print-docs-body" class="onlyprint">
+    <h1>Dat APIs</h1>
+    <!-- Table of contents -->
+    <div id="print-main-content">
+        <div id="jb-print-toc">
+            
+        </div>
+    </div>
+</div>
+
+              
+                
+<div id="searchbox"></div>
+                <article class="bd-article" role="main">
+                  
+  <div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># start by loading data on the returns of the market portfolio and the risk-free rate</span>
+<span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
+<span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+<span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
+<span class="o">%</span><span class="k">matplotlib</span> inline
+</pre></div>
+</div>
+</div>
+</div>
+<section class="tex2jax_ignore mathjax_ignore" id="dat-apis">
+<h1><span class="section-number">6.5. </span>Dat APIs<a class="headerlink" href="#dat-apis" title="Permalink to this heading">#</a></h1>
+<ul class="simple">
+<li><p>Pandas has an eco-system of APIs that allow you to get data from the web directly into a pandas dataframe</p></li>
+</ul>
+<p><strong>FRED</strong></p>
+<ul>
+<li><p>Here we will look at one API that gets macro and financial data from the Federal Reserve Bank of St louis</p></li>
+<li><p>Lots and lots of data!</p>
+<p><a class="reference external" href="https://fred.stlouisfed.org/categories">https://fred.stlouisfed.org/categories</a></p>
+</li>
+<li><p>For example the yield on the three month treasury bill</p>
+<p><a class="reference external" href="https://fred.stlouisfed.org/series/DTB3">https://fred.stlouisfed.org/series/DTB3</a></p>
+</li>
+<li><p>you will also need to apply for an API key here</p>
+<p><a class="reference external" href="https://research.stlouisfed.org/docs/api/api_key.html">https://research.stlouisfed.org/docs/api/api_key.html</a></p>
+</li>
+<li><p>once you have it you use it to do this:</p></li>
+</ul>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="ch">#!pip install fredapi</span>
+<span class="kn">from</span> <span class="nn">fredapi</span> <span class="kn">import</span> <span class="n">Fred</span>
+<span class="n">fred</span> <span class="o">=</span> <span class="n">Fred</span><span class="p">(</span><span class="n">api_key</span><span class="o">=</span><span class="s1">&#39;f9207136b3333d7cf92c07273f6f5530&#39;</span><span class="p">)</span>
+<span class="n">data</span> <span class="o">=</span> <span class="n">fred</span><span class="o">.</span><span class="n">get_series</span><span class="p">(</span><span class="s1">&#39;DTB3&#39;</span><span class="p">)</span>
+<span class="n">data</span><span class="o">.</span><span class="n">plot</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;AxesSubplot:&gt;
+</pre></div>
+</div>
+<img alt="../../_images/b45fc891f827a2631eca090381c9ef8c14ee3954b2cc5c28ce245f349403b100.png" src="../../_images/b45fc891f827a2631eca090381c9ef8c14ee3954b2cc5c28ce245f349403b100.png" />
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">data</span> <span class="o">=</span> <span class="n">fred</span><span class="o">.</span><span class="n">get_series</span><span class="p">(</span><span class="s1">&#39;VIXCLS&#39;</span><span class="p">)</span>
+<span class="n">data</span><span class="o">.</span><span class="n">plot</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;AxesSubplot:&gt;
+</pre></div>
+</div>
+<img alt="../../_images/cda511d3e8b26630ffc2cd10b3318b9c3c25159f4d0243a79f5a55f67540358a.png" src="../../_images/cda511d3e8b26630ffc2cd10b3318b9c3c25159f4d0243a79f5a55f67540358a.png" />
+</div>
+</div>
+<p><strong>Google Trends</strong></p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="ch">#!pip install pytrends</span>
+<span class="kn">from</span> <span class="nn">pytrends.request</span> <span class="kn">import</span> <span class="n">TrendReq</span>
+<span class="n">pytrend</span> <span class="o">=</span> <span class="n">TrendReq</span><span class="p">()</span>
+<span class="n">pytrend</span><span class="o">.</span><span class="n">build_payload</span><span class="p">(</span><span class="n">kw_list</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;wallstreetbets&#39;</span><span class="p">,</span><span class="s1">&#39;GME&#39;</span><span class="p">],</span><span class="n">timeframe</span><span class="o">=</span><span class="s1">&#39;all&#39;</span><span class="p">)</span>
+<span class="n">Googletrends</span><span class="o">=</span><span class="n">pytrend</span><span class="o">.</span><span class="n">interest_over_time</span><span class="p">()</span>
+<span class="n">Googletrends</span><span class="o">.</span><span class="n">plot</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;AxesSubplot:xlabel=&#39;date&#39;&gt;
+</pre></div>
+</div>
+<img alt="../../_images/45929829c4e54b4e44331f2824cb75df3ac49dc7d45122d6b986c79bdab36690.png" src="../../_images/45929829c4e54b4e44331f2824cb75df3ac49dc7d45122d6b986c79bdab36690.png" />
+</div>
+</div>
+<p><strong>WallStreet</strong></p>
+<ul class="simple">
+<li><p>allow you to get real time data on stocks, calls, and put options</p></li>
+<li><p>Also allow you to very easily get historical data</p></li>
+</ul>
+<ul class="simple">
+<li><p>here is the manual:<a class="github reference external" href="https://github.com/mcdallas/wallstreet">mcdallas/wallstreet</a></p></li>
+</ul>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="ch">#!pip install wallstreet</span>
+<span class="kn">from</span> <span class="nn">wallstreet</span> <span class="kn">import</span> <span class="n">Stock</span><span class="p">,</span> <span class="n">Call</span><span class="p">,</span> <span class="n">Put</span>
+<span class="n">s</span> <span class="o">=</span> <span class="n">Stock</span><span class="p">(</span><span class="s1">&#39;GME&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># this is the latest price of GME stock</span>
+<span class="n">s</span><span class="o">.</span><span class="n">price</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>25.3
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># this gives you historical information</span>
+<span class="n">df</span> <span class="o">=</span> <span class="n">s</span><span class="o">.</span><span class="n">historical</span><span class="p">(</span><span class="n">days_back</span><span class="o">=</span><span class="mi">1000</span><span class="p">,</span> <span class="n">frequency</span><span class="o">=</span><span class="s1">&#39;d&#39;</span><span class="p">)</span>
+<span class="n">df</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>Date</th>
+      <th>Open</th>
+      <th>High</th>
+      <th>Low</th>
+      <th>Close</th>
+      <th>Adj Close</th>
+      <th>Volume</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>2020-01-27</td>
+      <td>1.050000</td>
+      <td>1.087500</td>
+      <td>1.040000</td>
+      <td>1.070000</td>
+      <td>1.070000</td>
+      <td>8490000</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>2020-01-28</td>
+      <td>1.075000</td>
+      <td>1.075000</td>
+      <td>1.045000</td>
+      <td>1.052500</td>
+      <td>1.052500</td>
+      <td>8579600</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>2020-01-29</td>
+      <td>1.055000</td>
+      <td>1.080000</td>
+      <td>1.032500</td>
+      <td>1.032500</td>
+      <td>1.032500</td>
+      <td>6210400</td>
+    </tr>
+    <tr>
+      <th>3</th>
+      <td>2020-01-30</td>
+      <td>1.025000</td>
+      <td>1.030000</td>
+      <td>0.970000</td>
+      <td>0.982500</td>
+      <td>0.982500</td>
+      <td>12026000</td>
+    </tr>
+    <tr>
+      <th>4</th>
+      <td>2020-01-31</td>
+      <td>0.977500</td>
+      <td>0.985000</td>
+      <td>0.957500</td>
+      <td>0.960000</td>
+      <td>0.960000</td>
+      <td>11566800</td>
+    </tr>
+    <tr>
+      <th>...</th>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+    </tr>
+    <tr>
+      <th>687</th>
+      <td>2022-10-17</td>
+      <td>25.370001</td>
+      <td>26.410000</td>
+      <td>25.240000</td>
+      <td>25.959999</td>
+      <td>25.959999</td>
+      <td>3172200</td>
+    </tr>
+    <tr>
+      <th>688</th>
+      <td>2022-10-18</td>
+      <td>27.100000</td>
+      <td>27.740000</td>
+      <td>26.129999</td>
+      <td>26.670000</td>
+      <td>26.670000</td>
+      <td>4402600</td>
+    </tr>
+    <tr>
+      <th>689</th>
+      <td>2022-10-19</td>
+      <td>26.000000</td>
+      <td>26.180000</td>
+      <td>24.270000</td>
+      <td>24.540001</td>
+      <td>24.540001</td>
+      <td>5318400</td>
+    </tr>
+    <tr>
+      <th>690</th>
+      <td>2022-10-20</td>
+      <td>24.650000</td>
+      <td>25.450001</td>
+      <td>24.070000</td>
+      <td>24.410000</td>
+      <td>24.410000</td>
+      <td>5148600</td>
+    </tr>
+    <tr>
+      <th>691</th>
+      <td>2022-10-21</td>
+      <td>24.150000</td>
+      <td>25.330000</td>
+      <td>24.100000</td>
+      <td>25.299999</td>
+      <td>25.299999</td>
+      <td>2999649</td>
+    </tr>
+  </tbody>
+</table>
+<p>692 rows × 7 columns</p>
+</div></div></div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">df</span><span class="o">.</span><span class="n">set_index</span><span class="p">(</span><span class="s1">&#39;Date&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">Close</span><span class="o">.</span><span class="n">plot</span><span class="p">()</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s1">&#39;Wild!&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Text(0.5, 1.0, &#39;Wild!&#39;)
+</pre></div>
+</div>
+<img alt="../../_images/706cb9f158887dadc6d0630f52b28f0daef0ce9c85feb9f7982d04d9a65148c4.png" src="../../_images/706cb9f158887dadc6d0630f52b28f0daef0ce9c85feb9f7982d04d9a65148c4.png" />
+</div>
+</div>
+<p><strong>Pandas Datareader</strong></p>
+<p>this gives you acess to several data servers</p>
+<p>For example the one that we used in Chapter 5.4</p>
+<p>We will be particularly interested in the one Ken French updates with several quant strategies</p>
+<p>Please check out <a class="reference external" href="https://pandas-datareader.readthedocs.io/en/latest/remote_data.html">https://pandas-datareader.readthedocs.io/en/latest/remote_data.html</a> all the possiblities</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="ch">#!pip install pandas_datareader</span>
+<span class="kn">from</span> <span class="nn">pandas_datareader.famafrench</span> <span class="kn">import</span> <span class="n">get_available_datasets</span>
+<span class="nb">len</span><span class="p">(</span><span class="n">get_available_datasets</span><span class="p">())</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>297
+</pre></div>
+</div>
+</div>
+</div>
+<p>There are 297 different data sets in Ken French library!</p>
+<p>Below I show the full list. You can simply chose one to import, below I am import the <code class="docutils literal notranslate"><span class="pre">'49_Industry_Portfolios'</span></code> which has the portfolio of US stocks split in 49 industries.</p>
+<p>In fact if you print the <code class="docutils literal notranslate"><span class="pre">'DESCR'</span></code> field which contains the data set description you see that there are in fact 7 data sets as described below</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">datetime</span> <span class="kn">import</span> <span class="n">datetime</span>
+<span class="kn">import</span> <span class="nn">pandas_datareader.data</span> <span class="k">as</span> <span class="nn">web</span>
+
+<span class="n">start</span> <span class="o">=</span> <span class="n">datetime</span><span class="p">(</span><span class="mi">1926</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">)</span> <span class="c1"># this tell which month to start</span>
+<span class="n">ds</span> <span class="o">=</span> <span class="n">web</span><span class="o">.</span><span class="n">DataReader</span><span class="p">(</span><span class="s1">&#39;49_Industry_Portfolios&#39;</span><span class="p">,</span> <span class="s1">&#39;famafrench&#39;</span><span class="p">,</span><span class="n">start</span><span class="o">=</span><span class="n">start</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">ds</span><span class="p">[</span><span class="s1">&#39;DESCR&#39;</span><span class="p">])</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>49 Industry Portfolios
+----------------------
+
+This file was created by CMPT_IND_RETS using the 202103 CRSP database. It contains value- and equal-weighted returns for 49 industry portfolios. The portfolios are constructed at the end of June. The annual returns are from January to December. Missing data are indicated by -99.99 or -999. Copyright 2021 Kenneth R. French
+
+  0 : Average Value Weighted Returns -- Monthly (1137 rows x 49 cols)
+  1 : Average Equal Weighted Returns -- Monthly (1137 rows x 49 cols)
+  2 : Average Value Weighted Returns -- Annual (94 rows x 49 cols)
+  3 : Average Equal Weighted Returns -- Annual (94 rows x 49 cols)
+  4 : Number of Firms in Portfolios (1137 rows x 49 cols)
+  5 : Average Firm Size (1137 rows x 49 cols)
+  6 : Sum of BE / Sum of ME (95 rows x 49 cols)
+  7 : Value-Weighted Average of BE/ME (95 rows x 49 cols)
+</pre></div>
+</div>
+</div>
+</div>
+<p>If you want Value weighted monthly returns you simply select <code class="docutils literal notranslate"><span class="pre">0</span></code></p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">ds</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">tail</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>Agric</th>
+      <th>Food</th>
+      <th>Soda</th>
+      <th>Beer</th>
+      <th>Smoke</th>
+      <th>Toys</th>
+      <th>Fun</th>
+      <th>Books</th>
+      <th>Hshld</th>
+      <th>Clths</th>
+      <th>...</th>
+      <th>Boxes</th>
+      <th>Trans</th>
+      <th>Whlsl</th>
+      <th>Rtail</th>
+      <th>Meals</th>
+      <th>Banks</th>
+      <th>Insur</th>
+      <th>RlEst</th>
+      <th>Fin</th>
+      <th>Other</th>
+    </tr>
+    <tr>
+      <th>Date</th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>2020-11</th>
+      <td>15.18</td>
+      <td>7.32</td>
+      <td>9.22</td>
+      <td>10.88</td>
+      <td>8.05</td>
+      <td>21.89</td>
+      <td>11.40</td>
+      <td>22.89</td>
+      <td>5.80</td>
+      <td>14.27</td>
+      <td>...</td>
+      <td>10.79</td>
+      <td>17.10</td>
+      <td>15.33</td>
+      <td>7.57</td>
+      <td>11.30</td>
+      <td>18.25</td>
+      <td>11.92</td>
+      <td>21.45</td>
+      <td>16.78</td>
+      <td>15.65</td>
+    </tr>
+    <tr>
+      <th>2020-12</th>
+      <td>1.33</td>
+      <td>1.90</td>
+      <td>6.84</td>
+      <td>3.33</td>
+      <td>8.67</td>
+      <td>15.77</td>
+      <td>9.79</td>
+      <td>10.83</td>
+      <td>0.86</td>
+      <td>4.63</td>
+      <td>...</td>
+      <td>2.46</td>
+      <td>0.73</td>
+      <td>3.04</td>
+      <td>1.08</td>
+      <td>4.05</td>
+      <td>7.55</td>
+      <td>4.42</td>
+      <td>9.68</td>
+      <td>8.24</td>
+      <td>1.78</td>
+    </tr>
+    <tr>
+      <th>2021-01</th>
+      <td>2.49</td>
+      <td>-1.32</td>
+      <td>-9.60</td>
+      <td>-6.89</td>
+      <td>-2.28</td>
+      <td>6.21</td>
+      <td>-3.77</td>
+      <td>3.66</td>
+      <td>-5.78</td>
+      <td>-4.84</td>
+      <td>...</td>
+      <td>-5.13</td>
+      <td>-4.58</td>
+      <td>-1.53</td>
+      <td>0.80</td>
+      <td>-4.52</td>
+      <td>-3.40</td>
+      <td>-3.85</td>
+      <td>3.87</td>
+      <td>-1.25</td>
+      <td>-1.76</td>
+    </tr>
+    <tr>
+      <th>2021-02</th>
+      <td>12.40</td>
+      <td>-0.04</td>
+      <td>0.66</td>
+      <td>-3.21</td>
+      <td>5.73</td>
+      <td>-2.33</td>
+      <td>10.42</td>
+      <td>13.70</td>
+      <td>-0.12</td>
+      <td>4.07</td>
+      <td>...</td>
+      <td>0.87</td>
+      <td>8.78</td>
+      <td>5.70</td>
+      <td>-3.17</td>
+      <td>7.97</td>
+      <td>14.29</td>
+      <td>4.11</td>
+      <td>18.83</td>
+      <td>9.31</td>
+      <td>5.98</td>
+    </tr>
+    <tr>
+      <th>2021-03</th>
+      <td>3.35</td>
+      <td>8.07</td>
+      <td>7.15</td>
+      <td>8.45</td>
+      <td>11.71</td>
+      <td>-8.30</td>
+      <td>-3.22</td>
+      <td>5.14</td>
+      <td>7.31</td>
+      <td>0.27</td>
+      <td>...</td>
+      <td>6.00</td>
+      <td>7.84</td>
+      <td>8.73</td>
+      <td>5.36</td>
+      <td>3.15</td>
+      <td>4.90</td>
+      <td>9.18</td>
+      <td>-1.24</td>
+      <td>4.11</td>
+      <td>6.03</td>
+    </tr>
+  </tbody>
+</table>
+<p>5 rows × 49 columns</p>
+</div></div></div>
+</div>
+<p>If you want the book to market ratio for each industry you select <code class="docutils literal notranslate"><span class="pre">6</span></code></p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">ds</span><span class="p">[</span><span class="mi">6</span><span class="p">]</span><span class="o">.</span><span class="n">tail</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>Agric</th>
+      <th>Food</th>
+      <th>Soda</th>
+      <th>Beer</th>
+      <th>Smoke</th>
+      <th>Toys</th>
+      <th>Fun</th>
+      <th>Books</th>
+      <th>Hshld</th>
+      <th>Clths</th>
+      <th>...</th>
+      <th>Boxes</th>
+      <th>Trans</th>
+      <th>Whlsl</th>
+      <th>Rtail</th>
+      <th>Meals</th>
+      <th>Banks</th>
+      <th>Insur</th>
+      <th>RlEst</th>
+      <th>Fin</th>
+      <th>Other</th>
+    </tr>
+    <tr>
+      <th>Date</th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>2016</th>
+      <td>0.16</td>
+      <td>0.35</td>
+      <td>0.13</td>
+      <td>0.12</td>
+      <td>0.10</td>
+      <td>0.28</td>
+      <td>0.22</td>
+      <td>0.80</td>
+      <td>0.23</td>
+      <td>0.20</td>
+      <td>...</td>
+      <td>0.36</td>
+      <td>0.32</td>
+      <td>0.31</td>
+      <td>0.22</td>
+      <td>0.12</td>
+      <td>0.83</td>
+      <td>0.72</td>
+      <td>0.40</td>
+      <td>0.66</td>
+      <td>0.36</td>
+    </tr>
+    <tr>
+      <th>2017</th>
+      <td>0.12</td>
+      <td>0.37</td>
+      <td>0.12</td>
+      <td>0.13</td>
+      <td>0.09</td>
+      <td>0.25</td>
+      <td>0.17</td>
+      <td>0.71</td>
+      <td>0.22</td>
+      <td>0.21</td>
+      <td>...</td>
+      <td>0.29</td>
+      <td>0.25</td>
+      <td>0.31</td>
+      <td>0.21</td>
+      <td>0.16</td>
+      <td>0.63</td>
+      <td>0.60</td>
+      <td>0.33</td>
+      <td>0.49</td>
+      <td>0.34</td>
+    </tr>
+    <tr>
+      <th>2018</th>
+      <td>0.46</td>
+      <td>0.46</td>
+      <td>0.10</td>
+      <td>0.14</td>
+      <td>0.14</td>
+      <td>0.21</td>
+      <td>0.13</td>
+      <td>0.61</td>
+      <td>0.24</td>
+      <td>0.16</td>
+      <td>...</td>
+      <td>0.37</td>
+      <td>0.29</td>
+      <td>0.32</td>
+      <td>0.16</td>
+      <td>0.14</td>
+      <td>0.57</td>
+      <td>0.58</td>
+      <td>0.30</td>
+      <td>0.46</td>
+      <td>0.40</td>
+    </tr>
+    <tr>
+      <th>2019</th>
+      <td>0.61</td>
+      <td>0.44</td>
+      <td>0.08</td>
+      <td>0.14</td>
+      <td>0.17</td>
+      <td>0.17</td>
+      <td>0.14</td>
+      <td>0.71</td>
+      <td>0.18</td>
+      <td>0.16</td>
+      <td>...</td>
+      <td>0.36</td>
+      <td>0.28</td>
+      <td>0.33</td>
+      <td>0.16</td>
+      <td>0.11</td>
+      <td>0.58</td>
+      <td>0.55</td>
+      <td>0.42</td>
+      <td>0.53</td>
+      <td>0.34</td>
+    </tr>
+    <tr>
+      <th>2020</th>
+      <td>1.14</td>
+      <td>0.45</td>
+      <td>0.10</td>
+      <td>0.17</td>
+      <td>0.09</td>
+      <td>0.20</td>
+      <td>0.14</td>
+      <td>0.80</td>
+      <td>0.15</td>
+      <td>0.16</td>
+      <td>...</td>
+      <td>0.40</td>
+      <td>0.31</td>
+      <td>0.33</td>
+      <td>0.14</td>
+      <td>0.23</td>
+      <td>0.75</td>
+      <td>0.69</td>
+      <td>0.56</td>
+      <td>0.55</td>
+      <td>0.49</td>
+    </tr>
+  </tbody>
+</table>
+<p>5 rows × 49 columns</p>
+</div></div></div>
+</div>
+<p>Below is the full list of datasets</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">get_available_datasets</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[&#39;F-F_Research_Data_Factors&#39;,
+ &#39;F-F_Research_Data_Factors_weekly&#39;,
+ &#39;F-F_Research_Data_Factors_daily&#39;,
+ &#39;F-F_Research_Data_5_Factors_2x3&#39;,
+ &#39;F-F_Research_Data_5_Factors_2x3_daily&#39;,
+ &#39;Portfolios_Formed_on_ME&#39;,
+ &#39;Portfolios_Formed_on_ME_Wout_Div&#39;,
+ &#39;Portfolios_Formed_on_ME_Daily&#39;,
+ &#39;Portfolios_Formed_on_BE-ME&#39;,
+ &#39;Portfolios_Formed_on_BE-ME_Wout_Div&#39;,
+ &#39;Portfolios_Formed_on_BE-ME_Daily&#39;,
+ &#39;Portfolios_Formed_on_OP&#39;,
+ &#39;Portfolios_Formed_on_OP_Wout_Div&#39;,
+ &#39;Portfolios_Formed_on_OP_Daily&#39;,
+ &#39;Portfolios_Formed_on_INV&#39;,
+ &#39;Portfolios_Formed_on_INV_Wout_Div&#39;,
+ &#39;Portfolios_Formed_on_INV_Daily&#39;,
+ &#39;6_Portfolios_2x3&#39;,
+ &#39;6_Portfolios_2x3_Wout_Div&#39;,
+ &#39;6_Portfolios_2x3_weekly&#39;,
+ &#39;6_Portfolios_2x3_daily&#39;,
+ &#39;25_Portfolios_5x5&#39;,
+ &#39;25_Portfolios_5x5_Wout_Div&#39;,
+ &#39;25_Portfolios_5x5_Daily&#39;,
+ &#39;100_Portfolios_10x10&#39;,
+ &#39;100_Portfolios_10x10_Wout_Div&#39;,
+ &#39;100_Portfolios_10x10_Daily&#39;,
+ &#39;6_Portfolios_ME_OP_2x3&#39;,
+ &#39;6_Portfolios_ME_OP_2x3_Wout_Div&#39;,
+ &#39;6_Portfolios_ME_OP_2x3_daily&#39;,
+ &#39;25_Portfolios_ME_OP_5x5&#39;,
+ &#39;25_Portfolios_ME_OP_5x5_Wout_Div&#39;,
+ &#39;25_Portfolios_ME_OP_5x5_daily&#39;,
+ &#39;100_Portfolios_ME_OP_10x10&#39;,
+ &#39;100_Portfolios_10x10_ME_OP_Wout_Div&#39;,
+ &#39;100_Portfolios_ME_OP_10x10_daily&#39;,
+ &#39;6_Portfolios_ME_INV_2x3&#39;,
+ &#39;6_Portfolios_ME_INV_2x3_Wout_Div&#39;,
+ &#39;6_Portfolios_ME_INV_2x3_daily&#39;,
+ &#39;25_Portfolios_ME_INV_5x5&#39;,
+ &#39;25_Portfolios_ME_INV_5x5_Wout_Div&#39;,
+ &#39;25_Portfolios_ME_INV_5x5_daily&#39;,
+ &#39;100_Portfolios_ME_INV_10x10&#39;,
+ &#39;100_Portfolios_10x10_ME_INV_Wout_Div&#39;,
+ &#39;100_Portfolios_ME_INV_10x10_daily&#39;,
+ &#39;25_Portfolios_BEME_OP_5x5&#39;,
+ &#39;25_Portfolios_BEME_OP_5x5_Wout_Div&#39;,
+ &#39;25_Portfolios_BEME_OP_5x5_daily&#39;,
+ &#39;25_Portfolios_BEME_INV_5x5&#39;,
+ &#39;25_Portfolios_BEME_INV_5x5_Wout_Div&#39;,
+ &#39;25_Portfolios_BEME_INV_5x5_daily&#39;,
+ &#39;25_Portfolios_OP_INV_5x5&#39;,
+ &#39;25_Portfolios_OP_INV_5x5_Wout_Div&#39;,
+ &#39;25_Portfolios_OP_INV_5x5_daily&#39;,
+ &#39;32_Portfolios_ME_BEME_OP_2x4x4&#39;,
+ &#39;32_Portfolios_ME_BEME_OP_2x4x4_Wout_Div&#39;,
+ &#39;32_Portfolios_ME_BEME_INV_2x4x4&#39;,
+ &#39;32_Portfolios_ME_BEME_INV_2x4x4_Wout_Div&#39;,
+ &#39;32_Portfolios_ME_OP_INV_2x4x4&#39;,
+ &#39;32_Portfolios_ME_OP_INV_2x4x4_Wout_Div&#39;,
+ &#39;Portfolios_Formed_on_E-P&#39;,
+ &#39;Portfolios_Formed_on_E-P_Wout_Div&#39;,
+ &#39;Portfolios_Formed_on_CF-P&#39;,
+ &#39;Portfolios_Formed_on_CF-P_Wout_Div&#39;,
+ &#39;Portfolios_Formed_on_D-P&#39;,
+ &#39;Portfolios_Formed_on_D-P_Wout_Div&#39;,
+ &#39;6_Portfolios_ME_EP_2x3&#39;,
+ &#39;6_Portfolios_ME_EP_2x3_Wout_Div&#39;,
+ &#39;6_Portfolios_ME_CFP_2x3&#39;,
+ &#39;6_Portfolios_ME_CFP_2x3_Wout_Div&#39;,
+ &#39;6_Portfolios_ME_DP_2x3&#39;,
+ &#39;6_Portfolios_ME_DP_2x3_Wout_Div&#39;,
+ &#39;F-F_Momentum_Factor&#39;,
+ &#39;F-F_Momentum_Factor_daily&#39;,
+ &#39;6_Portfolios_ME_Prior_12_2&#39;,
+ &#39;6_Portfolios_ME_Prior_12_2_Daily&#39;,
+ &#39;25_Portfolios_ME_Prior_12_2&#39;,
+ &#39;25_Portfolios_ME_Prior_12_2_Daily&#39;,
+ &#39;10_Portfolios_Prior_12_2&#39;,
+ &#39;10_Portfolios_Prior_12_2_Daily&#39;,
+ &#39;F-F_ST_Reversal_Factor&#39;,
+ &#39;F-F_ST_Reversal_Factor_daily&#39;,
+ &#39;6_Portfolios_ME_Prior_1_0&#39;,
+ &#39;6_Portfolios_ME_Prior_1_0_Daily&#39;,
+ &#39;25_Portfolios_ME_Prior_1_0&#39;,
+ &#39;25_Portfolios_ME_Prior_1_0_Daily&#39;,
+ &#39;10_Portfolios_Prior_1_0&#39;,
+ &#39;10_Portfolios_Prior_1_0_Daily&#39;,
+ &#39;F-F_LT_Reversal_Factor&#39;,
+ &#39;F-F_LT_Reversal_Factor_daily&#39;,
+ &#39;6_Portfolios_ME_Prior_60_13&#39;,
+ &#39;6_Portfolios_ME_Prior_60_13_Daily&#39;,
+ &#39;25_Portfolios_ME_Prior_60_13&#39;,
+ &#39;25_Portfolios_ME_Prior_60_13_Daily&#39;,
+ &#39;10_Portfolios_Prior_60_13&#39;,
+ &#39;10_Portfolios_Prior_60_13_Daily&#39;,
+ &#39;Portfolios_Formed_on_AC&#39;,
+ &#39;25_Portfolios_ME_AC_5x5&#39;,
+ &#39;Portfolios_Formed_on_BETA&#39;,
+ &#39;25_Portfolios_ME_BETA_5x5&#39;,
+ &#39;Portfolios_Formed_on_NI&#39;,
+ &#39;25_Portfolios_ME_NI_5x5&#39;,
+ &#39;Portfolios_Formed_on_VAR&#39;,
+ &#39;25_Portfolios_ME_VAR_5x5&#39;,
+ &#39;Portfolios_Formed_on_RESVAR&#39;,
+ &#39;25_Portfolios_ME_RESVAR_5x5&#39;,
+ &#39;5_Industry_Portfolios&#39;,
+ &#39;5_Industry_Portfolios_Wout_Div&#39;,
+ &#39;5_Industry_Portfolios_daily&#39;,
+ &#39;10_Industry_Portfolios&#39;,
+ &#39;10_Industry_Portfolios_Wout_Div&#39;,
+ &#39;10_Industry_Portfolios_daily&#39;,
+ &#39;12_Industry_Portfolios&#39;,
+ &#39;12_Industry_Portfolios_Wout_Div&#39;,
+ &#39;12_Industry_Portfolios_daily&#39;,
+ &#39;17_Industry_Portfolios&#39;,
+ &#39;17_Industry_Portfolios_Wout_Div&#39;,
+ &#39;17_Industry_Portfolios_daily&#39;,
+ &#39;30_Industry_Portfolios&#39;,
+ &#39;30_Industry_Portfolios_Wout_Div&#39;,
+ &#39;30_Industry_Portfolios_daily&#39;,
+ &#39;38_Industry_Portfolios&#39;,
+ &#39;38_Industry_Portfolios_Wout_Div&#39;,
+ &#39;38_Industry_Portfolios_daily&#39;,
+ &#39;48_Industry_Portfolios&#39;,
+ &#39;48_Industry_Portfolios_Wout_Div&#39;,
+ &#39;48_Industry_Portfolios_daily&#39;,
+ &#39;49_Industry_Portfolios&#39;,
+ &#39;49_Industry_Portfolios_Wout_Div&#39;,
+ &#39;49_Industry_Portfolios_daily&#39;,
+ &#39;ME_Breakpoints&#39;,
+ &#39;BE-ME_Breakpoints&#39;,
+ &#39;OP_Breakpoints&#39;,
+ &#39;INV_Breakpoints&#39;,
+ &#39;E-P_Breakpoints&#39;,
+ &#39;CF-P_Breakpoints&#39;,
+ &#39;D-P_Breakpoints&#39;,
+ &#39;Prior_2-12_Breakpoints&#39;,
+ &#39;Developed_3_Factors&#39;,
+ &#39;Developed_3_Factors_Daily&#39;,
+ &#39;Developed_ex_US_3_Factors&#39;,
+ &#39;Developed_ex_US_3_Factors_Daily&#39;,
+ &#39;Europe_3_Factors&#39;,
+ &#39;Europe_3_Factors_Daily&#39;,
+ &#39;Japan_3_Factors&#39;,
+ &#39;Japan_3_Factors_Daily&#39;,
+ &#39;Asia_Pacific_ex_Japan_3_Factors&#39;,
+ &#39;Asia_Pacific_ex_Japan_3_Factors_Daily&#39;,
+ &#39;North_America_3_Factors&#39;,
+ &#39;North_America_3_Factors_Daily&#39;,
+ &#39;Developed_5_Factors&#39;,
+ &#39;Developed_5_Factors_Daily&#39;,
+ &#39;Developed_ex_US_5_Factors&#39;,
+ &#39;Developed_ex_US_5_Factors_Daily&#39;,
+ &#39;Europe_5_Factors&#39;,
+ &#39;Europe_5_Factors_Daily&#39;,
+ &#39;Japan_5_Factors&#39;,
+ &#39;Japan_5_Factors_Daily&#39;,
+ &#39;Asia_Pacific_ex_Japan_5_Factors&#39;,
+ &#39;Asia_Pacific_ex_Japan_5_Factors_Daily&#39;,
+ &#39;North_America_5_Factors&#39;,
+ &#39;North_America_5_Factors_Daily&#39;,
+ &#39;Developed_Mom_Factor&#39;,
+ &#39;Developed_Mom_Factor_Daily&#39;,
+ &#39;Developed_ex_US_Mom_Factor&#39;,
+ &#39;Developed_ex_US_Mom_Factor_Daily&#39;,
+ &#39;Europe_Mom_Factor&#39;,
+ &#39;Europe_Mom_Factor_Daily&#39;,
+ &#39;Japan_Mom_Factor&#39;,
+ &#39;Japan_Mom_Factor_Daily&#39;,
+ &#39;Asia_Pacific_ex_Japan_MOM_Factor&#39;,
+ &#39;Asia_Pacific_ex_Japan_MOM_Factor_Daily&#39;,
+ &#39;North_America_Mom_Factor&#39;,
+ &#39;North_America_Mom_Factor_Daily&#39;,
+ &#39;Developed_6_Portfolios_ME_BE-ME&#39;,
+ &#39;Developed_6_Portfolios_ME_BE-ME_daily&#39;,
+ &#39;Developed_ex_US_6_Portfolios_ME_BE-ME&#39;,
+ &#39;Developed_ex_US_6_Portfolios_ME_BE-ME_daily&#39;,
+ &#39;Europe_6_Portfolios_ME_BE-ME&#39;,
+ &#39;Europe_6_Portfolios_ME_BE-ME_daily&#39;,
+ &#39;Japan_6_Portfolios_ME_BE-ME&#39;,
+ &#39;Japan_6_Portfolios_ME_BE-ME_daily&#39;,
+ &#39;Asia_Pacific_ex_Japan_6_Portfolios_ME_BE-ME&#39;,
+ &#39;Asia_Pacific_ex_Japan_6_Portfolios_ME_BE-ME_daily&#39;,
+ &#39;North_America_6_Portfolios_ME_BE-ME&#39;,
+ &#39;North_America_6_Portfolios_ME_BE-ME_daily&#39;,
+ &#39;Developed_25_Portfolios_ME_BE-ME&#39;,
+ &#39;Developed_25_Portfolios_ME_BE-ME_daily&#39;,
+ &#39;Developed_ex_US_25_Portfolios_ME_BE-ME&#39;,
+ &#39;Developed_ex_US_25_Portfolios_ME_BE-ME_daily&#39;,
+ &#39;Europe_25_Portfolios_ME_BE-ME&#39;,
+ &#39;Europe_25_Portfolios_ME_BE-ME_daily&#39;,
+ &#39;Japan_25_Portfolios_ME_BE-ME&#39;,
+ &#39;Japan_25_Portfolios_ME_BE-ME_daily&#39;,
+ &#39;Asia_Pacific_ex_Japan_25_Portfolios_ME_BE-ME&#39;,
+ &#39;Asia_Pacific_ex_Japan_25_Portfolios_ME_BE-ME_daily&#39;,
+ &#39;North_America_25_Portfolios_ME_BE-ME&#39;,
+ &#39;North_America_25_Portfolios_ME_BE-ME_daily&#39;,
+ &#39;Developed_6_Portfolios_ME_OP&#39;,
+ &#39;Developed_6_Portfolios_ME_OP_Daily&#39;,
+ &#39;Developed_ex_US_6_Portfolios_ME_OP&#39;,
+ &#39;Developed_ex_US_6_Portfolios_ME_OP_Daily&#39;,
+ &#39;Europe_6_Portfolios_ME_OP&#39;,
+ &#39;Europe_6_Portfolios_ME_OP_Daily&#39;,
+ &#39;Japan_6_Portfolios_ME_OP&#39;,
+ &#39;Japan_6_Portfolios_ME_OP_Daily&#39;,
+ &#39;Asia_Pacific_ex_Japan_6_Portfolios_ME_OP&#39;,
+ &#39;Asia_Pacific_ex_Japan_6_Portfolios_ME_OP_Daily&#39;,
+ &#39;North_America_6_Portfolios_ME_OP&#39;,
+ &#39;North_America_6_Portfolios_ME_OP_Daily&#39;,
+ &#39;Developed_25_Portfolios_ME_OP&#39;,
+ &#39;Developed_25_Portfolios_ME_OP_Daily&#39;,
+ &#39;Developed_ex_US_25_Portfolios_ME_OP&#39;,
+ &#39;Developed_ex_US_25_Portfolios_ME_OP_Daily&#39;,
+ &#39;Europe_25_Portfolios_ME_OP&#39;,
+ &#39;Europe_25_Portfolios_ME_OP_Daily&#39;,
+ &#39;Japan_25_Portfolios_ME_OP&#39;,
+ &#39;Japan_25_Portfolios_ME_OP_Daily&#39;,
+ &#39;Asia_Pacific_ex_Japan_25_Portfolios_ME_OP&#39;,
+ &#39;Asia_Pacific_ex_Japan_25_Portfolios_ME_OP_Daily&#39;,
+ &#39;North_America_25_Portfolios_ME_OP&#39;,
+ &#39;North_America_25_Portfolios_ME_OP_Daily&#39;,
+ &#39;Developed_6_Portfolios_ME_INV&#39;,
+ &#39;Developed_6_Portfolios_ME_INV_Daily&#39;,
+ &#39;Developed_ex_US_6_Portfolios_ME_INV&#39;,
+ &#39;Developed_ex_US_6_Portfolios_ME_INV_Daily&#39;,
+ &#39;Europe_6_Portfolios_ME_INV&#39;,
+ &#39;Europe_6_Portfolios_ME_INV_Daily&#39;,
+ &#39;Japan_6_Portfolios_ME_INV&#39;,
+ &#39;Japan_6_Portfolios_ME_INV_Daily&#39;,
+ &#39;Asia_Pacific_ex_Japan_6_Portfolios_ME_INV&#39;,
+ &#39;Asia_Pacific_ex_Japan_6_Portfolios_ME_INV_Daily&#39;,
+ &#39;North_America_6_Portfolios_ME_INV&#39;,
+ &#39;North_America_6_Portfolios_ME_INV_Daily&#39;,
+ &#39;Developed_25_Portfolios_ME_INV&#39;,
+ &#39;Developed_25_Portfolios_ME_INV_Daily&#39;,
+ &#39;Developed_ex_US_25_Portfolios_ME_INV&#39;,
+ &#39;Developed_ex_US_25_Portfolios_ME_INV_Daily&#39;,
+ &#39;Europe_25_Portfolios_ME_INV&#39;,
+ &#39;Europe_25_Portfolios_ME_INV_Daily&#39;,
+ &#39;Japan_25_Portfolios_ME_INV&#39;,
+ &#39;Japan_25_Portfolios_ME_INV_Daily&#39;,
+ &#39;Asia_Pacific_ex_Japan_25_Portfolios_ME_INV&#39;,
+ &#39;Asia_Pacific_ex_Japan_25_Portfolios_ME_INV_Daily&#39;,
+ &#39;North_America_25_Portfolios_ME_INV&#39;,
+ &#39;North_America_25_Portfolios_ME_INV_Daily&#39;,
+ &#39;Developed_6_Portfolios_ME_Prior_12_2&#39;,
+ &#39;Developed_6_Portfolios_ME_Prior_250_20_daily&#39;,
+ &#39;Developed_ex_US_6_Portfolios_ME_Prior_12_2&#39;,
+ &#39;Developed_ex_US_6_Portfolios_ME_Prior_250_20_daily&#39;,
+ &#39;Europe_6_Portfolios_ME_Prior_12_2&#39;,
+ &#39;Europe_6_Portfolios_ME_Prior_250_20_daily&#39;,
+ &#39;Japan_6_Portfolios_ME_Prior_12_2&#39;,
+ &#39;Japan_6_Portfolios_ME_Prior_250_20_daily&#39;,
+ &#39;Asia_Pacific_ex_Japan_6_Portfolios_ME_Prior_12_2&#39;,
+ &#39;Asia_Pacific_ex_Japan_6_Portfolios_ME_Prior_250_20_daily&#39;,
+ &#39;North_America_6_Portfolios_ME_Prior_12_2&#39;,
+ &#39;North_America_6_Portfolios_ME_Prior_250_20_daily&#39;,
+ &#39;Developed_25_Portfolios_ME_Prior_12_2&#39;,
+ &#39;Developed_25_Portfolios_ME_Prior_250_20_daily&#39;,
+ &#39;Developed_ex_US_25_Portfolios_ME_Prior_12_2&#39;,
+ &#39;Developed_ex_US_25_Portfolios_ME_Prior_250_20_daily&#39;,
+ &#39;Europe_25_Portfolios_ME_Prior_12_2&#39;,
+ &#39;Europe_25_Portfolios_ME_Prior_250_20_daily&#39;,
+ &#39;Japan_25_Portfolios_ME_Prior_12_2&#39;,
+ &#39;Japan_25_Portfolios_ME_Prior_250_20_daily&#39;,
+ &#39;Asia_Pacific_ex_Japan_25_Portfolios_ME_Prior_12_2&#39;,
+ &#39;Asia_Pacific_ex_Japan_25_Portfolios_ME_Prior_250_20_daily&#39;,
+ &#39;North_America_25_Portfolios_ME_Prior_12_2&#39;,
+ &#39;North_America_25_Portfolios_ME_Prior_250_20_daily&#39;,
+ &#39;Developed_32_Portfolios_ME_BE-ME_OP_2x4x4&#39;,
+ &#39;Developed_ex_US_32_Portfolios_ME_BE-ME_OP_2x4x4&#39;,
+ &#39;Europe_32_Portfolios_ME_BE-ME_OP_2x4x4&#39;,
+ &#39;Japan_32_Portfolios_ME_BE-ME_OP_2x4x4&#39;,
+ &#39;Asia_Pacific_ex_Japan_32_Portfolios_ME_BE-ME_OP_2x4x4&#39;,
+ &#39;North_America_32_Portfolios_ME_BE-ME_OP_2x4x4&#39;,
+ &#39;Developed_32_Portfolios_ME_BE-ME_INV(TA)_2x4x4&#39;,
+ &#39;Developed_ex_US_32_Portfolios_ME_BE-ME_INV(TA)_2x4x4&#39;,
+ &#39;Europe_32_Portfolios_ME_BE-ME_INV(TA)_2x4x4&#39;,
+ &#39;Japan_32_Portfolios_ME_BE-ME_INV(TA)_2x4x4&#39;,
+ &#39;Asia_Pacific_ex_Japan_32_Portfolios_ME_BE-ME_INV(TA)_2x4x4&#39;,
+ &#39;North_America_32_Portfolios_ME_BE-ME_INV(TA)_2x4x4&#39;,
+ &#39;Developed_32_Portfolios_ME_INV(TA)_OP_2x4x4&#39;,
+ &#39;Developed_ex_US_32_Portfolios_ME_INV(TA)_OP_2x4x4&#39;,
+ &#39;Europe_32_Portfolios_ME_INV(TA)_OP_2x4x4&#39;,
+ &#39;Japan_32_Portfolios_ME_INV(TA)_OP_2x4x4&#39;,
+ &#39;Asia_Pacific_ex_Japan_32_Portfolios_ME_INV(TA)_OP_2x4x4&#39;,
+ &#39;North_America_32_Portfolios_ME_INV(TA)_OP_2x4x4&#39;,
+ &#39;Emerging_5_Factors&#39;,
+ &#39;Emerging_MOM_Factor&#39;,
+ &#39;Emerging_Markets_6_Portfolios_ME_BE-ME&#39;,
+ &#39;Emerging_Markets_6_Portfolios_ME_OP&#39;,
+ &#39;Emerging_Markets_6_Portfolios_ME_INV&#39;,
+ &#39;Emerging_Markets_6_Portfolios_ME_Prior_12_2&#39;,
+ &#39;Emerging_Markets_4_Portfolios_BE-ME_OP&#39;,
+ &#39;Emerging_Markets_4_Portfolios_OP_INV&#39;,
+ &#39;Emerging_Markets_4_Portfolios_BE-ME_INV&#39;]
+</pre></div>
+</div>
+</div>
+</div>
+<p><strong>WRDS</strong></p>
+<p>This is harder and more sophisticated</p>
+<p>You DONT NEED TO USE THIS IF YOU DONT WANT!</p>
+<p>WRDS has all sorts of amazing data for finance. For equity prices and mutual funds in particular.</p>
+<p>You can easily register for an account here <a class="reference external" href="https://wrds-www.wharton.upenn.edu/register/">https://wrds-www.wharton.upenn.edu/register/</a></p>
+<p>In this class we will use it go get stock market data and also data on company earnigns and other balance sheet information</p>
+<p>Google/Yahoo finance data are nice to play with, but they tend to have errors in it. So if you are doing serious work I will probably advise agaist using them only.</p>
+<p>WRDS is really the gold standard, but the data publication lag is long, so you can use it to do research, but not to trade</p>
+<p>To use it you have to load two libraries</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="ch">#!pip install wrds</span>
+<span class="kn">import</span> <span class="nn">wrds</span>
+<span class="kn">import</span> <span class="nn">psycopg2</span> 
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Collecting wrds
+  Downloading wrds-3.1.2-py3-none-any.whl (13 kB)
+Requirement already satisfied: sqlalchemy in c:\users\alan.moreira\anaconda3\lib\site-packages (from wrds) (1.4.32)
+Collecting psycopg2-binary
+  Downloading psycopg2_binary-2.9.4-cp39-cp39-win_amd64.whl (1.2 MB)
+Requirement already satisfied: mock in c:\users\alan.moreira\anaconda3\lib\site-packages (from wrds) (4.0.3)
+Requirement already satisfied: pandas in c:\users\alan.moreira\anaconda3\lib\site-packages (from wrds) (1.4.2)
+Requirement already satisfied: numpy in c:\users\alan.moreira\anaconda3\lib\site-packages (from wrds) (1.21.5)
+Requirement already satisfied: pytz&gt;=2020.1 in c:\users\alan.moreira\anaconda3\lib\site-packages (from pandas-&gt;wrds) (2021.3)
+Requirement already satisfied: python-dateutil&gt;=2.8.1 in c:\users\alan.moreira\anaconda3\lib\site-packages (from pandas-&gt;wrds) (2.8.2)
+Requirement already satisfied: six&gt;=1.5 in c:\users\alan.moreira\anaconda3\lib\site-packages (from python-dateutil&gt;=2.8.1-&gt;pandas-&gt;wrds) (1.16.0)
+Requirement already satisfied: greenlet!=0.4.17 in c:\users\alan.moreira\anaconda3\lib\site-packages (from sqlalchemy-&gt;wrds) (1.1.1)
+Installing collected packages: psycopg2-binary, wrds
+Successfully installed psycopg2-binary-2.9.4 wrds-3.1.2
+</pre></div>
+</div>
+</div>
+</div>
+<p>You then initiate a connection when you are requested to type your pasword and username</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">conn</span><span class="o">=</span><span class="n">wrds</span><span class="o">.</span><span class="n">Connection</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>WRDS recommends setting up a .pgpass file.
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Created .pgpass file successfully.
+Loading library list...
+Done
+</pre></div>
+</div>
+</div>
+</div>
+<p>With this connection you can use their SQL interface to get the desired data</p>
+<p>Here I recommend most copying and pasting code across the web.</p>
+<p>This website by Freda Drechsler provides lots of guidance and code on how to do it</p>
+<p><a class="reference external" href="https://www.fredasongdrechsler.com/intro-to-python-for-fnce/maneuvering-wrds-data">https://www.fredasongdrechsler.com/intro-to-python-for-fnce/maneuvering-wrds-data</a></p>
+<p>and also has lots of code that teaches you how to get both financial and accouting information from WRDS, for example, (<a class="reference external" href="https://www.fredasongdrechsler.com/full-python-code/dgtw">https://www.fredasongdrechsler.com/full-python-code/dgtw</a>)</p>
+<p>Below we will simply write a function that dowloads dailt return data for a given firm</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">get_returns</span><span class="p">(</span><span class="n">tickers</span><span class="p">,</span><span class="n">conn</span><span class="p">,</span><span class="n">startdate</span><span class="p">,</span><span class="n">enddate</span><span class="p">):</span>
+    <span class="n">ticker</span><span class="o">=</span><span class="n">tickers</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
+    <span class="n">df</span> <span class="o">=</span> <span class="n">conn</span><span class="o">.</span><span class="n">raw_sql</span><span class="p">(</span><span class="s2">&quot;&quot;&quot;</span>
+<span class="s2">                          select a.permno, b.ticker, a.date,a.ret </span>
+<span class="s2">                          from crsp.dsf as a</span>
+<span class="s2">                          left join crsp.msenames as b</span>
+<span class="s2">                          on a.permno=b.permno</span>
+<span class="s2">                          and b.namedt&lt;=a.date</span>
+<span class="s2">                          and a.date&lt;=b.nameendt</span>
+<span class="s2">                          where a.date between &#39;&quot;&quot;&quot;</span><span class="o">+</span> <span class="n">startdate</span><span class="o">+</span><span class="s2">&quot;&quot;&quot;&#39;  and &#39;&quot;&quot;&quot;</span><span class="o">+</span> <span class="n">enddate</span><span class="o">+</span>            
+<span class="w">                          </span><span class="sd">&quot;&quot;&quot;&#39; and  b.ticker=&#39;&quot;&quot;&quot;</span><span class="o">+</span><span class="n">ticker</span><span class="o">+</span><span class="s2">&quot;&#39;&quot;</span><span class="p">)</span>
+            
+    <span class="n">df</span><span class="o">.</span><span class="n">set_index</span><span class="p">([</span><span class="s1">&#39;date&#39;</span><span class="p">,</span><span class="s1">&#39;permno&#39;</span><span class="p">],</span><span class="n">inplace</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+    <span class="n">df</span><span class="o">=</span><span class="n">df</span><span class="p">[</span><span class="s1">&#39;ret&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">unstack</span><span class="p">()</span>
+    <span class="k">return</span> <span class="n">df</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">df</span><span class="o">=</span><span class="n">get_returns</span><span class="p">([</span><span class="s1">&#39;TSLA&#39;</span><span class="p">],</span><span class="n">conn</span><span class="p">,</span><span class="s1">&#39;1/1/2017&#39;</span><span class="p">,</span><span class="s1">&#39;1/1/2022&#39;</span><span class="p">)</span>
+<span class="n">df</span><span class="o">.</span><span class="n">plot</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;AxesSubplot:xlabel=&#39;date&#39;&gt;
+</pre></div>
+</div>
+<img alt="../../_images/e9b69906fbd588677328167e4ecc8d782ada98c7d4ab635df78da19501ab942f.png" src="../../_images/e9b69906fbd588677328167e4ecc8d782ada98c7d4ab635df78da19501ab942f.png" />
+</div>
+</div>
+<p>If I wanted other information I would have to know this information is named in the database</p>
+<p>For example,</p>
+<ul class="simple">
+<li><p>vol gets tradign volume (in shares),</p></li>
+<li><p>prc gets the unadjusted price,</p></li>
+<li><p>retx gets returns without dividends</p></li>
+<li><p>shrout gets share outstanding</p></li>
+</ul>
+<p>In the end of this notebook you put a list of data that this particular data set in wrds allow you easy access <a class="reference external" href="http://to.It">to.It</a> also has a description of how missing values are handled.</p>
+<p>To construct the market cap you need both the price and the shareoutstanding, which you can easily download with a single function call by adding to your code</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">get_data</span><span class="p">(</span><span class="n">tickers</span><span class="p">,</span><span class="n">conn</span><span class="p">,</span><span class="n">startdate</span><span class="p">,</span><span class="n">enddate</span><span class="p">):</span>
+    <span class="n">ticker</span><span class="o">=</span><span class="n">tickers</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
+    <span class="n">df</span> <span class="o">=</span> <span class="n">conn</span><span class="o">.</span><span class="n">raw_sql</span><span class="p">(</span><span class="s2">&quot;&quot;&quot;</span>
+<span class="s2">                          select a.permno, b.ticker, a.date,a.prc,a.shrout </span>
+<span class="s2">                          from crsp.dsf as a</span>
+<span class="s2">                          left join crsp.msenames as b</span>
+<span class="s2">                          on a.permno=b.permno</span>
+<span class="s2">                          and b.namedt&lt;=a.date</span>
+<span class="s2">                          and a.date&lt;=b.nameendt</span>
+<span class="s2">                          where a.date between &#39;&quot;&quot;&quot;</span><span class="o">+</span> <span class="n">startdate</span><span class="o">+</span><span class="s2">&quot;&quot;&quot;&#39;  and &#39;&quot;&quot;&quot;</span><span class="o">+</span> <span class="n">enddate</span><span class="o">+</span>            
+<span class="w">                          </span><span class="sd">&quot;&quot;&quot;&#39; and  b.ticker=&#39;&quot;&quot;&quot;</span><span class="o">+</span><span class="n">ticker</span><span class="o">+</span><span class="s2">&quot;&#39;&quot;</span><span class="p">)</span>
+            
+    <span class="n">df</span><span class="o">.</span><span class="n">set_index</span><span class="p">([</span><span class="s1">&#39;date&#39;</span><span class="p">,</span><span class="s1">&#39;permno&#39;</span><span class="p">],</span><span class="n">inplace</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+ <span class="c1">#   I commented out this step because now I would like to get more than one variable so I cannot unstack</span>
+  <span class="c1">#  df=df[variable].unstack()</span>
+    <span class="k">return</span> <span class="n">df</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">df</span><span class="o">=</span><span class="n">get_data</span><span class="p">([</span><span class="s1">&#39;TSLA&#39;</span><span class="p">],</span><span class="n">conn</span><span class="p">,</span><span class="s1">&#39;1/1/2005&#39;</span><span class="p">,</span><span class="s1">&#39;1/1/2022&#39;</span><span class="p">)</span>
+<span class="n">df</span><span class="o">.</span><span class="n">tail</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th></th>
+      <th>ticker</th>
+      <th>prc</th>
+      <th>shrout</th>
+    </tr>
+    <tr>
+      <th>date</th>
+      <th>permno</th>
+      <th></th>
+      <th></th>
+      <th></th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>2021-12-27</th>
+      <th>93436.0</th>
+      <td>TSLA</td>
+      <td>1093.939941</td>
+      <td>1004265.0</td>
+    </tr>
+    <tr>
+      <th>2021-12-28</th>
+      <th>93436.0</th>
+      <td>TSLA</td>
+      <td>1088.469971</td>
+      <td>1004265.0</td>
+    </tr>
+    <tr>
+      <th>2021-12-29</th>
+      <th>93436.0</th>
+      <td>TSLA</td>
+      <td>1086.189941</td>
+      <td>1004265.0</td>
+    </tr>
+    <tr>
+      <th>2021-12-30</th>
+      <th>93436.0</th>
+      <td>TSLA</td>
+      <td>1070.339966</td>
+      <td>1004265.0</td>
+    </tr>
+    <tr>
+      <th>2021-12-31</th>
+      <th>93436.0</th>
+      <td>TSLA</td>
+      <td>1056.780029</td>
+      <td>1033534.0</td>
+    </tr>
+  </tbody>
+</table>
+</div></div></div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">df</span><span class="p">[</span><span class="s1">&#39;mcap&#39;</span><span class="p">]</span><span class="o">=</span><span class="n">df</span><span class="o">.</span><span class="n">prc</span><span class="o">.</span><span class="n">abs</span><span class="p">()</span><span class="o">*</span><span class="n">df</span><span class="o">.</span><span class="n">shrout</span>
+<span class="c1"># the use a negative price to say that the price is not based on end of day transaction </span>
+<span class="c1">#but a mid price between bid and ask</span>
+<span class="n">df</span><span class="o">.</span><span class="n">mcap</span><span class="o">.</span><span class="n">plot</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;AxesSubplot:xlabel=&#39;date,permno&#39;&gt;
+</pre></div>
+</div>
+<img alt="../../_images/3335da6a696358c4345cdd10ba109543c4c81335df98cf31ad0204588195bc80.png" src="../../_images/3335da6a696358c4345cdd10ba109543c4c81335df98cf31ad0204588195bc80.png" />
+</div>
+</div>
+<p>This is ugly because we have the permno, the indentity of security as an index. To fix this, lets take this out of the index</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">df</span><span class="o">=</span><span class="n">df</span><span class="o">.</span><span class="n">reset_index</span><span class="p">()</span><span class="o">.</span><span class="n">set_index</span><span class="p">(</span><span class="s1">&#39;date&#39;</span><span class="p">)</span>
+<span class="n">df</span><span class="o">.</span><span class="n">mcap</span><span class="o">.</span><span class="n">plot</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;AxesSubplot:xlabel=&#39;date&#39;&gt;
+</pre></div>
+</div>
+<img alt="../../_images/b75ccbdc620a89b1587185feca6009529c33a4b23503f8738a15cef8ef77aa7f.png" src="../../_images/b75ccbdc620a89b1587185feca6009529c33a4b23503f8738a15cef8ef77aa7f.png" />
+</div>
+</div>
+<p><strong>Variable reference for WRDS CRSP data set</strong>
+<img alt="image.png" src="../../_images/usingAPI1.jpg" />
+<img alt="image.png" src="../../_images/usingAPI2.jpg" />
+<img alt="image.png" src="../../_images/usingAPI3.jpg" /></p>
+</section>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "binder-examples/jupyter-stacks-datascience",
+            ref: "master",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "python"
+        },
+        kernelOptions: {
+            name: "python3",
+            path: "./chapters/Finance"
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'python3'</script>
+
+                </article>
+              
+
+              
+              
+                <footer class="bd-footer-article">
+                  
+<div class="footer-article-items footer-article__inner">
+  
+    <div class="footer-article-item"><!-- Previous / next buttons -->
+<div class="prev-next-area">
+    <a class="left-prev"
+       href="../scientific/linear_algebra1.html"
+       title="previous page">
+      <i class="fa-solid fa-angle-left"></i>
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">previous</p>
+        <p class="prev-next-title"><span class="section-number">6.4. </span>Applied Linear Algebra</p>
+      </div>
+    </a>
+    <a class="right-next"
+       href="PortfolioMath.html"
+       title="next page">
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">next</p>
+        <p class="prev-next-title"><span class="section-number">7. </span>Portfolios</p>
+      </div>
+      <i class="fa-solid fa-angle-right"></i>
+    </a>
+</div></div>
+  
+</div>
+
+                </footer>
+              
+            </div>
+            
+            
+              
+            
+          </div>
+          <footer class="bd-footer-content">
+            
+<div class="bd-footer-content__inner container">
+  
+  <div class="footer-item">
+    
+<p class="component-author">
+By Alan Moreira
+</p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+  <p class="copyright">
+    
+      © Copyright 2021 Creative Commons Attribution-ShareAlike 4.0 International (CC BY-SA 4.0).
+      <br/>
+    
+  </p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+</div>
+          </footer>
+        
+
+      </main>
+    </div>
+  </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script src="../../_static/scripts/bootstrap.js?digest=e353d410970836974a52"></script>
+<script src="../../_static/scripts/pydata-sphinx-theme.js?digest=e353d410970836974a52"></script>
+
+  <footer class="bd-footer">
+  </footer>
+  </body>
+</html>

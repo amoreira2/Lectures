@@ -1,0 +1,2079 @@
+
+
+<!DOCTYPE html>
+
+
+<html lang="en" >
+
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
+
+    <title>Exercises &#8212; Quantitative Investing</title>
+  
+  
+  
+  <script data-cfasync="false">
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "light";
+  </script>
+  
+  <!-- Loaded before other Sphinx assets -->
+  <link href="../../_static/styles/theme.css?digest=e353d410970836974a52" rel="stylesheet" />
+<link href="../../_static/styles/bootstrap.css?digest=e353d410970836974a52" rel="stylesheet" />
+<link href="../../_static/styles/pydata-sphinx-theme.css?digest=e353d410970836974a52" rel="stylesheet" />
+
+  
+  <link href="../../_static/vendor/fontawesome/6.1.2/css/all.min.css?digest=e353d410970836974a52" rel="stylesheet" />
+  <link rel="preload" as="font" type="font/woff2" crossorigin href="../../_static/vendor/fontawesome/6.1.2/webfonts/fa-solid-900.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../../_static/vendor/fontawesome/6.1.2/webfonts/fa-brands-400.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../../_static/vendor/fontawesome/6.1.2/webfonts/fa-regular-400.woff2" />
+
+    <link rel="stylesheet" type="text/css" href="../../_static/pygments.css" />
+    <link rel="stylesheet" href="../../_static/styles/sphinx-book-theme.css?digest=14f4ca6b54d191a8c7657f6c759bf11a5fb86285" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/togglebutton.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/copybutton.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/sphinx-thebe.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/book.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/design-style.4045f2051d55cab465a707391d5b2007.min.css" />
+  
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="../../_static/scripts/bootstrap.js?digest=e353d410970836974a52" />
+<link rel="preload" as="script" href="../../_static/scripts/pydata-sphinx-theme.js?digest=e353d410970836974a52" />
+
+    <script data-url_root="../../" id="documentation_options" src="../../_static/documentation_options.js"></script>
+    <script src="../../_static/jquery.js"></script>
+    <script src="../../_static/underscore.js"></script>
+    <script src="../../_static/_sphinx_javascript_frameworks_compat.js"></script>
+    <script src="../../_static/doctools.js"></script>
+    <script src="../../_static/clipboard.min.js"></script>
+    <script src="../../_static/copybutton.js"></script>
+    <script src="../../_static/scripts/sphinx-book-theme.js?digest=5a5c038af52cf7bc1a1ec88eea08e6366ee68824"></script>
+    <script>let toggleHintShow = 'Click to show';</script>
+    <script>let toggleHintHide = 'Click to hide';</script>
+    <script>let toggleOpenOnPrint = 'true';</script>
+    <script src="../../_static/togglebutton.js"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script src="../../_static/design-tabs.js"></script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"
+const thebe_selector = ".thebe,.cell"
+const thebe_selector_input = "pre"
+const thebe_selector_output = ".output, .cell_output"
+</script>
+    <script async="async" src="../../_static/sphinx-thebe.js"></script>
+    <script>window.MathJax = {"options": {"processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
+    <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'chapters/pandas/Exercises';</script>
+    <link rel="canonical" href="https://amoreira2.github.io/quantitativeinvesting/chapters/pandas/Exercises.html" />
+    <link rel="shortcut icon" href="../../_static/figuremain2.jpg"/>
+    <link rel="index" title="Index" href="../../genindex.html" />
+    <link rel="search" title="Search" href="../../search.html" />
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta name="docsearch:language" content="en"/>
+  </head>
+  
+  
+  <body data-bs-spy="scroll" data-bs-target=".bd-toc-nav" data-offset="180" data-bs-root-margin="0px 0px -60%" data-default-mode="">
+
+  
+  
+  <a class="skip-link" href="#main-content">Skip to main content</a>
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          name="__primary"
+          id="__primary"/>
+  <label class="overlay overlay-primary" for="__primary"></label>
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          name="__secondary"
+          id="__secondary"/>
+  <label class="overlay overlay-secondary" for="__secondary"></label>
+  
+  <div class="search-button__wrapper">
+    <div class="search-button__overlay"></div>
+    <div class="search-button__search-container">
+<form class="bd-search d-flex align-items-center"
+      action="../../search.html"
+      method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search"
+         class="form-control"
+         name="q"
+         id="search-input"
+         placeholder="Search this book..."
+         aria-label="Search this book..."
+         autocomplete="off"
+         autocorrect="off"
+         autocapitalize="off"
+         spellcheck="false"/>
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form></div>
+  </div>
+  
+    <nav class="bd-header navbar navbar-expand-lg bd-navbar">
+    </nav>
+  
+  <div class="bd-container">
+    <div class="bd-container__inner bd-page-width">
+      
+      <div class="bd-sidebar-primary bd-sidebar">
+        
+
+  
+  <div class="sidebar-header-items sidebar-primary__section">
+    
+    
+    
+    
+  </div>
+  
+    <div class="sidebar-primary-items__start sidebar-primary__section">
+        <div class="sidebar-primary-item">
+  
+
+<a class="navbar-brand logo" href="../intro.html">
+  
+  
+  
+  
+    
+    
+      
+    
+    
+    <img src="../../_static/figuremain2.jpg" class="logo__image only-light" alt="Logo image"/>
+    <script>document.write(`<img src="../../_static/figuremain2.jpg" class="logo__image only-dark" alt="Logo image"/>`);</script>
+  
+  
+</a></div>
+        <div class="sidebar-primary-item"><nav class="bd-links" id="bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item navbar-nav active">
+        <ul class="nav bd-sidenav">
+<li class="toctree-l1 has-children"><a class="reference internal" href="../01/what-is-quant-investing.html">1. What is Quantitative Investing?</a><input class="toctree-checkbox" id="toctree-checkbox-1" name="toctree-checkbox-1" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-1"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l2"><a class="reference internal" href="../01/statistical-techniques.html">1.1. Statistical Techniques</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../01/computational-tools.html">1.2. Computational tools</a></li>
+</ul>
+</li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../02/getting_started.html">2. Getting Started</a><input class="toctree-checkbox" id="toctree-checkbox-2" name="toctree-checkbox-2" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-2"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l2"><a class="reference internal" href="../02/local_install.html">2.3. Local installation</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../02/cloud_setup.html">2.4. Cloud Setup</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../03/programming-in-python.html">3. First Steps with Python</a></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../essentials/essentials.html">4. Python Essentials</a><input class="toctree-checkbox" id="toctree-checkbox-3" name="toctree-checkbox-3" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-3"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l2"><a class="reference internal" href="../essentials/basics.html">4.1. Basics</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../essentials/collections.html">4.2. Collections</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../essentials/control_flow.html">4.3. Flow control</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../essentials/functions.html">4.4. Functions</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../essentials/numpy1.html">4.5. Numpy</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../essentials/plotting1.html">4.6. Plotting</a></li>
+</ul>
+</li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="workingwithdata.html">5. Working with Data</a><input class="toctree-checkbox" id="toctree-checkbox-4" name="toctree-checkbox-4" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-4"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l2"><a class="reference internal" href="intro.html">5.1. Introduction</a></li>
+<li class="toctree-l2"><a class="reference internal" href="basics.html">5.2. Pandas Basics</a></li>
+<li class="toctree-l2"><a class="reference internal" href="the_index.html">5.3. Indexing</a></li>
+<li class="toctree-l2"><a class="reference internal" href="timeseries.html">5.4. Time-Series</a></li>
+<li class="toctree-l2"><a class="reference internal" href="data_clean.html">5.5. Cleaning data (opt)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="reshape.html">5.6. Reshape (opt)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="merge.html">5.7. Merge (opt)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="groupby.html">5.8. Group-by (opt)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="matplotlib.html">5.9. Plotting (opt)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="storage_formats.html">5.10. Data Storage (opt)</a></li>
+</ul>
+</li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../Finance/Returns.html">6. Asset Returns</a><input class="toctree-checkbox" id="toctree-checkbox-5" name="toctree-checkbox-5" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-5"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l2"><a class="reference internal" href="../Finance/Returns1.html">6.1. Returns</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../scientific/randomness1.html">6.2. Modeling randomness</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../Finance/TheChoiceofFrequency.html">6.3. The Choice of Frequency and Annualization of Returns</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../scientific/linear_algebra1.html">6.4. Linear algebra Review</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../Finance/UsingAPI.html">6.5. Data APIs</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../Finance/PortfolioMath.html">7. Portfolio Math</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../Finance/CapitalAllocationLine.html">8. Capital Allocation</a></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../Finance/meanvariance1.html">9. Mean Variance Frontier</a><input class="toctree-checkbox" id="toctree-checkbox-6" name="toctree-checkbox-6" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-6"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l2"><a class="reference internal" href="../Finance/MeanVariance.html">9.1. Mean Variance Efficient Portfolios</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../Finance/CaseStudy.html">9.2. Case Study in International Diversification</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../Finance/LeverageandShorting.html">9.3. Leverage and Shorting</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../Finance/Portfoliooptimizationwithconstraints.html">9.4. Portfolio Optimization with constraints</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../Finance/EstimationUncertainty.html">10. Estimation Uncertainty and It's Implications for investing</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../Finance/TradingStrategies.html">11. Trading Strategies</a></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../Finance/Timing.html">12. Timing Strategies</a><input class="toctree-checkbox" id="toctree-checkbox-7" name="toctree-checkbox-7" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-7"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l2"><a class="reference internal" href="../Finance/Volatilitytiming.html">12.1. Volatility Timing</a></li>
+</ul>
+</li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../Finance/crosssectionalequitystrategies.html">13. Cross-Sectional Equity Strategies</a><input class="toctree-checkbox" id="toctree-checkbox-8" name="toctree-checkbox-8" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-8"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l2"><a class="reference internal" href="../Finance/Valueinvesting.html">13.1. Value</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../Finance/Momentum.html">13.2. Momentum</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../Finance/OtherEquityStrategies.html">13.3. Other Equity strategies</a></li>
+</ul>
+</li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../Finance/Evaluation.html">14. Evaluating a Trading Strategy</a><input class="toctree-checkbox" id="toctree-checkbox-9" name="toctree-checkbox-9" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-9"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l2"><a class="reference internal" href="../Finance/Econometrics.html">14.1. The Econometrics of Strategy Evalaution</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../Finance/outofsample.html">14.2. Out of Sample Analysis</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../Finance/TailandBackground.html">14.3. Tail Risks and Background Risks</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../Finance/MultiFactorModels.html">14.4. Multifactor Models</a></li>
+</ul>
+</li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../Finance/Topics.html">15. Topics in Quantitative Investing</a><input class="toctree-checkbox" id="toctree-checkbox-10" name="toctree-checkbox-10" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-10"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l2"><a class="reference internal" href="../Finance/Equilbrium.html">15.1. Intepreting Factor models</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../Finance/Implementation.html">15.2. Strategy Implementation</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../Finance/Horizon.html">15.3. Investment horizon effects</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../additional/additional.html">16. Additional Statistics Material</a></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../Assignments/Assignments.html">17. Assignments</a><input class="toctree-checkbox" id="toctree-checkbox-11" name="toctree-checkbox-11" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-11"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l2"><a class="reference internal" href="../Assignments/Assignment0.html">17.1. Assigment 0</a></li>
+
+
+
+
+
+<li class="toctree-l2"><a class="reference internal" href="../Assignments/Assignment1.html">17.7. Assignment 1</a></li>
+
+
+
+
+<li class="toctree-l2"><a class="reference internal" href="../Assignments/Assignment2.html">17.12. Assigment 2</a></li>
+
+
+
+<li class="toctree-l2"><a class="reference internal" href="../Assignments/Assignment3.html">17.16. Assignment 3</a></li>
+
+
+
+<li class="toctree-l2"><a class="reference internal" href="../Assignments/Assignment4.html">17.20. Assignment 4</a></li>
+
+
+
+<li class="toctree-l2"><a class="reference internal" href="../Assignments/Assignment5.html">17.24. Assigment 5</a></li>
+
+
+
+<li class="toctree-l2"><a class="reference internal" href="../Assignments/Assignment6.html">17.28. Assignment 6</a></li>
+
+
+
+<li class="toctree-l2"><a class="reference internal" href="../Assignments/Assignment7.html">17.32. Assignment 7</a></li>
+
+</ul>
+</li>
+</ul>
+
+    </div>
+</nav></div>
+    </div>
+  
+  
+  <div class="sidebar-primary-items__end sidebar-primary__section">
+  </div>
+  
+  <div id="rtd-footer-container"></div>
+
+
+      </div>
+      
+      <main id="main-content" class="bd-main">
+        
+        
+
+<div class="sbt-scroll-pixel-helper"></div>
+
+          <div class="bd-content">
+            <div class="bd-article-container">
+              
+              <div class="bd-header-article">
+<div class="header-article-items header-article__inner">
+  
+    <div class="header-article-items__start">
+      
+        <div class="header-article-item"><label class="sidebar-toggle primary-toggle btn btn-sm" for="__primary" title="Toggle primary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <span class="fa-solid fa-bars"></span>
+</label></div>
+      
+    </div>
+  
+  
+    <div class="header-article-items__end">
+      
+        <div class="header-article-item">
+
+<div class="article-header-buttons">
+
+
+
+
+
+<div class="dropdown dropdown-launch-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Launch interactive content">
+    <i class="fas fa-rocket"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="https://colab.research.google.com/github/amoreira2/Lectures/blob/main/chapters/pandas/Exercises.ipynb" target="_blank"
+   class="btn btn-sm dropdown-item"
+   title="Launch onColab"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  
+    <img src="../../_static/images/logo_colab.png">
+  </span>
+<span class="btn__text-container">Colab</span>
+</a>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+
+
+<div class="dropdown dropdown-source-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Source repositories">
+    <i class="fab fa-github"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="https://github.com/amoreira2/Lectures" target="_blank"
+   class="btn btn-sm btn-source-repository-button dropdown-item"
+   title="Source repository"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fab fa-github"></i>
+  </span>
+<span class="btn__text-container">Repository</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li><a href="https://github.com/amoreira2/Lectures/issues/new?title=Issue%20on%20page%20%2Fchapters/pandas/Exercises.html&body=Your%20issue%20content%20here." target="_blank"
+   class="btn btn-sm btn-source-issues-button dropdown-item"
+   title="Open an issue"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-lightbulb"></i>
+  </span>
+<span class="btn__text-container">Open issue</span>
+</a>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+
+
+<div class="dropdown dropdown-download-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Download this page">
+    <i class="fas fa-download"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="../../_sources/chapters/pandas/Exercises.ipynb" target="_blank"
+   class="btn btn-sm btn-download-source-button dropdown-item"
+   title="Download source file"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file"></i>
+  </span>
+<span class="btn__text-container">.ipynb</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li>
+<button onclick="window.print()"
+  class="btn btn-sm btn-download-pdf-button dropdown-item"
+  title="Print to PDF"
+  data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file-pdf"></i>
+  </span>
+<span class="btn__text-container">.pdf</span>
+</button>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+<button onclick="toggleFullScreen()"
+  class="btn btn-sm btn-fullscreen-button"
+  title="Fullscreen mode"
+  data-bs-placement="bottom" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-expand"></i>
+  </span>
+
+</button>
+
+
+<script>
+document.write(`
+  <button class="theme-switch-button btn btn-sm btn-outline-primary navbar-btn rounded-circle" title="light/dark" aria-label="light/dark" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="theme-switch" data-mode="light"><i class="fa-solid fa-sun"></i></span>
+    <span class="theme-switch" data-mode="dark"><i class="fa-solid fa-moon"></i></span>
+    <span class="theme-switch" data-mode="auto"><i class="fa-solid fa-circle-half-stroke"></i></span>
+  </button>
+`);
+</script>
+
+<script>
+document.write(`
+  <button class="btn btn-sm navbar-btn search-button search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass"></i>
+  </button>
+`);
+</script>
+<label class="sidebar-toggle secondary-toggle btn btn-sm" for="__secondary"title="Toggle secondary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="fa-solid fa-list"></span>
+</label>
+</div></div>
+      
+    </div>
+  
+</div>
+</div>
+              
+              
+
+<div id="jb-print-docs-body" class="onlyprint">
+    <h1>Exercises</h1>
+    <!-- Table of contents -->
+    <div id="print-main-content">
+        <div id="jb-print-toc">
+            
+            <div>
+                <h2> Contents </h2>
+            </div>
+            <nav aria-label="Page">
+                <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#scientific-numpy">Scientific/Numpy</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id1">Exercises</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#exercise-1">Exercise 1</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#exercise-2">Exercise 2</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#plotting">Plotting</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id2">Exercise 1</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#linear-algebra">Linear algebra</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id3">Exercises</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#randomness">Randomness</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id4">Exercises</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#pandas">Pandas</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#intro">Intro</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id5">Exercises</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#basics">BASICS</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id6">Exercises</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#the-index">tHE INDEX</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id7">Exercises</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#time-series">Time Series</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id8">Exercises</a></li>
+</ul>
+            </nav>
+        </div>
+    </div>
+</div>
+
+              
+                
+<div id="searchbox"></div>
+                <article class="bd-article" role="main">
+                  
+  <section class="tex2jax_ignore mathjax_ignore" id="exercises">
+<h1>Exercises<a class="headerlink" href="#exercises" title="Permalink to this heading">#</a></h1>
+<section id="scientific-numpy">
+<h2>Scientific/Numpy<a class="headerlink" href="#scientific-numpy" title="Permalink to this heading">#</a></h2>
+</section>
+<section id="id1">
+<h2>Exercises<a class="headerlink" href="#id1" title="Permalink to this heading">#</a></h2>
+<p><strong>NEED TO CHECK IN exercises are approproiate</strong></p>
+<p><a id='exerciselist-0'></a>
+<strong>Exercise 1</strong></p>
+<p>Try indexing into another element of your choice from the
+3-dimensional array.</p>
+<p>Building an understanding of indexing means working through this
+type of operation several times – without skipping steps!</p>
+<p>(<span class="xref myst"><em>back to text</em></span>)</p>
+<p><strong>Exercise 2</strong></p>
+<p>Look at the 2-dimensional array <code class="docutils literal notranslate"><span class="pre">x_2d</span></code>.</p>
+<p>Does the inner-most index correspond to rows or columns? What does the
+outer-most index correspond to?</p>
+<p>Write your thoughts.</p>
+<p>(<span class="xref myst"><em>back to text</em></span>)</p>
+<p><strong>Exercise 3</strong></p>
+<p>What would you do to extract the array <code class="docutils literal notranslate"><span class="pre">[[5,</span> <span class="pre">6],</span> <span class="pre">[50,</span> <span class="pre">60]]</span></code>?</p>
+<p>(<span class="xref myst"><em>back to text</em></span>)</p>
+<p><strong>Exercise 4</strong></p>
+<p>Do you recall what multiplication by an integer did for lists?</p>
+<p>How does this differ?</p>
+<p>(<span class="xref myst"><em>back to text</em></span>)</p>
+<p><strong>Exercise 5</strong></p>
+<p>Let’s revisit a bond pricing example we saw in Control flow.</p>
+<p>Recall that the equation for pricing a bond with coupon payment <span class="math notranslate nohighlight">\( C \)</span>,
+face value <span class="math notranslate nohighlight">\( M \)</span>, yield to maturity <span class="math notranslate nohighlight">\( i \)</span>, and periods to maturity
+<span class="math notranslate nohighlight">\( N \)</span> is</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}
+\begin{align*}
+    P &amp;= \left(\sum_{n=1}^N \frac{C}{(i+1)^n}\right) + \frac{M}{(1+i)^N} \\
+      &amp;= C \left(\frac{1 - (1+i)^{-N}}{i} \right) + M(1+i)^{-N}
+\end{align*}
+\end{split}\]</div>
+<p>In the code cell below, we have defined variables for <code class="docutils literal notranslate"><span class="pre">i</span></code>, <code class="docutils literal notranslate"><span class="pre">M</span></code> and <code class="docutils literal notranslate"><span class="pre">C</span></code>.</p>
+<p>You have two tasks:</p>
+<ol class="arabic simple">
+<li><p>Define a numpy array <code class="docutils literal notranslate"><span class="pre">N</span></code> that contains all maturities between 1 and 10 (<em>hint</em> look at the <code class="docutils literal notranslate"><span class="pre">np.arange</span></code> function).</p></li>
+<li><p>Using the equation above, determine the bond prices of all maturity levels in your array.</p></li>
+</ol>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">i</span> <span class="o">=</span> <span class="mf">0.03</span>
+<span class="n">M</span> <span class="o">=</span> <span class="mi">100</span>
+<span class="n">C</span> <span class="o">=</span> <span class="mi">5</span>
+
+<span class="c1"># Define array here</span>
+
+<span class="c1"># price bonds here</span>
+</pre></div>
+</div>
+</div>
+</div>
+<section id="exercise-1">
+<h3>Exercise 1<a class="headerlink" href="#exercise-1" title="Permalink to this heading">#</a></h3>
+<p>Consider the polynomial expression</p>
+<p><a id='equation-np-polynom'></a>
+$<span class="math notranslate nohighlight">\(
+p(x) = a_0 + a_1 x + a_2 x^2 + \cdots a_N x^N = \sum_{n=0}^N a_n x^n \tag{1}
+\)</span>$</p>
+<p><a class="reference external" href="https://python-programming.quantecon.org/python_essentials.html#pyess-ex2">Earlier</a>, you wrote a simple function <code class="docutils literal notranslate"><span class="pre">p(x,</span> <span class="pre">coeff)</span></code> to evaluate <span class="xref myst">(9.1)</span> without considering efficiency.</p>
+<p>Now write a new function that does the same job, but uses NumPy arrays and array operations for its computations, rather than any form of Python loop.</p>
+<p>(Such functionality is already implemented as <code class="docutils literal notranslate"><span class="pre">np.poly1d</span></code>, but for the sake of the exercise don’t use this class)</p>
+<ul class="simple">
+<li><p>Hint: Use <code class="docutils literal notranslate"><span class="pre">np.cumprod()</span></code></p></li>
+</ul>
+<p><a id='np-ex2'></a></p>
+</section>
+<section id="exercise-2">
+<h3>Exercise 2<a class="headerlink" href="#exercise-2" title="Permalink to this heading">#</a></h3>
+<p>Let <code class="docutils literal notranslate"><span class="pre">q</span></code> be a NumPy array of length <code class="docutils literal notranslate"><span class="pre">n</span></code> with <code class="docutils literal notranslate"><span class="pre">q.sum()</span> <span class="pre">==</span> <span class="pre">1</span></code>.</p>
+</section>
+<section id="plotting">
+<h3>Plotting<a class="headerlink" href="#plotting" title="Permalink to this heading">#</a></h3>
+</section>
+<section id="id2">
+<h3>Exercise 1<a class="headerlink" href="#id2" title="Permalink to this heading">#</a></h3>
+<p>Plot the function</p>
+<div class="math notranslate nohighlight">
+\[
+f(x) = \cos(\pi \theta x) \exp(-x)
+\]</div>
+<p>over the interval <span class="math notranslate nohighlight">\( [0, 5] \)</span> for each <span class="math notranslate nohighlight">\( \theta \)</span> in <code class="docutils literal notranslate"><span class="pre">np.linspace(0,</span> <span class="pre">2,</span> <span class="pre">10)</span></code>.</p>
+<p>Place all the curves in the same figure.</p>
+<p>The output should look like this</p>
+<p><img alt="https://python-programming.quantecon.org/_static/lecture_specific/matplotlib/matplotlib_ex1.png" src="https://python-programming.quantecon.org/_static/lecture_specific/matplotlib/matplotlib_ex1.png" /></p>
+</section>
+<section id="linear-algebra">
+<h3>Linear algebra<a class="headerlink" href="#linear-algebra" title="Permalink to this heading">#</a></h3>
+</section>
+</section>
+<section id="id3">
+<h2>Exercises<a class="headerlink" href="#id3" title="Permalink to this heading">#</a></h2>
+<p><a id='exerciselist-0'></a>
+<strong>Exercise 1</strong></p>
+<p>Alice is a stock broker who owns two types of assets: A and B. She owns 100
+units of asset A and 50 units of asset B. The current interest rate is 5%.
+Each of the A assets have a remaining duration of 6 years and pay
+\<span class="math notranslate nohighlight">\(1500 each year, while each of the B assets have a remaining duration
+of 4 years and pay \\\)</span>500 each year. Alice would like to retire if she
+can sell her assets for more than \$500,000. Use vector addition, scalar
+multiplication, and dot products to determine whether she can retire.</p>
+<p>(<span class="xref myst"><em>back to text</em></span>)</p>
+<p><strong>Exercise 2</strong></p>
+<p>Which of the following operations will work and which will
+create errors because of size issues?</p>
+<p>Test out your intuitions in the code cell below</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">x1</span> <span class="o">@</span> <span class="n">x2</span>
+<span class="n">x2</span> <span class="o">@</span> <span class="n">x1</span>
+<span class="n">x2</span> <span class="o">@</span> <span class="n">x3</span>
+<span class="n">x3</span> <span class="o">@</span> <span class="n">x2</span>
+<span class="n">x1</span> <span class="o">@</span> <span class="n">x3</span>
+<span class="n">x4</span> <span class="o">@</span> <span class="n">y1</span>
+<span class="n">x4</span> <span class="o">@</span> <span class="n">y2</span>
+<span class="n">y1</span> <span class="o">@</span> <span class="n">x4</span>
+<span class="n">y2</span> <span class="o">@</span> <span class="n">x4</span>
+</pre></div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># testing area</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>(<span class="xref myst"><em>back to text</em></span>)</p>
+<p><strong>Exercise 3</strong></p>
+<p>Compare the distribution above to the final values of a long simulation.</p>
+<p>If you multiply the distribution by 1,000,000 (the number of workers), do you get (roughly) the same number as the simulation?</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># your code here</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>(<span class="xref myst"><em>back to text</em></span>)</p>
+<section id="randomness">
+<h3>Randomness<a class="headerlink" href="#randomness" title="Permalink to this heading">#</a></h3>
+</section>
+</section>
+<section id="id4">
+<h2>Exercises<a class="headerlink" href="#id4" title="Permalink to this heading">#</a></h2>
+<p><strong>EDIT EXERCISESS</strong></p>
+<p><a id='exerciselist-0'></a>
+<strong>Exercise 1</strong></p>
+<p>Wikipedia and other credible statistics sources tell us that the mean and
+variance of the Uniform(0, 1) distribution are (1/2, 1/12) respectively.</p>
+<p>How could we check whether the numpy random numbers approximate these
+values?</p>
+<p>(<span class="xref myst"><em>back to text</em></span>)</p>
+<p><strong>Exercise 2</strong></p>
+<p>Some execise</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># your code here</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>(<span class="xref myst"><em>back to text</em></span>)</p>
+<p><strong>Exercise 3</strong></p>
+<p>Assume you have been given the opportunity to choose between one of three financial assets:</p>
+<p>You will be given the asset for free, allowed to hold it indefinitely, and keeping all payoffs.</p>
+<p>Also assume the assets’ payoffs are distributed as follows:</p>
+<ol class="arabic simple">
+<li><p>Normal with <span class="math notranslate nohighlight">\( \mu = 10, \sigma = 5 \)</span></p></li>
+<li><p>Gamma with <span class="math notranslate nohighlight">\( k = 5.3, \theta = 2 \)</span></p></li>
+<li><p>Gamma with <span class="math notranslate nohighlight">\( k = 5, \theta = 2 \)</span></p></li>
+</ol>
+<p>Use <code class="docutils literal notranslate"><span class="pre">scipy.stats</span></code> to answer the following questions:</p>
+<ul class="simple">
+<li><p>Which asset has the highest average returns?</p></li>
+<li><p>Which asset has the highest median returns?</p></li>
+<li><p>Which asset has the lowest coefficient of variation (standard deviation divided by mean)?</p></li>
+<li><p>Which asset would you choose? Why? (Hint: There is not a single right answer here. Be creative
+and express your preferences)</p></li>
+</ul>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># your code here</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>(<span class="xref myst"><em>back to text</em></span>)</p>
+<section id="pandas">
+<h3>Pandas<a class="headerlink" href="#pandas" title="Permalink to this heading">#</a></h3>
+</section>
+<section id="intro">
+<h3>Intro<a class="headerlink" href="#intro" title="Permalink to this heading">#</a></h3>
+</section>
+</section>
+<section id="id5">
+<h2>Exercises<a class="headerlink" href="#id5" title="Permalink to this heading">#</a></h2>
+<p><a id='exerciselist-0'></a>
+<strong>Exercise 1</strong></p>
+<p>For each of the following exercises, we recommend reading the documentation
+for help.</p>
+<ul class="simple">
+<li><p>Display only the first 2 elements of the Series using the <code class="docutils literal notranslate"><span class="pre">.head</span></code> method.</p></li>
+<li><p>Using the <code class="docutils literal notranslate"><span class="pre">plot</span></code> method, make a bar plot.</p></li>
+<li><p>Use <code class="docutils literal notranslate"><span class="pre">.loc</span></code> to select the lowest/highest unemployment rate shown in the Series.</p></li>
+<li><p>Run the code <code class="docutils literal notranslate"><span class="pre">unemp.dtype</span></code> below. What does it give you? Where do you think it comes from?</p></li>
+</ul>
+<p>(<span class="xref myst"><em>back to text</em></span>)</p>
+<p><strong>Exercise 2</strong></p>
+<p>For each of the following, we recommend reading the documentation for help.</p>
+<ul class="simple">
+<li><p>Use introspection (or google-fu) to find a way to obtain a list with
+all of the column names in <code class="docutils literal notranslate"><span class="pre">unemp_region</span></code>.</p></li>
+<li><p>Using the <code class="docutils literal notranslate"><span class="pre">plot</span></code> method, make a bar plot. What does it look like
+now?</p></li>
+<li><p>Use <code class="docutils literal notranslate"><span class="pre">.loc</span></code> to select the the unemployment data for the
+<code class="docutils literal notranslate"><span class="pre">NorthEast</span></code> and <code class="docutils literal notranslate"><span class="pre">West</span></code> for the years 1995, 2005, 2011, and 2015.</p></li>
+<li><p>Run the code <code class="docutils literal notranslate"><span class="pre">unemp_region.dtypes</span></code> below. What does it give you?
+How does this compare with <code class="docutils literal notranslate"><span class="pre">unemp.dtype</span></code>?</p></li>
+</ul>
+<p>(<span class="xref myst"><em>back to text</em></span>)</p>
+<section id="basics">
+<h3>BASICS<a class="headerlink" href="#basics" title="Permalink to this heading">#</a></h3>
+</section>
+</section>
+<section id="id6">
+<h2>Exercises<a class="headerlink" href="#id6" title="Permalink to this heading">#</a></h2>
+<p><a id='exerciselist-0'></a>
+<strong>Exercise 1</strong></p>
+<p>Looking at the displayed DataFrame above, can you identify the index? The columns?</p>
+<p>You can use the cell below to verify your visual intuition.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># your code here</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>(<span class="xref myst"><em>back to text</em></span>)</p>
+<p><strong>Exercise 2</strong></p>
+<p>Do the following exercises in separate code cells below:</p>
+<ul class="simple">
+<li><p>At each date, what is the minimum unemployment rate across all states
+in our sample?</p></li>
+<li><p>What was the median unemployment rate in each state?</p></li>
+<li><p>What was the maximum unemployment rate across the states in our
+sample? What state did it happen in? In what month/year was this
+achieved?</p>
+<ul>
+<li><p>Hint 1: What Python type (not <code class="docutils literal notranslate"><span class="pre">dtype</span></code>) is returned by the
+aggregation?</p></li>
+<li><p>Hint 2: Read documentation for the method <code class="docutils literal notranslate"><span class="pre">idxmax</span></code></p></li>
+</ul>
+</li>
+<li><p>Classify each state as high or low volatility based on whether the
+variance of their unemployment is above or below 4.</p></li>
+</ul>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># min unemployment rate by state</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># median unemployment rate by state</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># max unemployment rate across all states and Year</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># low or high volatility</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>(<span class="xref myst"><em>back to text</em></span>)</p>
+<p><strong>Exercise 3</strong></p>
+<p>Imagine that we want to determine whether unemployment was high (&gt; 6.5),
+medium (4.5 &lt; x &lt;= 6.5), or low (&lt;= 4.5) for each state and each month.</p>
+<ol class="arabic simple">
+<li><p>Write a Python function that takes a single number as an input and
+outputs a single string noting if that number is high, medium, or low.</p></li>
+<li><p>Pass your function to <code class="docutils literal notranslate"><span class="pre">applymap</span></code> (quiz: why <code class="docutils literal notranslate"><span class="pre">applymap</span></code> and not
+<code class="docutils literal notranslate"><span class="pre">agg</span></code> or <code class="docutils literal notranslate"><span class="pre">apply</span></code>?) and save the result in a new DataFrame called
+<code class="docutils literal notranslate"><span class="pre">unemp_bins</span></code>.</p></li>
+<li><p>(Challenging) This exercise has multiple parts:</p></li>
+<li><p>Use another transform on <code class="docutils literal notranslate"><span class="pre">unemp_bins</span></code> to count how many
+times each state had each of the three classifications.<br />
+- Hint 1: Will this value counting function be a Series or scalar
+transform?<br />
+- Hint 2: Try googling “pandas count unique value” or something
+similar to find the right transform.</p></li>
+<li><p>Construct a horizontal bar chart of the number of occurrences of
+each level with one bar per state and classification (21 total
+bars).</p></li>
+<li><p>(Challenging) Repeat the previous step, but count how many states had
+each classification in each month. Which month had the most states
+with high unemployment? What about medium and low?</p></li>
+</ol>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Part 1: Write a Python function to classify unemployment levels.</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Part 2: Pass your function from part 1 to applymap</span>
+<span class="n">unemp_bins</span> <span class="o">=</span> <span class="n">unemp</span><span class="o">.</span><span class="n">applymap</span><span class="c1">#replace this comment with your code!!</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Part 3: Count the number of times each state had each classification.</span>
+
+<span class="c1">## then make a horizontal bar chart here</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Part 4: Apply the same transform from part 4, but to each date instead of to each state.</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>(<span class="xref myst"><em>back to text</em></span>)</p>
+<p><strong>Exercise 4</strong></p>
+<ul class="simple">
+<li><p>For a single state of your choice, determine what the mean
+unemployment is during “Low”, “Medium”, and “High” unemployment times
+(recall your <code class="docutils literal notranslate"><span class="pre">unemp_bins</span></code> DataFrame from the exercise above).</p>
+<ul>
+<li><p>Think about how you would do this for all the
+states in our sample and write your thoughts… We will soon
+learn tools that will <em>greatly</em> simplify operations like
+this that operate on distinct <em>groups</em> of data at a time.</p></li>
+</ul>
+</li>
+<li><p>Which states in our sample performs the best during “bad times?” To
+determine this, compute the mean unemployment for each state only for
+months in which the mean unemployment rate in our sample is greater
+than 7.</p></li>
+</ul>
+<p>(<span class="xref myst"><em>back to text</em></span>)</p>
+<section id="the-index">
+<h3>tHE INDEX<a class="headerlink" href="#the-index" title="Permalink to this heading">#</a></h3>
+</section>
+</section>
+<section id="id7">
+<h2>Exercises<a class="headerlink" href="#id7" title="Permalink to this heading">#</a></h2>
+<p><a id='exerciselist-0'></a>
+<strong>Exercise 1</strong></p>
+<p>What happens when you apply the <code class="docutils literal notranslate"><span class="pre">mean</span></code> method to <code class="docutils literal notranslate"><span class="pre">im_ex_tiny</span></code>?</p>
+<p>In particular, what happens to columns that have missing data? (HINT:
+also looking at the output of the <code class="docutils literal notranslate"><span class="pre">sum</span></code> method might help)</p>
+<p>(<span class="xref myst"><em>back to text</em></span>)</p>
+<p><strong>Exercise 2</strong></p>
+<p>For each of the examples below do the following:</p>
+<ul class="simple">
+<li><p>Determine which of the rules above applies.</p></li>
+<li><p>Identify the <code class="docutils literal notranslate"><span class="pre">type</span></code> of the returned value.</p></li>
+<li><p>Explain why the slicing operation returned the data it did.</p></li>
+</ul>
+<p>Write your answers.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">wdi</span><span class="o">.</span><span class="n">loc</span><span class="p">[[</span><span class="s2">&quot;United States&quot;</span><span class="p">,</span> <span class="s2">&quot;Canada&quot;</span><span class="p">]]</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th></th>
+      <th>GovExpend</th>
+      <th>Consumption</th>
+      <th>Exports</th>
+      <th>Imports</th>
+      <th>GDP</th>
+    </tr>
+    <tr>
+      <th>country</th>
+      <th>year</th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th rowspan="18" valign="top">Canada</th>
+      <th>2017</th>
+      <td>0.372665</td>
+      <td>1.095475</td>
+      <td>0.582831</td>
+      <td>0.600031</td>
+      <td>1.868164</td>
+    </tr>
+    <tr>
+      <th>2016</th>
+      <td>0.364899</td>
+      <td>1.058426</td>
+      <td>0.576394</td>
+      <td>0.575775</td>
+      <td>1.814016</td>
+    </tr>
+    <tr>
+      <th>2015</th>
+      <td>0.358303</td>
+      <td>1.035208</td>
+      <td>0.568859</td>
+      <td>0.575793</td>
+      <td>1.794270</td>
+    </tr>
+    <tr>
+      <th>2014</th>
+      <td>0.353485</td>
+      <td>1.011988</td>
+      <td>0.550323</td>
+      <td>0.572344</td>
+      <td>1.782252</td>
+    </tr>
+    <tr>
+      <th>2013</th>
+      <td>0.351541</td>
+      <td>0.986400</td>
+      <td>0.518040</td>
+      <td>0.558636</td>
+      <td>1.732714</td>
+    </tr>
+    <tr>
+      <th>2012</th>
+      <td>0.354342</td>
+      <td>0.961226</td>
+      <td>0.505969</td>
+      <td>0.547756</td>
+      <td>1.693428</td>
+    </tr>
+    <tr>
+      <th>2011</th>
+      <td>0.351887</td>
+      <td>0.943145</td>
+      <td>0.492349</td>
+      <td>0.528227</td>
+      <td>1.664240</td>
+    </tr>
+    <tr>
+      <th>2010</th>
+      <td>0.347332</td>
+      <td>0.921952</td>
+      <td>0.469949</td>
+      <td>0.500341</td>
+      <td>1.613543</td>
+    </tr>
+    <tr>
+      <th>2009</th>
+      <td>0.339686</td>
+      <td>0.890078</td>
+      <td>0.440692</td>
+      <td>0.439796</td>
+      <td>1.565291</td>
+    </tr>
+    <tr>
+      <th>2008</th>
+      <td>0.330766</td>
+      <td>0.889602</td>
+      <td>0.506350</td>
+      <td>0.502281</td>
+      <td>1.612862</td>
+    </tr>
+    <tr>
+      <th>2007</th>
+      <td>0.318777</td>
+      <td>0.864012</td>
+      <td>0.530453</td>
+      <td>0.498002</td>
+      <td>1.596876</td>
+    </tr>
+    <tr>
+      <th>2006</th>
+      <td>0.311382</td>
+      <td>0.827643</td>
+      <td>0.524461</td>
+      <td>0.470931</td>
+      <td>1.564608</td>
+    </tr>
+    <tr>
+      <th>2005</th>
+      <td>0.303043</td>
+      <td>0.794390</td>
+      <td>0.519950</td>
+      <td>0.447222</td>
+      <td>1.524608</td>
+    </tr>
+    <tr>
+      <th>2004</th>
+      <td>0.299854</td>
+      <td>0.764357</td>
+      <td>0.508657</td>
+      <td>0.416754</td>
+      <td>1.477317</td>
+    </tr>
+    <tr>
+      <th>2003</th>
+      <td>0.294335</td>
+      <td>0.741796</td>
+      <td>0.481993</td>
+      <td>0.384199</td>
+      <td>1.433089</td>
+    </tr>
+    <tr>
+      <th>2002</th>
+      <td>0.286094</td>
+      <td>0.721974</td>
+      <td>0.490465</td>
+      <td>0.368615</td>
+      <td>1.407725</td>
+    </tr>
+    <tr>
+      <th>2001</th>
+      <td>0.279767</td>
+      <td>0.694230</td>
+      <td>0.484696</td>
+      <td>0.362023</td>
+      <td>1.366590</td>
+    </tr>
+    <tr>
+      <th>2000</th>
+      <td>0.270553</td>
+      <td>0.677713</td>
+      <td>0.499526</td>
+      <td>0.380823</td>
+      <td>1.342805</td>
+    </tr>
+    <tr>
+      <th rowspan="18" valign="top">United States</th>
+      <th>2017</th>
+      <td>2.405743</td>
+      <td>12.019266</td>
+      <td>2.287071</td>
+      <td>3.069954</td>
+      <td>17.348627</td>
+    </tr>
+    <tr>
+      <th>2016</th>
+      <td>2.407981</td>
+      <td>11.722133</td>
+      <td>2.219937</td>
+      <td>2.936004</td>
+      <td>16.972348</td>
+    </tr>
+    <tr>
+      <th>2015</th>
+      <td>2.373130</td>
+      <td>11.409800</td>
+      <td>2.222228</td>
+      <td>2.881337</td>
+      <td>16.710459</td>
+    </tr>
+    <tr>
+      <th>2014</th>
+      <td>2.334071</td>
+      <td>11.000619</td>
+      <td>2.209555</td>
+      <td>2.732228</td>
+      <td>16.242526</td>
+    </tr>
+    <tr>
+      <th>2013</th>
+      <td>2.353381</td>
+      <td>10.687214</td>
+      <td>2.118639</td>
+      <td>2.600198</td>
+      <td>15.853796</td>
+    </tr>
+    <tr>
+      <th>2012</th>
+      <td>2.398873</td>
+      <td>10.534042</td>
+      <td>2.045509</td>
+      <td>2.560677</td>
+      <td>15.567038</td>
+    </tr>
+    <tr>
+      <th>2011</th>
+      <td>2.434378</td>
+      <td>10.378060</td>
+      <td>1.978083</td>
+      <td>2.493194</td>
+      <td>15.224555</td>
+    </tr>
+    <tr>
+      <th>2010</th>
+      <td>2.510143</td>
+      <td>10.185836</td>
+      <td>1.846280</td>
+      <td>2.360183</td>
+      <td>14.992053</td>
+    </tr>
+    <tr>
+      <th>2009</th>
+      <td>2.507390</td>
+      <td>10.010687</td>
+      <td>1.646432</td>
+      <td>2.086299</td>
+      <td>14.617299</td>
+    </tr>
+    <tr>
+      <th>2008</th>
+      <td>2.407771</td>
+      <td>10.137847</td>
+      <td>1.797347</td>
+      <td>2.400349</td>
+      <td>14.997756</td>
+    </tr>
+    <tr>
+      <th>2007</th>
+      <td>2.351987</td>
+      <td>10.159387</td>
+      <td>1.701096</td>
+      <td>2.455016</td>
+      <td>15.018268</td>
+    </tr>
+    <tr>
+      <th>2006</th>
+      <td>2.314957</td>
+      <td>9.938503</td>
+      <td>1.564920</td>
+      <td>2.395189</td>
+      <td>14.741688</td>
+    </tr>
+    <tr>
+      <th>2005</th>
+      <td>2.287022</td>
+      <td>9.643098</td>
+      <td>1.431205</td>
+      <td>2.246246</td>
+      <td>14.332500</td>
+    </tr>
+    <tr>
+      <th>2004</th>
+      <td>2.267999</td>
+      <td>9.311431</td>
+      <td>1.335978</td>
+      <td>2.108585</td>
+      <td>13.846058</td>
+    </tr>
+    <tr>
+      <th>2003</th>
+      <td>2.233519</td>
+      <td>8.974708</td>
+      <td>1.218199</td>
+      <td>1.892825</td>
+      <td>13.339312</td>
+    </tr>
+    <tr>
+      <th>2002</th>
+      <td>2.193188</td>
+      <td>8.698306</td>
+      <td>1.192180</td>
+      <td>1.804105</td>
+      <td>12.968263</td>
+    </tr>
+    <tr>
+      <th>2001</th>
+      <td>2.112038</td>
+      <td>8.480461</td>
+      <td>1.213253</td>
+      <td>1.740797</td>
+      <td>12.746262</td>
+    </tr>
+    <tr>
+      <th>2000</th>
+      <td>2.040500</td>
+      <td>8.272097</td>
+      <td>1.287739</td>
+      <td>1.790995</td>
+      <td>12.620268</td>
+    </tr>
+  </tbody>
+</table>
+</div></div></div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">wdi</span><span class="o">.</span><span class="n">loc</span><span class="p">[([</span><span class="s2">&quot;United States&quot;</span><span class="p">,</span> <span class="s2">&quot;Canada&quot;</span><span class="p">],</span> <span class="p">[</span><span class="mi">2010</span><span class="p">,</span> <span class="mi">2011</span><span class="p">,</span> <span class="mi">2012</span><span class="p">]),</span> <span class="p">:]</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th></th>
+      <th>GovExpend</th>
+      <th>Consumption</th>
+      <th>Exports</th>
+      <th>Imports</th>
+      <th>GDP</th>
+    </tr>
+    <tr>
+      <th>country</th>
+      <th>year</th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th rowspan="3" valign="top">Canada</th>
+      <th>2012</th>
+      <td>0.354342</td>
+      <td>0.961226</td>
+      <td>0.505969</td>
+      <td>0.547756</td>
+      <td>1.693428</td>
+    </tr>
+    <tr>
+      <th>2011</th>
+      <td>0.351887</td>
+      <td>0.943145</td>
+      <td>0.492349</td>
+      <td>0.528227</td>
+      <td>1.664240</td>
+    </tr>
+    <tr>
+      <th>2010</th>
+      <td>0.347332</td>
+      <td>0.921952</td>
+      <td>0.469949</td>
+      <td>0.500341</td>
+      <td>1.613543</td>
+    </tr>
+    <tr>
+      <th rowspan="3" valign="top">United States</th>
+      <th>2012</th>
+      <td>2.398873</td>
+      <td>10.534042</td>
+      <td>2.045509</td>
+      <td>2.560677</td>
+      <td>15.567038</td>
+    </tr>
+    <tr>
+      <th>2011</th>
+      <td>2.434378</td>
+      <td>10.378060</td>
+      <td>1.978083</td>
+      <td>2.493194</td>
+      <td>15.224555</td>
+    </tr>
+    <tr>
+      <th>2010</th>
+      <td>2.510143</td>
+      <td>10.185836</td>
+      <td>1.846280</td>
+      <td>2.360183</td>
+      <td>14.992053</td>
+    </tr>
+  </tbody>
+</table>
+</div></div></div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">wdi</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="s2">&quot;United States&quot;</span><span class="p">]</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>GovExpend</th>
+      <th>Consumption</th>
+      <th>Exports</th>
+      <th>Imports</th>
+      <th>GDP</th>
+    </tr>
+    <tr>
+      <th>year</th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>2017</th>
+      <td>2.405743</td>
+      <td>12.019266</td>
+      <td>2.287071</td>
+      <td>3.069954</td>
+      <td>17.348627</td>
+    </tr>
+    <tr>
+      <th>2016</th>
+      <td>2.407981</td>
+      <td>11.722133</td>
+      <td>2.219937</td>
+      <td>2.936004</td>
+      <td>16.972348</td>
+    </tr>
+    <tr>
+      <th>2015</th>
+      <td>2.373130</td>
+      <td>11.409800</td>
+      <td>2.222228</td>
+      <td>2.881337</td>
+      <td>16.710459</td>
+    </tr>
+    <tr>
+      <th>2014</th>
+      <td>2.334071</td>
+      <td>11.000619</td>
+      <td>2.209555</td>
+      <td>2.732228</td>
+      <td>16.242526</td>
+    </tr>
+    <tr>
+      <th>2013</th>
+      <td>2.353381</td>
+      <td>10.687214</td>
+      <td>2.118639</td>
+      <td>2.600198</td>
+      <td>15.853796</td>
+    </tr>
+    <tr>
+      <th>2012</th>
+      <td>2.398873</td>
+      <td>10.534042</td>
+      <td>2.045509</td>
+      <td>2.560677</td>
+      <td>15.567038</td>
+    </tr>
+    <tr>
+      <th>2011</th>
+      <td>2.434378</td>
+      <td>10.378060</td>
+      <td>1.978083</td>
+      <td>2.493194</td>
+      <td>15.224555</td>
+    </tr>
+    <tr>
+      <th>2010</th>
+      <td>2.510143</td>
+      <td>10.185836</td>
+      <td>1.846280</td>
+      <td>2.360183</td>
+      <td>14.992053</td>
+    </tr>
+    <tr>
+      <th>2009</th>
+      <td>2.507390</td>
+      <td>10.010687</td>
+      <td>1.646432</td>
+      <td>2.086299</td>
+      <td>14.617299</td>
+    </tr>
+    <tr>
+      <th>2008</th>
+      <td>2.407771</td>
+      <td>10.137847</td>
+      <td>1.797347</td>
+      <td>2.400349</td>
+      <td>14.997756</td>
+    </tr>
+    <tr>
+      <th>2007</th>
+      <td>2.351987</td>
+      <td>10.159387</td>
+      <td>1.701096</td>
+      <td>2.455016</td>
+      <td>15.018268</td>
+    </tr>
+    <tr>
+      <th>2006</th>
+      <td>2.314957</td>
+      <td>9.938503</td>
+      <td>1.564920</td>
+      <td>2.395189</td>
+      <td>14.741688</td>
+    </tr>
+    <tr>
+      <th>2005</th>
+      <td>2.287022</td>
+      <td>9.643098</td>
+      <td>1.431205</td>
+      <td>2.246246</td>
+      <td>14.332500</td>
+    </tr>
+    <tr>
+      <th>2004</th>
+      <td>2.267999</td>
+      <td>9.311431</td>
+      <td>1.335978</td>
+      <td>2.108585</td>
+      <td>13.846058</td>
+    </tr>
+    <tr>
+      <th>2003</th>
+      <td>2.233519</td>
+      <td>8.974708</td>
+      <td>1.218199</td>
+      <td>1.892825</td>
+      <td>13.339312</td>
+    </tr>
+    <tr>
+      <th>2002</th>
+      <td>2.193188</td>
+      <td>8.698306</td>
+      <td>1.192180</td>
+      <td>1.804105</td>
+      <td>12.968263</td>
+    </tr>
+    <tr>
+      <th>2001</th>
+      <td>2.112038</td>
+      <td>8.480461</td>
+      <td>1.213253</td>
+      <td>1.740797</td>
+      <td>12.746262</td>
+    </tr>
+    <tr>
+      <th>2000</th>
+      <td>2.040500</td>
+      <td>8.272097</td>
+      <td>1.287739</td>
+      <td>1.790995</td>
+      <td>12.620268</td>
+    </tr>
+  </tbody>
+</table>
+</div></div></div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">wdi</span><span class="o">.</span><span class="n">loc</span><span class="p">[(</span><span class="s2">&quot;United States&quot;</span><span class="p">,</span> <span class="mi">2010</span><span class="p">),</span> <span class="p">[</span><span class="s2">&quot;GDP&quot;</span><span class="p">,</span> <span class="s2">&quot;Exports&quot;</span><span class="p">]]</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>GDP        14.992053
+Exports     1.846280
+Name: (United States, 2010), dtype: float64
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">wdi</span><span class="o">.</span><span class="n">loc</span><span class="p">[(</span><span class="s2">&quot;United States&quot;</span><span class="p">,</span> <span class="mi">2010</span><span class="p">)]</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>GovExpend       2.510143
+Consumption    10.185836
+Exports         1.846280
+Imports         2.360183
+GDP            14.992053
+Name: (United States, 2010), dtype: float64
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">wdi</span><span class="o">.</span><span class="n">loc</span><span class="p">[[(</span><span class="s2">&quot;United States&quot;</span><span class="p">,</span> <span class="mi">2010</span><span class="p">),</span> <span class="p">(</span><span class="s2">&quot;Canada&quot;</span><span class="p">,</span> <span class="mi">2015</span><span class="p">)]]</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th></th>
+      <th>GovExpend</th>
+      <th>Consumption</th>
+      <th>Exports</th>
+      <th>Imports</th>
+      <th>GDP</th>
+    </tr>
+    <tr>
+      <th>country</th>
+      <th>year</th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>United States</th>
+      <th>2010</th>
+      <td>2.510143</td>
+      <td>10.185836</td>
+      <td>1.846280</td>
+      <td>2.360183</td>
+      <td>14.992053</td>
+    </tr>
+    <tr>
+      <th>Canada</th>
+      <th>2015</th>
+      <td>0.358303</td>
+      <td>1.035208</td>
+      <td>0.568859</td>
+      <td>0.575793</td>
+      <td>1.794270</td>
+    </tr>
+  </tbody>
+</table>
+</div></div></div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">wdi</span><span class="o">.</span><span class="n">loc</span><span class="p">[[</span><span class="s2">&quot;United States&quot;</span><span class="p">,</span> <span class="s2">&quot;Canada&quot;</span><span class="p">],</span> <span class="s2">&quot;GDP&quot;</span><span class="p">]</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>country        year
+Canada         2017     1.868164
+               2016     1.814016
+               2015     1.794270
+               2014     1.782252
+               2013     1.732714
+               2012     1.693428
+               2011     1.664240
+               2010     1.613543
+               2009     1.565291
+               2008     1.612862
+               2007     1.596876
+               2006     1.564608
+               2005     1.524608
+               2004     1.477317
+               2003     1.433089
+               2002     1.407725
+               2001     1.366590
+               2000     1.342805
+United States  2017    17.348627
+               2016    16.972348
+               2015    16.710459
+               2014    16.242526
+               2013    15.853796
+               2012    15.567038
+               2011    15.224555
+               2010    14.992053
+               2009    14.617299
+               2008    14.997756
+               2007    15.018268
+               2006    14.741688
+               2005    14.332500
+               2004    13.846058
+               2003    13.339312
+               2002    12.968263
+               2001    12.746262
+               2000    12.620268
+Name: GDP, dtype: float64
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">wdi</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="s2">&quot;United States&quot;</span><span class="p">,</span> <span class="s2">&quot;GDP&quot;</span><span class="p">]</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>year
+2017    17.348627
+2016    16.972348
+2015    16.710459
+2014    16.242526
+2013    15.853796
+2012    15.567038
+2011    15.224555
+2010    14.992053
+2009    14.617299
+2008    14.997756
+2007    15.018268
+2006    14.741688
+2005    14.332500
+2004    13.846058
+2003    13.339312
+2002    12.968263
+2001    12.746262
+2000    12.620268
+Name: GDP, dtype: float64
+</pre></div>
+</div>
+</div>
+</div>
+<p>(<span class="xref myst"><em>back to text</em></span>)</p>
+<p><strong>Exercise 3</strong></p>
+<p>Try setting <code class="docutils literal notranslate"><span class="pre">my_df</span></code> to some subset of the rows in <code class="docutils literal notranslate"><span class="pre">wdi</span></code> (use one of the
+<code class="docutils literal notranslate"><span class="pre">.loc</span></code> variations above).</p>
+<p>Then see what happens when you do <code class="docutils literal notranslate"><span class="pre">wdi</span> <span class="pre">/</span> <span class="pre">my_df</span></code> or <code class="docutils literal notranslate"><span class="pre">my_df</span> <span class="pre">**</span> <span class="pre">wdi</span></code>.</p>
+<p>Try changing the subset of rows in <code class="docutils literal notranslate"><span class="pre">my_df</span></code> and repeat until you
+understand what is happening.</p>
+<p>(<span class="xref myst"><em>back to text</em></span>)</p>
+<p><strong>Exercise 4</strong></p>
+<p>Below, we create <code class="docutils literal notranslate"><span class="pre">wdi2</span></code>, which is the same as <code class="docutils literal notranslate"><span class="pre">df4</span></code> except that the
+levels of the index are swapped.</p>
+<p>In the cells after <code class="docutils literal notranslate"><span class="pre">df6</span></code> is defined, we have commented out
+a few of the slicing examples from the previous exercise.</p>
+<p>For each of these examples, use <code class="docutils literal notranslate"><span class="pre">pd.IndexSlice</span></code> to extract the same
+data from <code class="docutils literal notranslate"><span class="pre">df6</span></code>.</p>
+<p>(HINT: You will need to <em>swap</em> the order of the row slicing arguments
+within the <code class="docutils literal notranslate"><span class="pre">pd.IndexSlice</span></code>.)</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">wdi2</span> <span class="o">=</span> <span class="n">df</span><span class="o">.</span><span class="n">set_index</span><span class="p">([</span><span class="s2">&quot;year&quot;</span><span class="p">,</span> <span class="s2">&quot;country&quot;</span><span class="p">])</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># wdi.loc[&quot;United States&quot;]</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># wdi.loc[([&quot;United States&quot;, &quot;Canada&quot;], [2010, 2011, 2012]), :]</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># wdi.loc[[&quot;United States&quot;, &quot;Canada&quot;], &quot;GDP&quot;]</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>(<span class="xref myst"><em>back to text</em></span>)</p>
+<p><strong>Exercise 5</strong></p>
+<p>Use <code class="docutils literal notranslate"><span class="pre">pd.IndexSlice</span></code> to extract all data from <code class="docutils literal notranslate"><span class="pre">wdiT</span></code> where the <code class="docutils literal notranslate"><span class="pre">year</span></code>
+level of the column names (the second level) is one of 2010, 2012, and 2014</p>
+<p>(<span class="xref myst"><em>back to text</em></span>)</p>
+<p><strong>Exercise 6</strong></p>
+<p>Look up the documentation for the <code class="docutils literal notranslate"><span class="pre">reset_index</span></code> method and study it to
+learn how to do the following:</p>
+<ul class="simple">
+<li><p>Move just the <code class="docutils literal notranslate"><span class="pre">year</span></code> level of the index back as a column.</p></li>
+<li><p>Completely throw away all levels of the index.</p></li>
+<li><p>Remove the <code class="docutils literal notranslate"><span class="pre">country</span></code> of the index and <em>do not</em> keep it as a column.</p></li>
+</ul>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># remove just year level and add as column</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># throw away all levels of index</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Remove country from the index -- don&#39;t keep it as a column</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>(<span class="xref myst"><em>back to text</em></span>)</p>
+</section>
+<section id="time-series">
+<h2>Time Series<a class="headerlink" href="#time-series" title="Permalink to this heading">#</a></h2>
+</section>
+<section id="id8">
+<h2>Exercises<a class="headerlink" href="#id8" title="Permalink to this heading">#</a></h2>
+<p><a id='exerciselist-0'></a>
+<strong>Exercise 1</strong></p>
+<p>By referring to table found at the link above, figure out the correct argument to
+pass as <code class="docutils literal notranslate"><span class="pre">format</span></code> in order to parse the dates in the next three cells below.</p>
+<p>Test your work by passing your format string to <code class="docutils literal notranslate"><span class="pre">pd.to_datetime</span></code>.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">christmas_str2</span> <span class="o">=</span> <span class="s2">&quot;2017:12:25&quot;</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">dbacks_win</span> <span class="o">=</span> <span class="s2">&quot;M:11 D:4 Y:2001 9:15 PM&quot;</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">america_bday</span> <span class="o">=</span> <span class="s2">&quot;America was born on July 4, 1776&quot;</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>(<span class="xref myst"><em>back to text</em></span>)</p>
+<p><strong>Exercise 2</strong></p>
+<p>Use <code class="docutils literal notranslate"><span class="pre">pd.to_datetime</span></code> to express the birthday of one of your friends
+or family members as a <code class="docutils literal notranslate"><span class="pre">datetime</span></code> object.</p>
+<p>Then use the <code class="docutils literal notranslate"><span class="pre">strftime</span></code> method to write a message of the format:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">NAME</span><span class="s1">&#39;s birthday is June 10, 1989 (a Saturday)</span>
+</pre></div>
+</div>
+<p>(where the name and date are replaced by the appropriate values)</p>
+<p>(<span class="xref myst"><em>back to text</em></span>)</p>
+<p><strong>Exercise 3</strong></p>
+<p>For each item in the list, extract the specified data from <code class="docutils literal notranslate"><span class="pre">btc_usd</span></code>:</p>
+<ul class="simple">
+<li><p>July 2017 through August 2017 (inclusive)</p></li>
+<li><p>April 25, 2015 to June 10, 2016</p></li>
+<li><p>October 31, 2017</p></li>
+</ul>
+<p>(<span class="xref myst"><em>back to text</em></span>)</p>
+<p><strong>Exercise 4</strong></p>
+<p>Using the <code class="docutils literal notranslate"><span class="pre">shift</span></code> function, determine the week with the largest percent change
+in the volume of trades (the <code class="docutils literal notranslate"><span class="pre">&quot;Volume</span> <span class="pre">(BTC)&quot;</span></code> column).</p>
+<p>Repeat the analysis at the bi-weekly and monthly frequencies.</p>
+<p>Hint 1: We have data at a <em>daily</em> frequency and one week is <code class="docutils literal notranslate"><span class="pre">7</span></code> days.</p>
+<p>Hint 2: Approximate a month by 30 days.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># your code here</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>(<span class="xref myst"><em>back to text</em></span>)</p>
+<p><strong>Exercise 5</strong></p>
+<p>Imagine that you have access to the <a class="reference external" href="https://en.wikipedia.org/wiki/DeLorean_time_machine">DeLorean time machine</a>
+from “Back to the Future”.</p>
+<p>You are allowed to use the DeLorean only once, subject to the following
+conditions:</p>
+<ul class="simple">
+<li><p>You may travel back to any day in the past.</p></li>
+<li><p>On that day, you may purchase one bitcoin <em>at market open</em>.</p></li>
+<li><p>You can then take the time machine 30 days into the future and sell your bitcoin <em>at market close</em>.</p></li>
+<li><p>Then you return to the present, pocketing the profits.</p></li>
+</ul>
+<p>How would you pick the day?</p>
+<p>Think carefully about what you would need to compute to make the
+optimal choice. Try writing it out in the markdown cell below so you
+have a clear description of the <em>want</em> operator that we will apply after
+the exercise.</p>
+<p>(Note: <strong>Don’t</strong> look too far below, because in the next non-empty cell
+we have written out our answer.)</p>
+<p>To make this decision, we want to know …</p>
+<p><strong>Your answer here</strong></p>
+<p>(<span class="xref myst"><em>back to text</em></span>)</p>
+<p><strong>Exercise 6</strong></p>
+<p>Do the following:</p>
+<ol class="arabic simple">
+<li><p>Write a pandas function that implements your strategy.</p></li>
+<li><p>Pass it to the <code class="docutils literal notranslate"><span class="pre">agg</span></code> method of <code class="docutils literal notranslate"><span class="pre">rolling_btc</span></code>.</p></li>
+<li><p>Extract the <code class="docutils literal notranslate"><span class="pre">&quot;Open&quot;</span></code> column from the result.</p></li>
+<li><p>Find the date associated with the maximum value in that column.</p></li>
+</ol>
+<p>How much money did you make? Compare with your neighbor.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">daily_value</span><span class="p">(</span><span class="n">df</span><span class="p">):</span>
+    <span class="c1"># DELETE `pass` below and replace it with your code</span>
+    <span class="k">pass</span>
+
+<span class="n">rolling_btc</span> <span class="o">=</span> <span class="n">btc_usd</span><span class="o">.</span><span class="n">rolling</span><span class="p">(</span><span class="s2">&quot;30d&quot;</span><span class="p">)</span>
+
+<span class="c1"># do steps 2-4 here</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>(<span class="xref myst"><em>back to text</em></span>)</p>
+<p><strong>Exercise 7</strong></p>
+<p>Now suppose you still have access to the DeLorean, but the conditions are
+slightly different.</p>
+<p>You may now:</p>
+<ul class="simple">
+<li><p>Travel back to the <em>first day</em> of any month in the past.</p></li>
+<li><p>On that day, you may purchase one bitcoin <em>at market open</em>.</p></li>
+<li><p>You can then travel to any day <em>in that month</em> and sell the bitcoin <em>at market close</em>.</p></li>
+<li><p>Then return to the present, pocketing the profits.</p></li>
+</ul>
+<p>To which month would you travel? On which day of that month would you return
+to sell the bitcoin?</p>
+<p>Discuss with your neighbor what you would need to compute to make the
+optimal choice. Try writing it out in the markdown cell below so you
+have a clear description of the <em>want</em> operator that we will apply after
+the exercise.</p>
+<p>(Note: <strong>Don’t</strong> look too many cells below, because we have written out
+our answer.)</p>
+<p>To make the optimal decision we need …</p>
+<p><strong>Your answer here</strong></p>
+<p>(<span class="xref myst"><em>back to text</em></span>)</p>
+<p><strong>Exercise 8</strong></p>
+<p>Do the following:</p>
+<ol class="arabic simple">
+<li><p>Write a pandas function that implements your strategy.</p></li>
+<li><p>Pass it to the <code class="docutils literal notranslate"><span class="pre">agg</span></code> method of <code class="docutils literal notranslate"><span class="pre">resampled_btc</span></code>.</p></li>
+<li><p>Extract the <code class="docutils literal notranslate"><span class="pre">&quot;Open&quot;</span></code> column from the result.</p></li>
+<li><p>Find the date associated with the maximum value in that column.</p></li>
+</ol>
+<p>How much money did you make? Compare with your neighbor.</p>
+<p>Was this strategy more profitable than the previous one? By how much?</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">monthly_value</span><span class="p">(</span><span class="n">df</span><span class="p">):</span>
+    <span class="c1"># DELETE `pass` below and replace it with your code</span>
+    <span class="k">pass</span>
+
+<span class="n">resampled_btc</span> <span class="o">=</span> <span class="n">btc_usd</span><span class="o">.</span><span class="n">resample</span><span class="p">(</span><span class="s2">&quot;MS&quot;</span><span class="p">)</span>
+
+<span class="c1"># Do steps 2-4 here</span>
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+</section>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "binder-examples/jupyter-stacks-datascience",
+            ref: "master",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "python"
+        },
+        kernelOptions: {
+            name: "python3",
+            path: "./chapters/pandas"
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'python3'</script>
+
+                </article>
+              
+
+              
+              
+                <footer class="bd-footer-article">
+                  
+<div class="footer-article-items footer-article__inner">
+  
+    <div class="footer-article-item"><!-- Previous / next buttons -->
+<div class="prev-next-area">
+</div></div>
+  
+</div>
+
+                </footer>
+              
+            </div>
+            
+            
+              
+                <div class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
+  <div class="sidebar-secondary-item">
+  <div class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> Contents
+  </div>
+  <nav class="bd-toc-nav page-toc">
+    <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#scientific-numpy">Scientific/Numpy</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id1">Exercises</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#exercise-1">Exercise 1</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#exercise-2">Exercise 2</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#plotting">Plotting</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id2">Exercise 1</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#linear-algebra">Linear algebra</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id3">Exercises</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#randomness">Randomness</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id4">Exercises</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#pandas">Pandas</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#intro">Intro</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id5">Exercises</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#basics">BASICS</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id6">Exercises</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#the-index">tHE INDEX</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id7">Exercises</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#time-series">Time Series</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id8">Exercises</a></li>
+</ul>
+  </nav></div>
+
+</div></div>
+              
+            
+          </div>
+          <footer class="bd-footer-content">
+            
+<div class="bd-footer-content__inner container">
+  
+  <div class="footer-item">
+    
+<p class="component-author">
+By Alan Moreira
+</p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+  <p class="copyright">
+    
+      © Copyright 2021 Creative Commons Attribution-ShareAlike 4.0 International (CC BY-SA 4.0).
+      <br/>
+    
+  </p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+</div>
+          </footer>
+        
+
+      </main>
+    </div>
+  </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script src="../../_static/scripts/bootstrap.js?digest=e353d410970836974a52"></script>
+<script src="../../_static/scripts/pydata-sphinx-theme.js?digest=e353d410970836974a52"></script>
+
+  <footer class="bd-footer">
+  </footer>
+  </body>
+</html>

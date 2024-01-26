@@ -1,0 +1,1392 @@
+
+
+<!DOCTYPE html>
+
+
+<html lang="en" >
+
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
+
+    <title>9.3. Levering up and Shorting &#8212; Quantitative Investing</title>
+  
+  
+  
+  <script data-cfasync="false">
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "light";
+  </script>
+  
+  <!-- Loaded before other Sphinx assets -->
+  <link href="../../_static/styles/theme.css?digest=e353d410970836974a52" rel="stylesheet" />
+<link href="../../_static/styles/bootstrap.css?digest=e353d410970836974a52" rel="stylesheet" />
+<link href="../../_static/styles/pydata-sphinx-theme.css?digest=e353d410970836974a52" rel="stylesheet" />
+
+  
+  <link href="../../_static/vendor/fontawesome/6.1.2/css/all.min.css?digest=e353d410970836974a52" rel="stylesheet" />
+  <link rel="preload" as="font" type="font/woff2" crossorigin href="../../_static/vendor/fontawesome/6.1.2/webfonts/fa-solid-900.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../../_static/vendor/fontawesome/6.1.2/webfonts/fa-brands-400.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../../_static/vendor/fontawesome/6.1.2/webfonts/fa-regular-400.woff2" />
+
+    <link rel="stylesheet" type="text/css" href="../../_static/pygments.css" />
+    <link rel="stylesheet" href="../../_static/styles/sphinx-book-theme.css?digest=14f4ca6b54d191a8c7657f6c759bf11a5fb86285" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/togglebutton.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/copybutton.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/sphinx-thebe.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/book.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/design-style.4045f2051d55cab465a707391d5b2007.min.css" />
+  
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="../../_static/scripts/bootstrap.js?digest=e353d410970836974a52" />
+<link rel="preload" as="script" href="../../_static/scripts/pydata-sphinx-theme.js?digest=e353d410970836974a52" />
+
+    <script data-url_root="../../" id="documentation_options" src="../../_static/documentation_options.js"></script>
+    <script src="../../_static/jquery.js"></script>
+    <script src="../../_static/underscore.js"></script>
+    <script src="../../_static/_sphinx_javascript_frameworks_compat.js"></script>
+    <script src="../../_static/doctools.js"></script>
+    <script src="../../_static/clipboard.min.js"></script>
+    <script src="../../_static/copybutton.js"></script>
+    <script src="../../_static/scripts/sphinx-book-theme.js?digest=5a5c038af52cf7bc1a1ec88eea08e6366ee68824"></script>
+    <script>let toggleHintShow = 'Click to show';</script>
+    <script>let toggleHintHide = 'Click to hide';</script>
+    <script>let toggleOpenOnPrint = 'true';</script>
+    <script src="../../_static/togglebutton.js"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script src="../../_static/design-tabs.js"></script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"
+const thebe_selector = ".thebe,.cell"
+const thebe_selector_input = "pre"
+const thebe_selector_output = ".output, .cell_output"
+</script>
+    <script async="async" src="../../_static/sphinx-thebe.js"></script>
+    <script>window.MathJax = {"options": {"processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
+    <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'chapters/Finance/LeverageandShorting';</script>
+    <link rel="canonical" href="https://amoreira2.github.io/quantitativeinvesting/chapters/Finance/LeverageandShorting.html" />
+    <link rel="shortcut icon" href="../../_static/figuremain2.jpg"/>
+    <link rel="index" title="Index" href="../../genindex.html" />
+    <link rel="search" title="Search" href="../../search.html" />
+    <link rel="next" title="9.4. Portfolio Optimization with constraints" href="Portfoliooptimizationwithconstraints.html" />
+    <link rel="prev" title="9.2. Case study on international portfolio diversification" href="CaseStudy.html" />
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta name="docsearch:language" content="en"/>
+  </head>
+  
+  
+  <body data-bs-spy="scroll" data-bs-target=".bd-toc-nav" data-offset="180" data-bs-root-margin="0px 0px -60%" data-default-mode="">
+
+  
+  
+  <a class="skip-link" href="#main-content">Skip to main content</a>
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          name="__primary"
+          id="__primary"/>
+  <label class="overlay overlay-primary" for="__primary"></label>
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          name="__secondary"
+          id="__secondary"/>
+  <label class="overlay overlay-secondary" for="__secondary"></label>
+  
+  <div class="search-button__wrapper">
+    <div class="search-button__overlay"></div>
+    <div class="search-button__search-container">
+<form class="bd-search d-flex align-items-center"
+      action="../../search.html"
+      method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search"
+         class="form-control"
+         name="q"
+         id="search-input"
+         placeholder="Search this book..."
+         aria-label="Search this book..."
+         autocomplete="off"
+         autocorrect="off"
+         autocapitalize="off"
+         spellcheck="false"/>
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form></div>
+  </div>
+  
+    <nav class="bd-header navbar navbar-expand-lg bd-navbar">
+    </nav>
+  
+  <div class="bd-container">
+    <div class="bd-container__inner bd-page-width">
+      
+      <div class="bd-sidebar-primary bd-sidebar">
+        
+
+  
+  <div class="sidebar-header-items sidebar-primary__section">
+    
+    
+    
+    
+  </div>
+  
+    <div class="sidebar-primary-items__start sidebar-primary__section">
+        <div class="sidebar-primary-item">
+  
+
+<a class="navbar-brand logo" href="../intro.html">
+  
+  
+  
+  
+    
+    
+      
+    
+    
+    <img src="../../_static/figuremain2.jpg" class="logo__image only-light" alt="Logo image"/>
+    <script>document.write(`<img src="../../_static/figuremain2.jpg" class="logo__image only-dark" alt="Logo image"/>`);</script>
+  
+  
+</a></div>
+        <div class="sidebar-primary-item"><nav class="bd-links" id="bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item navbar-nav active">
+        <ul class="current nav bd-sidenav">
+<li class="toctree-l1 has-children"><a class="reference internal" href="../01/what-is-quant-investing.html">1. What is Quantitative Investing?</a><input class="toctree-checkbox" id="toctree-checkbox-1" name="toctree-checkbox-1" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-1"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l2"><a class="reference internal" href="../01/statistical-techniques.html">1.1. Statistical Techniques</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../01/computational-tools.html">1.2. Computational tools</a></li>
+</ul>
+</li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../02/getting_started.html">2. Getting Started</a><input class="toctree-checkbox" id="toctree-checkbox-2" name="toctree-checkbox-2" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-2"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l2"><a class="reference internal" href="../02/local_install.html">2.3. Local installation</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../02/cloud_setup.html">2.4. Cloud Setup</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../03/programming-in-python.html">3. First Steps with Python</a></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../essentials/essentials.html">4. Python Essentials</a><input class="toctree-checkbox" id="toctree-checkbox-3" name="toctree-checkbox-3" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-3"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l2"><a class="reference internal" href="../essentials/basics.html">4.1. Basics</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../essentials/collections.html">4.2. Collections</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../essentials/control_flow.html">4.3. Flow control</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../essentials/functions.html">4.4. Functions</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../essentials/numpy1.html">4.5. Numpy</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../essentials/plotting1.html">4.6. Plotting</a></li>
+</ul>
+</li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../pandas/workingwithdata.html">5. Working with Data</a><input class="toctree-checkbox" id="toctree-checkbox-4" name="toctree-checkbox-4" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-4"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l2"><a class="reference internal" href="../pandas/intro.html">5.1. Introduction</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../pandas/basics.html">5.2. Pandas Basics</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../pandas/the_index.html">5.3. Indexing</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../pandas/timeseries.html">5.4. Time-Series</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../pandas/data_clean.html">5.5. Cleaning data (opt)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../pandas/reshape.html">5.6. Reshape (opt)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../pandas/merge.html">5.7. Merge (opt)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../pandas/groupby.html">5.8. Group-by (opt)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../pandas/matplotlib.html">5.9. Plotting (opt)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../pandas/storage_formats.html">5.10. Data Storage (opt)</a></li>
+</ul>
+</li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="Returns.html">6. Asset Returns</a><input class="toctree-checkbox" id="toctree-checkbox-5" name="toctree-checkbox-5" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-5"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l2"><a class="reference internal" href="Returns1.html">6.1. Returns</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../scientific/randomness1.html">6.2. Modeling randomness</a></li>
+<li class="toctree-l2"><a class="reference internal" href="TheChoiceofFrequency.html">6.3. The Choice of Frequency and Annualization of Returns</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../scientific/linear_algebra1.html">6.4. Linear algebra Review</a></li>
+<li class="toctree-l2"><a class="reference internal" href="UsingAPI.html">6.5. Data APIs</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="PortfolioMath.html">7. Portfolio Math</a></li>
+<li class="toctree-l1"><a class="reference internal" href="CapitalAllocationLine.html">8. Capital Allocation</a></li>
+<li class="toctree-l1 current active has-children"><a class="reference internal" href="meanvariance1.html">9. Mean Variance Frontier</a><input checked="" class="toctree-checkbox" id="toctree-checkbox-6" name="toctree-checkbox-6" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-6"><i class="fa-solid fa-chevron-down"></i></label><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="MeanVariance.html">9.1. Mean Variance Efficient Portfolios</a></li>
+<li class="toctree-l2"><a class="reference internal" href="CaseStudy.html">9.2. Case Study in International Diversification</a></li>
+<li class="toctree-l2 current active"><a class="current reference internal" href="#">9.3. Leverage and Shorting</a></li>
+<li class="toctree-l2"><a class="reference internal" href="Portfoliooptimizationwithconstraints.html">9.4. Portfolio Optimization with constraints</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="EstimationUncertainty.html">10. Estimation Uncertainty and It's Implications for investing</a></li>
+<li class="toctree-l1"><a class="reference internal" href="TradingStrategies.html">11. Trading Strategies</a></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="Timing.html">12. Timing Strategies</a><input class="toctree-checkbox" id="toctree-checkbox-7" name="toctree-checkbox-7" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-7"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l2"><a class="reference internal" href="Volatilitytiming.html">12.1. Volatility Timing</a></li>
+</ul>
+</li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="crosssectionalequitystrategies.html">13. Cross-Sectional Equity Strategies</a><input class="toctree-checkbox" id="toctree-checkbox-8" name="toctree-checkbox-8" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-8"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l2"><a class="reference internal" href="Valueinvesting.html">13.1. Value</a></li>
+<li class="toctree-l2"><a class="reference internal" href="Momentum.html">13.2. Momentum</a></li>
+<li class="toctree-l2"><a class="reference internal" href="OtherEquityStrategies.html">13.3. Other Equity strategies</a></li>
+</ul>
+</li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="Evaluation.html">14. Evaluating a Trading Strategy</a><input class="toctree-checkbox" id="toctree-checkbox-9" name="toctree-checkbox-9" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-9"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l2"><a class="reference internal" href="Econometrics.html">14.1. The Econometrics of Strategy Evalaution</a></li>
+<li class="toctree-l2"><a class="reference internal" href="outofsample.html">14.2. Out of Sample Analysis</a></li>
+<li class="toctree-l2"><a class="reference internal" href="TailandBackground.html">14.3. Tail Risks and Background Risks</a></li>
+<li class="toctree-l2"><a class="reference internal" href="MultiFactorModels.html">14.4. Multifactor Models</a></li>
+</ul>
+</li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="Topics.html">15. Topics in Quantitative Investing</a><input class="toctree-checkbox" id="toctree-checkbox-10" name="toctree-checkbox-10" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-10"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l2"><a class="reference internal" href="Equilbrium.html">15.1. Intepreting Factor models</a></li>
+<li class="toctree-l2"><a class="reference internal" href="Implementation.html">15.2. Strategy Implementation</a></li>
+<li class="toctree-l2"><a class="reference internal" href="Horizon.html">15.3. Investment horizon effects</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../additional/additional.html">16. Additional Statistics Material</a></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../Assignments/Assignments.html">17. Assignments</a><input class="toctree-checkbox" id="toctree-checkbox-11" name="toctree-checkbox-11" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-11"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l2"><a class="reference internal" href="../Assignments/Assignment0.html">17.1. Assigment 0</a></li>
+
+
+
+
+
+<li class="toctree-l2"><a class="reference internal" href="../Assignments/Assignment1.html">17.7. Assignment 1</a></li>
+
+
+
+
+<li class="toctree-l2"><a class="reference internal" href="../Assignments/Assignment2.html">17.12. Assigment 2</a></li>
+
+
+
+<li class="toctree-l2"><a class="reference internal" href="../Assignments/Assignment3.html">17.16. Assignment 3</a></li>
+
+
+
+<li class="toctree-l2"><a class="reference internal" href="../Assignments/Assignment4.html">17.20. Assignment 4</a></li>
+
+
+
+<li class="toctree-l2"><a class="reference internal" href="../Assignments/Assignment5.html">17.24. Assigment 5</a></li>
+
+
+
+<li class="toctree-l2"><a class="reference internal" href="../Assignments/Assignment6.html">17.28. Assignment 6</a></li>
+
+
+
+<li class="toctree-l2"><a class="reference internal" href="../Assignments/Assignment7.html">17.32. Assignment 7</a></li>
+
+</ul>
+</li>
+</ul>
+
+    </div>
+</nav></div>
+    </div>
+  
+  
+  <div class="sidebar-primary-items__end sidebar-primary__section">
+  </div>
+  
+  <div id="rtd-footer-container"></div>
+
+
+      </div>
+      
+      <main id="main-content" class="bd-main">
+        
+        
+
+<div class="sbt-scroll-pixel-helper"></div>
+
+          <div class="bd-content">
+            <div class="bd-article-container">
+              
+              <div class="bd-header-article">
+<div class="header-article-items header-article__inner">
+  
+    <div class="header-article-items__start">
+      
+        <div class="header-article-item"><label class="sidebar-toggle primary-toggle btn btn-sm" for="__primary" title="Toggle primary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <span class="fa-solid fa-bars"></span>
+</label></div>
+      
+    </div>
+  
+  
+    <div class="header-article-items__end">
+      
+        <div class="header-article-item">
+
+<div class="article-header-buttons">
+
+
+
+
+
+<div class="dropdown dropdown-launch-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Launch interactive content">
+    <i class="fas fa-rocket"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="https://colab.research.google.com/github/amoreira2/Lectures/blob/main/chapters/Finance/LeverageandShorting.ipynb" target="_blank"
+   class="btn btn-sm dropdown-item"
+   title="Launch onColab"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  
+    <img src="../../_static/images/logo_colab.png">
+  </span>
+<span class="btn__text-container">Colab</span>
+</a>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+
+
+<div class="dropdown dropdown-source-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Source repositories">
+    <i class="fab fa-github"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="https://github.com/amoreira2/Lectures" target="_blank"
+   class="btn btn-sm btn-source-repository-button dropdown-item"
+   title="Source repository"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fab fa-github"></i>
+  </span>
+<span class="btn__text-container">Repository</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li><a href="https://github.com/amoreira2/Lectures/issues/new?title=Issue%20on%20page%20%2Fchapters/Finance/LeverageandShorting.html&body=Your%20issue%20content%20here." target="_blank"
+   class="btn btn-sm btn-source-issues-button dropdown-item"
+   title="Open an issue"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-lightbulb"></i>
+  </span>
+<span class="btn__text-container">Open issue</span>
+</a>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+
+
+<div class="dropdown dropdown-download-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Download this page">
+    <i class="fas fa-download"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="../../_sources/chapters/Finance/LeverageandShorting.ipynb" target="_blank"
+   class="btn btn-sm btn-download-source-button dropdown-item"
+   title="Download source file"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file"></i>
+  </span>
+<span class="btn__text-container">.ipynb</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li>
+<button onclick="window.print()"
+  class="btn btn-sm btn-download-pdf-button dropdown-item"
+  title="Print to PDF"
+  data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file-pdf"></i>
+  </span>
+<span class="btn__text-container">.pdf</span>
+</button>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+<button onclick="toggleFullScreen()"
+  class="btn btn-sm btn-fullscreen-button"
+  title="Fullscreen mode"
+  data-bs-placement="bottom" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-expand"></i>
+  </span>
+
+</button>
+
+
+<script>
+document.write(`
+  <button class="theme-switch-button btn btn-sm btn-outline-primary navbar-btn rounded-circle" title="light/dark" aria-label="light/dark" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="theme-switch" data-mode="light"><i class="fa-solid fa-sun"></i></span>
+    <span class="theme-switch" data-mode="dark"><i class="fa-solid fa-moon"></i></span>
+    <span class="theme-switch" data-mode="auto"><i class="fa-solid fa-circle-half-stroke"></i></span>
+  </button>
+`);
+</script>
+
+<script>
+document.write(`
+  <button class="btn btn-sm navbar-btn search-button search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass"></i>
+  </button>
+`);
+</script>
+<label class="sidebar-toggle secondary-toggle btn btn-sm" for="__secondary"title="Toggle secondary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="fa-solid fa-list"></span>
+</label>
+</div></div>
+      
+    </div>
+  
+</div>
+</div>
+              
+              
+
+<div id="jb-print-docs-body" class="onlyprint">
+    <h1>Levering up and Shorting</h1>
+    <!-- Table of contents -->
+    <div id="print-main-content">
+        <div id="jb-print-toc">
+            
+            <div>
+                <h2> Contents </h2>
+            </div>
+            <nav aria-label="Page">
+                <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#aplication-all-in-on-tesla">9.3.1. <strong>Aplication: All in on Tesla</strong></a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#shorting">9.3.2. <strong>Shorting</strong></a></li>
+</ul>
+            </nav>
+        </div>
+    </div>
+</div>
+
+              
+                
+<div id="searchbox"></div>
+                <article class="bd-article" role="main">
+                  
+  <div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+<span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
+<span class="o">%</span><span class="k">matplotlib</span> inline
+<span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
+<span class="c1"># import regression package</span>
+</pre></div>
+</div>
+</div>
+</div>
+<section class="tex2jax_ignore mathjax_ignore" id="levering-up-and-shorting">
+<h1><span class="section-number">9.3. </span>Levering up and Shorting<a class="headerlink" href="#levering-up-and-shorting" title="Permalink to this heading">#</a></h1>
+<p>So far we wrote the portfolio return as simple product of weights and individual asset returns</p>
+<div class="math notranslate nohighlight">
+\[r^p=W R+(1-\sum_i^I w_{i})r^f\]</div>
+<p>where <span class="math notranslate nohighlight">\(R\)</span> is a a vector of riksy asset returns.</p>
+<p>And <span class="math notranslate nohighlight">\(W=[w_1,w_2,...w_I]\)</span> is a vector of asset weights</p>
+<p>In practice things are not quite as simple.</p>
+<p>When <span class="math notranslate nohighlight">\((1-\sum_i^Iw_i)\in[0,1]\)</span> you have a postive fraction of your portfolio in the risk-free asset.</p>
+<p>In this case you earn something close to the 3 month t-bill rate.</p>
+<p><strong>Leverage</strong></p>
+<p>When <span class="math notranslate nohighlight">\((1-\sum_i^Iw_i)&lt;0\)</span> you have a negative weight on the risk-free asset.</p>
+<p>This means that you are borowing money to invest more in the risky assets, mechanically <span class="math notranslate nohighlight">\(\sum_i^Iw_i&gt;1\)</span>.</p>
+<p>What happens in this case?</p>
+<ul class="simple">
+<li><p>No one will lend you money at the same rate the US gov get to borrow! They get to borrow at the lowest USD rates out there!</p></li>
+<li><p>here are the <a class="reference external" href="https://www.interactivebrokers.com/en/index.php?f=46376">lending rates of a big retail broker</a></p></li>
+<li><p>Here is snapshot from May/2021</p></li>
+</ul>
+<p><img alt="image.png" src="../../_images/leverageandshorting1.jpg" /></p>
+<ul class="simple">
+<li><p>The structure of the rate is the following</p></li>
+</ul>
+<div class="math notranslate nohighlight">
+\[r^b=r^{benchmark}+spread\]</div>
+<ul class="simple">
+<li><p>The benchmark is something that is very close to the treasury rate</p></li>
+<li><p>Here what your portfolio return looks like</p></li>
+</ul>
+<div class="math notranslate nohighlight">
+\[r^p=W_tR+\max(1-\sum_i^Iw_i,0)r^f+\min(1-\sum_i^Iw_i,0)r^b\]</div>
+<ul class="simple">
+<li><p>so you earn rf is weight on the rf is positive, but pay rb if the weight is negative. Can rewrite as</p></li>
+</ul>
+<div class="math notranslate nohighlight">
+\[r^p=W_tR+(1-\sum_i^Iw_i)r^f+\min(1-\sum_i^Iw_i,0)spread\]</div>
+<ul class="simple">
+<li><p>so the spread compensate the broker for the risk it bears when it lends to you instead of lending to the US government</p></li>
+<li><p>The broker when it lends to you ask the loan to be backed/collaterized by the assets in your portfolio (just like a house backs a mortgage)</p></li>
+<li><p>this mean there will be a limit on your leverage. Typically this takes the following form</p>
+<ul>
+<li><p><span class="math notranslate nohighlight">\(\sum_i^Iw_i\leq 1/m_{initial}\)</span> and <span class="math notranslate nohighlight">\(\sum_i^Iw_i&lt;1/m_{maintenance}\)</span> with  <span class="math notranslate nohighlight">\(1/m_{maintenance}&gt;1/m_{initial}\)</span></p></li>
+<li><p>For US retail investors <span class="math notranslate nohighlight">\(m_{initial}=0.5\)</span> and <span class="math notranslate nohighlight">\(m_{maintenance}\)</span> varies a bit</p></li>
+</ul>
+</li>
+<li><p>margin is exactly the inverse of gross leverage. When m=1, your gross leverage is 1/m=1 which means you cannot borrow anything</p></li>
+<li><p>in this case for each dollar you have invested you have to put exactyl one dollar in.</p></li>
+<li><p>when margin is 0.5, it means that your gross leverage is 1/0.5=2, which means that for each dollar you have you can buy 2 dollars in risky assets</p></li>
+<li><p>so the bank lends to you another dollar for each dollar you put it</p></li>
+<li><p>here is for a US retial broker. Focus on the top row, 50% initial , 30% maintenance, which translates to 1/0.5=2 initial leverage and 1/0.3=2.33 maintenance leverage</p></li>
+</ul>
+<p><img alt="image.png" src="../../_images/leverageandshorting2.jpg" /></p>
+<p><strong>Example</strong></p>
+<p>lets say  <span class="math notranslate nohighlight">\(m_{initial}=0.5\)</span> and <span class="math notranslate nohighlight">\(m_{maintenance}=0.3\)</span>. Say you have 100k in your brokerage account and you can buy up to 200K in stocks. The broker lends to you 100k and hold the whole 200k in assets as protection. The value of your networth is still 100k. 200k in stocks -100k in the risk-free asset. For simplicity lets assume the risk-free rate is zero in this example.</p>
+<ul class="simple">
+<li><p>Say your risk portfolio drops 30%, what is yout networth? risky portfolio 200*(-0.3+1)=140k, minus the 100k, you are now worth 140-100=40</p></li>
+<li><p>This should not be surprising: You must absorb the entire loss</p></li>
+<li><p>What is you risk-asset weight and how much you are borrowing as fraction of your worth?</p></li>
+</ul>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="p">(</span><span class="mi">200</span><span class="o">/</span><span class="mi">100</span><span class="p">,</span><span class="mi">100</span><span class="o">/</span><span class="mi">100</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>(2.0, 1.0)
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="p">(</span><span class="mi">140</span><span class="o">/</span><span class="mi">40</span><span class="p">,</span><span class="mi">100</span><span class="o">/</span><span class="mi">40</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>(3.5, 2.5)
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="mi">40</span><span class="o">/</span><span class="mi">140</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>0.2857142857142857
+</pre></div>
+</div>
+</div>
+</div>
+<ul class="simple">
+<li><p>your leverage went from 2 to 3.5</p></li>
+<li><p>You now have only 40/140=28% on marign</p></li>
+<li><p>you are violating the maintenance constraint, which is 30%. What happens now?</p></li>
+<li><p>your prime broker will ask for cash so you get back to 30%</p></li>
+<li><p>To keep your 140 position you need to have 140*0.3=42 networth so you need to inject 42-40=2k.</p></li>
+</ul>
+<ul class="simple">
+<li><p>What happens if you don’t inject the cash in time?</p></li>
+<li><p>You will simply reduce your position in the risky asset to get back to the limit</p></li>
+<li><p>This means that margin have to come down to <span class="math notranslate nohighlight">\(0.3\times x=40\)</span> and therefore you have to sell 140-40/0.3=140-133=7k  of your risky asset position</p></li>
+</ul>
+<p><strong>Fire Sales</strong></p>
+<ul class="simple">
+<li><p>If you don’t do it your broker will certainly sell fro you and  might even liquidiate your entire position</p></li>
+<li><p>for example, here is from a retail broker</p></li>
+</ul>
+<p><img alt="image.png" src="../../_images/leverageandshorting3.jpg" /></p>
+<ul class="simple">
+<li><p>When the position to be sold is large, this can lead to very sharp price movements</p></li>
+<li><p>The dealers does not care at all about the price that he sells for as long he can get his money</p>
+<ul>
+<li><p>For example, back in March 2021 brokers liquidated a 21 billion dollar portfolio when the family office could not meet the margin call, i.e., the demand for cash. See, <a class="reference external" href="https://www.wsj.com/articles/inside-archegoss-epic-meltdown-11617323530">inside-archegoss-epic-meltdown</a></p></li>
+</ul>
+</li>
+</ul>
+<p><strong>Other leverage constraints</strong></p>
+<ul class="simple">
+<li><p>In futures market, swap markets, and option markets you can get implicit leverage, often substantially more than in the cash market</p></li>
+<li><p>It will vary wildly from market to market and in OTC markets this will depend on the relationship you have with your broker</p></li>
+<li><p>For example the Achelegos fund was leveraged 10 to 1, so for each 1 dollar o networth they had 10 dollars of risky assets</p></li>
+<li><p>Often this leverage constraint is given by sometype of risk-management at the portfolio level</p></li>
+<li><p>For example, it is typical to make the amount of margin  that you have to post depend on your portfolio volatility</p></li>
+</ul>
+<div class="math notranslate nohighlight">
+\[m\geq \overline{m}+c\sigma(r_p)\]</div>
+<ul class="simple">
+<li><p>This means that if volatilitiy goes up at the same time as your assets go down in value you face demand for cash both from your losses buy also from an increase in the margin you need to sustain your trade</p></li>
+</ul>
+<section id="aplication-all-in-on-tesla">
+<h2><span class="section-number">9.3.1. </span><strong>Aplication: All in on Tesla</strong><a class="headerlink" href="#aplication-all-in-on-tesla" title="Permalink to this heading">#</a></h2>
+<p>Jackie is a complete believer on Tesla and decide to invest all her savings, 1 Million dollars on Tesla in early 2017, and lever up to the maximum allowed by it’s broker to 2 (inital margin 0.5), so a total position of 2 million dollars that she commited to stick with it.</p>
+<p>The broker changed 1% on top of the tbill rate which was at zero.</p>
+<p>The broker made clear that a fraction of the tesla shares would have to sold everytime leverage went above 1/0.3, i.e. a maintenance margin of 0.3 . The amount sold would have to bring the account margin back to 0.3.</p>
+<p>We will now do a for loop that simulates the dealer margin re-balancing strategy</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">pandas_datareader.data</span> <span class="k">as</span> <span class="nn">web</span>
+<span class="kn">import</span> <span class="nn">datetime</span> <span class="k">as</span> <span class="nn">dt</span>
+<span class="n">df</span><span class="o">=</span> <span class="n">web</span><span class="o">.</span><span class="n">DataReader</span><span class="p">(</span><span class="s2">&quot;TSLA&quot;</span><span class="p">,</span> <span class="s2">&quot;av-daily&quot;</span><span class="p">,</span> <span class="n">start</span><span class="o">=</span><span class="n">dt</span><span class="o">.</span><span class="n">datetime</span><span class="p">(</span><span class="mi">2017</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">),</span>
+                      <span class="n">end</span><span class="o">=</span><span class="n">dt</span><span class="o">.</span><span class="n">datetime</span><span class="p">(</span><span class="mi">2020</span><span class="p">,</span> <span class="mi">8</span><span class="p">,</span> <span class="mi">1</span><span class="p">),</span>
+                     <span class="n">api_key</span><span class="o">=</span><span class="s1">&#39;N78MZQUK4ZCDUABU&#39;</span><span class="p">)</span>
+<span class="n">df</span><span class="o">.</span><span class="n">index</span><span class="o">=</span><span class="n">pd</span><span class="o">.</span><span class="n">to_datetime</span><span class="p">(</span><span class="n">df</span><span class="o">.</span><span class="n">index</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># construct close to close returns from price changes</span>
+<span class="n">df</span><span class="p">[</span><span class="s1">&#39;return&#39;</span><span class="p">]</span><span class="o">=</span><span class="n">df</span><span class="p">[</span><span class="s1">&#39;close&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">pct_change</span><span class="p">()</span>
+<span class="n">df</span><span class="o">=</span><span class="n">df</span><span class="p">[[</span><span class="s1">&#39;return&#39;</span><span class="p">]]</span>
+
+<span class="n">df</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>return</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>2017-01-03</th>
+      <td>NaN</td>
+    </tr>
+    <tr>
+      <th>2017-01-04</th>
+      <td>0.046085</td>
+    </tr>
+    <tr>
+      <th>2017-01-05</th>
+      <td>-0.001057</td>
+    </tr>
+    <tr>
+      <th>2017-01-06</th>
+      <td>0.009967</td>
+    </tr>
+    <tr>
+      <th>2017-01-09</th>
+      <td>0.009912</td>
+    </tr>
+    <tr>
+      <th>...</th>
+      <td>...</td>
+    </tr>
+    <tr>
+      <th>2020-07-27</th>
+      <td>0.086521</td>
+    </tr>
+    <tr>
+      <th>2020-07-28</th>
+      <td>-0.040991</td>
+    </tr>
+    <tr>
+      <th>2020-07-29</th>
+      <td>0.015320</td>
+    </tr>
+    <tr>
+      <th>2020-07-30</th>
+      <td>-0.007751</td>
+    </tr>
+    <tr>
+      <th>2020-07-31</th>
+      <td>-0.038138</td>
+    </tr>
+  </tbody>
+</table>
+<p>901 rows × 1 columns</p>
+</div></div></div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">val</span><span class="o">=</span><span class="mi">1_000_000</span> <span class="c1"># inital portfolio value</span>
+
+<span class="n">rl</span><span class="o">=</span><span class="mf">0.01</span><span class="o">/</span><span class="mi">252</span> <span class="c1">#borrowing spread</span>
+<span class="n">m_initial</span><span class="o">=</span><span class="mf">0.5</span> <span class="c1"># Initial margin</span>
+<span class="n">m_maintenance</span><span class="o">=</span><span class="mf">0.3</span> <span class="c1"># maintenance/minimum margin</span>
+<span class="n">pos_RiskyAsset</span><span class="o">=</span><span class="mi">1</span><span class="o">/</span><span class="n">m_initial</span><span class="o">*</span><span class="n">val</span>
+<span class="n">pos_SafeAsset</span><span class="o">=</span><span class="n">val</span><span class="o">-</span><span class="n">pos_RiskyAsset</span>
+
+<span class="n">W</span><span class="o">=</span><span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">([],</span><span class="n">columns</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;Risky&#39;</span><span class="p">,</span><span class="s1">&#39;Safe&#39;</span><span class="p">])</span> <span class="c1"># containet to store  portfolio overtime</span>
+<span class="n">d</span><span class="o">=</span><span class="n">df</span><span class="o">.</span><span class="n">index</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
+<span class="n">W</span><span class="o">.</span><span class="n">at</span><span class="p">[</span><span class="n">d</span><span class="p">,</span><span class="s1">&#39;Risky&#39;</span><span class="p">]</span><span class="o">=</span><span class="n">pos_RiskyAsset</span> <span class="c1"># position in Tesla at the start</span>
+<span class="n">W</span><span class="o">.</span><span class="n">at</span><span class="p">[</span><span class="n">d</span><span class="p">,</span><span class="s1">&#39;Safe&#39;</span><span class="p">]</span><span class="o">=</span><span class="n">pos_SafeAsset</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">W</span><span class="p">)</span>
+
+
+<span class="k">for</span> <span class="n">d</span> <span class="ow">in</span> <span class="n">df</span><span class="o">.</span><span class="n">index</span><span class="p">[</span><span class="mi">1</span><span class="p">:]:</span>
+    <span class="n">returnRiskyAsset</span><span class="o">=</span><span class="nb">float</span><span class="p">(</span><span class="n">df</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="n">d</span><span class="p">]</span><span class="o">.</span><span class="n">values</span><span class="p">)</span>
+    <span class="n">pos_RiskyAsset</span><span class="o">=</span><span class="n">pos_RiskyAsset</span><span class="o">*</span><span class="p">(</span><span class="mi">1</span><span class="o">+</span><span class="n">returnRiskyAsset</span><span class="p">)</span>
+    <span class="n">pos_SafeAsset</span><span class="o">=</span><span class="n">pos_SafeAsset</span><span class="o">*</span><span class="p">(</span><span class="mi">1</span><span class="o">+</span><span class="n">rl</span><span class="p">)</span>
+    <span class="n">networth</span><span class="o">=</span> <span class="n">pos_RiskyAsset</span><span class="o">+</span> <span class="n">pos_SafeAsset</span>
+    <span class="k">if</span> <span class="n">np</span><span class="o">.</span><span class="n">sum</span><span class="p">(</span><span class="n">networth</span><span class="p">)</span><span class="o">&lt;</span><span class="mi">0</span><span class="p">:</span> <span class="c1"># sum of w0 gives us the networth. IF that goes negative, trader goes banktrupt and it is liquidated</span>
+        <span class="n">W</span><span class="o">.</span><span class="n">at</span><span class="p">[</span><span class="n">d</span><span class="p">,</span><span class="s1">&#39;Risky&#39;</span><span class="p">]</span><span class="o">=</span><span class="n">pos_RiskyAsset</span> <span class="c1"># position in Tesla at the start</span>
+        <span class="n">W</span><span class="o">.</span><span class="n">at</span><span class="p">[</span><span class="n">d</span><span class="p">,</span><span class="s1">&#39;Safe&#39;</span><span class="p">]</span><span class="o">=</span><span class="n">pos_SafeAsset</span>
+        <span class="k">break</span> 
+    <span class="k">if</span> <span class="n">networth</span><span class="o">/</span><span class="n">pos_RiskyAsset</span><span class="o">&lt;</span><span class="n">m_maintenance</span><span class="p">:</span> <span class="c1"># accoutn is in breach and trader has to rebalance (sell some stock to satisfy their position limits)</span>
+        <span class="nb">print</span><span class="p">([</span><span class="n">pos_RiskyAsset</span><span class="p">,</span><span class="n">pos_SafeAsset</span><span class="p">])</span>
+        <span class="n">pos_RiskyAsset</span><span class="o">=</span><span class="n">networth</span><span class="o">*</span><span class="mi">1</span><span class="o">/</span><span class="n">m_maintenance</span>
+        <span class="n">post_SafeAsset</span><span class="o">=</span><span class="n">networth</span><span class="o">-</span><span class="n">pos_RiskyAsset</span>
+        <span class="nb">print</span><span class="p">([</span><span class="n">pos_RiskyAsset</span><span class="p">,</span><span class="n">pos_SafeAsset</span><span class="p">])</span>
+        
+    <span class="n">W</span><span class="o">.</span><span class="n">at</span><span class="p">[</span><span class="n">d</span><span class="p">,</span><span class="s1">&#39;Risky&#39;</span><span class="p">]</span><span class="o">=</span><span class="n">pos_RiskyAsset</span> 
+    <span class="n">W</span><span class="o">.</span><span class="n">at</span><span class="p">[</span><span class="n">d</span><span class="p">,</span><span class="s1">&#39;Safe&#39;</span><span class="p">]</span><span class="o">=</span><span class="n">pos_SafeAsset</span>
+<span class="n">W</span>      
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>                Risky       Safe
+2017-01-03  2000000.0 -1000000.0
+[1706622.4249965441, -1024297.959301626]
+[1705811.1642372953, -1024297.959301626]
+[1648784.9646983622, -1024338.6060460426]
+[1561115.8966307987, -1024338.6060460426]
+[1688730.1647634946, -1024379.2544034254]
+[1660877.275900173, -1024379.2544034254]
+[1686528.2214318959, -1024419.9043738381]
+[1655270.7926451443, -1024419.9043738381]
+</pre></div>
+</div>
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>Risky</th>
+      <th>Safe</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>2017-01-03</th>
+      <td>2000000.0</td>
+      <td>-1000000.0</td>
+    </tr>
+    <tr>
+      <th>2017-01-04</th>
+      <td>2092170.14609</td>
+      <td>-1000039.68254</td>
+    </tr>
+    <tr>
+      <th>2017-01-05</th>
+      <td>2089958.062584</td>
+      <td>-1000079.366654</td>
+    </tr>
+    <tr>
+      <th>2017-01-06</th>
+      <td>2110788.5156</td>
+      <td>-1000119.052343</td>
+    </tr>
+    <tr>
+      <th>2017-01-09</th>
+      <td>2131711.138762</td>
+      <td>-1000158.739607</td>
+    </tr>
+    <tr>
+      <th>...</th>
+      <td>...</td>
+      <td>...</td>
+    </tr>
+    <tr>
+      <th>2020-07-27</th>
+      <td>12963298.806432</td>
+      <td>-1036194.481947</td>
+    </tr>
+    <tr>
+      <th>2020-07-28</th>
+      <td>12431918.066192</td>
+      <td>-1036235.600776</td>
+    </tr>
+    <tr>
+      <th>2020-07-29</th>
+      <td>12622376.509295</td>
+      <td>-1036276.721236</td>
+    </tr>
+    <tr>
+      <th>2020-07-30</th>
+      <td>12524537.114562</td>
+      <td>-1036317.843328</td>
+    </tr>
+    <tr>
+      <th>2020-07-31</th>
+      <td>12046875.422376</td>
+      <td>-1036358.967052</td>
+    </tr>
+  </tbody>
+</table>
+<p>901 rows × 2 columns</p>
+</div></div></div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="p">(</span><span class="n">W</span><span class="o">.</span><span class="n">sum</span><span class="p">(</span><span class="n">axis</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span><span class="o">/</span><span class="mf">1e6</span><span class="p">)</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">logy</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+<span class="c1">#(W[&#39;2017&#39;:&#39;2020&#39;][&#39;Asset&#39;]/1e6).plot(logy=False)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s1">&#39;Networth&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">()</span>
+<span class="p">(</span><span class="n">W</span><span class="p">[</span><span class="s1">&#39;Risky&#39;</span><span class="p">]</span><span class="o">/</span><span class="n">W</span><span class="o">.</span><span class="n">sum</span><span class="p">(</span><span class="n">axis</span><span class="o">=</span><span class="mi">1</span><span class="p">))</span><span class="o">.</span><span class="n">plot</span><span class="p">()</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s1">&#39;Gross leverage&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">()</span>
+<span class="p">(</span><span class="n">W</span><span class="o">.</span><span class="n">sum</span><span class="p">(</span><span class="n">axis</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span><span class="o">/</span><span class="n">W</span><span class="p">[</span><span class="s1">&#39;Risky&#39;</span><span class="p">])</span><span class="o">.</span><span class="n">plot</span><span class="p">()</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s1">&#39;margin&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">()</span>
+<span class="p">(</span><span class="n">W</span><span class="p">[</span><span class="s1">&#39;Risky&#39;</span><span class="p">]</span><span class="o">/</span><span class="n">val</span><span class="p">)</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">logy</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s1">&#39;Tesla position&#39;</span><span class="p">)</span>
+
+<span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">()</span>
+<span class="p">((</span><span class="n">W</span><span class="o">.</span><span class="n">sum</span><span class="p">(</span><span class="n">axis</span><span class="o">=</span><span class="mi">1</span><span class="p">))</span><span class="o">.</span><span class="n">pct_change</span><span class="p">()</span><span class="o">.</span><span class="n">rolling</span><span class="p">(</span><span class="n">window</span><span class="o">=</span><span class="mi">21</span><span class="p">)</span><span class="o">.</span><span class="n">std</span><span class="p">()</span><span class="o">*</span><span class="mi">252</span><span class="o">**</span><span class="mf">0.5</span><span class="p">)</span><span class="o">.</span><span class="n">plot</span><span class="p">()</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s1">&#39;volatility&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Text(0.5, 1.0, &#39;volatility&#39;)
+</pre></div>
+</div>
+<img alt="../../_images/66c20a3e885594bb966974cb20b7d6cfd8dde7b351f5c06e453a8c6adbbcafc4.png" src="../../_images/66c20a3e885594bb966974cb20b7d6cfd8dde7b351f5c06e453a8c6adbbcafc4.png" />
+<img alt="../../_images/cd26cde57d3d49f9b58d8c6111c34540bc73c13ed3872f67a4431691471fae39.png" src="../../_images/cd26cde57d3d49f9b58d8c6111c34540bc73c13ed3872f67a4431691471fae39.png" />
+<img alt="../../_images/a9cc6e834644e8f7611787be432b5bf3c0937c1dcf254fae217786ea55b70331.png" src="../../_images/a9cc6e834644e8f7611787be432b5bf3c0937c1dcf254fae217786ea55b70331.png" />
+<img alt="../../_images/09dd117a8dcb1f79f9c786b7551eac3db2f2c5796844e664ed2eb65e3fedc982.png" src="../../_images/09dd117a8dcb1f79f9c786b7551eac3db2f2c5796844e664ed2eb65e3fedc982.png" />
+<img alt="../../_images/e2b84ecb9de47180b88dc46ee6e76d263fa4827f66ee0fb877f293eae0fff349.png" src="../../_images/e2b84ecb9de47180b88dc46ee6e76d263fa4827f66ee0fb877f293eae0fff349.png" />
+</div>
+</div>
+</section>
+<section id="shorting">
+<h2><span class="section-number">9.3.2. </span><strong>Shorting</strong><a class="headerlink" href="#shorting" title="Permalink to this heading">#</a></h2>
+<p>Shorting is conceptually very similar to leverage.</p>
+<p>You borrow an asset and pay some lending fee to borrow it (perhaps this fee will be zero if there is ample supply).</p>
+<p>And of course once you borrow you immediately sell and get the cash from the sale. The broker facilitating this transaction will typically ask you to  keep some margin in you account.</p>
+<p>We see in the top line of the margin requirement numbers that the margin requirements for shorting is set to 50% with the maintenance at 30%.</p>
+<p>So this says that you need to have 50% of the value of your short position to start the trade, but this can go down to up to 30%.</p>
+<ul class="simple">
+<li><p>This means that if you have 1 million in cash you can short at most 2 million of apple stock</p></li>
+<li><p>you actually earn interest on this 3 million, but pay the shorting fee <span class="math notranslate nohighlight">\(sf^i\)</span> on the 2 million borrowed stock</p></li>
+<li><p>here what your portfolio look like</p></li>
+</ul>
+<div class="math notranslate nohighlight">
+\[w\times r^i+(1-w)r^f+\min(w,0)sf^i\]</div>
+<ul class="simple">
+<li><p>where inital margin constraint  implies that |w| has to be lower than 2.</p></li>
+<li><p>and after the trade is initated is cannot go above 1/0.3</p></li>
+</ul>
+<p><strong>How does this work for a long-short trade?</strong></p>
+<p>Suppose you want a “market netural trade where you buy 1M worth of different fintech stocks and short 1M worth of banks. How much capital do you need?</p>
+<ul class="simple">
+<li><p>to initiate the long-trade you will need 500k, 50% margin on 1M position</p></li>
+<li><p>same thing for the short position, you will need 500 to satisfy the 50% marging</p></li>
+<li><p>in the end your portfolio looks like (+1M Fintech,-1M Banks, 1M treasuries)</p></li>
+<li><p>your 1 Million dollar still earns the risk-free rate</p></li>
+<li><p>for someone that can fund themselves at the risk-free rate– or have money parked in treasuries anyways, the long-short is “costless” in terms of deployed capital</p></li>
+<li><p>they don’t need to change any of their allocation to accomodate the long-short trade</p></li>
+<li><p>In practice most arbitrageurs have the bare minimum in treasuries and have a much higher cost of funding then treasuries</p></li>
+</ul>
+<p><strong>Shorting fees</strong></p>
+<ul class="simple">
+<li><p>In the expression above <span class="math notranslate nohighlight">\(sf^i\)</span> is the shorting fee you pay per period to short, which typically is quoted in annualized terms and can change briskly over time.</p></li>
+<li><p>Here is a snapshort of the fee to borrow GME stock early this year (the borrowing rate is in red)</p></li>
+</ul>
+<p><img alt="image.png" src="../../_images/leverageandshorting4.jpg" /></p>
+<ul class="simple">
+<li><p>A full portfolio looks like</p></li>
+</ul>
+<div class="math notranslate nohighlight">
+\[\sum_i^I w^i\times r^i_t+(1-\sum_i^I w^i)r^f_t+\sum_i^I\min(w^i,0)sf^i_t+\min(1-\sum_i^Iw_i,0)spread_t\]</div>
+<ul class="simple">
+<li><p>Where <span class="math notranslate nohighlight">\(\sum_i^I |w^i|\leq 1/m_{initial}\)</span></p></li>
+</ul>
+<p><strong>Application: Shorting GME</strong></p>
+<p>Now consider a big unconstraiend hedge fund that started shorting GME in March/2020 betting that COVID would drive GME into bankruptcy.</p>
+<p>Assumptions about how they  will trade</p>
+<ol class="arabic simple">
+<li><p>they inject cash as nedded in the trade.</p></li>
+<li><p>We will then track their capital commited to the trade and their dollar “P&amp;L” , i.e the dollars profits/losses of the trade.</p></li>
+<li><p>We will start assuming shorting fee is zero for simplicty</p></li>
+<li><p>We will start with capital of 1 million and inject capital as the bank demands capital, and cash out whenever my leverage goes down below the initial leverage limit</p></li>
+</ol>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">df</span><span class="o">=</span> <span class="n">web</span><span class="o">.</span><span class="n">DataReader</span><span class="p">(</span><span class="s2">&quot;GME&quot;</span><span class="p">,</span> <span class="s2">&quot;av-daily&quot;</span><span class="p">,</span> <span class="n">start</span><span class="o">=</span><span class="n">dt</span><span class="o">.</span><span class="n">datetime</span><span class="p">(</span><span class="mi">2017</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">),</span>
+                      <span class="n">end</span><span class="o">=</span><span class="n">dt</span><span class="o">.</span><span class="n">datetime</span><span class="p">(</span><span class="mi">2021</span><span class="p">,</span> <span class="mi">11</span><span class="p">,</span> <span class="mi">1</span><span class="p">),</span>
+                     <span class="n">api_key</span><span class="o">=</span><span class="s1">&#39;N78MZQUK4ZCDUABU&#39;</span><span class="p">)</span>
+<span class="n">df</span><span class="o">.</span><span class="n">index</span><span class="o">=</span><span class="n">pd</span><span class="o">.</span><span class="n">to_datetime</span><span class="p">(</span><span class="n">df</span><span class="o">.</span><span class="n">index</span><span class="p">)</span>
+<span class="n">df</span><span class="p">[</span><span class="s1">&#39;return&#39;</span><span class="p">]</span><span class="o">=</span><span class="n">df</span><span class="p">[</span><span class="s1">&#39;close&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">pct_change</span><span class="p">()</span>
+<span class="n">df</span><span class="o">=</span><span class="n">df</span><span class="p">[[</span><span class="s1">&#39;close&#39;</span><span class="p">,</span><span class="s1">&#39;return&#39;</span><span class="p">]]</span>
+
+<span class="n">df</span><span class="p">[:</span><span class="s1">&#39;2020-3&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">close</span><span class="o">.</span><span class="n">plot</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;AxesSubplot:&gt;
+</pre></div>
+</div>
+<img alt="../../_images/09b67ce23fd391964deeeb3d955e8414c8ecee5c3af2c1b6442497b22891ccaa.png" src="../../_images/09b67ce23fd391964deeeb3d955e8414c8ecee5c3af2c1b6442497b22891ccaa.png" />
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1">#Keep returns going forward (starting in april 2020)</span>
+<span class="n">df</span><span class="o">=</span><span class="n">df</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="s1">&#39;2020-4&#39;</span><span class="p">:,[</span><span class="s1">&#39;return&#39;</span><span class="p">]]</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">df</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>return</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>2020-04-01</th>
+      <td>-0.071429</td>
+    </tr>
+    <tr>
+      <th>2020-04-02</th>
+      <td>-0.123077</td>
+    </tr>
+    <tr>
+      <th>2020-04-03</th>
+      <td>-0.017544</td>
+    </tr>
+    <tr>
+      <th>2020-04-06</th>
+      <td>0.103571</td>
+    </tr>
+    <tr>
+      <th>2020-04-07</th>
+      <td>0.058252</td>
+    </tr>
+    <tr>
+      <th>...</th>
+      <td>...</td>
+    </tr>
+    <tr>
+      <th>2021-10-26</th>
+      <td>0.022245</td>
+    </tr>
+    <tr>
+      <th>2021-10-27</th>
+      <td>-0.024348</td>
+    </tr>
+    <tr>
+      <th>2021-10-28</th>
+      <td>0.053830</td>
+    </tr>
+    <tr>
+      <th>2021-10-29</th>
+      <td>0.003610</td>
+    </tr>
+    <tr>
+      <th>2021-11-01</th>
+      <td>0.090349</td>
+    </tr>
+  </tbody>
+</table>
+<p>401 rows × 1 columns</p>
+</div></div></div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">val</span><span class="o">=</span><span class="mi">1_000_000</span> <span class="c1"># inital capital</span>
+<span class="n">m_initial</span><span class="o">=</span><span class="mf">0.5</span>
+<span class="n">m_m_maintenance</span><span class="o">=</span><span class="mf">0.3</span>
+<span class="n">sf</span><span class="o">=</span><span class="mi">0</span><span class="o">/</span><span class="mi">252</span><span class="c1"># shorting fee</span>
+<span class="n">rf</span><span class="o">=</span><span class="mi">0</span><span class="o">/</span><span class="mi">252</span> <span class="c1"># tbill</span>
+<span class="n">pos_RiskyAsset</span><span class="o">=-</span><span class="mi">1</span><span class="o">/</span><span class="n">m_initial</span><span class="o">*</span><span class="n">val</span> <span class="c1"># it is negative becasue you are shorting!</span>
+<span class="n">pos_SafeAsset</span><span class="o">=</span><span class="n">val</span><span class="o">-</span><span class="n">pos_RiskyAsset</span>
+
+<span class="n">W</span><span class="o">=</span><span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">([],</span><span class="n">columns</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;Risky&#39;</span><span class="p">,</span><span class="s1">&#39;Safe&#39;</span><span class="p">])</span> <span class="c1"># containet to store  portfolio overtime</span>
+<span class="n">d</span><span class="o">=</span><span class="n">df</span><span class="o">.</span><span class="n">index</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
+<span class="n">W</span><span class="o">.</span><span class="n">at</span><span class="p">[</span><span class="n">d</span><span class="p">,</span><span class="s1">&#39;Risky&#39;</span><span class="p">]</span><span class="o">=</span><span class="n">pos_RiskyAsset</span> <span class="c1"># position in Tesla at the start</span>
+<span class="n">W</span><span class="o">.</span><span class="n">at</span><span class="p">[</span><span class="n">d</span><span class="p">,</span><span class="s1">&#39;Safe&#39;</span><span class="p">]</span><span class="o">=</span><span class="n">pos_SafeAsset</span>
+<span class="n">W</span><span class="o">.</span><span class="n">at</span><span class="p">[</span><span class="n">d</span><span class="p">,</span><span class="s1">&#39;injected capital&#39;</span><span class="p">]</span><span class="o">=</span><span class="n">val</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">W</span><span class="p">)</span>
+
+<span class="k">for</span> <span class="n">d</span> <span class="ow">in</span> <span class="n">df</span><span class="o">.</span><span class="n">index</span><span class="p">[</span><span class="mi">1</span><span class="p">:]:</span>
+    <span class="n">pos_SafeAsset</span><span class="o">=</span><span class="n">pos_SafeAsset</span><span class="o">*</span><span class="p">(</span><span class="mi">1</span><span class="o">+</span><span class="n">rf</span><span class="p">)</span><span class="o">+</span><span class="n">pos_RiskyAsset</span><span class="o">*</span><span class="n">sf</span>
+    <span class="n">returnRiskyAsset</span><span class="o">=</span><span class="nb">float</span><span class="p">(</span><span class="n">df</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="n">d</span><span class="p">]</span><span class="o">.</span><span class="n">values</span><span class="p">)</span>
+    <span class="n">pos_RiskyAsset</span><span class="o">=</span><span class="n">pos_RiskyAsset</span><span class="o">*</span><span class="p">(</span><span class="mi">1</span><span class="o">+</span><span class="n">returnRiskyAsset</span><span class="p">)</span>
+    <span class="n">networth</span><span class="o">=</span> <span class="n">pos_RiskyAsset</span><span class="o">+</span> <span class="n">pos_SafeAsset</span> 
+    <span class="n">W</span><span class="o">.</span><span class="n">at</span><span class="p">[</span><span class="n">d</span><span class="p">,</span><span class="s1">&#39;injected capital&#39;</span><span class="p">]</span><span class="o">=</span><span class="mi">0</span>
+    
+    
+    <span class="k">if</span> <span class="n">networth</span><span class="o">/</span><span class="n">np</span><span class="o">.</span><span class="n">abs</span><span class="p">(</span><span class="n">pos_RiskyAsset</span><span class="p">)</span><span class="o">&lt;</span><span class="n">m_maintenance</span><span class="p">:</span> <span class="c1"># if you breach the maintanece margim</span>
+        <span class="n">neededcapital</span><span class="o">=</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">abs</span><span class="p">(</span><span class="n">pos_RiskyAsset</span><span class="p">)</span><span class="o">*</span><span class="n">m_maintenance</span><span class="o">-</span><span class="n">networth</span><span class="p">)</span>
+        <span class="n">W</span><span class="o">.</span><span class="n">at</span><span class="p">[</span><span class="n">d</span><span class="p">,</span><span class="s1">&#39;injected capital&#39;</span><span class="p">]</span><span class="o">=</span><span class="n">neededcapital</span> <span class="c1"># how mcuh capital is injected in the trade</span>
+        <span class="n">pos_SafeAsset</span><span class="o">=</span><span class="n">pos_SafeAsset</span><span class="o">+</span><span class="n">neededcapital</span> <span class="c1"># change in the risk-free positions</span>
+  
+    <span class="n">W</span><span class="o">.</span><span class="n">at</span><span class="p">[</span><span class="n">d</span><span class="p">,</span><span class="s1">&#39;Risky&#39;</span><span class="p">]</span><span class="o">=</span><span class="n">pos_RiskyAsset</span> <span class="c1"># position in Tesla at the start</span>
+    <span class="n">W</span><span class="o">.</span><span class="n">at</span><span class="p">[</span><span class="n">d</span><span class="p">,</span><span class="s1">&#39;Safe&#39;</span><span class="p">]</span><span class="o">=</span><span class="n">pos_SafeAsset</span>
+<span class="n">W</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>                Risky       Safe    capital
+2020-04-01 -2000000.0  3000000.0  1000000.0
+</pre></div>
+</div>
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>Risky</th>
+      <th>Safe</th>
+      <th>capital</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>2020-04-01</th>
+      <td>-2000000.0</td>
+      <td>3000000.0</td>
+      <td>1000000.0</td>
+    </tr>
+    <tr>
+      <th>2020-04-02</th>
+      <td>-1753846.153846</td>
+      <td>3000000.0</td>
+      <td>0.0</td>
+    </tr>
+    <tr>
+      <th>2020-04-03</th>
+      <td>-1723076.923077</td>
+      <td>3000000.0</td>
+      <td>0.0</td>
+    </tr>
+    <tr>
+      <th>2020-04-06</th>
+      <td>-1901538.461538</td>
+      <td>3000000.0</td>
+      <td>0.0</td>
+    </tr>
+    <tr>
+      <th>2020-04-07</th>
+      <td>-2012307.692308</td>
+      <td>3000000.0</td>
+      <td>0.0</td>
+    </tr>
+    <tr>
+      <th>...</th>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+    </tr>
+    <tr>
+      <th>2021-10-26</th>
+      <td>-109440000.0</td>
+      <td>299393230.769231</td>
+      <td>0.0</td>
+    </tr>
+    <tr>
+      <th>2021-10-27</th>
+      <td>-106775384.615385</td>
+      <td>299393230.769231</td>
+      <td>0.0</td>
+    </tr>
+    <tr>
+      <th>2021-10-28</th>
+      <td>-112523076.923077</td>
+      <td>299393230.769231</td>
+      <td>0.0</td>
+    </tr>
+    <tr>
+      <th>2021-10-29</th>
+      <td>-112929230.769231</td>
+      <td>299393230.769231</td>
+      <td>0.0</td>
+    </tr>
+    <tr>
+      <th>2021-11-01</th>
+      <td>-123132307.692308</td>
+      <td>299393230.769231</td>
+      <td>0.0</td>
+    </tr>
+  </tbody>
+</table>
+<p>401 rows × 3 columns</p>
+</div></div></div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="mi">3</span><span class="o">*</span><span class="mf">0.3</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>0.8999999999999999
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="p">(</span><span class="n">W</span><span class="o">.</span><span class="n">sum</span><span class="p">(</span><span class="n">axis</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span><span class="o">/</span><span class="n">val</span><span class="p">)</span><span class="o">.</span><span class="n">subtract</span><span class="p">((</span><span class="n">W</span><span class="o">.</span><span class="n">capital</span><span class="o">/</span><span class="n">val</span><span class="p">)</span><span class="o">.</span><span class="n">cumsum</span><span class="p">(),</span><span class="n">axis</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">logy</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+<span class="c1">#(W[&#39;2017&#39;:&#39;2020&#39;][&#39;Asset&#39;]/1e6).plot(logy=False)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s1">&#39;P &amp; L&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">()</span>
+<span class="p">(</span><span class="n">W</span><span class="o">.</span><span class="n">capital</span><span class="o">/</span><span class="n">val</span><span class="p">)</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">logy</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+<span class="c1">#(W[&#39;2017&#39;:&#39;2020&#39;][&#39;Asset&#39;]/1e6).plot(logy=False)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s1">&#39;Capital injections&#39;</span><span class="p">)</span>
+
+<span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">()</span>
+<span class="p">(</span><span class="n">W</span><span class="o">.</span><span class="n">capital</span><span class="o">/</span><span class="n">val</span><span class="p">)</span><span class="o">.</span><span class="n">cumsum</span><span class="p">()</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">logy</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+<span class="c1">#(W[&#39;2017&#39;:&#39;2020&#39;][&#39;Asset&#39;]/1e6).plot(logy=False)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s1">&#39;Capital&#39;</span><span class="p">)</span>
+
+
+<span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">()</span>
+
+<span class="p">((</span><span class="n">W</span><span class="o">.</span><span class="n">sum</span><span class="p">(</span><span class="n">axis</span><span class="o">=</span><span class="mi">1</span><span class="p">))</span><span class="o">.</span><span class="n">pct_change</span><span class="p">()</span><span class="o">.</span><span class="n">rolling</span><span class="p">(</span><span class="n">window</span><span class="o">=</span><span class="mi">21</span><span class="p">)</span><span class="o">.</span><span class="n">std</span><span class="p">()</span><span class="o">*</span><span class="mi">252</span><span class="o">**</span><span class="mf">0.5</span><span class="p">)</span><span class="o">.</span><span class="n">plot</span><span class="p">()</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s1">&#39;vol&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Text(0.5, 1.0, &#39;vol&#39;)
+</pre></div>
+</div>
+<img alt="../../_images/70db54c6f65ae13f0d37afed38bac2c0a9c3a956f5e1a2eccc1f9a349b1a2c8f.png" src="../../_images/70db54c6f65ae13f0d37afed38bac2c0a9c3a956f5e1a2eccc1f9a349b1a2c8f.png" />
+<img alt="../../_images/a6feca8ed29303822430f2f5bfc21fc2c56b8f01f5f85f054e6f31cff5f4b4bb.png" src="../../_images/a6feca8ed29303822430f2f5bfc21fc2c56b8f01f5f85f054e6f31cff5f4b4bb.png" />
+<img alt="../../_images/812eb5e0efbcc74cf8df058a9035e1b0778b4d1963b63ce655d4b4dd37e05207.png" src="../../_images/812eb5e0efbcc74cf8df058a9035e1b0778b4d1963b63ce655d4b4dd37e05207.png" />
+<img alt="../../_images/5df253101b81b2e54a7d46cd2f03e87aed757e5cbe68f250b089b2c6d0d2fa60.png" src="../../_images/5df253101b81b2e54a7d46cd2f03e87aed757e5cbe68f250b089b2c6d0d2fa60.png" />
+</div>
+</div>
+<p>Suppose you were a hedge fund with 200M capital, you placed a fairly small 1 million dollar trade. You were fully commited and thought you had the capital to support the trade</p>
+<p>By late january sustaining the trade required 300 million dollars!</p>
+<p>And this does not take into account the fact that margin requirements became much tighter due to the immense volatiltiy of GME stock in the period.</p>
+<ul class="simple">
+<li><p>You can see above that the volatiltiy of the fund net position went to 1,200%!</p></li>
+<li><p>As response to this retail brokers increase margin requirements on GME shorts to 300% (from 50%). So to sustain 1 dollar of a short position you need to put 3 dollars instead of 50 cents.</p></li>
+<li><p>I am not sure what institutional brokers did, but likely they increased their leverage reuqirements too.</p></li>
+<li><p>This implies required capital would increase 6 foldfold (from 0.5 to 3 initial margin) going from 300 million to 1.8 billion dollars!</p></li>
+<li><p>1.8 Billion dollars to sustain the 1 million dollars trade!</p></li>
+</ul>
+</section>
+</section>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "binder-examples/jupyter-stacks-datascience",
+            ref: "master",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "python"
+        },
+        kernelOptions: {
+            name: "python3",
+            path: "./chapters/Finance"
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'python3'</script>
+
+                </article>
+              
+
+              
+              
+                <footer class="bd-footer-article">
+                  
+<div class="footer-article-items footer-article__inner">
+  
+    <div class="footer-article-item"><!-- Previous / next buttons -->
+<div class="prev-next-area">
+    <a class="left-prev"
+       href="CaseStudy.html"
+       title="previous page">
+      <i class="fa-solid fa-angle-left"></i>
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">previous</p>
+        <p class="prev-next-title"><span class="section-number">9.2. </span>Case study on international portfolio diversification</p>
+      </div>
+    </a>
+    <a class="right-next"
+       href="Portfoliooptimizationwithconstraints.html"
+       title="next page">
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">next</p>
+        <p class="prev-next-title"><span class="section-number">9.4. </span>Portfolio Optimization with constraints</p>
+      </div>
+      <i class="fa-solid fa-angle-right"></i>
+    </a>
+</div></div>
+  
+</div>
+
+                </footer>
+              
+            </div>
+            
+            
+              
+                <div class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
+  <div class="sidebar-secondary-item">
+  <div class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> Contents
+  </div>
+  <nav class="bd-toc-nav page-toc">
+    <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#aplication-all-in-on-tesla">9.3.1. <strong>Aplication: All in on Tesla</strong></a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#shorting">9.3.2. <strong>Shorting</strong></a></li>
+</ul>
+  </nav></div>
+
+</div></div>
+              
+            
+          </div>
+          <footer class="bd-footer-content">
+            
+<div class="bd-footer-content__inner container">
+  
+  <div class="footer-item">
+    
+<p class="component-author">
+By Alan Moreira
+</p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+  <p class="copyright">
+    
+      © Copyright 2021 Creative Commons Attribution-ShareAlike 4.0 International (CC BY-SA 4.0).
+      <br/>
+    
+  </p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+</div>
+          </footer>
+        
+
+      </main>
+    </div>
+  </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script src="../../_static/scripts/bootstrap.js?digest=e353d410970836974a52"></script>
+<script src="../../_static/scripts/pydata-sphinx-theme.js?digest=e353d410970836974a52"></script>
+
+  <footer class="bd-footer">
+  </footer>
+  </body>
+</html>

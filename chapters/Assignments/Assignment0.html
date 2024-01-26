@@ -1,0 +1,1021 @@
+
+
+<!DOCTYPE html>
+
+
+<html lang="en" >
+
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
+
+    <title>17.1. Assigment 0 &#8212; Quantitative Investing</title>
+  
+  
+  
+  <script data-cfasync="false">
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "light";
+  </script>
+  
+  <!-- Loaded before other Sphinx assets -->
+  <link href="../../_static/styles/theme.css?digest=e353d410970836974a52" rel="stylesheet" />
+<link href="../../_static/styles/bootstrap.css?digest=e353d410970836974a52" rel="stylesheet" />
+<link href="../../_static/styles/pydata-sphinx-theme.css?digest=e353d410970836974a52" rel="stylesheet" />
+
+  
+  <link href="../../_static/vendor/fontawesome/6.1.2/css/all.min.css?digest=e353d410970836974a52" rel="stylesheet" />
+  <link rel="preload" as="font" type="font/woff2" crossorigin href="../../_static/vendor/fontawesome/6.1.2/webfonts/fa-solid-900.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../../_static/vendor/fontawesome/6.1.2/webfonts/fa-brands-400.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../../_static/vendor/fontawesome/6.1.2/webfonts/fa-regular-400.woff2" />
+
+    <link rel="stylesheet" type="text/css" href="../../_static/pygments.css" />
+    <link rel="stylesheet" href="../../_static/styles/sphinx-book-theme.css?digest=14f4ca6b54d191a8c7657f6c759bf11a5fb86285" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/togglebutton.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/copybutton.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/sphinx-thebe.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/book.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/design-style.4045f2051d55cab465a707391d5b2007.min.css" />
+  
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="../../_static/scripts/bootstrap.js?digest=e353d410970836974a52" />
+<link rel="preload" as="script" href="../../_static/scripts/pydata-sphinx-theme.js?digest=e353d410970836974a52" />
+
+    <script data-url_root="../../" id="documentation_options" src="../../_static/documentation_options.js"></script>
+    <script src="../../_static/jquery.js"></script>
+    <script src="../../_static/underscore.js"></script>
+    <script src="../../_static/_sphinx_javascript_frameworks_compat.js"></script>
+    <script src="../../_static/doctools.js"></script>
+    <script src="../../_static/clipboard.min.js"></script>
+    <script src="../../_static/copybutton.js"></script>
+    <script src="../../_static/scripts/sphinx-book-theme.js?digest=5a5c038af52cf7bc1a1ec88eea08e6366ee68824"></script>
+    <script>let toggleHintShow = 'Click to show';</script>
+    <script>let toggleHintHide = 'Click to hide';</script>
+    <script>let toggleOpenOnPrint = 'true';</script>
+    <script src="../../_static/togglebutton.js"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script src="../../_static/design-tabs.js"></script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"
+const thebe_selector = ".thebe,.cell"
+const thebe_selector_input = "pre"
+const thebe_selector_output = ".output, .cell_output"
+</script>
+    <script async="async" src="../../_static/sphinx-thebe.js"></script>
+    <script>window.MathJax = {"options": {"processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
+    <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'chapters/Assignments/Assignment0';</script>
+    <link rel="canonical" href="https://amoreira2.github.io/quantitativeinvesting/chapters/Assignments/Assignment0.html" />
+    <link rel="shortcut icon" href="../../_static/figuremain2.jpg"/>
+    <link rel="index" title="Index" href="../../genindex.html" />
+    <link rel="search" title="Search" href="../../search.html" />
+    <link rel="next" title="17.7. Assignment 1" href="Assignment1.html" />
+    <link rel="prev" title="17. Assignments" href="Assignments.html" />
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta name="docsearch:language" content="en"/>
+  </head>
+  
+  
+  <body data-bs-spy="scroll" data-bs-target=".bd-toc-nav" data-offset="180" data-bs-root-margin="0px 0px -60%" data-default-mode="">
+
+  
+  
+  <a class="skip-link" href="#main-content">Skip to main content</a>
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          name="__primary"
+          id="__primary"/>
+  <label class="overlay overlay-primary" for="__primary"></label>
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          name="__secondary"
+          id="__secondary"/>
+  <label class="overlay overlay-secondary" for="__secondary"></label>
+  
+  <div class="search-button__wrapper">
+    <div class="search-button__overlay"></div>
+    <div class="search-button__search-container">
+<form class="bd-search d-flex align-items-center"
+      action="../../search.html"
+      method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search"
+         class="form-control"
+         name="q"
+         id="search-input"
+         placeholder="Search this book..."
+         aria-label="Search this book..."
+         autocomplete="off"
+         autocorrect="off"
+         autocapitalize="off"
+         spellcheck="false"/>
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form></div>
+  </div>
+  
+    <nav class="bd-header navbar navbar-expand-lg bd-navbar">
+    </nav>
+  
+  <div class="bd-container">
+    <div class="bd-container__inner bd-page-width">
+      
+      <div class="bd-sidebar-primary bd-sidebar">
+        
+
+  
+  <div class="sidebar-header-items sidebar-primary__section">
+    
+    
+    
+    
+  </div>
+  
+    <div class="sidebar-primary-items__start sidebar-primary__section">
+        <div class="sidebar-primary-item">
+  
+
+<a class="navbar-brand logo" href="../intro.html">
+  
+  
+  
+  
+    
+    
+      
+    
+    
+    <img src="../../_static/figuremain2.jpg" class="logo__image only-light" alt="Logo image"/>
+    <script>document.write(`<img src="../../_static/figuremain2.jpg" class="logo__image only-dark" alt="Logo image"/>`);</script>
+  
+  
+</a></div>
+        <div class="sidebar-primary-item"><nav class="bd-links" id="bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item navbar-nav active">
+        <ul class="current nav bd-sidenav">
+<li class="toctree-l1 has-children"><a class="reference internal" href="../01/what-is-quant-investing.html">1. What is Quantitative Investing?</a><input class="toctree-checkbox" id="toctree-checkbox-1" name="toctree-checkbox-1" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-1"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l2"><a class="reference internal" href="../01/statistical-techniques.html">1.1. Statistical Techniques</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../01/computational-tools.html">1.2. Computational tools</a></li>
+</ul>
+</li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../02/getting_started.html">2. Getting Started</a><input class="toctree-checkbox" id="toctree-checkbox-2" name="toctree-checkbox-2" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-2"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l2"><a class="reference internal" href="../02/local_install.html">2.3. Local installation</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../02/cloud_setup.html">2.4. Cloud Setup</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../03/programming-in-python.html">3. First Steps with Python</a></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../essentials/essentials.html">4. Python Essentials</a><input class="toctree-checkbox" id="toctree-checkbox-3" name="toctree-checkbox-3" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-3"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l2"><a class="reference internal" href="../essentials/basics.html">4.1. Basics</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../essentials/collections.html">4.2. Collections</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../essentials/control_flow.html">4.3. Flow control</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../essentials/functions.html">4.4. Functions</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../essentials/numpy1.html">4.5. Numpy</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../essentials/plotting1.html">4.6. Plotting</a></li>
+</ul>
+</li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../pandas/workingwithdata.html">5. Working with Data</a><input class="toctree-checkbox" id="toctree-checkbox-4" name="toctree-checkbox-4" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-4"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l2"><a class="reference internal" href="../pandas/intro.html">5.1. Introduction</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../pandas/basics.html">5.2. Pandas Basics</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../pandas/the_index.html">5.3. Indexing</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../pandas/timeseries.html">5.4. Time-Series</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../pandas/data_clean.html">5.5. Cleaning data (opt)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../pandas/reshape.html">5.6. Reshape (opt)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../pandas/merge.html">5.7. Merge (opt)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../pandas/groupby.html">5.8. Group-by (opt)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../pandas/matplotlib.html">5.9. Plotting (opt)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../pandas/storage_formats.html">5.10. Data Storage (opt)</a></li>
+</ul>
+</li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../Finance/Returns.html">6. Asset Returns</a><input class="toctree-checkbox" id="toctree-checkbox-5" name="toctree-checkbox-5" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-5"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l2"><a class="reference internal" href="../Finance/Returns1.html">6.1. Returns</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../scientific/randomness1.html">6.2. Modeling randomness</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../Finance/TheChoiceofFrequency.html">6.3. The Choice of Frequency and Annualization of Returns</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../scientific/linear_algebra1.html">6.4. Linear algebra Review</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../Finance/UsingAPI.html">6.5. Data APIs</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../Finance/PortfolioMath.html">7. Portfolio Math</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../Finance/CapitalAllocationLine.html">8. Capital Allocation</a></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../Finance/meanvariance1.html">9. Mean Variance Frontier</a><input class="toctree-checkbox" id="toctree-checkbox-6" name="toctree-checkbox-6" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-6"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l2"><a class="reference internal" href="../Finance/MeanVariance.html">9.1. Mean Variance Efficient Portfolios</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../Finance/CaseStudy.html">9.2. Case Study in International Diversification</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../Finance/LeverageandShorting.html">9.3. Leverage and Shorting</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../Finance/Portfoliooptimizationwithconstraints.html">9.4. Portfolio Optimization with constraints</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../Finance/EstimationUncertainty.html">10. Estimation Uncertainty and It's Implications for investing</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../Finance/TradingStrategies.html">11. Trading Strategies</a></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../Finance/Timing.html">12. Timing Strategies</a><input class="toctree-checkbox" id="toctree-checkbox-7" name="toctree-checkbox-7" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-7"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l2"><a class="reference internal" href="../Finance/Volatilitytiming.html">12.1. Volatility Timing</a></li>
+</ul>
+</li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../Finance/crosssectionalequitystrategies.html">13. Cross-Sectional Equity Strategies</a><input class="toctree-checkbox" id="toctree-checkbox-8" name="toctree-checkbox-8" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-8"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l2"><a class="reference internal" href="../Finance/Valueinvesting.html">13.1. Value</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../Finance/Momentum.html">13.2. Momentum</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../Finance/OtherEquityStrategies.html">13.3. Other Equity strategies</a></li>
+</ul>
+</li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../Finance/Evaluation.html">14. Evaluating a Trading Strategy</a><input class="toctree-checkbox" id="toctree-checkbox-9" name="toctree-checkbox-9" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-9"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l2"><a class="reference internal" href="../Finance/Econometrics.html">14.1. The Econometrics of Strategy Evalaution</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../Finance/outofsample.html">14.2. Out of Sample Analysis</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../Finance/TailandBackground.html">14.3. Tail Risks and Background Risks</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../Finance/MultiFactorModels.html">14.4. Multifactor Models</a></li>
+</ul>
+</li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../Finance/Topics.html">15. Topics in Quantitative Investing</a><input class="toctree-checkbox" id="toctree-checkbox-10" name="toctree-checkbox-10" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-10"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l2"><a class="reference internal" href="../Finance/Equilbrium.html">15.1. Intepreting Factor models</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../Finance/Implementation.html">15.2. Strategy Implementation</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../Finance/Horizon.html">15.3. Investment horizon effects</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../additional/additional.html">16. Additional Statistics Material</a></li>
+<li class="toctree-l1 current active has-children"><a class="reference internal" href="Assignments.html">17. Assignments</a><input checked="" class="toctree-checkbox" id="toctree-checkbox-11" name="toctree-checkbox-11" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-11"><i class="fa-solid fa-chevron-down"></i></label><ul class="current">
+<li class="toctree-l2 current active"><a class="current reference internal" href="#">17.1. Assigment 0</a></li>
+
+
+
+
+
+<li class="toctree-l2"><a class="reference internal" href="Assignment1.html">17.7. Assignment 1</a></li>
+
+
+
+
+<li class="toctree-l2"><a class="reference internal" href="Assignment2.html">17.12. Assigment 2</a></li>
+
+
+
+<li class="toctree-l2"><a class="reference internal" href="Assignment3.html">17.16. Assignment 3</a></li>
+
+
+
+<li class="toctree-l2"><a class="reference internal" href="Assignment4.html">17.20. Assignment 4</a></li>
+
+
+
+<li class="toctree-l2"><a class="reference internal" href="Assignment5.html">17.24. Assigment 5</a></li>
+
+
+
+<li class="toctree-l2"><a class="reference internal" href="Assignment6.html">17.28. Assignment 6</a></li>
+
+
+
+<li class="toctree-l2"><a class="reference internal" href="Assignment7.html">17.32. Assignment 7</a></li>
+
+</ul>
+</li>
+</ul>
+
+    </div>
+</nav></div>
+    </div>
+  
+  
+  <div class="sidebar-primary-items__end sidebar-primary__section">
+  </div>
+  
+  <div id="rtd-footer-container"></div>
+
+
+      </div>
+      
+      <main id="main-content" class="bd-main">
+        
+        
+
+<div class="sbt-scroll-pixel-helper"></div>
+
+          <div class="bd-content">
+            <div class="bd-article-container">
+              
+              <div class="bd-header-article">
+<div class="header-article-items header-article__inner">
+  
+    <div class="header-article-items__start">
+      
+        <div class="header-article-item"><label class="sidebar-toggle primary-toggle btn btn-sm" for="__primary" title="Toggle primary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <span class="fa-solid fa-bars"></span>
+</label></div>
+      
+    </div>
+  
+  
+    <div class="header-article-items__end">
+      
+        <div class="header-article-item">
+
+<div class="article-header-buttons">
+
+
+
+
+
+<div class="dropdown dropdown-launch-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Launch interactive content">
+    <i class="fas fa-rocket"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="https://colab.research.google.com/github/amoreira2/Lectures/blob/main/chapters/Assignments/Assignment0.ipynb" target="_blank"
+   class="btn btn-sm dropdown-item"
+   title="Launch onColab"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  
+    <img src="../../_static/images/logo_colab.png">
+  </span>
+<span class="btn__text-container">Colab</span>
+</a>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+
+
+<div class="dropdown dropdown-source-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Source repositories">
+    <i class="fab fa-github"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="https://github.com/amoreira2/Lectures" target="_blank"
+   class="btn btn-sm btn-source-repository-button dropdown-item"
+   title="Source repository"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fab fa-github"></i>
+  </span>
+<span class="btn__text-container">Repository</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li><a href="https://github.com/amoreira2/Lectures/issues/new?title=Issue%20on%20page%20%2Fchapters/Assignments/Assignment0.html&body=Your%20issue%20content%20here." target="_blank"
+   class="btn btn-sm btn-source-issues-button dropdown-item"
+   title="Open an issue"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-lightbulb"></i>
+  </span>
+<span class="btn__text-container">Open issue</span>
+</a>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+
+
+<div class="dropdown dropdown-download-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Download this page">
+    <i class="fas fa-download"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="../../_sources/chapters/Assignments/Assignment0.ipynb" target="_blank"
+   class="btn btn-sm btn-download-source-button dropdown-item"
+   title="Download source file"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file"></i>
+  </span>
+<span class="btn__text-container">.ipynb</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li>
+<button onclick="window.print()"
+  class="btn btn-sm btn-download-pdf-button dropdown-item"
+  title="Print to PDF"
+  data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file-pdf"></i>
+  </span>
+<span class="btn__text-container">.pdf</span>
+</button>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+<button onclick="toggleFullScreen()"
+  class="btn btn-sm btn-fullscreen-button"
+  title="Fullscreen mode"
+  data-bs-placement="bottom" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-expand"></i>
+  </span>
+
+</button>
+
+
+<script>
+document.write(`
+  <button class="theme-switch-button btn btn-sm btn-outline-primary navbar-btn rounded-circle" title="light/dark" aria-label="light/dark" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="theme-switch" data-mode="light"><i class="fa-solid fa-sun"></i></span>
+    <span class="theme-switch" data-mode="dark"><i class="fa-solid fa-moon"></i></span>
+    <span class="theme-switch" data-mode="auto"><i class="fa-solid fa-circle-half-stroke"></i></span>
+  </button>
+`);
+</script>
+
+<script>
+document.write(`
+  <button class="btn btn-sm navbar-btn search-button search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass"></i>
+  </button>
+`);
+</script>
+<label class="sidebar-toggle secondary-toggle btn btn-sm" for="__secondary"title="Toggle secondary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="fa-solid fa-list"></span>
+</label>
+</div></div>
+      
+    </div>
+  
+</div>
+</div>
+              
+              
+
+<div id="jb-print-docs-body" class="onlyprint">
+    <h1>Assigment 0</h1>
+    <!-- Table of contents -->
+    <div id="print-main-content">
+        <div id="jb-print-toc">
+            
+            <div>
+                <h2> Contents </h2>
+            </div>
+            <nav aria-label="Page">
+                <ul class="visible nav section-nav flex-column">
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#">17.1. Assigment 0</a></li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#write-your-name-and-simon-email">17.2. Write your name and simon email</a></li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#part-a-discussion-board">17.3. Part A : Discussion Board</a></li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#part-b">17.4. Part B</a></li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#part-c">17.5. Part c</a></li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#submission">17.6. Submission</a></li>
+</ul>
+
+            </nav>
+        </div>
+    </div>
+</div>
+
+              
+                
+<div id="searchbox"></div>
+                <article class="bd-article" role="main">
+                  
+  <section class="tex2jax_ignore mathjax_ignore" id="assigment-0">
+<h1><span class="section-number">17.1. </span>Assigment 0<a class="headerlink" href="#assigment-0" title="Permalink to this heading">#</a></h1>
+<p>Instructions: This problem set should be done individually</p>
+<p>Answer each question in the designated space below</p>
+</section>
+<section class="tex2jax_ignore mathjax_ignore" id="write-your-name-and-simon-email">
+<h1><span class="section-number">17.2. </span>Write your name and simon email<a class="headerlink" href="#write-your-name-and-simon-email" title="Permalink to this heading">#</a></h1>
+<p>Please write names below</p>
+<ul class="simple">
+<li><p>[Name 1]:</p></li>
+<li><p>[email]:</p></li>
+</ul>
+<p>NOTE:</p>
+<ol class="arabic simple">
+<li><p>You can edit this cell by double clicking in it and hitting <code class="docutils literal notranslate"><span class="pre">Ctrl</span></code>+<code class="docutils literal notranslate"><span class="pre">enter</span></code> for it to render</p></li>
+<li><p>This is Mardown cell, where we type text. For more info on how to do formating on mardown please see here <a class="reference external" href="https://ingeh.medium.com/markdown-for-jupyter-notebooks-cheatsheet-386c05aeebed">https://ingeh.medium.com/markdown-for-jupyter-notebooks-cheatsheet-386c05aeebed</a>, but you don’t need to</p></li>
+</ol>
+</section>
+<section class="tex2jax_ignore mathjax_ignore" id="part-a-discussion-board">
+<h1><span class="section-number">17.3. </span>Part A : Discussion Board<a class="headerlink" href="#part-a-discussion-board" title="Permalink to this heading">#</a></h1>
+<ol class="arabic">
+<li><p>go in ‘Welcome page’ in the course blackboard page and look for ‘Enroll in Discussion Board’.</p>
+<p>Use your simon email (it must be your simon email) to register</p>
+<p>(If you do not have a simon email please email me at <a class="reference external" href="mailto:alan&#46;moreira&#37;&#52;&#48;simon&#46;rochester&#46;edu">alan<span>&#46;</span>moreira<span>&#64;</span>simon<span>&#46;</span>rochester<span>&#46;</span>edu</a>)</p>
+</li>
+<li><p>Upload you headshot (closeup picture of your face) to your profile in the discussion board</p>
+<p>you can do that by clicking on the top right, then settings, the click in the ‘+’ signal nest to your name</p>
+</li>
+<li><p>Answer to my “Personal introduction” post in the discussion board (search for personal introduction in the discussion board )</p>
+<p><a class="reference external" href="https://edstem.org/us/courses/30665/discussion/1976838">https://edstem.org/us/courses/30665/discussion/1976838</a></p>
+</li>
+<li><p>Do “the Economist on Python” assignment <a class="reference external" href="https://edstem.org/us/courses/30665/discussion/1972434">https://edstem.org/us/courses/30665/discussion/1972434</a></p></li>
+</ol>
+</section>
+<section class="tex2jax_ignore mathjax_ignore" id="part-b">
+<h1><span class="section-number">17.4. </span>Part B<a class="headerlink" href="#part-b" title="Permalink to this heading">#</a></h1>
+<p><strong>Exercise 1: Variables</strong></p>
+<p>Assume you deposit 2000 at a bank at the beginning of 2019. The annual return is 5% from 2019 to 2024. How much is your 2000 worth at the end of 2024？</p>
+<p>Assign values to the variables a, b and c by subsituting <code class="docutils literal notranslate"><span class="pre">__</span></code> by the appropriate values in this example. You have to look at the expression in the coding cell under “4.Expression” to know what is appopriate</p>
+<p>Tip: <code class="docutils literal notranslate"><span class="pre">**</span></code> is the exponentiation operation <code class="docutils literal notranslate"><span class="pre">3**2=9</span></code></p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># this a coding cell, you run the code by hitting shift+enter or pressing the &quot;play buttom&quot; </span>
+<span class="c1">#on the top</span>
+
+<span class="c1">#Try running the code before doign anything to see what a coding error look like</span>
+<span class="n">a</span><span class="o">=</span><span class="n">__</span>
+<span class="n">b</span><span class="o">=</span><span class="n">__</span>
+<span class="n">c</span><span class="o">=</span><span class="n">__</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p><strong>Exercise 2: Expressions</strong></p>
+<p>Once you assigned the values to a, b, and c run the cell below to get the value of your networth</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">a</span><span class="o">*</span><span class="p">(</span><span class="mi">1</span><span class="o">+</span><span class="n">b</span><span class="p">)</span><span class="o">**</span><span class="n">c</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p><strong>Exercise 3: Understanding sequencing</strong></p>
+<p>Your first two pieces of code run succefuly (I very much hope!) . You first created three variables and you then use these variables to compute an expression which returned the value of your wealth in 2024. (yay!).</p>
+<p>Now in the cell below I want you to change the variable that represents the annual bank return from 5% to 10%</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Write down your code below</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>Now that you have done that, go back to the code cell in expressions, the one that says <code class="docutils literal notranslate"><span class="pre">a*(1+b)**c</span></code> and recompile it by hitting shift-enter.</p>
+<p>What did you find? write this number in the cell below</p>
+<ol class="arabic simple">
+<li><p>Now run the coding cell under variables and the coding cell under expressions again.</p></li>
+<li><p>What you should have just experienced is a very important feature of how Jupyter Notebooks work</p></li>
+<li><p>The order of the coding cells in the notebook are IRRELEVANT for coding pourposes!</p></li>
+</ol>
+<p><strong>What matters is the sequence that they were called. When you change the interest rate in the cell above this variable assignment substitute the earlier assignment, so when you run the expression cell again it used the most recent variable assignment.</strong></p>
+<ul class="simple">
+<li><p>One way to understand what is going on is to look at the little numbers in between the squares in the left of each coding cell.They tell us the sequence that each was called.</p></li>
+<li><p>This way you know the order things were called.</p></li>
+</ul>
+<p><strong>Exercise 4: One important allert about the little numbers</strong></p>
+<p>Go back to the coding cell under “3.Variable” and change the interest to 1000%.</p>
+<p>Don’t run the cell. What did you notice about the number in the squares? Explain in the cell below how this can be a source of confusion.</p>
+<p><strong>Exercise 5: Creating a cell</strong></p>
+<p>Which cell below?</p>
+<p>-&gt; to answer the question above you need to create a markdown cell (since your answer will be text)</p>
+<p>there two way you can do this</p>
+<ol class="arabic simple">
+<li><p>On the top of the notebook, click on the plus signal while this cell is selected, this will create a cell below. This cell will be by default a coding cell. Now to trasnform in a Markdown cell (to write text), while having the new cell selected click on the top buttom that says “code” and select “Markdown”. There!</p></li>
+<li><p>In colab you see that you can that you can directly choose which cell to add  (it says “+Code” or “+Text”). In Colab you can also simply hover above/below the cell to see the same buttoms. Press the above to add to a cell above, or presse the buttons below ( what we want!) to add the cell below</p>
+<ul class="simple">
+<li><p>If the cursor is activated you can hit <code class="docutils literal notranslate"><span class="pre">esc</span></code>  to get out of the cell. You can also just hitting <code class="docutils literal notranslate"><span class="pre">Shift</span></code>+<code class="docutils literal notranslate"><span class="pre">enter</span></code> or simply clickling on the white area on the left of the cell</p></li>
+</ul>
+</li>
+</ol>
+<p><strong>Exercise 6: Compouding returns</strong></p>
+<p>Say you have 100 dollar and you invest in a stock that earned 15% in the first year and -14% in the second year.</p>
+<p>Modify the code below so that it gives the correct answer to this question</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">r1</span><span class="o">=</span><span class="mf">0.15</span>
+<span class="n">r2</span><span class="o">=-</span><span class="mf">0.14</span>
+<span class="mi">100</span><span class="o">*</span><span class="mi">1</span><span class="o">+</span><span class="n">r1</span><span class="o">*</span><span class="mi">1</span><span class="o">+</span><span class="n">r2</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>100.01
+</pre></div>
+</div>
+</div>
+</div>
+<p><strong>Exercise 7: Deleting a cell</strong></p>
+<p>Now that you did all and have all your cell properly compiled you should save by clickling on the save buttom and then import it to the class blackboard website in the Assigments tab on the left.</p>
+<p>But before you do this, there is one more thing to do! Do you see this cell below? IT is ugly and we don’t want it there. Lets delete it!</p>
+<p>Again two ways of doing it</p>
+<ol class="arabic simple">
+<li><p>Select it and click on scissors buttom at the top of the notebook ( in jupyter) or the trach can in the top right of the cell</p></li>
+<li><p>short-cut: in jupyter click <code class="docutils literal notranslate"><span class="pre">d</span></code> twice while having the cell selected buy not active. in colab click ‘Ctrl+M’+ d</p></li>
+</ol>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># delete me</span>
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section class="tex2jax_ignore mathjax_ignore" id="part-c">
+<h1><span class="section-number">17.5. </span>Part c<a class="headerlink" href="#part-c" title="Permalink to this heading">#</a></h1>
+<p><strong>Exercise 1</strong></p>
+<p>What do you think the value of <code class="docutils literal notranslate"><span class="pre">z</span></code> is after running the code below?</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">z</span> <span class="o">=</span> <span class="mi">3</span>
+<span class="n">z</span> <span class="o">=</span> <span class="n">z</span> <span class="o">+</span> <span class="mi">4</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;z is&quot;</span><span class="p">,</span> <span class="n">z</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>Answer here:</p>
+<p><strong>Exercise 2</strong></p>
+<p>Read about what the <code class="docutils literal notranslate"><span class="pre">len</span></code> function does (by running <code class="docutils literal notranslate"><span class="pre">len?</span></code>).</p>
+<p>What will it produce if we give it the variable <code class="docutils literal notranslate"><span class="pre">x</span></code>?</p>
+<p>Answer here:</p>
+<p>Check whether you were right by running the code <code class="docutils literal notranslate"><span class="pre">len(x)</span></code>.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">x</span> <span class="o">=</span> <span class="s2">&quot;something else&quot;</span>
+<span class="c1"># your code here -- notice the comment!</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p><strong>Exercise 3</strong></p>
+<p>We can use our introspection skills to investigate a package’s contents.</p>
+<p>In the cell below, use tab completion to find a function from the <code class="docutils literal notranslate"><span class="pre">time</span></code>
+module that will display the <strong>local</strong> time.</p>
+<p>Use <code class="docutils literal notranslate"><span class="pre">time.FUNC_NAME?</span></code> (where <code class="docutils literal notranslate"><span class="pre">FUNC_NAME</span></code> is replaced with the
+function you found) to see information about that function and
+then call the function. (Hint: look for something to do with the word
+<code class="docutils literal notranslate"><span class="pre">local</span></code>).</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">time</span>
+<span class="c1"># your code here -- notice the comment!</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p><strong>Exercise 4</strong></p>
+<p>Try running <code class="docutils literal notranslate"><span class="pre">import</span> <span class="pre">time</span> <span class="pre">as</span> <span class="pre">t</span></code> in the cell below, then
+call the function you identified above and see if it returns the local time</p>
+<p>Does it work?</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># your code here!</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p><strong>Exercise 5</strong></p>
+<p>Create the following variables:</p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">D</span></code>: A floating point number with the value 10,000</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">r</span></code>: A floating point number with value 0.025</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">T</span></code>: An integer with value 30</p></li>
+</ul>
+<p>We will use them in a later exercise.</p>
+<p>Use <code class="docutils literal notranslate"><span class="pre">type</span></code> function on each variable together with print to show the type of each variable</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># your code here!</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p><strong>Exercise 6</strong></p>
+<p>Remember the variables we created earlier?</p>
+<p>Let’s compute the present discounted value of a payment (<span class="math notranslate nohighlight">\( D \)</span>) made
+in <span class="math notranslate nohighlight">\( T \)</span> years assuming an interest rate of 2.5%. Save this value to
+a new variable called <code class="docutils literal notranslate"><span class="pre">PDV</span></code> and print your output.</p>
+<p>Hint: The formula is</p>
+<div class="math notranslate nohighlight">
+\[
+\text{PDV} = \frac{D}{(1 + r)^T}
+\]</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># your code here</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p><strong>Exercise 7</strong></p>
+<p>Verify the “trick” where the percent difference (<span class="math notranslate nohighlight">\( \frac{x - y}{y} \)</span>)
+between two numbers close to 1 can be well approximated by the difference
+between the log of the two numbers (<span class="math notranslate nohighlight">\( \log(x) - \log(y) \)</span>).</p>
+<p>Use the numbers <code class="docutils literal notranslate"><span class="pre">x</span></code> and <code class="docutils literal notranslate"><span class="pre">y</span></code> below. (Hint: you will want to use the
+<code class="docutils literal notranslate"><span class="pre">math.log</span></code> function)</p>
+<p>Use print so both results are displayed</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">x</span> <span class="o">=</span> <span class="mf">1.05</span>
+<span class="n">y</span> <span class="o">=</span> <span class="mf">1.02</span>
+<span class="c1"># your code here!</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p><strong>Exercise 8</strong></p>
+<p>The code below is invalid Python code</p>
+<div class="highlight-markdown notranslate"><div class="highlight"><pre><span></span>x = &#39;What&#39;s wrong with this string&#39;
+</pre></div>
+</div>
+<p>Can you fix it?</p>
+<p><em>Hint</em>: Try creating a code cell below and testing things out until you
+find a solution.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># your code here!</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p><strong>Exercise 9</strong></p>
+<p>Using the variables <code class="docutils literal notranslate"><span class="pre">x</span></code> and <code class="docutils literal notranslate"><span class="pre">y</span></code>, how could you create the sentence
+<code class="docutils literal notranslate"><span class="pre">Hello</span> <span class="pre">World</span></code>?</p>
+<p>Hint: Think about how to represent a space as a string.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">x</span> <span class="o">=</span> <span class="s2">&quot;Hello&quot;</span>
+<span class="n">y</span> <span class="o">=</span> <span class="s2">&quot;World&quot;</span>
+<span class="c1"># your code here!</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p><strong>Exercise 10</strong></p>
+<p>One of our favorite (and most frequently used) string methods is
+<code class="docutils literal notranslate"><span class="pre">replace</span></code>.</p>
+<p>It substitutes all occurrences of a particular pattern with a different pattern.</p>
+<p>For the variable <code class="docutils literal notranslate"><span class="pre">test</span></code> below, use the <code class="docutils literal notranslate"><span class="pre">replace</span></code> method to change the
+<code class="docutils literal notranslate"><span class="pre">c</span></code> to a <code class="docutils literal notranslate"><span class="pre">d</span></code>.</p>
+<p>Hint: Type <code class="docutils literal notranslate"><span class="pre">test.replace?</span></code> to get some help for how to use the method
+replace.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">test</span> <span class="o">=</span> <span class="s2">&quot;abc&quot;</span>
+<span class="c1"># your code here!</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p><strong>Exercise 11</strong></p>
+<p>Suppose you are working with price data and encounter the value
+<code class="docutils literal notranslate"><span class="pre">&quot;$6.50&quot;</span></code>.</p>
+<p>We recognize this as being a number representing the quantity “six dollars and fifty cents.”</p>
+<p>However, Python interprets the value as the string
+<code class="docutils literal notranslate"><span class="pre">&quot;$6.50&quot;</span></code>. (Quiz: why is this a problem? Think about the examples above.)</p>
+<p>In this exercise, your task is to convert the variable <code class="docutils literal notranslate"><span class="pre">price</span></code> below
+into a number.</p>
+<p><em>Hint</em>: Once the string is in a suitable format, you can call write
+<code class="docutils literal notranslate"><span class="pre">float(clean_price)</span></code> to make it a number.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">price</span> <span class="o">=</span> <span class="s2">&quot;$6.50&quot;</span>
+<span class="c1"># your code here</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p><strong>Exercise 12</strong></p>
+<p>Without typing the commands, determine whether the following statements are
+true or <a class="reference external" href="http://false.In">false.In</a> particular write a list of 6 items of the type <code class="docutils literal notranslate"><span class="pre">[True,False,...]</span></code> with the results you beleive are correct</p>
+<p>Your answer:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">x</span> <span class="o">=</span> <span class="mi">2</span>
+<span class="n">y</span> <span class="o">=</span> <span class="mi">2</span>
+<span class="n">z</span> <span class="o">=</span> <span class="mi">4</span>
+
+<span class="c1"># Statement 1</span>
+<span class="n">x</span> <span class="o">&gt;</span> <span class="n">z</span>
+
+<span class="c1"># Statement 1</span>
+<span class="n">x</span> <span class="o">==</span> <span class="n">y</span>
+
+<span class="c1"># Statement 3</span>
+<span class="p">(</span><span class="n">x</span> <span class="o">&lt;</span> <span class="n">y</span><span class="p">)</span> <span class="ow">and</span> <span class="p">(</span><span class="n">x</span> <span class="o">&gt;</span> <span class="n">y</span><span class="p">)</span>
+
+<span class="c1"># Statement 4</span>
+<span class="p">(</span><span class="n">x</span> <span class="o">&lt;</span> <span class="n">y</span><span class="p">)</span> <span class="ow">or</span> <span class="p">(</span><span class="n">x</span> <span class="o">&gt;</span> <span class="n">y</span><span class="p">)</span>
+
+<span class="c1"># Statement 5</span>
+<span class="p">(</span><span class="n">x</span> <span class="o">&lt;=</span> <span class="n">y</span><span class="p">)</span> <span class="ow">and</span> <span class="p">(</span><span class="n">x</span> <span class="o">&gt;=</span> <span class="n">y</span><span class="p">)</span>
+
+<span class="c1"># Statement 6</span>
+<span class="kc">True</span> <span class="ow">and</span> <span class="p">((</span><span class="n">x</span> <span class="o">&lt;</span> <span class="n">z</span><span class="p">)</span> <span class="ow">or</span> <span class="p">(</span><span class="n">x</span> <span class="o">&lt;</span> <span class="n">y</span><span class="p">))</span>
+</pre></div>
+</div>
+<p>Once you have evaluated whether the command is <code class="docutils literal notranslate"><span class="pre">True</span></code> or <code class="docutils literal notranslate"><span class="pre">False</span></code>, run the
+code in Python.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># your code here!</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p><strong>Exercise 13</strong></p>
+<p>For each of the code cells below, think carefully about what you expect to
+be returned <em>before</em> evaluating the cell.</p>
+<p>Then evaluate the cell to check your intuitions.</p>
+<p>NOTE: For now, do not worry about what the <code class="docutils literal notranslate"><span class="pre">[</span></code> and <code class="docutils literal notranslate"><span class="pre">]</span></code> mean – they
+allow us to create lists which we will learn about in an upcoming lecture.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="nb">all</span><span class="p">([</span><span class="kc">True</span><span class="p">,</span> <span class="kc">True</span><span class="p">,</span> <span class="kc">True</span><span class="p">])</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="nb">all</span><span class="p">([</span><span class="kc">False</span><span class="p">,</span> <span class="kc">True</span><span class="p">,</span> <span class="kc">False</span><span class="p">])</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="nb">all</span><span class="p">([</span><span class="kc">False</span><span class="p">,</span> <span class="kc">False</span><span class="p">,</span> <span class="kc">False</span><span class="p">])</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="nb">any</span><span class="p">([</span><span class="kc">True</span><span class="p">,</span> <span class="kc">True</span><span class="p">,</span> <span class="kc">True</span><span class="p">])</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="nb">any</span><span class="p">([</span><span class="kc">False</span><span class="p">,</span> <span class="kc">True</span><span class="p">,</span> <span class="kc">False</span><span class="p">])</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="nb">any</span><span class="p">([</span><span class="kc">False</span><span class="p">,</span> <span class="kc">False</span><span class="p">,</span> <span class="kc">False</span><span class="p">])</span>
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section class="tex2jax_ignore mathjax_ignore" id="submission">
+<h1><span class="section-number">17.6. </span>Submission<a class="headerlink" href="#submission" title="Permalink to this heading">#</a></h1>
+<p>Go to file and download the notebook to your machine in a designated class folder , then  go to blackboard under assigment 0 and upload this file.</p>
+</section>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "binder-examples/jupyter-stacks-datascience",
+            ref: "master",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "python"
+        },
+        kernelOptions: {
+            name: "python3",
+            path: "./chapters/Assignments"
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'python3'</script>
+
+                </article>
+              
+
+              
+              
+                <footer class="bd-footer-article">
+                  
+<div class="footer-article-items footer-article__inner">
+  
+    <div class="footer-article-item"><!-- Previous / next buttons -->
+<div class="prev-next-area">
+    <a class="left-prev"
+       href="Assignments.html"
+       title="previous page">
+      <i class="fa-solid fa-angle-left"></i>
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">previous</p>
+        <p class="prev-next-title"><span class="section-number">17. </span>Assignments</p>
+      </div>
+    </a>
+    <a class="right-next"
+       href="Assignment1.html"
+       title="next page">
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">next</p>
+        <p class="prev-next-title"><span class="section-number">17.7. </span>Assignment 1</p>
+      </div>
+      <i class="fa-solid fa-angle-right"></i>
+    </a>
+</div></div>
+  
+</div>
+
+                </footer>
+              
+            </div>
+            
+            
+              
+                <div class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
+  <div class="sidebar-secondary-item">
+  <div class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> Contents
+  </div>
+  <nav class="bd-toc-nav page-toc">
+    <ul class="visible nav section-nav flex-column">
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#">17.1. Assigment 0</a></li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#write-your-name-and-simon-email">17.2. Write your name and simon email</a></li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#part-a-discussion-board">17.3. Part A : Discussion Board</a></li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#part-b">17.4. Part B</a></li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#part-c">17.5. Part c</a></li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#submission">17.6. Submission</a></li>
+</ul>
+
+  </nav></div>
+
+</div></div>
+              
+            
+          </div>
+          <footer class="bd-footer-content">
+            
+<div class="bd-footer-content__inner container">
+  
+  <div class="footer-item">
+    
+<p class="component-author">
+By Alan Moreira
+</p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+  <p class="copyright">
+    
+      © Copyright 2021 Creative Commons Attribution-ShareAlike 4.0 International (CC BY-SA 4.0).
+      <br/>
+    
+  </p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+</div>
+          </footer>
+        
+
+      </main>
+    </div>
+  </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script src="../../_static/scripts/bootstrap.js?digest=e353d410970836974a52"></script>
+<script src="../../_static/scripts/pydata-sphinx-theme.js?digest=e353d410970836974a52"></script>
+
+  <footer class="bd-footer">
+  </footer>
+  </body>
+</html>

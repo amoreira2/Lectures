@@ -1,0 +1,1497 @@
+
+
+<!DOCTYPE html>
+
+
+<html lang="en" >
+
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
+
+    <title>6.1. Returns &#8212; Quantitative Investing</title>
+  
+  
+  
+  <script data-cfasync="false">
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "light";
+  </script>
+  
+  <!-- Loaded before other Sphinx assets -->
+  <link href="../../_static/styles/theme.css?digest=e353d410970836974a52" rel="stylesheet" />
+<link href="../../_static/styles/bootstrap.css?digest=e353d410970836974a52" rel="stylesheet" />
+<link href="../../_static/styles/pydata-sphinx-theme.css?digest=e353d410970836974a52" rel="stylesheet" />
+
+  
+  <link href="../../_static/vendor/fontawesome/6.1.2/css/all.min.css?digest=e353d410970836974a52" rel="stylesheet" />
+  <link rel="preload" as="font" type="font/woff2" crossorigin href="../../_static/vendor/fontawesome/6.1.2/webfonts/fa-solid-900.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../../_static/vendor/fontawesome/6.1.2/webfonts/fa-brands-400.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../../_static/vendor/fontawesome/6.1.2/webfonts/fa-regular-400.woff2" />
+
+    <link rel="stylesheet" type="text/css" href="../../_static/pygments.css" />
+    <link rel="stylesheet" href="../../_static/styles/sphinx-book-theme.css?digest=14f4ca6b54d191a8c7657f6c759bf11a5fb86285" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/togglebutton.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/copybutton.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/sphinx-thebe.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/book.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/design-style.4045f2051d55cab465a707391d5b2007.min.css" />
+  
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="../../_static/scripts/bootstrap.js?digest=e353d410970836974a52" />
+<link rel="preload" as="script" href="../../_static/scripts/pydata-sphinx-theme.js?digest=e353d410970836974a52" />
+
+    <script data-url_root="../../" id="documentation_options" src="../../_static/documentation_options.js"></script>
+    <script src="../../_static/jquery.js"></script>
+    <script src="../../_static/underscore.js"></script>
+    <script src="../../_static/_sphinx_javascript_frameworks_compat.js"></script>
+    <script src="../../_static/doctools.js"></script>
+    <script src="../../_static/clipboard.min.js"></script>
+    <script src="../../_static/copybutton.js"></script>
+    <script src="../../_static/scripts/sphinx-book-theme.js?digest=5a5c038af52cf7bc1a1ec88eea08e6366ee68824"></script>
+    <script>let toggleHintShow = 'Click to show';</script>
+    <script>let toggleHintHide = 'Click to hide';</script>
+    <script>let toggleOpenOnPrint = 'true';</script>
+    <script src="../../_static/togglebutton.js"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script src="../../_static/design-tabs.js"></script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"
+const thebe_selector = ".thebe,.cell"
+const thebe_selector_input = "pre"
+const thebe_selector_output = ".output, .cell_output"
+</script>
+    <script async="async" src="../../_static/sphinx-thebe.js"></script>
+    <script>window.MathJax = {"options": {"processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
+    <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'chapters/Finance/Returns1';</script>
+    <link rel="canonical" href="https://amoreira2.github.io/quantitativeinvesting/chapters/Finance/Returns1.html" />
+    <link rel="shortcut icon" href="../../_static/figuremain2.jpg"/>
+    <link rel="index" title="Index" href="../../genindex.html" />
+    <link rel="search" title="Search" href="../../search.html" />
+    <link rel="next" title="6.2. Randomness" href="../scientific/randomness1.html" />
+    <link rel="prev" title="6. Asset Returns" href="Returns.html" />
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta name="docsearch:language" content="en"/>
+  </head>
+  
+  
+  <body data-bs-spy="scroll" data-bs-target=".bd-toc-nav" data-offset="180" data-bs-root-margin="0px 0px -60%" data-default-mode="">
+
+  
+  
+  <a class="skip-link" href="#main-content">Skip to main content</a>
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          name="__primary"
+          id="__primary"/>
+  <label class="overlay overlay-primary" for="__primary"></label>
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          name="__secondary"
+          id="__secondary"/>
+  <label class="overlay overlay-secondary" for="__secondary"></label>
+  
+  <div class="search-button__wrapper">
+    <div class="search-button__overlay"></div>
+    <div class="search-button__search-container">
+<form class="bd-search d-flex align-items-center"
+      action="../../search.html"
+      method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search"
+         class="form-control"
+         name="q"
+         id="search-input"
+         placeholder="Search this book..."
+         aria-label="Search this book..."
+         autocomplete="off"
+         autocorrect="off"
+         autocapitalize="off"
+         spellcheck="false"/>
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form></div>
+  </div>
+  
+    <nav class="bd-header navbar navbar-expand-lg bd-navbar">
+    </nav>
+  
+  <div class="bd-container">
+    <div class="bd-container__inner bd-page-width">
+      
+      <div class="bd-sidebar-primary bd-sidebar">
+        
+
+  
+  <div class="sidebar-header-items sidebar-primary__section">
+    
+    
+    
+    
+  </div>
+  
+    <div class="sidebar-primary-items__start sidebar-primary__section">
+        <div class="sidebar-primary-item">
+  
+
+<a class="navbar-brand logo" href="../intro.html">
+  
+  
+  
+  
+    
+    
+      
+    
+    
+    <img src="../../_static/figuremain2.jpg" class="logo__image only-light" alt="Logo image"/>
+    <script>document.write(`<img src="../../_static/figuremain2.jpg" class="logo__image only-dark" alt="Logo image"/>`);</script>
+  
+  
+</a></div>
+        <div class="sidebar-primary-item"><nav class="bd-links" id="bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item navbar-nav active">
+        <ul class="current nav bd-sidenav">
+<li class="toctree-l1 has-children"><a class="reference internal" href="../01/what-is-quant-investing.html">1. What is Quantitative Investing?</a><input class="toctree-checkbox" id="toctree-checkbox-1" name="toctree-checkbox-1" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-1"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l2"><a class="reference internal" href="../01/statistical-techniques.html">1.1. Statistical Techniques</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../01/computational-tools.html">1.2. Computational tools</a></li>
+</ul>
+</li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../02/getting_started.html">2. Getting Started</a><input class="toctree-checkbox" id="toctree-checkbox-2" name="toctree-checkbox-2" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-2"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l2"><a class="reference internal" href="../02/local_install.html">2.3. Local installation</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../02/cloud_setup.html">2.4. Cloud Setup</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../03/programming-in-python.html">3. First Steps with Python</a></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../essentials/essentials.html">4. Python Essentials</a><input class="toctree-checkbox" id="toctree-checkbox-3" name="toctree-checkbox-3" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-3"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l2"><a class="reference internal" href="../essentials/basics.html">4.1. Basics</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../essentials/collections.html">4.2. Collections</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../essentials/control_flow.html">4.3. Flow control</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../essentials/functions.html">4.4. Functions</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../essentials/numpy1.html">4.5. Numpy</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../essentials/plotting1.html">4.6. Plotting</a></li>
+</ul>
+</li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../pandas/workingwithdata.html">5. Working with Data</a><input class="toctree-checkbox" id="toctree-checkbox-4" name="toctree-checkbox-4" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-4"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l2"><a class="reference internal" href="../pandas/intro.html">5.1. Introduction</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../pandas/basics.html">5.2. Pandas Basics</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../pandas/the_index.html">5.3. Indexing</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../pandas/timeseries.html">5.4. Time-Series</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../pandas/data_clean.html">5.5. Cleaning data (opt)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../pandas/reshape.html">5.6. Reshape (opt)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../pandas/merge.html">5.7. Merge (opt)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../pandas/groupby.html">5.8. Group-by (opt)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../pandas/matplotlib.html">5.9. Plotting (opt)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../pandas/storage_formats.html">5.10. Data Storage (opt)</a></li>
+</ul>
+</li>
+<li class="toctree-l1 current active has-children"><a class="reference internal" href="Returns.html">6. Asset Returns</a><input checked="" class="toctree-checkbox" id="toctree-checkbox-5" name="toctree-checkbox-5" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-5"><i class="fa-solid fa-chevron-down"></i></label><ul class="current">
+<li class="toctree-l2 current active"><a class="current reference internal" href="#">6.1. Returns</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../scientific/randomness1.html">6.2. Modeling randomness</a></li>
+<li class="toctree-l2"><a class="reference internal" href="TheChoiceofFrequency.html">6.3. The Choice of Frequency and Annualization of Returns</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../scientific/linear_algebra1.html">6.4. Linear algebra Review</a></li>
+<li class="toctree-l2"><a class="reference internal" href="UsingAPI.html">6.5. Data APIs</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="PortfolioMath.html">7. Portfolio Math</a></li>
+<li class="toctree-l1"><a class="reference internal" href="CapitalAllocationLine.html">8. Capital Allocation</a></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="meanvariance1.html">9. Mean Variance Frontier</a><input class="toctree-checkbox" id="toctree-checkbox-6" name="toctree-checkbox-6" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-6"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l2"><a class="reference internal" href="MeanVariance.html">9.1. Mean Variance Efficient Portfolios</a></li>
+<li class="toctree-l2"><a class="reference internal" href="CaseStudy.html">9.2. Case Study in International Diversification</a></li>
+<li class="toctree-l2"><a class="reference internal" href="LeverageandShorting.html">9.3. Leverage and Shorting</a></li>
+<li class="toctree-l2"><a class="reference internal" href="Portfoliooptimizationwithconstraints.html">9.4. Portfolio Optimization with constraints</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="EstimationUncertainty.html">10. Estimation Uncertainty and It's Implications for investing</a></li>
+<li class="toctree-l1"><a class="reference internal" href="TradingStrategies.html">11. Trading Strategies</a></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="Timing.html">12. Timing Strategies</a><input class="toctree-checkbox" id="toctree-checkbox-7" name="toctree-checkbox-7" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-7"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l2"><a class="reference internal" href="Volatilitytiming.html">12.1. Volatility Timing</a></li>
+</ul>
+</li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="crosssectionalequitystrategies.html">13. Cross-Sectional Equity Strategies</a><input class="toctree-checkbox" id="toctree-checkbox-8" name="toctree-checkbox-8" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-8"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l2"><a class="reference internal" href="Valueinvesting.html">13.1. Value</a></li>
+<li class="toctree-l2"><a class="reference internal" href="Momentum.html">13.2. Momentum</a></li>
+<li class="toctree-l2"><a class="reference internal" href="OtherEquityStrategies.html">13.3. Other Equity strategies</a></li>
+</ul>
+</li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="Evaluation.html">14. Evaluating a Trading Strategy</a><input class="toctree-checkbox" id="toctree-checkbox-9" name="toctree-checkbox-9" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-9"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l2"><a class="reference internal" href="Econometrics.html">14.1. The Econometrics of Strategy Evalaution</a></li>
+<li class="toctree-l2"><a class="reference internal" href="outofsample.html">14.2. Out of Sample Analysis</a></li>
+<li class="toctree-l2"><a class="reference internal" href="TailandBackground.html">14.3. Tail Risks and Background Risks</a></li>
+<li class="toctree-l2"><a class="reference internal" href="MultiFactorModels.html">14.4. Multifactor Models</a></li>
+</ul>
+</li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="Topics.html">15. Topics in Quantitative Investing</a><input class="toctree-checkbox" id="toctree-checkbox-10" name="toctree-checkbox-10" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-10"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l2"><a class="reference internal" href="Equilbrium.html">15.1. Intepreting Factor models</a></li>
+<li class="toctree-l2"><a class="reference internal" href="Implementation.html">15.2. Strategy Implementation</a></li>
+<li class="toctree-l2"><a class="reference internal" href="Horizon.html">15.3. Investment horizon effects</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../additional/additional.html">16. Additional Statistics Material</a></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../Assignments/Assignments.html">17. Assignments</a><input class="toctree-checkbox" id="toctree-checkbox-11" name="toctree-checkbox-11" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-11"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l2"><a class="reference internal" href="../Assignments/Assignment0.html">17.1. Assigment 0</a></li>
+
+
+
+
+
+<li class="toctree-l2"><a class="reference internal" href="../Assignments/Assignment1.html">17.7. Assignment 1</a></li>
+
+
+
+
+<li class="toctree-l2"><a class="reference internal" href="../Assignments/Assignment2.html">17.12. Assigment 2</a></li>
+
+
+
+<li class="toctree-l2"><a class="reference internal" href="../Assignments/Assignment3.html">17.16. Assignment 3</a></li>
+
+
+
+<li class="toctree-l2"><a class="reference internal" href="../Assignments/Assignment4.html">17.20. Assignment 4</a></li>
+
+
+
+<li class="toctree-l2"><a class="reference internal" href="../Assignments/Assignment5.html">17.24. Assigment 5</a></li>
+
+
+
+<li class="toctree-l2"><a class="reference internal" href="../Assignments/Assignment6.html">17.28. Assignment 6</a></li>
+
+
+
+<li class="toctree-l2"><a class="reference internal" href="../Assignments/Assignment7.html">17.32. Assignment 7</a></li>
+
+</ul>
+</li>
+</ul>
+
+    </div>
+</nav></div>
+    </div>
+  
+  
+  <div class="sidebar-primary-items__end sidebar-primary__section">
+  </div>
+  
+  <div id="rtd-footer-container"></div>
+
+
+      </div>
+      
+      <main id="main-content" class="bd-main">
+        
+        
+
+<div class="sbt-scroll-pixel-helper"></div>
+
+          <div class="bd-content">
+            <div class="bd-article-container">
+              
+              <div class="bd-header-article">
+<div class="header-article-items header-article__inner">
+  
+    <div class="header-article-items__start">
+      
+        <div class="header-article-item"><label class="sidebar-toggle primary-toggle btn btn-sm" for="__primary" title="Toggle primary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <span class="fa-solid fa-bars"></span>
+</label></div>
+      
+    </div>
+  
+  
+    <div class="header-article-items__end">
+      
+        <div class="header-article-item">
+
+<div class="article-header-buttons">
+
+
+
+
+
+<div class="dropdown dropdown-launch-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Launch interactive content">
+    <i class="fas fa-rocket"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="https://colab.research.google.com/github/amoreira2/Lectures/blob/main/chapters/Finance/Returns1.ipynb" target="_blank"
+   class="btn btn-sm dropdown-item"
+   title="Launch onColab"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  
+    <img src="../../_static/images/logo_colab.png">
+  </span>
+<span class="btn__text-container">Colab</span>
+</a>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+
+
+<div class="dropdown dropdown-source-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Source repositories">
+    <i class="fab fa-github"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="https://github.com/amoreira2/Lectures" target="_blank"
+   class="btn btn-sm btn-source-repository-button dropdown-item"
+   title="Source repository"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fab fa-github"></i>
+  </span>
+<span class="btn__text-container">Repository</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li><a href="https://github.com/amoreira2/Lectures/issues/new?title=Issue%20on%20page%20%2Fchapters/Finance/Returns1.html&body=Your%20issue%20content%20here." target="_blank"
+   class="btn btn-sm btn-source-issues-button dropdown-item"
+   title="Open an issue"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-lightbulb"></i>
+  </span>
+<span class="btn__text-container">Open issue</span>
+</a>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+
+
+<div class="dropdown dropdown-download-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Download this page">
+    <i class="fas fa-download"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="../../_sources/chapters/Finance/Returns1.ipynb" target="_blank"
+   class="btn btn-sm btn-download-source-button dropdown-item"
+   title="Download source file"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file"></i>
+  </span>
+<span class="btn__text-container">.ipynb</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li>
+<button onclick="window.print()"
+  class="btn btn-sm btn-download-pdf-button dropdown-item"
+  title="Print to PDF"
+  data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file-pdf"></i>
+  </span>
+<span class="btn__text-container">.pdf</span>
+</button>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+<button onclick="toggleFullScreen()"
+  class="btn btn-sm btn-fullscreen-button"
+  title="Fullscreen mode"
+  data-bs-placement="bottom" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-expand"></i>
+  </span>
+
+</button>
+
+
+<script>
+document.write(`
+  <button class="theme-switch-button btn btn-sm btn-outline-primary navbar-btn rounded-circle" title="light/dark" aria-label="light/dark" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="theme-switch" data-mode="light"><i class="fa-solid fa-sun"></i></span>
+    <span class="theme-switch" data-mode="dark"><i class="fa-solid fa-moon"></i></span>
+    <span class="theme-switch" data-mode="auto"><i class="fa-solid fa-circle-half-stroke"></i></span>
+  </button>
+`);
+</script>
+
+<script>
+document.write(`
+  <button class="btn btn-sm navbar-btn search-button search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass"></i>
+  </button>
+`);
+</script>
+<label class="sidebar-toggle secondary-toggle btn btn-sm" for="__secondary"title="Toggle secondary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="fa-solid fa-list"></span>
+</label>
+</div></div>
+      
+    </div>
+  
+</div>
+</div>
+              
+              
+
+<div id="jb-print-docs-body" class="onlyprint">
+    <h1>Returns</h1>
+    <!-- Table of contents -->
+    <div id="print-main-content">
+        <div id="jb-print-toc">
+            
+            <div>
+                <h2> Contents </h2>
+            </div>
+            <nav aria-label="Page">
+                <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#how-returns-are-distributed">6.1.1. <strong>How Returns are distributed?</strong></a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#a-quick-review-of-randomness-and-probability-distributions">6.1.2. A quick review of randomness and probability distributions</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#the-normal-distribution">6.1.3. <strong>The Normal distribution</strong></a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#excess-returns">6.1.4. <strong>Excess returns</strong></a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#sample-averages-vs-population-expectations">6.1.5. Sample averages vs Population Expectations</a></li>
+</ul>
+            </nav>
+        </div>
+    </div>
+</div>
+
+              
+                
+<div id="searchbox"></div>
+                <article class="bd-article" role="main">
+                  
+  <div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># load libraries used in this notebook</span>
+<span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
+<span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+<span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
+<span class="o">%</span><span class="k">matplotlib</span> inline
+</pre></div>
+</div>
+</div>
+</div>
+<section class="tex2jax_ignore mathjax_ignore" id="returns">
+<h1><span class="section-number">6.1. </span>Returns<a class="headerlink" href="#returns" title="Permalink to this heading">#</a></h1>
+<ul class="simple">
+<li><p>Define what are returns, which is the key variable of analysis in finance (and this class).</p></li>
+<li><p>Discuss how to think them of random variables</p></li>
+<li><p>Discuss the key statistical “moments” that we will use to capture their behavior (i.e. how risky they are)</p></li>
+<li><p>Discuss the normal distribution specifically</p></li>
+<li><p>Define the concept of Excess returns</p></li>
+</ul>
+<p><strong>What is a return?</strong></p>
+<ul class="simple">
+<li><p>Lets say you paid <span class="math notranslate nohighlight">\(𝑃_𝑡\)</span> in date <span class="math notranslate nohighlight">\(t\)</span> for an asset</p></li>
+<li><p>In date <span class="math notranslate nohighlight">\(t+1\)</span> the price is <span class="math notranslate nohighlight">\(𝑃_{𝑡+1}\)</span>  and you earn some dividend as well <span class="math notranslate nohighlight">\(𝐷_{𝑡+1}\)</span></p></li>
+<li><p>Then we say that your return is</p></li>
+</ul>
+<div class="math notranslate nohighlight">
+\[𝑅_{𝑡+1}=\frac{𝑃_{𝑡+1}+𝐷_{𝑡+1}−𝑃_𝑡}{𝑃_𝑡}\]</div>
+<ul class="simple">
+<li><p>It is the gain you made (everything that you go in date t+1), divided by how much you put in ( the price of the asset)</p></li>
+</ul>
+<blockquote>
+<div><p>Our data set Data contains these returns of buying an asset, earning any distributed dividends during the month, and then selling in the end of the month.</p>
+</div></blockquote>
+<ul class="simple">
+<li><p>This definition works for ANY asset that has a postive price</p></li>
+<li><p>This is the case for stocks, bonds, commodities, crypto, most real assets</p></li>
+<li><p>The return simply normalizes the “dollar gain” by the cost of the asset.</p></li>
+<li><p>This makes sense because price levels are arbitrary and non-stationay, so we can’t really do statistics over prices.</p></li>
+</ul>
+<p>Lets start by loadding some return data.</p>
+<p>Below we load a data set that has monthly reutrn data on six different assets (in fact portfolios of assets, but we will get to portfolios later)</p>
+<p>For now we will only use one of the assets which is the United States equity market portfolios, labeled “MKT”</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1">#Online address of the file </span>
+<span class="n">url</span><span class="o">=</span><span class="s2">&quot;https://raw.githubusercontent.com/amoreira2/Lectures/main/assets/data/GlobalFinMonthly.csv&quot;</span>
+<span class="c1"># load it using pandas</span>
+<span class="c1"># the field &quot;na_values=-99&quot; is telling the function that numbers &quot;-99&quot; are code for a missing value</span>
+<span class="c1"># THIS VARIES DATASET by DATASET!!!!</span>
+<span class="c1"># In this case I know that to be the case</span>
+<span class="n">Data</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="n">url</span><span class="p">,</span><span class="n">na_values</span><span class="o">=-</span><span class="mi">99</span><span class="p">)</span>
+<span class="c1"># here we tell to pandas to interpret the DATE column as date type</span>
+<span class="n">Data</span><span class="p">[</span><span class="s1">&#39;Date&#39;</span><span class="p">]</span><span class="o">=</span><span class="n">pd</span><span class="o">.</span><span class="n">to_datetime</span><span class="p">(</span><span class="n">Data</span><span class="p">[</span><span class="s1">&#39;Date&#39;</span><span class="p">])</span>
+<span class="c1"># set the date as the index</span>
+<span class="n">Data</span><span class="o">=</span><span class="n">Data</span><span class="o">.</span><span class="n">set_index</span><span class="p">([</span><span class="s1">&#39;Date&#39;</span><span class="p">])</span>
+<span class="c1">#eep only the Market column</span>
+<span class="n">Data</span><span class="o">=</span><span class="n">Data</span><span class="p">[[</span><span class="s1">&#39;MKT&#39;</span><span class="p">]]</span>
+<span class="c1"># look at the first few observations</span>
+<span class="n">Data</span><span class="o">.</span><span class="n">head</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>MKT</th>
+    </tr>
+    <tr>
+      <th>Date</th>
+      <th></th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>1963-02-28</th>
+      <td>-0.0215</td>
+    </tr>
+    <tr>
+      <th>1963-03-31</th>
+      <td>0.0331</td>
+    </tr>
+    <tr>
+      <th>1963-04-30</th>
+      <td>0.0476</td>
+    </tr>
+    <tr>
+      <th>1963-05-31</th>
+      <td>0.0200</td>
+    </tr>
+    <tr>
+      <th>1963-06-30</th>
+      <td>-0.0177</td>
+    </tr>
+  </tbody>
+</table>
+</div></div></div>
+</div>
+<p><strong>Comments</strong></p>
+<ul class="simple">
+<li><p>“.datetime” is pretty good at indentifying how to interpret the data format, but you always have to check if it interpreted correct by inspecting it</p></li>
+<li><p>If it does not you will have to add the format manually as we discuss in section 6.7</p></li>
+</ul>
+<section id="how-returns-are-distributed">
+<h2><span class="section-number">6.1.1. </span><strong>How Returns are distributed?</strong><a class="headerlink" href="#how-returns-are-distributed" title="Permalink to this heading">#</a></h2>
+<p>Lets start by looking at the moments of the distribution of returns for the “market” portfolio</p>
+<p>This is really the portfolio of all the stocks listed in the United States</p>
+<p><strong>Mean and Standard Deviation</strong></p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># looking at it&#39;s mean</span>
+<span class="n">Data</span><span class="p">[</span><span class="s1">&#39;MKT&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">mean</span><span class="p">()</span><span class="o">*</span><span class="mi">100</span>
+
+<span class="c1"># what does this number mean?</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>0.9051777434312205
+</pre></div>
+</div>
+</div>
+</div>
+<p>If I have invested 1 dollar in a month t, On average I would have XXXXX in month t+1 in the sample</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># looking at the market standard deviation</span>
+
+<span class="n">Data</span><span class="p">[</span><span class="s1">&#39;MKT&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">std</span><span class="p">()</span><span class="o">*</span><span class="mi">100</span>
+
+<span class="c1"># what does this number mean?</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>4.400314890674189
+</pre></div>
+</div>
+</div>
+</div>
+<p>If had all my wealth, say 100k usd invested in the market in month t, then standard deviation of my wealth in date t+1 was XXXX in the sample</p>
+<p><strong>Histogram</strong></p>
+<p>This plots the frequency of return realization on each bin</p>
+<p>it gives a sense of the HISTORICAL DISTRIBUTION of reuturns</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="p">(</span><span class="n">Data</span><span class="o">.</span><span class="n">MKT</span><span class="o">*</span><span class="mi">100</span><span class="p">)</span><span class="o">.</span><span class="n">hist</span><span class="p">(</span><span class="n">bins</span><span class="o">=</span><span class="mi">50</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;matplotlib.axes._subplots.AxesSubplot at 0x272130fc760&gt;
+</pre></div>
+</div>
+<img alt="../../_images/47758316443edcbe34665105c06ffd8d6277900024d78fc5adaf87e2e8aec2a5.png" src="../../_images/47758316443edcbe34665105c06ffd8d6277900024d78fc5adaf87e2e8aec2a5.png" />
+</div>
+</div>
+<p>List two/three features that are noteworthy about this plot?</p>
+<ul class="simple">
+<li><p>It is centered around the XXX</p></li>
+<li><p>It has a XXX shape</p></li>
+<li><p>The width of the part of the distribution that has the most realizations is captured by the XXX</p></li>
+<li><p>The most extreme observation is XXX standard deviations below the mean</p></li>
+</ul>
+<p><strong>Time-Series PLOT</strong></p>
+<p>The time-series plot shows us in each date what was the return on the asset in each month in the sample</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">Data</span><span class="o">.</span><span class="n">MKT</span><span class="o">.</span><span class="n">plot</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;matplotlib.axes._subplots.AxesSubplot at 0x272131fde20&gt;
+</pre></div>
+</div>
+<img alt="../../_images/8e2f7cc1d4872b3da63f6767f4e504c7a83e0c3c8cb6cabcc4f4470a0545a6e3.png" src="../../_images/8e2f7cc1d4872b3da63f6767f4e504c7a83e0c3c8cb6cabcc4f4470a0545a6e3.png" />
+</div>
+</div>
+</section>
+<section id="a-quick-review-of-randomness-and-probability-distributions">
+<h2><span class="section-number">6.1.2. </span>A quick review of randomness and probability distributions<a class="headerlink" href="#a-quick-review-of-randomness-and-probability-distributions" title="Permalink to this heading">#</a></h2>
+<p><strong>Random variables</strong></p>
+<ul class="simple">
+<li><p>We think of the return realization, the numbers plotted above, as a random variable, i.e., a variable that we are uncertain about it’s realization.</p></li>
+<li><p>Random variable is any thing that we don’t known</p>
+<ul>
+<li><p>Outcome of dice throw, value of stock market in the end of the day, …</p></li>
+<li><p>For example a dice outcome is a random variables with the following possible outcomes: (1,2,3,4,5,6)</p></li>
+</ul>
+</li>
+<li><p>This uncertainty is fully described by the probability distribution associated with the random variable.</p></li>
+</ul>
+<p><strong>What is a probability distribution?</strong></p>
+<ul class="simple">
+<li><p>A probability distribution describes the probability that each outcome is realized.</p></li>
+<li><p>It can be described by a Probability Density Function (pdf).</p></li>
+<li><p>For example, the pdf of a dice is (1,1/6) ,(2,1/6), (3,1/6), (4,1/6), (5,1/6), (6,1/6)</p></li>
+<li><p>It can also be described by the Cumulative Density Function(cdf)</p></li>
+<li><p>For a example, the cdf of a dice is (1,1/6) ,(2,2/6), (3,3/6), (4,4/6), (5,5/6), (6,6/6)</p></li>
+<li><p>A pdf or cdf fully describes the uncertainty we have with respect to a particular random variable</p></li>
+<li><p>Random variable is any thing that we don’t known</p></li>
+<li><p>Outcome of dice throw, value of stock market in the end of the day, …</p></li>
+</ul>
+<p><strong>Moments</strong></p>
+<ul class="simple">
+<li><p>One way to summarize the information in a probability distribution is the moments</p></li>
+<li><p>Mean or expected value <span class="math notranslate nohighlight">\(E[𝑥]=∑𝑥_𝑖 𝑃𝑟𝑜𝑏(𝑥=𝑥_𝑖 )\)</span>  𝑜𝑟 <span class="math notranslate nohighlight">\(∫𝑥𝑓(𝑥)𝑑𝑥\)</span>  often uses µ as symbol</p></li>
+<li><p>The Variance <span class="math notranslate nohighlight">\(𝑣𝑎𝑟(𝑥)= ∑(𝑥_𝑖−𝐸[𝑥])^2 𝑃𝑟𝑜𝑏(𝑥=𝑥_𝑖 )\)</span>    𝑜𝑟 <span class="math notranslate nohighlight">\(∫(𝑥_𝑖−𝐸[𝑥])^2 𝑓(𝑥)𝑑𝑥 \)</span></p>
+<ul>
+<li><p>(Standard deviation <span class="math notranslate nohighlight">\(std(x)= \sqrt{𝑣𝑎𝑟(𝑥)}\)</span>)</p></li>
+<li><p>measures average variability around the mean across successive drawings of x.</p></li>
+<li><p>often use 𝜎 as a symbol for standard deviation and <span class="math notranslate nohighlight">\(𝜎^2\)</span> for variance</p></li>
+</ul>
+</li>
+<li><p>Skewness <span class="math notranslate nohighlight">\(𝑠𝑘𝑒𝑤(𝑥)= ∑(𝑥_𝑖−𝐸[𝑥])^3 𝑃𝑟𝑜𝑏(𝑥=𝑥_𝑖 )\)</span> 𝑜𝑟 <span class="math notranslate nohighlight">\(∫(𝑥_𝑖−𝐸[𝑥])^3 𝑓(𝑥)𝑑𝑥\)</span></p>
+<ul>
+<li><p>Measures asymmetry in the distribution</p></li>
+</ul>
+</li>
+<li><p>Kurtosis <span class="math notranslate nohighlight">\(𝑘𝑢𝑟𝑡(𝑥)= ∑(𝑥_𝑖−𝐸[𝑥])^4 𝑃𝑟𝑜𝑏(𝑥=𝑥_𝑖 )\)</span> 𝑜𝑟 <span class="math notranslate nohighlight">\(∫(𝑥_𝑖−𝐸[𝑥])^4 𝑓(𝑥)𝑑𝑥\)</span></p>
+<ul>
+<li><p>Measures how fat the tails are</p></li>
+</ul>
+</li>
+<li><p>Higher order moments…</p></li>
+<li><p>Observation: with enough moments you can represent any distribution, but in practice you only need a few</p>
+<ul>
+<li><p>for example for the normal distribution you only need the first two: Expected value and variance!</p></li>
+</ul>
+</li>
+</ul>
+<p><strong>Sample moments</strong></p>
+<ul class="simple">
+<li><p>Historical distrivution is <strong>NOT</strong> the TRUE distribution that we care about</p></li>
+<li><p>Moments are  <strong>never</strong> truly known in real data</p></li>
+<li><p>Must be always estimated from some historical realization</p></li>
+<li><p>We would like to know the “population” moments, i.e., the moments that describe how the population is generated</p></li>
+<li><p>For example to get the expected return on the market, i.e. it’s population mean, we use the sample mean</p></li>
+</ul>
+<div class="math notranslate nohighlight">
+\[\overline{R_{MKT}}=\frac{\sum_{t=1}^TR_{MKT}}{T}\]</div>
+<ul class="simple">
+<li><p>where T is the sample size</p></li>
+<li><p>we also call the sample average</p></li>
+<li><p>Note that each observation in the sample is weighted  equally by the frequency of the <strong>realized</strong> observations</p></li>
+<li><p>For population means they are weighted by the <strong>expected</strong> frequency, i.e. the probabilities</p></li>
+<li><p>We say that the sample average is an <strong>ESTIMATOR</strong> for the true expected value</p></li>
+</ul>
+</section>
+<section id="the-normal-distribution">
+<h2><span class="section-number">6.1.3. </span><strong>The Normal distribution</strong><a class="headerlink" href="#the-normal-distribution" title="Permalink to this heading">#</a></h2>
+<ul class="simple">
+<li><p>Most of what we do does not depend on the assumption of normality</p></li>
+<li><p>But normal distributions are very useful in statistical tests</p></li>
+<li><p>And they are also not a bad approximation for return data at low frequency (monthly/year)</p></li>
+</ul>
+<ul class="simple">
+<li><p>Probability that any random draw form a Normal distribution random variable <span class="math notranslate nohighlight">\(\tilde{x}\)</span> is within <span class="math notranslate nohighlight">\(n=1\)</span> standard deviation from the mean is 0.6826</p></li>
+</ul>
+<div class="math notranslate nohighlight">
+\[Prob(E[\tilde{x}]-1\sigma(\tilde{x})\leq \tilde{x}\leq E[\tilde{x}]+1\sigma(\tilde{x}))|_{n=1})=0.6826\]</div>
+<ul class="simple">
+<li><p><span class="math notranslate nohighlight">\(n=2,Prob(\cdot)=0.9550\)</span></p></li>
+</ul>
+<div class="math notranslate nohighlight">
+\[Prob(E[\tilde{x}]-2\sigma(\tilde{x})\leq \tilde{x}\leq E[\tilde{x}]+2\sigma(\tilde{x}))|_{n=1})=0.9550\]</div>
+<ul class="simple">
+<li><p>it is convenient to to transform a normally distributed r.v. into units of standard deviations from it’s mean</p></li>
+</ul>
+<div class="math notranslate nohighlight">
+\[\tilde{z}=\frac{\tilde{x}-E[\tilde{x}]}{\sigma(\tilde{x})}\]</div>
+<ul class="simple">
+<li><p>This follows the “standard” normal distribution, which has mean 0 and and standard deviation 1</p></li>
+<li><p>can you show that is indeed the case that z has mean zero and standard devaiton 1?</p></li>
+<li><p>This means that the normal distribution is completely characterized by it’s first two moments</p></li>
+<li><p>This means that the investment problem is much more tractable too!</p></li>
+<li><p>Only two moments to worry about:</p>
+<ul>
+<li><p>The expected return of the portfolio</p></li>
+<li><p>it’s variance</p></li>
+<li><p>The probability of really bad tail events will follow immediately from these two!</p></li>
+</ul>
+</li>
+</ul>
+<p><strong>How to evaluate whether returns are normal?</strong></p>
+<p>The standard approach is to look at higher moments.</p>
+<p>Because the normal is entired descibed by the first two moments, looking at these higher moments can give us a clue if that is really true for the data at hand.</p>
+<p>Here are a few:</p>
+<ul>
+<li><p>Skewness</p></li>
+<li><p>Kurtosis</p></li>
+<li><p>Frequency of extreme return realizations</p>
+<ul class="simple">
+<li><p>3 sigma events should almost never happen for a normal random variable</p></li>
+<li><p>once every 500 periods</p></li>
+</ul>
+<div class="math notranslate nohighlight">
+\[PROB(|R-E{R}|&gt;3\sigma(R))\]</div>
+</li>
+</ul>
+<p>A nice thing to do is to simulate data generated by a normal with same sample mean and standard deviation as the normal, and compare it with the actual data</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># get you estimators </span>
+<span class="n">mu</span><span class="o">=</span><span class="n">Data</span><span class="o">.</span><span class="n">MKT</span><span class="o">.</span><span class="n">mean</span><span class="p">()</span>
+<span class="n">std</span><span class="o">=</span><span class="n">Data</span><span class="o">.</span><span class="n">MKT</span><span class="o">.</span><span class="n">std</span><span class="p">()</span>
+<span class="c1"># sample sze</span>
+<span class="n">T</span><span class="o">=</span><span class="n">Data</span><span class="o">.</span><span class="n">MKT</span><span class="o">.</span><span class="n">count</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># simulate from a nomral distributiion wiht same mean, standard devation and sample size</span>
+
+<span class="n">X</span><span class="o">=</span><span class="n">pd</span><span class="o">.</span><span class="n">Series</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">normal</span><span class="p">(</span><span class="n">mu</span><span class="p">,</span><span class="n">std</span><span class="p">,</span><span class="n">T</span><span class="p">))</span>
+
+<span class="n">Data</span><span class="o">.</span><span class="n">MKT</span><span class="o">.</span><span class="n">hist</span><span class="p">(</span><span class="n">bins</span><span class="o">=</span><span class="mi">50</span><span class="p">)</span>
+<span class="n">X</span><span class="o">.</span><span class="n">hist</span><span class="p">(</span><span class="n">bins</span><span class="o">=</span><span class="mi">50</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;AxesSubplot:&gt;
+</pre></div>
+</div>
+<img alt="../../_images/c951cb06e7aaa6cdd9e99720fe288d7459a389f6b4723ef98f78885950eb8b09.png" src="../../_images/c951cb06e7aaa6cdd9e99720fe288d7459a389f6b4723ef98f78885950eb8b09.png" />
+</div>
+</div>
+<ul class="simple">
+<li><p>what happens if we increase the mean?</p></li>
+<li><p>what happens if we increase the standard deviation?</p></li>
+<li><p>for the same standard mean and standard deviation what do you notice when you compare the real data and the simulated data?</p></li>
+</ul>
+<blockquote>
+<div><p>This is only one simulation! Everytime you run the cell again it will draw a new set of realizations. Try it!</p>
+</div></blockquote>
+<p>Lets look at higher moments of our data and the normal simulation</p>
+<p><strong>Skewness</strong></p>
+<p>What is the skewness of a normal distrbiution?</p>
+<p>Does that hold for the simulation? Why not?</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="p">[</span><span class="n">Data</span><span class="o">.</span><span class="n">MKT</span><span class="o">.</span><span class="n">skew</span><span class="p">(),</span> <span class="n">X</span><span class="o">.</span><span class="n">skew</span><span class="p">()]</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[-0.5053783766354294, -0.11814774419178325]
+</pre></div>
+</div>
+</div>
+</div>
+<p><strong>Kurtosis</strong></p>
+<p>What is the Kurtosis of a normal distribution?</p>
+<p>Does that hold in our simulation? Why not?</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="p">[</span><span class="n">Data</span><span class="o">.</span><span class="n">MKT</span><span class="o">.</span><span class="n">kurtosis</span><span class="p">(),</span><span class="n">X</span><span class="o">.</span><span class="n">kurtosis</span><span class="p">()]</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[1.9881305187934846, 0.2796480959378349]
+</pre></div>
+</div>
+</div>
+</div>
+<p><strong>Number of Extreme realizations</strong></p>
+<p>To evaluate how close a distribution is to the normal distribution we typically look at how many observations in the real data are below a certain number of standard devations of the mean</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">X</span><span class="o">=</span><span class="n">pd</span><span class="o">.</span><span class="n">Series</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">normal</span><span class="p">(</span><span class="n">mu</span><span class="p">,</span><span class="n">std</span><span class="p">,</span><span class="n">T</span><span class="p">))</span>
+<span class="n">threshold</span><span class="o">=</span><span class="mi">4</span>
+<span class="c1"># counts for the real data</span>
+<span class="n">A</span><span class="o">=</span><span class="p">((</span><span class="n">Data</span><span class="o">.</span><span class="n">MKT</span><span class="o">-</span><span class="n">Data</span><span class="o">.</span><span class="n">MKT</span><span class="o">.</span><span class="n">mean</span><span class="p">())</span><span class="o">&lt;-</span><span class="n">threshold</span><span class="o">*</span><span class="n">Data</span><span class="o">.</span><span class="n">MKT</span><span class="o">.</span><span class="n">std</span><span class="p">())</span>
+<span class="c1"># counts for simulated data (which we know it is normal!)</span>
+<span class="n">B</span><span class="o">=</span><span class="p">((</span><span class="n">X</span><span class="o">-</span><span class="n">X</span><span class="o">.</span><span class="n">mean</span><span class="p">())</span><span class="o">&lt;-</span><span class="n">threshold</span><span class="o">*</span><span class="n">X</span><span class="o">.</span><span class="n">std</span><span class="p">())</span>
+
+<span class="p">[</span><span class="n">A</span><span class="o">.</span><span class="n">sum</span><span class="p">(),</span><span class="n">B</span><span class="o">.</span><span class="n">sum</span><span class="p">()]</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[2, 0]
+</pre></div>
+</div>
+</div>
+</div>
+<p><strong>Simulating the Simulation</strong></p>
+<ul class="simple">
+<li><p>As we saw above, each simulation is naturally different.</p></li>
+<li><p>Like our sample, it is simply one draw of the distribution</p></li>
+</ul>
+<p>-How often does the higher moments come the way that they do in our sample?</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># I am initializing an array with 1000 zero entries</span>
+<span class="n">kurt</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">(</span><span class="mi">1000</span><span class="p">)</span>
+
+<span class="c1">#now each step of the for loop I am drawing one realization of sample exactly as large as our sample</span>
+<span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="mi">1000</span><span class="p">):</span>
+    <span class="n">X</span><span class="o">=</span><span class="n">pd</span><span class="o">.</span><span class="n">Series</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">normal</span><span class="p">(</span><span class="n">mu</span><span class="p">,</span><span class="n">std</span><span class="p">,</span><span class="n">T</span><span class="p">))</span>
+    <span class="n">kurt</span><span class="p">[</span><span class="n">i</span><span class="p">]</span><span class="o">=</span><span class="n">X</span><span class="o">.</span><span class="n">kurtosis</span><span class="p">()</span>
+    
+
+
+<span class="n">pd</span><span class="o">.</span><span class="n">Series</span><span class="p">(</span><span class="n">kurt</span><span class="p">)</span><span class="o">.</span><span class="n">hist</span><span class="p">(</span><span class="n">bins</span><span class="o">=</span><span class="mi">50</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;matplotlib.axes._subplots.AxesSubplot at 0x2721502f250&gt;
+</pre></div>
+</div>
+<img alt="../../_images/44fcba11f784e9c7185282e0550f122aa48d79f40e4b1e2932253c38875b69f1.png" src="../../_images/44fcba11f784e9c7185282e0550f122aa48d79f40e4b1e2932253c38875b69f1.png" />
+</div>
+</div>
+<p>If you compare this distribution with the kurtosis that we found on our data, what do you conclude?</p>
+<p><strong>Why we might care about deviations from normality?</strong></p>
+<p><strong>Volatility and Variance</strong></p>
+<p>We know how to compute variance and what they are</p>
+<div class="math notranslate nohighlight">
+\[Data.MKT.std()=\sqrt{\sum_{t=1}^T\frac{(R_{MKT,t}-\overline{R_{MKT}})^2}{T}}\]</div>
+<p>where <span class="math notranslate nohighlight">\(\overline{R_{MKT}}=\sum_{t=1}^T\frac{R_{MKT,t}}{T}\)</span> is the sample mean.</p>
+<p>So for each series we get a number. We oftern refer to the standard deviation as the “vol” or the volatility of an asset.</p>
+<p>Variance and volatility have the same content, but volatility is in the same unit as returns, and not square returns, so it easier  to have intuition about what it means.</p>
+<p>For example, if the market has a vol of 20% per year, and if the market return is assumed to be normally distributed, I know that there is about a 2.5% probability that I will loose 40% of my investment by the end of the year!</p>
+<p><strong>But what risk should you care about? What stock should be risky for you?</strong></p>
+<p>The great insight from Harry Markowitz was to think of risk in terms of what the stock adds to your portfolio</p>
+<p>Just like meat can be good for you if you are not eating any meat, it is terrible if you are eating a lot of it</p>
+<p>What investors should care about is, just like eaters, their final diet. If a given stock brings a lot of what you already have, it will be bad for you, i.e., risky.</p>
+<p>So volatility is a good gauge of risk at the portfolio level, because it is asking how your whole portfolio behaves, which you obvisoulsy should care about. If it goes down a lot, it means you cannot buy stuff!</p>
+<p>But when thinking about a specific stock, it’s volatility means very little.</p>
+<p>Unless your entire portfolio is just that stock, you don’t really need to bear the stock risk–if you have 1% in a stock and the stock drops to ZERO, that is only 1% in your portfolio, so at most you lose 1%. So whatever volatility this stock might have you SHOULD not perceive the stock as very risky for you.</p>
+<p>As long, of course, your position in the stock remians small.</p>
+<p>Note that if this stock would move together with other pieces of your portfolio then your calculation should be very different. If this stock goes to zero exactly when your other assets are also losing a lot of money, this will feel very risky trade.</p>
+<p>The way to measure this degree of commonality between your portfolio and this particular stock is the covariance</p>
+<div class="math notranslate nohighlight">
+\[Cov(R_{i,t},R_{j,t})={\sum_{t=1}^T\frac{(R_{i,t}-\overline{R_{i}})(R_{j,t}-\overline{R_{j}})}{T}}\]</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1">#Lets reimport the data set and now keep the other assets</span>
+<span class="n">Data</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="n">url</span><span class="p">,</span><span class="n">na_values</span><span class="o">=-</span><span class="mi">99</span><span class="p">)</span>
+<span class="n">Data</span><span class="p">[</span><span class="s1">&#39;Date&#39;</span><span class="p">]</span><span class="o">=</span><span class="n">pd</span><span class="o">.</span><span class="n">to_datetime</span><span class="p">(</span><span class="n">Data</span><span class="p">[</span><span class="s1">&#39;Date&#39;</span><span class="p">])</span>
+<span class="n">Data</span><span class="o">=</span><span class="n">Data</span><span class="o">.</span><span class="n">set_index</span><span class="p">([</span><span class="s1">&#39;Date&#39;</span><span class="p">])</span>
+<span class="n">Data</span><span class="o">.</span><span class="n">head</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>Date</th>
+      <th>RF</th>
+      <th>MKT</th>
+      <th>USA30yearGovBond</th>
+      <th>EmergingMarkets</th>
+      <th>WorldxUSA</th>
+      <th>WorldxUSAGovBond</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>1963-02-28</td>
+      <td>0.0023</td>
+      <td>-0.0215</td>
+      <td>-0.001878</td>
+      <td>0.098222</td>
+      <td>-0.002773</td>
+      <td>NaN</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>1963-03-31</td>
+      <td>0.0023</td>
+      <td>0.0331</td>
+      <td>0.003342</td>
+      <td>0.014149</td>
+      <td>0.000371</td>
+      <td>0.001913</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>1963-04-30</td>
+      <td>0.0025</td>
+      <td>0.0476</td>
+      <td>-0.001843</td>
+      <td>-0.147055</td>
+      <td>-0.003336</td>
+      <td>0.008002</td>
+    </tr>
+    <tr>
+      <th>3</th>
+      <td>1963-05-31</td>
+      <td>0.0024</td>
+      <td>0.0200</td>
+      <td>-0.001807</td>
+      <td>-0.012172</td>
+      <td>-0.000186</td>
+      <td>0.004689</td>
+    </tr>
+    <tr>
+      <th>4</th>
+      <td>1963-06-30</td>
+      <td>0.0023</td>
+      <td>-0.0177</td>
+      <td>0.001666</td>
+      <td>-0.055699</td>
+      <td>-0.011160</td>
+      <td>0.003139</td>
+    </tr>
+  </tbody>
+</table>
+</div></div></div>
+</div>
+<p>The Covariance matrix of a set of stocks is the matrix where cell <span class="math notranslate nohighlight">\((i,j)\)</span> has the covariance between asset <span class="math notranslate nohighlight">\(i\)</span> and asset <span class="math notranslate nohighlight">\(j\)</span>:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># here for two assets</span>
+<span class="n">Data</span><span class="p">[[</span><span class="s1">&#39;MKT&#39;</span><span class="p">,</span><span class="s1">&#39;WorldxUSA&#39;</span><span class="p">,</span><span class="s1">&#39;USA30yearGovBond&#39;</span><span class="p">,</span><span class="s1">&#39;WorldxUSA&#39;</span><span class="p">,</span><span class="s1">&#39;WorldxUSAGovBond&#39;</span><span class="p">]]</span><span class="o">.</span><span class="n">cov</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>MKT</th>
+      <th>WorldxUSA</th>
+      <th>USA30yearGovBond</th>
+      <th>WorldxUSA</th>
+      <th>WorldxUSAGovBond</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>MKT</th>
+      <td>0.001936</td>
+      <td>0.001255</td>
+      <td>0.000104</td>
+      <td>0.001255</td>
+      <td>0.000182</td>
+    </tr>
+    <tr>
+      <th>WorldxUSA</th>
+      <td>0.001255</td>
+      <td>0.002175</td>
+      <td>-0.000017</td>
+      <td>0.002175</td>
+      <td>0.000419</td>
+    </tr>
+    <tr>
+      <th>USA30yearGovBond</th>
+      <td>0.000104</td>
+      <td>-0.000017</td>
+      <td>0.001226</td>
+      <td>-0.000017</td>
+      <td>0.000264</td>
+    </tr>
+    <tr>
+      <th>WorldxUSA</th>
+      <td>0.001255</td>
+      <td>0.002175</td>
+      <td>-0.000017</td>
+      <td>0.002175</td>
+      <td>0.000419</td>
+    </tr>
+    <tr>
+      <th>WorldxUSAGovBond</th>
+      <td>0.000182</td>
+      <td>0.000419</td>
+      <td>0.000264</td>
+      <td>0.000419</td>
+      <td>0.000407</td>
+    </tr>
+  </tbody>
+</table>
+</div></div></div>
+</div>
+<p>note that the diagonal cell <span class="math notranslate nohighlight">\((i,i)\)</span> has the covariance between asset <span class="math notranslate nohighlight">\(i\)</span> and asset <span class="math notranslate nohighlight">\(i\)</span>, which is just the variance of asset <span class="math notranslate nohighlight">\(i\)</span></p>
+<p><strong>Question: Why did I take out the risk-free rate when computing the variance?</strong></p>
+<p>Another way of looking at this is the correlation matrix, which normalizes the covariances by the volatility of each asset:</p>
+<div class="math notranslate nohighlight">
+\[Corr(R_{i,t},R_{j,t})={\frac{Cov(R_{i,t},R_{j,t})}{\sqrt{Var(R_{i,t})Var(R_{j,t})}}}\]</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">Data</span><span class="p">[[</span><span class="s1">&#39;MKT&#39;</span><span class="p">,</span><span class="s1">&#39;WorldxUSA&#39;</span><span class="p">,</span><span class="s1">&#39;USA30yearGovBond&#39;</span><span class="p">,</span><span class="s1">&#39;WorldxUSA&#39;</span><span class="p">,</span><span class="s1">&#39;WorldxUSAGovBond&#39;</span><span class="p">]]</span><span class="o">.</span><span class="n">corr</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>MKT</th>
+      <th>WorldxUSA</th>
+      <th>USA30yearGovBond</th>
+      <th>WorldxUSA</th>
+      <th>WorldxUSAGovBond</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>MKT</th>
+      <td>1.000000</td>
+      <td>0.611369</td>
+      <td>0.067779</td>
+      <td>0.611369</td>
+      <td>0.204491</td>
+    </tr>
+    <tr>
+      <th>WorldxUSA</th>
+      <td>0.611369</td>
+      <td>1.000000</td>
+      <td>-0.010180</td>
+      <td>1.000000</td>
+      <td>0.444938</td>
+    </tr>
+    <tr>
+      <th>USA30yearGovBond</th>
+      <td>0.067779</td>
+      <td>-0.010180</td>
+      <td>1.000000</td>
+      <td>-0.010180</td>
+      <td>0.373123</td>
+    </tr>
+    <tr>
+      <th>WorldxUSA</th>
+      <td>0.611369</td>
+      <td>1.000000</td>
+      <td>-0.010180</td>
+      <td>1.000000</td>
+      <td>0.444938</td>
+    </tr>
+    <tr>
+      <th>WorldxUSAGovBond</th>
+      <td>0.204491</td>
+      <td>0.444938</td>
+      <td>0.373123</td>
+      <td>0.444938</td>
+      <td>1.000000</td>
+    </tr>
+  </tbody>
+</table>
+</div></div></div>
+</div>
+<ul class="simple">
+<li><p>What is noteworthy about these relationships?</p></li>
+<li><p>What is safer for an US investor? US bond portfolio or World bond portfolio?</p></li>
+<li><p>What is safer for an international investor? US bond portfolio or World bond portfolio?</p></li>
+</ul>
+</section>
+<section id="excess-returns">
+<h2><span class="section-number">6.1.4. </span><strong>Excess returns</strong><a class="headerlink" href="#excess-returns" title="Permalink to this heading">#</a></h2>
+<ul class="simple">
+<li><p>It is convenient to decompose the return earned in terms of what you earn due to</p>
+<ol class="arabic simple">
+<li><p>compensation for waiting (time-value of money)</p></li>
+<li><p>compensation for bearing risk (risk premium)</p></li>
+</ol>
+</li>
+<li><p>To do the decomposition, we will do the following:</p>
+<ul>
+<li><p>We first define an “<b>excess return</b>”： the return minus the risk-free rate</p></li>
+</ul>
+</li>
+</ul>
+<div class="math notranslate nohighlight">
+\[R_i^e=R_i-R_f\]</div>
+<ul>
+<li><p>We typically use the returns of a 3-month treasury bill to measure <span class="math notranslate nohighlight">\(R_f\)</span></p></li>
+<li><p>So the excess return of the market is</p>
+<div class="math notranslate nohighlight">
+\[R^e_{MKT}=R_{MKT}-R_f\]</div>
+</li>
+<li><p>i.e. how much more I would get if I invested in the market instead of a short-term risk-free U.S. treasury bond</p></li>
+<li><p>We call the <strong>Expected difference</strong>, the <b>Risk-Premium</b></p>
+<div class="math notranslate nohighlight">
+\[E[R_i^e]=E[R_i-R_f]\]</div>
+</li>
+<li><p>It is how much more you expect to get by investing in asset <span class="math notranslate nohighlight">\(i\)</span> instead of the risk-free asset</p></li>
+<li><p>When asset <span class="math notranslate nohighlight">\(i\)</span> is the total market portfolio of US equities, we call this, the <b>Equity Risky Premium</b></p></li>
+</ul>
+<p><strong>The Equity Risky Premium</strong></p>
+<p>The expected difference in return earned by investing in the aggreagate stock market portfolio instead of the risk-free rate</p>
+<div class="math notranslate nohighlight">
+\[E[R_{MKT}-R_f]\]</div>
+<p>One good estimate of it simply uses the sample mean</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="p">(</span><span class="n">Data</span><span class="o">.</span><span class="n">MKT</span><span class="o">-</span><span class="n">Data</span><span class="o">.</span><span class="n">RF</span><span class="p">)</span><span class="o">.</span><span class="n">mean</span><span class="p">()</span><span class="o">*</span><span class="mi">100</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>0.5140340030911901
+</pre></div>
+</div>
+</div>
+</div>
+<p>What does this mean?</p>
+<p>Lets look at how much money one would have if they had invested 1 dollar in the market and kept reinvesting until the end of our sample</p>
+<p>lets then compare with an investment in the risk-free rate</p>
+<div class="math notranslate nohighlight">
+\[(1+r_1)(1+r_2)....(1+r_T)\]</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="p">(</span><span class="mi">1</span><span class="o">+</span><span class="n">Data</span><span class="p">[[</span><span class="s1">&#39;RF&#39;</span><span class="p">,</span><span class="s1">&#39;MKT&#39;</span><span class="p">]])</span><span class="o">.</span><span class="n">cumprod</span><span class="p">()</span><span class="o">.</span><span class="n">plot</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;matplotlib.axes._subplots.AxesSubplot at 0x272170afd30&gt;
+</pre></div>
+</div>
+<img alt="../../_images/db569ed453bba4467b3677208d7519e4832b35d953d96358c05ab01c2278f5cf.png" src="../../_images/db569ed453bba4467b3677208d7519e4832b35d953d96358c05ab01c2278f5cf.png" />
+</div>
+</div>
+<p>This means that someone that invested 1 dollar in the market in 63, would have 182 dollars today.</p>
+<p>A tota return of 182/1-1=18,100%</p>
+<p>If you invested in the risk-free rate you would have</p>
+<p>12.5/1-1= 1,150% which is a bit above the inflation in this same period</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="p">(</span><span class="mi">1</span><span class="o">+</span><span class="n">Data</span><span class="p">[[</span><span class="s1">&#39;RF&#39;</span><span class="p">,</span><span class="s1">&#39;MKT&#39;</span><span class="p">]])</span><span class="o">.</span><span class="n">cumprod</span><span class="p">()</span><span class="o">.</span><span class="n">tail</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span>
+<span class="p">(</span><span class="mi">1</span><span class="o">+</span><span class="n">Data</span><span class="p">[[</span><span class="s1">&#39;RF&#39;</span><span class="p">,</span><span class="s1">&#39;MKT&#39;</span><span class="p">]])</span><span class="o">.</span><span class="n">prod</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>RF      12.472682
+MKT    181.954557
+dtype: float64
+</pre></div>
+</div>
+</div>
+</div>
+<p><strong>Why Excess returns are useful?</strong></p>
+<p>All asset returns have both the risk-free component in it and the risk-premium component.</p>
+<p>The risk-free component is directly observed– for example in dollars it is convention to use the yield on the 3 month US goverment treasury bill</p>
+<p>The average risk-free rate of the last 30 years tells you nothing about the risk-less rate today BECAUSE you can directly observe it. It is literally the rate of return that you get for sure if you buy a tbill and hold ultill maturity–and this rate of return is know in advance becasue we know the final price of the tbill.</p>
+<p>The particular instrument that you use to measure the risk-free rate might vary depending on a variety of complicated considerations</p>
+<ul class="simple">
+<li><p>Is it funded instrument vs not funded (bills vs swaps)</p></li>
+<li><p>Acessible to everyone or only banks (bill vs fed funds)</p></li>
+<li><p>Can you borrow at this rate (bills vs your broker lending rate)</p></li>
+</ul>
+<p>But the important point is that at any given moment you know the true risk-free rate. There is no point in estimating it</p>
+<p><strong>Trading Interpretation</strong></p>
+<ul class="simple">
+<li><p>Excess reutrns have a nice trading interpretation.</p></li>
+<li><p>For example the excess return on the market (portfolio) is</p></li>
+</ul>
+<div class="math notranslate nohighlight">
+\[R^{e,MKT}=R^{MKT}-R^F\]</div>
+<ul class="simple">
+<li><p>This is really a portfolio that has weights 1 on the market and -1 on the risk-free rate</p></li>
+<li><p>This type of portfolio is very important</p></li>
+<li><p>We call it a “self-financed portfolio” or “zero cost portfolio”</p></li>
+<li><p>The key is you are not putting any capital in it because you borrow 1 dollar to invest 1 dollar in the market (or in any other assets)</p></li>
+</ul>
+<p><em>Reality is a bit more complicated</em></p>
+<ul class="simple">
+<li><p>we will discuss this later, but in practice you always have to put some capital on the trade</p></li>
+<li><p>some investors don’t really need to put much like banks and dealers, but others like retail investors are asked to put much more.And often the amount of capital that you have to put on a “zero-cost” trade fluctuates with liquidity conditions (a lot during crises, not much during booms)</p></li>
+<li><p>These portfolios are nevertheless super useful empirically to understand the data even if in the real world you cannot directly buy the zero cost portfolios without putting capital</p></li>
+</ul>
+<p><em>Why is it that a broker dealer will ask you to put some capital to back the trade?</em></p>
+</section>
+<section id="sample-averages-vs-population-expectations">
+<h2><span class="section-number">6.1.5. </span>Sample averages vs Population Expectations<a class="headerlink" href="#sample-averages-vs-population-expectations" title="Permalink to this heading">#</a></h2>
+<p><strong>How to go from the SAMPLE to the POPULATION distribution?</strong></p>
+<p>We are interested in the true distribution of an asset returns going forward</p>
+<p>But we only have it’s historical behavior.</p>
+<p>How do we extrapolate from it to the future?</p>
+<p>We need a model!</p>
+<p>In most of this class we will use a model where the distribution of excess returns is constant (does not vary over time).</p>
+<ul class="simple">
+<li><p>under this assumption the sample mean of the asset excess return is a good estimator for the expected return of the asset going forward</p></li>
+<li><p>under the assumption that investors expected the average, the standard deviaiton is a good measure of the asset risk, becasue it measures deviations from expectations</p></li>
+<li><p>This however is not a good model for the risk-free rate!The risk-free rate obviously move over time!</p></li>
+<li><p>Time-variation in the risk-free rate as all about time-variaiton in what investors expected to get from investign in the tbill and none of it as risk/deviations of expectation</p></li>
+</ul>
+<p><strong>why?</strong></p>
+<p>Becasue we know that investor know the tbill yield so they perfectly know what they will get from investing in the tbill–and that is the reason we call it risk-free rate!</p>
+<p><em>Reality is a bit more complicated</em></p>
+<p>This “constant premiuns” with time-varying risk-free rate allows us to go a long way.</p>
+<p>But of course the data is more complicated!</p>
+<ul class="simple">
+<li><p>you might be able to predict the excess returns of an asset and in this case, i.e. there is time time-variation in the return premium to hold the assey</p></li>
+<li><p>In this case volatility will over-estimate the degree of risk, since part of the movement was not surprising to you– so it is not risk</p></li>
+<li><p>certainly in the data there is some evidecne that we can predict excess returns a little bitbut by and large the constant premium assumption is a good approximation for an asset as the market portoflio</p></li>
+<li><p>Obvioulsy not good a approximation for an assets that it’s riskness has changed– Evergrande bonds have a very different risk today vs 5 years ago!</p></li>
+</ul>
+</section>
+</section>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "binder-examples/jupyter-stacks-datascience",
+            ref: "master",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "python"
+        },
+        kernelOptions: {
+            name: "python3",
+            path: "./chapters/Finance"
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'python3'</script>
+
+                </article>
+              
+
+              
+              
+                <footer class="bd-footer-article">
+                  
+<div class="footer-article-items footer-article__inner">
+  
+    <div class="footer-article-item"><!-- Previous / next buttons -->
+<div class="prev-next-area">
+    <a class="left-prev"
+       href="Returns.html"
+       title="previous page">
+      <i class="fa-solid fa-angle-left"></i>
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">previous</p>
+        <p class="prev-next-title"><span class="section-number">6. </span>Asset Returns</p>
+      </div>
+    </a>
+    <a class="right-next"
+       href="../scientific/randomness1.html"
+       title="next page">
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">next</p>
+        <p class="prev-next-title"><span class="section-number">6.2. </span>Randomness</p>
+      </div>
+      <i class="fa-solid fa-angle-right"></i>
+    </a>
+</div></div>
+  
+</div>
+
+                </footer>
+              
+            </div>
+            
+            
+              
+                <div class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
+  <div class="sidebar-secondary-item">
+  <div class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> Contents
+  </div>
+  <nav class="bd-toc-nav page-toc">
+    <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#how-returns-are-distributed">6.1.1. <strong>How Returns are distributed?</strong></a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#a-quick-review-of-randomness-and-probability-distributions">6.1.2. A quick review of randomness and probability distributions</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#the-normal-distribution">6.1.3. <strong>The Normal distribution</strong></a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#excess-returns">6.1.4. <strong>Excess returns</strong></a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#sample-averages-vs-population-expectations">6.1.5. Sample averages vs Population Expectations</a></li>
+</ul>
+  </nav></div>
+
+</div></div>
+              
+            
+          </div>
+          <footer class="bd-footer-content">
+            
+<div class="bd-footer-content__inner container">
+  
+  <div class="footer-item">
+    
+<p class="component-author">
+By Alan Moreira
+</p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+  <p class="copyright">
+    
+      © Copyright 2021 Creative Commons Attribution-ShareAlike 4.0 International (CC BY-SA 4.0).
+      <br/>
+    
+  </p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+</div>
+          </footer>
+        
+
+      </main>
+    </div>
+  </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script src="../../_static/scripts/bootstrap.js?digest=e353d410970836974a52"></script>
+<script src="../../_static/scripts/pydata-sphinx-theme.js?digest=e353d410970836974a52"></script>
+
+  <footer class="bd-footer">
+  </footer>
+  </body>
+</html>

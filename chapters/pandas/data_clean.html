@@ -1,0 +1,2038 @@
+
+
+<!DOCTYPE html>
+
+
+<html lang="en" >
+
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
+
+    <title>5.5. Cleaning Data (opt) &#8212; Quantitative Investing</title>
+  
+  
+  
+  <script data-cfasync="false">
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "light";
+  </script>
+  
+  <!-- Loaded before other Sphinx assets -->
+  <link href="../../_static/styles/theme.css?digest=e353d410970836974a52" rel="stylesheet" />
+<link href="../../_static/styles/bootstrap.css?digest=e353d410970836974a52" rel="stylesheet" />
+<link href="../../_static/styles/pydata-sphinx-theme.css?digest=e353d410970836974a52" rel="stylesheet" />
+
+  
+  <link href="../../_static/vendor/fontawesome/6.1.2/css/all.min.css?digest=e353d410970836974a52" rel="stylesheet" />
+  <link rel="preload" as="font" type="font/woff2" crossorigin href="../../_static/vendor/fontawesome/6.1.2/webfonts/fa-solid-900.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../../_static/vendor/fontawesome/6.1.2/webfonts/fa-brands-400.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../../_static/vendor/fontawesome/6.1.2/webfonts/fa-regular-400.woff2" />
+
+    <link rel="stylesheet" type="text/css" href="../../_static/pygments.css" />
+    <link rel="stylesheet" href="../../_static/styles/sphinx-book-theme.css?digest=14f4ca6b54d191a8c7657f6c759bf11a5fb86285" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/togglebutton.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/copybutton.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/sphinx-thebe.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/book.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/design-style.4045f2051d55cab465a707391d5b2007.min.css" />
+  
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="../../_static/scripts/bootstrap.js?digest=e353d410970836974a52" />
+<link rel="preload" as="script" href="../../_static/scripts/pydata-sphinx-theme.js?digest=e353d410970836974a52" />
+
+    <script data-url_root="../../" id="documentation_options" src="../../_static/documentation_options.js"></script>
+    <script src="../../_static/jquery.js"></script>
+    <script src="../../_static/underscore.js"></script>
+    <script src="../../_static/_sphinx_javascript_frameworks_compat.js"></script>
+    <script src="../../_static/doctools.js"></script>
+    <script src="../../_static/clipboard.min.js"></script>
+    <script src="../../_static/copybutton.js"></script>
+    <script src="../../_static/scripts/sphinx-book-theme.js?digest=5a5c038af52cf7bc1a1ec88eea08e6366ee68824"></script>
+    <script>let toggleHintShow = 'Click to show';</script>
+    <script>let toggleHintHide = 'Click to hide';</script>
+    <script>let toggleOpenOnPrint = 'true';</script>
+    <script src="../../_static/togglebutton.js"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script src="../../_static/design-tabs.js"></script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"
+const thebe_selector = ".thebe,.cell"
+const thebe_selector_input = "pre"
+const thebe_selector_output = ".output, .cell_output"
+</script>
+    <script async="async" src="../../_static/sphinx-thebe.js"></script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'chapters/pandas/data_clean';</script>
+    <link rel="canonical" href="https://amoreira2.github.io/quantitativeinvesting/chapters/pandas/data_clean.html" />
+    <link rel="shortcut icon" href="../../_static/figuremain2.jpg"/>
+    <link rel="index" title="Index" href="../../genindex.html" />
+    <link rel="search" title="Search" href="../../search.html" />
+    <link rel="next" title="5.6. Reshape (opt)" href="reshape.html" />
+    <link rel="prev" title="5.4. Time series" href="timeseries.html" />
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta name="docsearch:language" content="en"/>
+  </head>
+  
+  
+  <body data-bs-spy="scroll" data-bs-target=".bd-toc-nav" data-offset="180" data-bs-root-margin="0px 0px -60%" data-default-mode="">
+
+  
+  
+  <a class="skip-link" href="#main-content">Skip to main content</a>
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          name="__primary"
+          id="__primary"/>
+  <label class="overlay overlay-primary" for="__primary"></label>
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          name="__secondary"
+          id="__secondary"/>
+  <label class="overlay overlay-secondary" for="__secondary"></label>
+  
+  <div class="search-button__wrapper">
+    <div class="search-button__overlay"></div>
+    <div class="search-button__search-container">
+<form class="bd-search d-flex align-items-center"
+      action="../../search.html"
+      method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search"
+         class="form-control"
+         name="q"
+         id="search-input"
+         placeholder="Search this book..."
+         aria-label="Search this book..."
+         autocomplete="off"
+         autocorrect="off"
+         autocapitalize="off"
+         spellcheck="false"/>
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form></div>
+  </div>
+  
+    <nav class="bd-header navbar navbar-expand-lg bd-navbar">
+    </nav>
+  
+  <div class="bd-container">
+    <div class="bd-container__inner bd-page-width">
+      
+      <div class="bd-sidebar-primary bd-sidebar">
+        
+
+  
+  <div class="sidebar-header-items sidebar-primary__section">
+    
+    
+    
+    
+  </div>
+  
+    <div class="sidebar-primary-items__start sidebar-primary__section">
+        <div class="sidebar-primary-item">
+  
+
+<a class="navbar-brand logo" href="../intro.html">
+  
+  
+  
+  
+    
+    
+      
+    
+    
+    <img src="../../_static/figuremain2.jpg" class="logo__image only-light" alt="Logo image"/>
+    <script>document.write(`<img src="../../_static/figuremain2.jpg" class="logo__image only-dark" alt="Logo image"/>`);</script>
+  
+  
+</a></div>
+        <div class="sidebar-primary-item"><nav class="bd-links" id="bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item navbar-nav active">
+        <ul class="current nav bd-sidenav">
+<li class="toctree-l1 has-children"><a class="reference internal" href="../01/what-is-quant-investing.html">1. What is Quantitative Investing?</a><input class="toctree-checkbox" id="toctree-checkbox-1" name="toctree-checkbox-1" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-1"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l2"><a class="reference internal" href="../01/statistical-techniques.html">1.1. Statistical Techniques</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../01/computational-tools.html">1.2. Computational tools</a></li>
+</ul>
+</li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../02/getting_started.html">2. Getting Started</a><input class="toctree-checkbox" id="toctree-checkbox-2" name="toctree-checkbox-2" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-2"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l2"><a class="reference internal" href="../02/local_install.html">2.3. Local installation</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../02/cloud_setup.html">2.4. Cloud Setup</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../03/programming-in-python.html">3. First Steps with Python</a></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../essentials/essentials.html">4. Python Essentials</a><input class="toctree-checkbox" id="toctree-checkbox-3" name="toctree-checkbox-3" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-3"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l2"><a class="reference internal" href="../essentials/basics.html">4.1. Basics</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../essentials/collections.html">4.2. Collections</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../essentials/control_flow.html">4.3. Flow control</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../essentials/functions.html">4.4. Functions</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../essentials/numpy1.html">4.5. Numpy</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../essentials/plotting1.html">4.6. Plotting</a></li>
+</ul>
+</li>
+<li class="toctree-l1 current active has-children"><a class="reference internal" href="workingwithdata.html">5. Working with Data</a><input checked="" class="toctree-checkbox" id="toctree-checkbox-4" name="toctree-checkbox-4" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-4"><i class="fa-solid fa-chevron-down"></i></label><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="intro.html">5.1. Introduction</a></li>
+<li class="toctree-l2"><a class="reference internal" href="basics.html">5.2. Pandas Basics</a></li>
+<li class="toctree-l2"><a class="reference internal" href="the_index.html">5.3. Indexing</a></li>
+<li class="toctree-l2"><a class="reference internal" href="timeseries.html">5.4. Time-Series</a></li>
+<li class="toctree-l2 current active"><a class="current reference internal" href="#">5.5. Cleaning data (opt)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="reshape.html">5.6. Reshape (opt)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="merge.html">5.7. Merge (opt)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="groupby.html">5.8. Group-by (opt)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="matplotlib.html">5.9. Plotting (opt)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="storage_formats.html">5.10. Data Storage (opt)</a></li>
+</ul>
+</li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../Finance/Returns.html">6. Asset Returns</a><input class="toctree-checkbox" id="toctree-checkbox-5" name="toctree-checkbox-5" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-5"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l2"><a class="reference internal" href="../Finance/Returns1.html">6.1. Returns</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../scientific/randomness1.html">6.2. Modeling randomness</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../Finance/TheChoiceofFrequency.html">6.3. The Choice of Frequency and Annualization of Returns</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../scientific/linear_algebra1.html">6.4. Linear algebra Review</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../Finance/UsingAPI.html">6.5. Data APIs</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../Finance/PortfolioMath.html">7. Portfolio Math</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../Finance/CapitalAllocationLine.html">8. Capital Allocation</a></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../Finance/meanvariance1.html">9. Mean Variance Frontier</a><input class="toctree-checkbox" id="toctree-checkbox-6" name="toctree-checkbox-6" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-6"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l2"><a class="reference internal" href="../Finance/MeanVariance.html">9.1. Mean Variance Efficient Portfolios</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../Finance/CaseStudy.html">9.2. Case Study in International Diversification</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../Finance/LeverageandShorting.html">9.3. Leverage and Shorting</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../Finance/Portfoliooptimizationwithconstraints.html">9.4. Portfolio Optimization with constraints</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../Finance/EstimationUncertainty.html">10. Estimation Uncertainty and It's Implications for investing</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../Finance/TradingStrategies.html">11. Trading Strategies</a></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../Finance/Timing.html">12. Timing Strategies</a><input class="toctree-checkbox" id="toctree-checkbox-7" name="toctree-checkbox-7" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-7"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l2"><a class="reference internal" href="../Finance/Volatilitytiming.html">12.1. Volatility Timing</a></li>
+</ul>
+</li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../Finance/crosssectionalequitystrategies.html">13. Cross-Sectional Equity Strategies</a><input class="toctree-checkbox" id="toctree-checkbox-8" name="toctree-checkbox-8" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-8"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l2"><a class="reference internal" href="../Finance/Valueinvesting.html">13.1. Value</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../Finance/Momentum.html">13.2. Momentum</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../Finance/OtherEquityStrategies.html">13.3. Other Equity strategies</a></li>
+</ul>
+</li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../Finance/Evaluation.html">14. Evaluating a Trading Strategy</a><input class="toctree-checkbox" id="toctree-checkbox-9" name="toctree-checkbox-9" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-9"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l2"><a class="reference internal" href="../Finance/Econometrics.html">14.1. The Econometrics of Strategy Evalaution</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../Finance/outofsample.html">14.2. Out of Sample Analysis</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../Finance/TailandBackground.html">14.3. Tail Risks and Background Risks</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../Finance/MultiFactorModels.html">14.4. Multifactor Models</a></li>
+</ul>
+</li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../Finance/Topics.html">15. Topics in Quantitative Investing</a><input class="toctree-checkbox" id="toctree-checkbox-10" name="toctree-checkbox-10" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-10"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l2"><a class="reference internal" href="../Finance/Equilbrium.html">15.1. Intepreting Factor models</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../Finance/Implementation.html">15.2. Strategy Implementation</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../Finance/Horizon.html">15.3. Investment horizon effects</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../additional/additional.html">16. Additional Statistics Material</a></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../Assignments/Assignments.html">17. Assignments</a><input class="toctree-checkbox" id="toctree-checkbox-11" name="toctree-checkbox-11" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-11"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l2"><a class="reference internal" href="../Assignments/Assignment0.html">17.1. Assigment 0</a></li>
+
+
+
+
+
+<li class="toctree-l2"><a class="reference internal" href="../Assignments/Assignment1.html">17.7. Assignment 1</a></li>
+
+
+
+
+<li class="toctree-l2"><a class="reference internal" href="../Assignments/Assignment2.html">17.12. Assigment 2</a></li>
+
+
+
+<li class="toctree-l2"><a class="reference internal" href="../Assignments/Assignment3.html">17.16. Assignment 3</a></li>
+
+
+
+<li class="toctree-l2"><a class="reference internal" href="../Assignments/Assignment4.html">17.20. Assignment 4</a></li>
+
+
+
+<li class="toctree-l2"><a class="reference internal" href="../Assignments/Assignment5.html">17.24. Assigment 5</a></li>
+
+
+
+<li class="toctree-l2"><a class="reference internal" href="../Assignments/Assignment6.html">17.28. Assignment 6</a></li>
+
+
+
+<li class="toctree-l2"><a class="reference internal" href="../Assignments/Assignment7.html">17.32. Assignment 7</a></li>
+
+</ul>
+</li>
+</ul>
+
+    </div>
+</nav></div>
+    </div>
+  
+  
+  <div class="sidebar-primary-items__end sidebar-primary__section">
+  </div>
+  
+  <div id="rtd-footer-container"></div>
+
+
+      </div>
+      
+      <main id="main-content" class="bd-main">
+        
+        
+
+<div class="sbt-scroll-pixel-helper"></div>
+
+          <div class="bd-content">
+            <div class="bd-article-container">
+              
+              <div class="bd-header-article">
+<div class="header-article-items header-article__inner">
+  
+    <div class="header-article-items__start">
+      
+        <div class="header-article-item"><label class="sidebar-toggle primary-toggle btn btn-sm" for="__primary" title="Toggle primary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <span class="fa-solid fa-bars"></span>
+</label></div>
+      
+    </div>
+  
+  
+    <div class="header-article-items__end">
+      
+        <div class="header-article-item">
+
+<div class="article-header-buttons">
+
+
+
+
+
+<div class="dropdown dropdown-launch-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Launch interactive content">
+    <i class="fas fa-rocket"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="https://colab.research.google.com/github/amoreira2/Lectures/blob/main/chapters/pandas/data_clean.ipynb" target="_blank"
+   class="btn btn-sm dropdown-item"
+   title="Launch onColab"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  
+    <img src="../../_static/images/logo_colab.png">
+  </span>
+<span class="btn__text-container">Colab</span>
+</a>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+
+
+<div class="dropdown dropdown-source-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Source repositories">
+    <i class="fab fa-github"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="https://github.com/amoreira2/Lectures" target="_blank"
+   class="btn btn-sm btn-source-repository-button dropdown-item"
+   title="Source repository"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fab fa-github"></i>
+  </span>
+<span class="btn__text-container">Repository</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li><a href="https://github.com/amoreira2/Lectures/issues/new?title=Issue%20on%20page%20%2Fchapters/pandas/data_clean.html&body=Your%20issue%20content%20here." target="_blank"
+   class="btn btn-sm btn-source-issues-button dropdown-item"
+   title="Open an issue"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-lightbulb"></i>
+  </span>
+<span class="btn__text-container">Open issue</span>
+</a>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+
+
+<div class="dropdown dropdown-download-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Download this page">
+    <i class="fas fa-download"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="../../_sources/chapters/pandas/data_clean.ipynb" target="_blank"
+   class="btn btn-sm btn-download-source-button dropdown-item"
+   title="Download source file"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file"></i>
+  </span>
+<span class="btn__text-container">.ipynb</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li>
+<button onclick="window.print()"
+  class="btn btn-sm btn-download-pdf-button dropdown-item"
+  title="Print to PDF"
+  data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file-pdf"></i>
+  </span>
+<span class="btn__text-container">.pdf</span>
+</button>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+<button onclick="toggleFullScreen()"
+  class="btn btn-sm btn-fullscreen-button"
+  title="Fullscreen mode"
+  data-bs-placement="bottom" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-expand"></i>
+  </span>
+
+</button>
+
+
+<script>
+document.write(`
+  <button class="theme-switch-button btn btn-sm btn-outline-primary navbar-btn rounded-circle" title="light/dark" aria-label="light/dark" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="theme-switch" data-mode="light"><i class="fa-solid fa-sun"></i></span>
+    <span class="theme-switch" data-mode="dark"><i class="fa-solid fa-moon"></i></span>
+    <span class="theme-switch" data-mode="auto"><i class="fa-solid fa-circle-half-stroke"></i></span>
+  </button>
+`);
+</script>
+
+<script>
+document.write(`
+  <button class="btn btn-sm navbar-btn search-button search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass"></i>
+  </button>
+`);
+</script>
+<label class="sidebar-toggle secondary-toggle btn btn-sm" for="__secondary"title="Toggle secondary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="fa-solid fa-list"></span>
+</label>
+</div></div>
+      
+    </div>
+  
+</div>
+</div>
+              
+              
+
+<div id="jb-print-docs-body" class="onlyprint">
+    <h1>Cleaning Data (opt)</h1>
+    <!-- Table of contents -->
+    <div id="print-main-content">
+        <div id="jb-print-toc">
+            
+            <div>
+                <h2> Contents </h2>
+            </div>
+            <nav aria-label="Page">
+                <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#outline">5.5.1. Outline</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#cleaning-data">5.5.2. Cleaning Data</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#string-methods">5.5.3. String Methods</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#type-conversions">5.5.4. Type Conversions</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#missing-data">5.5.5. Missing Data</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#case-study">5.5.6. Case Study</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#appendix-performance-of-str-methods">5.5.7. Appendix: Performance of <code class="docutils literal notranslate"><span class="pre">.str</span></code> Methods</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#exercises">5.5.8. Exercises</a></li>
+</ul>
+            </nav>
+        </div>
+    </div>
+</div>
+
+              
+                
+<div id="searchbox"></div>
+                <article class="bd-article" role="main">
+                  
+  <section class="tex2jax_ignore mathjax_ignore" id="cleaning-data-opt">
+<h1><span class="section-number">5.5. </span>Cleaning Data (opt)<a class="headerlink" href="#cleaning-data-opt" title="Permalink to this heading">#</a></h1>
+<p><strong>Prerequisites</strong></p>
+<ul class="simple">
+<li><p><a class="reference internal" href="intro.html"><span class="doc std std-doc">Intro</span></a></p></li>
+<li><p><a class="reference internal" href="basics.html"><span class="doc std std-doc">Boolean selection</span></a></p></li>
+<li><p><a class="reference internal" href="the_index.html"><span class="doc std std-doc">Indexing</span></a></p></li>
+</ul>
+<p><strong>Outcomes</strong></p>
+<ul class="simple">
+<li><p>Be able to use string methods to clean data that comes as a string</p></li>
+<li><p>Be able to drop missing data</p></li>
+<li><p>Use cleaning methods to prepare and analyze a real dataset</p></li>
+</ul>
+<p><strong>Data</strong></p>
+<ul class="simple">
+<li><p>Item information from about 3,000 Chipotle meals from about 1,800
+Grubhub orders</p></li>
+</ul>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Uncomment following line to install on colab</span>
+<span class="c1">#! pip install qeds</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
+<span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+<span class="kn">import</span> <span class="nn">qeds</span>
+</pre></div>
+</div>
+</div>
+</div>
+<section id="outline">
+<h2><span class="section-number">5.5.1. </span>Outline<a class="headerlink" href="#outline" title="Permalink to this heading">#</a></h2>
+<ul class="simple">
+<li><p><span class="xref myst">Cleaning Data</span></p>
+<ul>
+<li><p><span class="xref myst">Cleaning Data</span></p></li>
+<li><p><span class="xref myst">String Methods</span></p></li>
+<li><p><span class="xref myst">Type Conversions</span></p></li>
+<li><p><span class="xref myst">Missing Data</span></p></li>
+<li><p><span class="xref myst">Case Study</span></p></li>
+<li><p><span class="xref myst">Appendix: Performance of <code class="docutils literal notranslate"><span class="pre">.str</span></code> Methods</span></p></li>
+<li><p><span class="xref myst">Exercises</span></p></li>
+</ul>
+</li>
+</ul>
+</section>
+<section id="cleaning-data">
+<h2><span class="section-number">5.5.2. </span>Cleaning Data<a class="headerlink" href="#cleaning-data" title="Permalink to this heading">#</a></h2>
+<p>For many data projects, a <a class="reference external" href="https://www.forbes.com/sites/gilpress/2016/03/23/data-preparation-most-time-consuming-least-enjoyable-data-science-task-survey-says/#74d447456f63">significant proportion of
+time</a>
+is spent collecting and cleaning the data — not performing the analysis.</p>
+<p>This non-analysis work is often called “data cleaning”.</p>
+<p>pandas provides very powerful data cleaning tools, which we
+will demonstrate using the following dataset.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">({</span><span class="s2">&quot;numbers&quot;</span><span class="p">:</span> <span class="p">[</span><span class="s2">&quot;#23&quot;</span><span class="p">,</span> <span class="s2">&quot;#24&quot;</span><span class="p">,</span> <span class="s2">&quot;#18&quot;</span><span class="p">,</span> <span class="s2">&quot;#14&quot;</span><span class="p">,</span> <span class="s2">&quot;#12&quot;</span><span class="p">,</span> <span class="s2">&quot;#10&quot;</span><span class="p">,</span> <span class="s2">&quot;#35&quot;</span><span class="p">],</span>
+                   <span class="s2">&quot;nums&quot;</span><span class="p">:</span> <span class="p">[</span><span class="s2">&quot;23&quot;</span><span class="p">,</span> <span class="s2">&quot;24&quot;</span><span class="p">,</span> <span class="s2">&quot;18&quot;</span><span class="p">,</span> <span class="s2">&quot;14&quot;</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">nan</span><span class="p">,</span> <span class="s2">&quot;XYZ&quot;</span><span class="p">,</span> <span class="s2">&quot;35&quot;</span><span class="p">],</span>
+                   <span class="s2">&quot;colors&quot;</span><span class="p">:</span> <span class="p">[</span><span class="s2">&quot;green&quot;</span><span class="p">,</span> <span class="s2">&quot;red&quot;</span><span class="p">,</span> <span class="s2">&quot;yellow&quot;</span><span class="p">,</span> <span class="s2">&quot;orange&quot;</span><span class="p">,</span> <span class="s2">&quot;purple&quot;</span><span class="p">,</span> <span class="s2">&quot;blue&quot;</span><span class="p">,</span> <span class="s2">&quot;pink&quot;</span><span class="p">],</span>
+                   <span class="s2">&quot;other_column&quot;</span><span class="p">:</span> <span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">2</span><span class="p">]})</span>
+<span class="n">df</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>numbers</th>
+      <th>nums</th>
+      <th>colors</th>
+      <th>other_column</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>#23</td>
+      <td>23</td>
+      <td>green</td>
+      <td>0</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>#24</td>
+      <td>24</td>
+      <td>red</td>
+      <td>1</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>#18</td>
+      <td>18</td>
+      <td>yellow</td>
+      <td>0</td>
+    </tr>
+    <tr>
+      <th>3</th>
+      <td>#14</td>
+      <td>14</td>
+      <td>orange</td>
+      <td>2</td>
+    </tr>
+    <tr>
+      <th>4</th>
+      <td>#12</td>
+      <td>NaN</td>
+      <td>purple</td>
+      <td>1</td>
+    </tr>
+    <tr>
+      <th>5</th>
+      <td>#10</td>
+      <td>XYZ</td>
+      <td>blue</td>
+      <td>0</td>
+    </tr>
+    <tr>
+      <th>6</th>
+      <td>#35</td>
+      <td>35</td>
+      <td>pink</td>
+      <td>2</td>
+    </tr>
+  </tbody>
+</table>
+</div></div></div>
+</div>
+<p>What would happen if we wanted to try and compute the mean of
+<code class="docutils literal notranslate"><span class="pre">numbers</span></code>?</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">df</span><span class="p">[</span><span class="s2">&quot;numbers&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">mean</span><span class="p">()</span>
+</pre></div>
+</div>
+<p>It throws an error!</p>
+<p>Can you figure out why?</p>
+<p>Hint: When looking at error messages, start at the very
+bottom.</p>
+<p>The final error says, <code class="docutils literal notranslate"><span class="pre">TypeError:</span> <span class="pre">Could</span> <span class="pre">not</span> <span class="pre">convert</span> <span class="pre">#23#24...</span> <span class="pre">to</span> <span class="pre">numeric</span></code>.</p>
+<p><a id='exercise-0'></a></p>
+<blockquote>
+<div><p>See exercise 1 in the <span class="xref myst"><em>exercise list</em></span></p>
+</div></blockquote>
+</section>
+<section id="string-methods">
+<h2><span class="section-number">5.5.3. </span>String Methods<a class="headerlink" href="#string-methods" title="Permalink to this heading">#</a></h2>
+<p>Our solution to the previous exercise was to remove the <code class="docutils literal notranslate"><span class="pre">#</span></code> by using
+the <code class="docutils literal notranslate"><span class="pre">replace</span></code> string method: <code class="docutils literal notranslate"><span class="pre">int(c2n.replace(&quot;#&quot;,</span> <span class="pre">&quot;&quot;))</span></code>.</p>
+<p>One way to make this change to every element of a column would be to
+loop through all elements of the column and apply the desired string
+methods…</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="o">%%time</span>
+
+<span class="c1"># Iterate over all rows</span>
+<span class="k">for</span> <span class="n">row</span> <span class="ow">in</span> <span class="n">df</span><span class="o">.</span><span class="n">iterrows</span><span class="p">():</span>
+
+    <span class="c1"># `iterrows` method produces a tuple with two elements...</span>
+    <span class="c1"># The first element is an index and the second is a Series with the data from that row</span>
+    <span class="n">index_value</span><span class="p">,</span> <span class="n">column_values</span> <span class="o">=</span> <span class="n">row</span>
+
+    <span class="c1"># Apply string method</span>
+    <span class="n">clean_number</span> <span class="o">=</span> <span class="nb">int</span><span class="p">(</span><span class="n">column_values</span><span class="p">[</span><span class="s2">&quot;numbers&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">replace</span><span class="p">(</span><span class="s2">&quot;#&quot;</span><span class="p">,</span> <span class="s2">&quot;&quot;</span><span class="p">))</span>
+
+    <span class="c1"># The `at` method is very similar to the `loc` method, but it is specialized</span>
+    <span class="c1"># for accessing single elements at a time... We wanted to use it here to give</span>
+    <span class="c1"># the loop the best chance to beat a faster method which we show you next.</span>
+    <span class="n">df</span><span class="o">.</span><span class="n">at</span><span class="p">[</span><span class="n">index_value</span><span class="p">,</span> <span class="s2">&quot;numbers_loop&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="n">clean_number</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>CPU times: user 0 ns, sys: 2.86 ms, total: 2.86 ms
+Wall time: 2.55 ms
+</pre></div>
+</div>
+</div>
+</div>
+<p>While this is fast for a small dataset like this, this method slows for larger datasets.</p>
+<p>One <em>significantly</em> faster (and easier) method is to apply a string
+method to an entire column of data.</p>
+<p>Most methods that are available to a Python string (we learned a
+few of them in the <span class="xref myst">strings lecture</span>) are
+also available to a pandas Series that has <code class="docutils literal notranslate"><span class="pre">dtype</span></code> object.</p>
+<p>We access them by doing <code class="docutils literal notranslate"><span class="pre">s.str.method_name</span></code> where <code class="docutils literal notranslate"><span class="pre">method_name</span></code> is
+the name of the method.</p>
+<p>When we apply the method to a Series, it is applied to all rows in the
+Series in one shot!</p>
+<p>Let’s redo our previous example using a pandas <code class="docutils literal notranslate"><span class="pre">.str</span></code> method.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="o">%%time</span>
+
+<span class="c1"># ~2x faster than loop... However, speed gain increases with size of DataFrame. The</span>
+<span class="c1"># speedup can be in the ballpark of ~100-500x faster for big DataFrames.</span>
+<span class="c1"># See appendix at the end of the lecture for an application on a larger DataFrame</span>
+<span class="n">df</span><span class="p">[</span><span class="s2">&quot;numbers_str&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="n">df</span><span class="p">[</span><span class="s2">&quot;numbers&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">str</span><span class="o">.</span><span class="n">replace</span><span class="p">(</span><span class="s2">&quot;#&quot;</span><span class="p">,</span> <span class="s2">&quot;&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>CPU times: user 782 µs, sys: 126 µs, total: 908 µs
+Wall time: 850 µs
+</pre></div>
+</div>
+</div>
+</div>
+<p>We can use <code class="docutils literal notranslate"><span class="pre">.str</span></code> to access almost any string method that works on
+normal strings. (See the <a class="reference external" href="https://pandas.pydata.org/pandas-docs/stable/text.html">official
+documentation</a>
+for more information.)</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">df</span><span class="p">[</span><span class="s2">&quot;colors&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">str</span><span class="o">.</span><span class="n">contains</span><span class="p">(</span><span class="s2">&quot;p&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>0    False
+1    False
+2    False
+3    False
+4     True
+5    False
+6     True
+Name: colors, dtype: bool
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">df</span><span class="p">[</span><span class="s2">&quot;colors&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">str</span><span class="o">.</span><span class="n">capitalize</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>0     Green
+1       Red
+2    Yellow
+3    Orange
+4    Purple
+5      Blue
+6      Pink
+Name: colors, dtype: object
+</pre></div>
+</div>
+</div>
+</div>
+<p><a id='exercise-1'></a></p>
+<blockquote>
+<div><p>See exercise 2 in the <span class="xref myst"><em>exercise list</em></span></p>
+</div></blockquote>
+</section>
+<section id="type-conversions">
+<h2><span class="section-number">5.5.4. </span>Type Conversions<a class="headerlink" href="#type-conversions" title="Permalink to this heading">#</a></h2>
+<p>In our example above, the <code class="docutils literal notranslate"><span class="pre">dtype</span></code> of the <code class="docutils literal notranslate"><span class="pre">numbers_str</span></code> column shows that pandas still treats
+it as a string even after we have removed the <code class="docutils literal notranslate"><span class="pre">&quot;#&quot;</span></code>.</p>
+<p>We need to convert this column to numbers.</p>
+<p>The best way to do this is using the <code class="docutils literal notranslate"><span class="pre">pd.to_numeric</span></code> function.</p>
+<p>This method attempts to convert whatever is stored in a Series into
+numeric values</p>
+<p>For example, after the <code class="docutils literal notranslate"><span class="pre">&quot;#&quot;</span></code> removed, the numbers of column
+<code class="docutils literal notranslate"><span class="pre">&quot;numbers&quot;</span></code> are ready to be converted to actual numbers.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">df</span><span class="p">[</span><span class="s2">&quot;numbers_numeric&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">to_numeric</span><span class="p">(</span><span class="n">df</span><span class="p">[</span><span class="s2">&quot;numbers_str&quot;</span><span class="p">])</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">df</span><span class="o">.</span><span class="n">dtypes</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>numbers             object
+nums                object
+colors              object
+other_column         int64
+numbers_loop       float64
+numbers_str         object
+numbers_numeric      int64
+dtype: object
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">df</span><span class="o">.</span><span class="n">head</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>numbers</th>
+      <th>nums</th>
+      <th>colors</th>
+      <th>other_column</th>
+      <th>numbers_loop</th>
+      <th>numbers_str</th>
+      <th>numbers_numeric</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>#23</td>
+      <td>23</td>
+      <td>green</td>
+      <td>0</td>
+      <td>23.0</td>
+      <td>23</td>
+      <td>23</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>#24</td>
+      <td>24</td>
+      <td>red</td>
+      <td>1</td>
+      <td>24.0</td>
+      <td>24</td>
+      <td>24</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>#18</td>
+      <td>18</td>
+      <td>yellow</td>
+      <td>0</td>
+      <td>18.0</td>
+      <td>18</td>
+      <td>18</td>
+    </tr>
+    <tr>
+      <th>3</th>
+      <td>#14</td>
+      <td>14</td>
+      <td>orange</td>
+      <td>2</td>
+      <td>14.0</td>
+      <td>14</td>
+      <td>14</td>
+    </tr>
+    <tr>
+      <th>4</th>
+      <td>#12</td>
+      <td>NaN</td>
+      <td>purple</td>
+      <td>1</td>
+      <td>12.0</td>
+      <td>12</td>
+      <td>12</td>
+    </tr>
+  </tbody>
+</table>
+</div></div></div>
+</div>
+<p>We can convert to other types well.</p>
+<p>Using the <code class="docutils literal notranslate"><span class="pre">astype</span></code> method, we can convert to any of the supported
+pandas <code class="docutils literal notranslate"><span class="pre">dtypes</span></code> (recall the <a class="reference internal" href="intro.html"><span class="doc std std-doc">intro lecture</span></a>).</p>
+<p>Below are some examples. (Pay attention to the reported <code class="docutils literal notranslate"><span class="pre">dtype</span></code>)</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">df</span><span class="p">[</span><span class="s2">&quot;numbers_numeric&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">astype</span><span class="p">(</span><span class="nb">str</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>0    23
+1    24
+2    18
+3    14
+4    12
+5    10
+6    35
+Name: numbers_numeric, dtype: object
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">df</span><span class="p">[</span><span class="s2">&quot;numbers_numeric&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">astype</span><span class="p">(</span><span class="nb">float</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>0    23.0
+1    24.0
+2    18.0
+3    14.0
+4    12.0
+5    10.0
+6    35.0
+Name: numbers_numeric, dtype: float64
+</pre></div>
+</div>
+</div>
+</div>
+<p><a id='exercise-2'></a></p>
+<blockquote>
+<div><p>See exercise 3 in the <span class="xref myst"><em>exercise list</em></span></p>
+</div></blockquote>
+</section>
+<section id="missing-data">
+<h2><span class="section-number">5.5.5. </span>Missing Data<a class="headerlink" href="#missing-data" title="Permalink to this heading">#</a></h2>
+<p>Many datasets have missing data.</p>
+<p>In our example, we are missing an element from the <code class="docutils literal notranslate"><span class="pre">&quot;nums&quot;</span></code> column.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">df</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>numbers</th>
+      <th>nums</th>
+      <th>colors</th>
+      <th>other_column</th>
+      <th>numbers_loop</th>
+      <th>numbers_str</th>
+      <th>numbers_numeric</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>#23</td>
+      <td>23</td>
+      <td>green</td>
+      <td>0</td>
+      <td>23.0</td>
+      <td>23</td>
+      <td>23</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>#24</td>
+      <td>24</td>
+      <td>red</td>
+      <td>1</td>
+      <td>24.0</td>
+      <td>24</td>
+      <td>24</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>#18</td>
+      <td>18</td>
+      <td>yellow</td>
+      <td>0</td>
+      <td>18.0</td>
+      <td>18</td>
+      <td>18</td>
+    </tr>
+    <tr>
+      <th>3</th>
+      <td>#14</td>
+      <td>14</td>
+      <td>orange</td>
+      <td>2</td>
+      <td>14.0</td>
+      <td>14</td>
+      <td>14</td>
+    </tr>
+    <tr>
+      <th>4</th>
+      <td>#12</td>
+      <td>NaN</td>
+      <td>purple</td>
+      <td>1</td>
+      <td>12.0</td>
+      <td>12</td>
+      <td>12</td>
+    </tr>
+    <tr>
+      <th>5</th>
+      <td>#10</td>
+      <td>XYZ</td>
+      <td>blue</td>
+      <td>0</td>
+      <td>10.0</td>
+      <td>10</td>
+      <td>10</td>
+    </tr>
+    <tr>
+      <th>6</th>
+      <td>#35</td>
+      <td>35</td>
+      <td>pink</td>
+      <td>2</td>
+      <td>35.0</td>
+      <td>35</td>
+      <td>35</td>
+    </tr>
+  </tbody>
+</table>
+</div></div></div>
+</div>
+<p>We can find missing data by using the <code class="docutils literal notranslate"><span class="pre">isnull</span></code> method.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">df</span><span class="o">.</span><span class="n">isnull</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>numbers</th>
+      <th>nums</th>
+      <th>colors</th>
+      <th>other_column</th>
+      <th>numbers_loop</th>
+      <th>numbers_str</th>
+      <th>numbers_numeric</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>False</td>
+      <td>False</td>
+      <td>False</td>
+      <td>False</td>
+      <td>False</td>
+      <td>False</td>
+      <td>False</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>False</td>
+      <td>False</td>
+      <td>False</td>
+      <td>False</td>
+      <td>False</td>
+      <td>False</td>
+      <td>False</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>False</td>
+      <td>False</td>
+      <td>False</td>
+      <td>False</td>
+      <td>False</td>
+      <td>False</td>
+      <td>False</td>
+    </tr>
+    <tr>
+      <th>3</th>
+      <td>False</td>
+      <td>False</td>
+      <td>False</td>
+      <td>False</td>
+      <td>False</td>
+      <td>False</td>
+      <td>False</td>
+    </tr>
+    <tr>
+      <th>4</th>
+      <td>False</td>
+      <td>True</td>
+      <td>False</td>
+      <td>False</td>
+      <td>False</td>
+      <td>False</td>
+      <td>False</td>
+    </tr>
+    <tr>
+      <th>5</th>
+      <td>False</td>
+      <td>False</td>
+      <td>False</td>
+      <td>False</td>
+      <td>False</td>
+      <td>False</td>
+      <td>False</td>
+    </tr>
+    <tr>
+      <th>6</th>
+      <td>False</td>
+      <td>False</td>
+      <td>False</td>
+      <td>False</td>
+      <td>False</td>
+      <td>False</td>
+      <td>False</td>
+    </tr>
+  </tbody>
+</table>
+</div></div></div>
+</div>
+<p>We might want to know whether particular rows or columns have any
+missing data.</p>
+<p>To do this we can use the <code class="docutils literal notranslate"><span class="pre">.any</span></code> method on the boolean DataFrame
+<code class="docutils literal notranslate"><span class="pre">df.isnull()</span></code>.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">df</span><span class="o">.</span><span class="n">isnull</span><span class="p">()</span><span class="o">.</span><span class="n">any</span><span class="p">(</span><span class="n">axis</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>numbers            False
+nums                True
+colors             False
+other_column       False
+numbers_loop       False
+numbers_str        False
+numbers_numeric    False
+dtype: bool
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">df</span><span class="o">.</span><span class="n">isnull</span><span class="p">()</span><span class="o">.</span><span class="n">any</span><span class="p">(</span><span class="n">axis</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>0    False
+1    False
+2    False
+3    False
+4     True
+5    False
+6    False
+dtype: bool
+</pre></div>
+</div>
+</div>
+</div>
+<p>Many approaches have been developed to deal with missing data, but the two most commonly used (and the corresponding DataFrame method) are:</p>
+<ul class="simple">
+<li><p>Exclusion: Ignore any data that is missing (<code class="docutils literal notranslate"><span class="pre">.dropna</span></code>).</p></li>
+<li><p>Imputation: Compute “predicted” values for the data that is missing
+(<code class="docutils literal notranslate"><span class="pre">.fillna</span></code>).</p></li>
+</ul>
+<p>For the advantages and disadvantages of these (and other) approaches,
+consider reading the <a class="reference external" href="https://en.wikipedia.org/wiki/Missing_data">Wikipedia
+article</a>.</p>
+<p>For now, let’s see some examples.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># drop all rows containing a missing observation</span>
+<span class="n">df</span><span class="o">.</span><span class="n">dropna</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>numbers</th>
+      <th>nums</th>
+      <th>colors</th>
+      <th>other_column</th>
+      <th>numbers_loop</th>
+      <th>numbers_str</th>
+      <th>numbers_numeric</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>#23</td>
+      <td>23</td>
+      <td>green</td>
+      <td>0</td>
+      <td>23.0</td>
+      <td>23</td>
+      <td>23</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>#24</td>
+      <td>24</td>
+      <td>red</td>
+      <td>1</td>
+      <td>24.0</td>
+      <td>24</td>
+      <td>24</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>#18</td>
+      <td>18</td>
+      <td>yellow</td>
+      <td>0</td>
+      <td>18.0</td>
+      <td>18</td>
+      <td>18</td>
+    </tr>
+    <tr>
+      <th>3</th>
+      <td>#14</td>
+      <td>14</td>
+      <td>orange</td>
+      <td>2</td>
+      <td>14.0</td>
+      <td>14</td>
+      <td>14</td>
+    </tr>
+    <tr>
+      <th>5</th>
+      <td>#10</td>
+      <td>XYZ</td>
+      <td>blue</td>
+      <td>0</td>
+      <td>10.0</td>
+      <td>10</td>
+      <td>10</td>
+    </tr>
+    <tr>
+      <th>6</th>
+      <td>#35</td>
+      <td>35</td>
+      <td>pink</td>
+      <td>2</td>
+      <td>35.0</td>
+      <td>35</td>
+      <td>35</td>
+    </tr>
+  </tbody>
+</table>
+</div></div></div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># fill the missing values with a specific value</span>
+<span class="n">df</span><span class="o">.</span><span class="n">fillna</span><span class="p">(</span><span class="n">value</span><span class="o">=</span><span class="mi">100</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>numbers</th>
+      <th>nums</th>
+      <th>colors</th>
+      <th>other_column</th>
+      <th>numbers_loop</th>
+      <th>numbers_str</th>
+      <th>numbers_numeric</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>#23</td>
+      <td>23</td>
+      <td>green</td>
+      <td>0</td>
+      <td>23.0</td>
+      <td>23</td>
+      <td>23</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>#24</td>
+      <td>24</td>
+      <td>red</td>
+      <td>1</td>
+      <td>24.0</td>
+      <td>24</td>
+      <td>24</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>#18</td>
+      <td>18</td>
+      <td>yellow</td>
+      <td>0</td>
+      <td>18.0</td>
+      <td>18</td>
+      <td>18</td>
+    </tr>
+    <tr>
+      <th>3</th>
+      <td>#14</td>
+      <td>14</td>
+      <td>orange</td>
+      <td>2</td>
+      <td>14.0</td>
+      <td>14</td>
+      <td>14</td>
+    </tr>
+    <tr>
+      <th>4</th>
+      <td>#12</td>
+      <td>100</td>
+      <td>purple</td>
+      <td>1</td>
+      <td>12.0</td>
+      <td>12</td>
+      <td>12</td>
+    </tr>
+    <tr>
+      <th>5</th>
+      <td>#10</td>
+      <td>XYZ</td>
+      <td>blue</td>
+      <td>0</td>
+      <td>10.0</td>
+      <td>10</td>
+      <td>10</td>
+    </tr>
+    <tr>
+      <th>6</th>
+      <td>#35</td>
+      <td>35</td>
+      <td>pink</td>
+      <td>2</td>
+      <td>35.0</td>
+      <td>35</td>
+      <td>35</td>
+    </tr>
+  </tbody>
+</table>
+</div></div></div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># use the _next_ valid observation to fill the missing data</span>
+<span class="n">df</span><span class="o">.</span><span class="n">fillna</span><span class="p">(</span><span class="n">method</span><span class="o">=</span><span class="s2">&quot;bfill&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>numbers</th>
+      <th>nums</th>
+      <th>colors</th>
+      <th>other_column</th>
+      <th>numbers_loop</th>
+      <th>numbers_str</th>
+      <th>numbers_numeric</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>#23</td>
+      <td>23</td>
+      <td>green</td>
+      <td>0</td>
+      <td>23.0</td>
+      <td>23</td>
+      <td>23</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>#24</td>
+      <td>24</td>
+      <td>red</td>
+      <td>1</td>
+      <td>24.0</td>
+      <td>24</td>
+      <td>24</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>#18</td>
+      <td>18</td>
+      <td>yellow</td>
+      <td>0</td>
+      <td>18.0</td>
+      <td>18</td>
+      <td>18</td>
+    </tr>
+    <tr>
+      <th>3</th>
+      <td>#14</td>
+      <td>14</td>
+      <td>orange</td>
+      <td>2</td>
+      <td>14.0</td>
+      <td>14</td>
+      <td>14</td>
+    </tr>
+    <tr>
+      <th>4</th>
+      <td>#12</td>
+      <td>XYZ</td>
+      <td>purple</td>
+      <td>1</td>
+      <td>12.0</td>
+      <td>12</td>
+      <td>12</td>
+    </tr>
+    <tr>
+      <th>5</th>
+      <td>#10</td>
+      <td>XYZ</td>
+      <td>blue</td>
+      <td>0</td>
+      <td>10.0</td>
+      <td>10</td>
+      <td>10</td>
+    </tr>
+    <tr>
+      <th>6</th>
+      <td>#35</td>
+      <td>35</td>
+      <td>pink</td>
+      <td>2</td>
+      <td>35.0</td>
+      <td>35</td>
+      <td>35</td>
+    </tr>
+  </tbody>
+</table>
+</div></div></div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># use the _previous_ valid observation to fill missing data</span>
+<span class="n">df</span><span class="o">.</span><span class="n">fillna</span><span class="p">(</span><span class="n">method</span><span class="o">=</span><span class="s2">&quot;ffill&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>numbers</th>
+      <th>nums</th>
+      <th>colors</th>
+      <th>other_column</th>
+      <th>numbers_loop</th>
+      <th>numbers_str</th>
+      <th>numbers_numeric</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>#23</td>
+      <td>23</td>
+      <td>green</td>
+      <td>0</td>
+      <td>23.0</td>
+      <td>23</td>
+      <td>23</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>#24</td>
+      <td>24</td>
+      <td>red</td>
+      <td>1</td>
+      <td>24.0</td>
+      <td>24</td>
+      <td>24</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>#18</td>
+      <td>18</td>
+      <td>yellow</td>
+      <td>0</td>
+      <td>18.0</td>
+      <td>18</td>
+      <td>18</td>
+    </tr>
+    <tr>
+      <th>3</th>
+      <td>#14</td>
+      <td>14</td>
+      <td>orange</td>
+      <td>2</td>
+      <td>14.0</td>
+      <td>14</td>
+      <td>14</td>
+    </tr>
+    <tr>
+      <th>4</th>
+      <td>#12</td>
+      <td>14</td>
+      <td>purple</td>
+      <td>1</td>
+      <td>12.0</td>
+      <td>12</td>
+      <td>12</td>
+    </tr>
+    <tr>
+      <th>5</th>
+      <td>#10</td>
+      <td>XYZ</td>
+      <td>blue</td>
+      <td>0</td>
+      <td>10.0</td>
+      <td>10</td>
+      <td>10</td>
+    </tr>
+    <tr>
+      <th>6</th>
+      <td>#35</td>
+      <td>35</td>
+      <td>pink</td>
+      <td>2</td>
+      <td>35.0</td>
+      <td>35</td>
+      <td>35</td>
+    </tr>
+  </tbody>
+</table>
+</div></div></div>
+</div>
+<p>We will see more examples of dealing with missing data in future
+chapters.</p>
+</section>
+<section id="case-study">
+<h2><span class="section-number">5.5.6. </span>Case Study<a class="headerlink" href="#case-study" title="Permalink to this heading">#</a></h2>
+<p>We will now use data from an
+<a class="reference external" href="https://www.nytimes.com/interactive/2015/02/17/upshot/what-do-people-actually-order-at-chipotle.html">article</a>
+written by The Upshot at the NYTimes.</p>
+<p>This data has order information from almost 2,000 Chipotle orders and
+includes information on what was ordered and how much it cost.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">chipotle</span> <span class="o">=</span> <span class="n">qeds</span><span class="o">.</span><span class="n">data</span><span class="o">.</span><span class="n">load</span><span class="p">(</span><span class="s2">&quot;chipotle_raw&quot;</span><span class="p">)</span>
+<span class="n">chipotle</span><span class="o">.</span><span class="n">head</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>order_id</th>
+      <th>quantity</th>
+      <th>item_name</th>
+      <th>choice_description</th>
+      <th>item_price</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>1</td>
+      <td>1</td>
+      <td>Chips and Fresh Tomato Salsa</td>
+      <td>NaN</td>
+      <td>$2.39</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>1</td>
+      <td>1</td>
+      <td>Izze</td>
+      <td>[Clementine]</td>
+      <td>$3.39</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>1</td>
+      <td>1</td>
+      <td>Nantucket Nectar</td>
+      <td>[Apple]</td>
+      <td>$3.39</td>
+    </tr>
+    <tr>
+      <th>3</th>
+      <td>1</td>
+      <td>1</td>
+      <td>Chips and Tomatillo-Green Chili Salsa</td>
+      <td>NaN</td>
+      <td>$2.39</td>
+    </tr>
+    <tr>
+      <th>4</th>
+      <td>2</td>
+      <td>2</td>
+      <td>Chicken Bowl</td>
+      <td>[Tomatillo-Red Chili Salsa (Hot), [Black Beans...</td>
+      <td>$16.98</td>
+    </tr>
+  </tbody>
+</table>
+</div></div></div>
+</div>
+<p><a id='exercise-3'></a></p>
+<blockquote>
+<div><p>See exercise 4 in the <span class="xref myst"><em>exercise list</em></span></p>
+</div></blockquote>
+</section>
+<section id="appendix-performance-of-str-methods">
+<h2><span class="section-number">5.5.7. </span>Appendix: Performance of <code class="docutils literal notranslate"><span class="pre">.str</span></code> Methods<a class="headerlink" href="#appendix-performance-of-str-methods" title="Permalink to this heading">#</a></h2>
+<p>Let’s repeat the “remove the <code class="docutils literal notranslate"><span class="pre">#</span></code>” example from above, but this time on
+a much larger dataset.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+<span class="n">test</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">({</span><span class="s2">&quot;floats&quot;</span><span class="p">:</span> <span class="n">np</span><span class="o">.</span><span class="n">round</span><span class="p">(</span><span class="mi">100</span><span class="o">*</span><span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">rand</span><span class="p">(</span><span class="mi">100000</span><span class="p">),</span> <span class="mi">2</span><span class="p">)})</span>
+<span class="n">test</span><span class="p">[</span><span class="s2">&quot;strings&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="n">test</span><span class="p">[</span><span class="s2">&quot;floats&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">astype</span><span class="p">(</span><span class="nb">str</span><span class="p">)</span> <span class="o">+</span> <span class="s2">&quot;%&quot;</span>
+<span class="n">test</span><span class="o">.</span><span class="n">head</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>floats</th>
+      <th>strings</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>76.67</td>
+      <td>76.67%</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>38.16</td>
+      <td>38.16%</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>13.78</td>
+      <td>13.78%</td>
+    </tr>
+    <tr>
+      <th>3</th>
+      <td>84.72</td>
+      <td>84.72%</td>
+    </tr>
+    <tr>
+      <th>4</th>
+      <td>65.97</td>
+      <td>65.97%</td>
+    </tr>
+  </tbody>
+</table>
+</div></div></div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="o">%%time</span>
+
+<span class="k">for</span> <span class="n">row</span> <span class="ow">in</span> <span class="n">test</span><span class="o">.</span><span class="n">iterrows</span><span class="p">():</span>
+    <span class="n">index_value</span><span class="p">,</span> <span class="n">column_values</span> <span class="o">=</span> <span class="n">row</span>
+    <span class="n">clean_number</span> <span class="o">=</span> <span class="n">column_values</span><span class="p">[</span><span class="s2">&quot;strings&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">replace</span><span class="p">(</span><span class="s2">&quot;%&quot;</span><span class="p">,</span> <span class="s2">&quot;&quot;</span><span class="p">)</span>
+    <span class="n">test</span><span class="o">.</span><span class="n">at</span><span class="p">[</span><span class="n">index_value</span><span class="p">,</span> <span class="s2">&quot;numbers_loop&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="n">clean_number</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>CPU times: user 8.51 s, sys: 9.56 ms, total: 8.52 s
+Wall time: 8.54 s
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="o">%%time</span>
+<span class="n">test</span><span class="p">[</span><span class="s2">&quot;numbers_str_method&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="n">test</span><span class="p">[</span><span class="s2">&quot;strings&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">str</span><span class="o">.</span><span class="n">replace</span><span class="p">(</span><span class="s2">&quot;%&quot;</span><span class="p">,</span> <span class="s2">&quot;&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>CPU times: user 44.6 ms, sys: 4.02 ms, total: 48.7 ms
+Wall time: 49 ms
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">test</span><span class="p">[</span><span class="s2">&quot;numbers_str_method&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">equals</span><span class="p">(</span><span class="n">test</span><span class="p">[</span><span class="s2">&quot;numbers_loop&quot;</span><span class="p">])</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>True
+</pre></div>
+</div>
+</div>
+</div>
+<p>We got the exact same result in a fraction of the time!</p>
+</section>
+<section id="exercises">
+<h2><span class="section-number">5.5.8. </span>Exercises<a class="headerlink" href="#exercises" title="Permalink to this heading">#</a></h2>
+<p><a id='exerciselist-0'></a>
+<strong>Exercise 1</strong></p>
+<p>Convert the string below into a number.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">c2n</span> <span class="o">=</span> <span class="s2">&quot;#39&quot;</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>(<span class="xref myst"><em>back to text</em></span>)</p>
+<p><strong>Exercise 2</strong></p>
+<p>Make a new column called <code class="docutils literal notranslate"><span class="pre">colors_upper</span></code> that contains the elements of
+<code class="docutils literal notranslate"><span class="pre">colors</span></code> with all uppercase letters.</p>
+<p>(<span class="xref myst"><em>back to text</em></span>)</p>
+<p><strong>Exercise 3</strong></p>
+<p>Convert the column <code class="docutils literal notranslate"><span class="pre">&quot;nums&quot;</span></code> to a numeric type using <code class="docutils literal notranslate"><span class="pre">pd.to_numeric</span></code> and
+save it to the DataFrame as <code class="docutils literal notranslate"><span class="pre">&quot;nums_tonumeric&quot;</span></code>.</p>
+<p>Notice that there is a missing value, and a value that is not a number.</p>
+<p>Look at the documentation for <code class="docutils literal notranslate"><span class="pre">pd.to_numeric</span></code> and think about how to
+overcome this.</p>
+<p>Think about why this could be a bad idea of used without
+knowing what your data looks like. (Think about what happens when you
+apply it to the <code class="docutils literal notranslate"><span class="pre">&quot;numbers&quot;</span></code> column before replacing the <code class="docutils literal notranslate"><span class="pre">&quot;#&quot;</span></code>.)</p>
+<p>(<span class="xref myst"><em>back to text</em></span>)</p>
+<p><strong>Exercise 4</strong></p>
+<p>We’d like you to use this data to answer the following questions.</p>
+<ul class="simple">
+<li><p>What is the average price of an item with chicken?</p></li>
+<li><p>What is the average price of an item with steak?</p></li>
+<li><p>Did chicken or steak produce more revenue (total)?</p></li>
+<li><p>How many missing items are there in this dataset? How many missing
+items in each column?</p></li>
+</ul>
+<p>Hint: before you will be able to do any of these things you will need to
+make sure the <code class="docutils literal notranslate"><span class="pre">item_price</span></code> column has a numeric <code class="docutils literal notranslate"><span class="pre">dtype</span></code> (probably
+float)</p>
+<p>(<span class="xref myst"><em>back to text</em></span>)</p>
+</section>
+</section>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "binder-examples/jupyter-stacks-datascience",
+            ref: "master",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "python"
+        },
+        kernelOptions: {
+            name: "python3",
+            path: "./chapters/pandas"
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'python3'</script>
+
+                </article>
+              
+
+              
+              
+                <footer class="bd-footer-article">
+                  
+<div class="footer-article-items footer-article__inner">
+  
+    <div class="footer-article-item"><!-- Previous / next buttons -->
+<div class="prev-next-area">
+    <a class="left-prev"
+       href="timeseries.html"
+       title="previous page">
+      <i class="fa-solid fa-angle-left"></i>
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">previous</p>
+        <p class="prev-next-title"><span class="section-number">5.4. </span>Time series</p>
+      </div>
+    </a>
+    <a class="right-next"
+       href="reshape.html"
+       title="next page">
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">next</p>
+        <p class="prev-next-title"><span class="section-number">5.6. </span>Reshape (opt)</p>
+      </div>
+      <i class="fa-solid fa-angle-right"></i>
+    </a>
+</div></div>
+  
+</div>
+
+                </footer>
+              
+            </div>
+            
+            
+              
+                <div class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
+  <div class="sidebar-secondary-item">
+  <div class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> Contents
+  </div>
+  <nav class="bd-toc-nav page-toc">
+    <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#outline">5.5.1. Outline</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#cleaning-data">5.5.2. Cleaning Data</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#string-methods">5.5.3. String Methods</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#type-conversions">5.5.4. Type Conversions</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#missing-data">5.5.5. Missing Data</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#case-study">5.5.6. Case Study</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#appendix-performance-of-str-methods">5.5.7. Appendix: Performance of <code class="docutils literal notranslate"><span class="pre">.str</span></code> Methods</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#exercises">5.5.8. Exercises</a></li>
+</ul>
+  </nav></div>
+
+</div></div>
+              
+            
+          </div>
+          <footer class="bd-footer-content">
+            
+<div class="bd-footer-content__inner container">
+  
+  <div class="footer-item">
+    
+<p class="component-author">
+By Alan Moreira
+</p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+  <p class="copyright">
+    
+      © Copyright 2021 Creative Commons Attribution-ShareAlike 4.0 International (CC BY-SA 4.0).
+      <br/>
+    
+  </p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+</div>
+          </footer>
+        
+
+      </main>
+    </div>
+  </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script src="../../_static/scripts/bootstrap.js?digest=e353d410970836974a52"></script>
+<script src="../../_static/scripts/pydata-sphinx-theme.js?digest=e353d410970836974a52"></script>
+
+  <footer class="bd-footer">
+  </footer>
+  </body>
+</html>

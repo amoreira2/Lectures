@@ -1,0 +1,1596 @@
+
+
+<!DOCTYPE html>
+
+
+<html lang="en" >
+
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
+
+    <title>9.2. Case study on international portfolio diversification &#8212; Quantitative Investing</title>
+  
+  
+  
+  <script data-cfasync="false">
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "light";
+  </script>
+  
+  <!-- Loaded before other Sphinx assets -->
+  <link href="../../_static/styles/theme.css?digest=e353d410970836974a52" rel="stylesheet" />
+<link href="../../_static/styles/bootstrap.css?digest=e353d410970836974a52" rel="stylesheet" />
+<link href="../../_static/styles/pydata-sphinx-theme.css?digest=e353d410970836974a52" rel="stylesheet" />
+
+  
+  <link href="../../_static/vendor/fontawesome/6.1.2/css/all.min.css?digest=e353d410970836974a52" rel="stylesheet" />
+  <link rel="preload" as="font" type="font/woff2" crossorigin href="../../_static/vendor/fontawesome/6.1.2/webfonts/fa-solid-900.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../../_static/vendor/fontawesome/6.1.2/webfonts/fa-brands-400.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../../_static/vendor/fontawesome/6.1.2/webfonts/fa-regular-400.woff2" />
+
+    <link rel="stylesheet" type="text/css" href="../../_static/pygments.css" />
+    <link rel="stylesheet" href="../../_static/styles/sphinx-book-theme.css?digest=14f4ca6b54d191a8c7657f6c759bf11a5fb86285" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/togglebutton.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/copybutton.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/sphinx-thebe.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/book.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/design-style.4045f2051d55cab465a707391d5b2007.min.css" />
+  
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="../../_static/scripts/bootstrap.js?digest=e353d410970836974a52" />
+<link rel="preload" as="script" href="../../_static/scripts/pydata-sphinx-theme.js?digest=e353d410970836974a52" />
+
+    <script data-url_root="../../" id="documentation_options" src="../../_static/documentation_options.js"></script>
+    <script src="../../_static/jquery.js"></script>
+    <script src="../../_static/underscore.js"></script>
+    <script src="../../_static/_sphinx_javascript_frameworks_compat.js"></script>
+    <script src="../../_static/doctools.js"></script>
+    <script src="../../_static/clipboard.min.js"></script>
+    <script src="../../_static/copybutton.js"></script>
+    <script src="../../_static/scripts/sphinx-book-theme.js?digest=5a5c038af52cf7bc1a1ec88eea08e6366ee68824"></script>
+    <script>let toggleHintShow = 'Click to show';</script>
+    <script>let toggleHintHide = 'Click to hide';</script>
+    <script>let toggleOpenOnPrint = 'true';</script>
+    <script src="../../_static/togglebutton.js"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script src="../../_static/design-tabs.js"></script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"
+const thebe_selector = ".thebe,.cell"
+const thebe_selector_input = "pre"
+const thebe_selector_output = ".output, .cell_output"
+</script>
+    <script async="async" src="../../_static/sphinx-thebe.js"></script>
+    <script>window.MathJax = {"options": {"processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
+    <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'chapters/Finance/CaseStudy';</script>
+    <link rel="canonical" href="https://amoreira2.github.io/quantitativeinvesting/chapters/Finance/CaseStudy.html" />
+    <link rel="shortcut icon" href="../../_static/figuremain2.jpg"/>
+    <link rel="index" title="Index" href="../../genindex.html" />
+    <link rel="search" title="Search" href="../../search.html" />
+    <link rel="next" title="9.3. Levering up and Shorting" href="LeverageandShorting.html" />
+    <link rel="prev" title="9.1. The Mean-Variance Frontier" href="MeanVariance.html" />
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta name="docsearch:language" content="en"/>
+  </head>
+  
+  
+  <body data-bs-spy="scroll" data-bs-target=".bd-toc-nav" data-offset="180" data-bs-root-margin="0px 0px -60%" data-default-mode="">
+
+  
+  
+  <a class="skip-link" href="#main-content">Skip to main content</a>
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          name="__primary"
+          id="__primary"/>
+  <label class="overlay overlay-primary" for="__primary"></label>
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          name="__secondary"
+          id="__secondary"/>
+  <label class="overlay overlay-secondary" for="__secondary"></label>
+  
+  <div class="search-button__wrapper">
+    <div class="search-button__overlay"></div>
+    <div class="search-button__search-container">
+<form class="bd-search d-flex align-items-center"
+      action="../../search.html"
+      method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search"
+         class="form-control"
+         name="q"
+         id="search-input"
+         placeholder="Search this book..."
+         aria-label="Search this book..."
+         autocomplete="off"
+         autocorrect="off"
+         autocapitalize="off"
+         spellcheck="false"/>
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form></div>
+  </div>
+  
+    <nav class="bd-header navbar navbar-expand-lg bd-navbar">
+    </nav>
+  
+  <div class="bd-container">
+    <div class="bd-container__inner bd-page-width">
+      
+      <div class="bd-sidebar-primary bd-sidebar">
+        
+
+  
+  <div class="sidebar-header-items sidebar-primary__section">
+    
+    
+    
+    
+  </div>
+  
+    <div class="sidebar-primary-items__start sidebar-primary__section">
+        <div class="sidebar-primary-item">
+  
+
+<a class="navbar-brand logo" href="../intro.html">
+  
+  
+  
+  
+    
+    
+      
+    
+    
+    <img src="../../_static/figuremain2.jpg" class="logo__image only-light" alt="Logo image"/>
+    <script>document.write(`<img src="../../_static/figuremain2.jpg" class="logo__image only-dark" alt="Logo image"/>`);</script>
+  
+  
+</a></div>
+        <div class="sidebar-primary-item"><nav class="bd-links" id="bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item navbar-nav active">
+        <ul class="current nav bd-sidenav">
+<li class="toctree-l1 has-children"><a class="reference internal" href="../01/what-is-quant-investing.html">1. What is Quantitative Investing?</a><input class="toctree-checkbox" id="toctree-checkbox-1" name="toctree-checkbox-1" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-1"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l2"><a class="reference internal" href="../01/statistical-techniques.html">1.1. Statistical Techniques</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../01/computational-tools.html">1.2. Computational tools</a></li>
+</ul>
+</li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../02/getting_started.html">2. Getting Started</a><input class="toctree-checkbox" id="toctree-checkbox-2" name="toctree-checkbox-2" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-2"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l2"><a class="reference internal" href="../02/local_install.html">2.3. Local installation</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../02/cloud_setup.html">2.4. Cloud Setup</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../03/programming-in-python.html">3. First Steps with Python</a></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../essentials/essentials.html">4. Python Essentials</a><input class="toctree-checkbox" id="toctree-checkbox-3" name="toctree-checkbox-3" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-3"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l2"><a class="reference internal" href="../essentials/basics.html">4.1. Basics</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../essentials/collections.html">4.2. Collections</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../essentials/control_flow.html">4.3. Flow control</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../essentials/functions.html">4.4. Functions</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../essentials/numpy1.html">4.5. Numpy</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../essentials/plotting1.html">4.6. Plotting</a></li>
+</ul>
+</li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../pandas/workingwithdata.html">5. Working with Data</a><input class="toctree-checkbox" id="toctree-checkbox-4" name="toctree-checkbox-4" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-4"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l2"><a class="reference internal" href="../pandas/intro.html">5.1. Introduction</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../pandas/basics.html">5.2. Pandas Basics</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../pandas/the_index.html">5.3. Indexing</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../pandas/timeseries.html">5.4. Time-Series</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../pandas/data_clean.html">5.5. Cleaning data (opt)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../pandas/reshape.html">5.6. Reshape (opt)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../pandas/merge.html">5.7. Merge (opt)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../pandas/groupby.html">5.8. Group-by (opt)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../pandas/matplotlib.html">5.9. Plotting (opt)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../pandas/storage_formats.html">5.10. Data Storage (opt)</a></li>
+</ul>
+</li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="Returns.html">6. Asset Returns</a><input class="toctree-checkbox" id="toctree-checkbox-5" name="toctree-checkbox-5" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-5"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l2"><a class="reference internal" href="Returns1.html">6.1. Returns</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../scientific/randomness1.html">6.2. Modeling randomness</a></li>
+<li class="toctree-l2"><a class="reference internal" href="TheChoiceofFrequency.html">6.3. The Choice of Frequency and Annualization of Returns</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../scientific/linear_algebra1.html">6.4. Linear algebra Review</a></li>
+<li class="toctree-l2"><a class="reference internal" href="UsingAPI.html">6.5. Data APIs</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="PortfolioMath.html">7. Portfolio Math</a></li>
+<li class="toctree-l1"><a class="reference internal" href="CapitalAllocationLine.html">8. Capital Allocation</a></li>
+<li class="toctree-l1 current active has-children"><a class="reference internal" href="meanvariance1.html">9. Mean Variance Frontier</a><input checked="" class="toctree-checkbox" id="toctree-checkbox-6" name="toctree-checkbox-6" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-6"><i class="fa-solid fa-chevron-down"></i></label><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="MeanVariance.html">9.1. Mean Variance Efficient Portfolios</a></li>
+<li class="toctree-l2 current active"><a class="current reference internal" href="#">9.2. Case Study in International Diversification</a></li>
+<li class="toctree-l2"><a class="reference internal" href="LeverageandShorting.html">9.3. Leverage and Shorting</a></li>
+<li class="toctree-l2"><a class="reference internal" href="Portfoliooptimizationwithconstraints.html">9.4. Portfolio Optimization with constraints</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="EstimationUncertainty.html">10. Estimation Uncertainty and It's Implications for investing</a></li>
+<li class="toctree-l1"><a class="reference internal" href="TradingStrategies.html">11. Trading Strategies</a></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="Timing.html">12. Timing Strategies</a><input class="toctree-checkbox" id="toctree-checkbox-7" name="toctree-checkbox-7" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-7"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l2"><a class="reference internal" href="Volatilitytiming.html">12.1. Volatility Timing</a></li>
+</ul>
+</li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="crosssectionalequitystrategies.html">13. Cross-Sectional Equity Strategies</a><input class="toctree-checkbox" id="toctree-checkbox-8" name="toctree-checkbox-8" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-8"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l2"><a class="reference internal" href="Valueinvesting.html">13.1. Value</a></li>
+<li class="toctree-l2"><a class="reference internal" href="Momentum.html">13.2. Momentum</a></li>
+<li class="toctree-l2"><a class="reference internal" href="OtherEquityStrategies.html">13.3. Other Equity strategies</a></li>
+</ul>
+</li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="Evaluation.html">14. Evaluating a Trading Strategy</a><input class="toctree-checkbox" id="toctree-checkbox-9" name="toctree-checkbox-9" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-9"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l2"><a class="reference internal" href="Econometrics.html">14.1. The Econometrics of Strategy Evalaution</a></li>
+<li class="toctree-l2"><a class="reference internal" href="outofsample.html">14.2. Out of Sample Analysis</a></li>
+<li class="toctree-l2"><a class="reference internal" href="TailandBackground.html">14.3. Tail Risks and Background Risks</a></li>
+<li class="toctree-l2"><a class="reference internal" href="MultiFactorModels.html">14.4. Multifactor Models</a></li>
+</ul>
+</li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="Topics.html">15. Topics in Quantitative Investing</a><input class="toctree-checkbox" id="toctree-checkbox-10" name="toctree-checkbox-10" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-10"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l2"><a class="reference internal" href="Equilbrium.html">15.1. Intepreting Factor models</a></li>
+<li class="toctree-l2"><a class="reference internal" href="Implementation.html">15.2. Strategy Implementation</a></li>
+<li class="toctree-l2"><a class="reference internal" href="Horizon.html">15.3. Investment horizon effects</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../additional/additional.html">16. Additional Statistics Material</a></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../Assignments/Assignments.html">17. Assignments</a><input class="toctree-checkbox" id="toctree-checkbox-11" name="toctree-checkbox-11" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-11"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l2"><a class="reference internal" href="../Assignments/Assignment0.html">17.1. Assigment 0</a></li>
+
+
+
+
+
+<li class="toctree-l2"><a class="reference internal" href="../Assignments/Assignment1.html">17.7. Assignment 1</a></li>
+
+
+
+
+<li class="toctree-l2"><a class="reference internal" href="../Assignments/Assignment2.html">17.12. Assigment 2</a></li>
+
+
+
+<li class="toctree-l2"><a class="reference internal" href="../Assignments/Assignment3.html">17.16. Assignment 3</a></li>
+
+
+
+<li class="toctree-l2"><a class="reference internal" href="../Assignments/Assignment4.html">17.20. Assignment 4</a></li>
+
+
+
+<li class="toctree-l2"><a class="reference internal" href="../Assignments/Assignment5.html">17.24. Assigment 5</a></li>
+
+
+
+<li class="toctree-l2"><a class="reference internal" href="../Assignments/Assignment6.html">17.28. Assignment 6</a></li>
+
+
+
+<li class="toctree-l2"><a class="reference internal" href="../Assignments/Assignment7.html">17.32. Assignment 7</a></li>
+
+</ul>
+</li>
+</ul>
+
+    </div>
+</nav></div>
+    </div>
+  
+  
+  <div class="sidebar-primary-items__end sidebar-primary__section">
+  </div>
+  
+  <div id="rtd-footer-container"></div>
+
+
+      </div>
+      
+      <main id="main-content" class="bd-main">
+        
+        
+
+<div class="sbt-scroll-pixel-helper"></div>
+
+          <div class="bd-content">
+            <div class="bd-article-container">
+              
+              <div class="bd-header-article">
+<div class="header-article-items header-article__inner">
+  
+    <div class="header-article-items__start">
+      
+        <div class="header-article-item"><label class="sidebar-toggle primary-toggle btn btn-sm" for="__primary" title="Toggle primary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <span class="fa-solid fa-bars"></span>
+</label></div>
+      
+    </div>
+  
+  
+    <div class="header-article-items__end">
+      
+        <div class="header-article-item">
+
+<div class="article-header-buttons">
+
+
+
+
+
+<div class="dropdown dropdown-launch-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Launch interactive content">
+    <i class="fas fa-rocket"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="https://colab.research.google.com/github/amoreira2/Lectures/blob/main/chapters/Finance/CaseStudy.ipynb" target="_blank"
+   class="btn btn-sm dropdown-item"
+   title="Launch onColab"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  
+    <img src="../../_static/images/logo_colab.png">
+  </span>
+<span class="btn__text-container">Colab</span>
+</a>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+
+
+<div class="dropdown dropdown-source-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Source repositories">
+    <i class="fab fa-github"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="https://github.com/amoreira2/Lectures" target="_blank"
+   class="btn btn-sm btn-source-repository-button dropdown-item"
+   title="Source repository"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fab fa-github"></i>
+  </span>
+<span class="btn__text-container">Repository</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li><a href="https://github.com/amoreira2/Lectures/issues/new?title=Issue%20on%20page%20%2Fchapters/Finance/CaseStudy.html&body=Your%20issue%20content%20here." target="_blank"
+   class="btn btn-sm btn-source-issues-button dropdown-item"
+   title="Open an issue"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-lightbulb"></i>
+  </span>
+<span class="btn__text-container">Open issue</span>
+</a>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+
+
+<div class="dropdown dropdown-download-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Download this page">
+    <i class="fas fa-download"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="../../_sources/chapters/Finance/CaseStudy.ipynb" target="_blank"
+   class="btn btn-sm btn-download-source-button dropdown-item"
+   title="Download source file"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file"></i>
+  </span>
+<span class="btn__text-container">.ipynb</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li>
+<button onclick="window.print()"
+  class="btn btn-sm btn-download-pdf-button dropdown-item"
+  title="Print to PDF"
+  data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file-pdf"></i>
+  </span>
+<span class="btn__text-container">.pdf</span>
+</button>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+<button onclick="toggleFullScreen()"
+  class="btn btn-sm btn-fullscreen-button"
+  title="Fullscreen mode"
+  data-bs-placement="bottom" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-expand"></i>
+  </span>
+
+</button>
+
+
+<script>
+document.write(`
+  <button class="theme-switch-button btn btn-sm btn-outline-primary navbar-btn rounded-circle" title="light/dark" aria-label="light/dark" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="theme-switch" data-mode="light"><i class="fa-solid fa-sun"></i></span>
+    <span class="theme-switch" data-mode="dark"><i class="fa-solid fa-moon"></i></span>
+    <span class="theme-switch" data-mode="auto"><i class="fa-solid fa-circle-half-stroke"></i></span>
+  </button>
+`);
+</script>
+
+<script>
+document.write(`
+  <button class="btn btn-sm navbar-btn search-button search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass"></i>
+  </button>
+`);
+</script>
+<label class="sidebar-toggle secondary-toggle btn btn-sm" for="__secondary"title="Toggle secondary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="fa-solid fa-list"></span>
+</label>
+</div></div>
+      
+    </div>
+  
+</div>
+</div>
+              
+              
+
+<div id="jb-print-docs-body" class="onlyprint">
+    <h1>Case study on international portfolio diversification</h1>
+    <!-- Table of contents -->
+    <div id="print-main-content">
+        <div id="jb-print-toc">
+            
+            <div>
+                <h2> Contents </h2>
+            </div>
+            <nav aria-label="Page">
+                <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#targeting-desired-voaltiltiy">9.2.1. <strong>Targeting desired Voaltiltiy</strong></a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#targeting-desired-expected-return">9.2.2. <strong>Targeting Desired Expected Return</strong></a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#domestic-tangency-portfolio">9.2.3. <strong>Domestic Tangency Portfolio</strong></a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#two-mean-variance-frontiers-for-domestic-and-global-investors">9.2.4. <strong>Two mean-variance frontiers: For domestic and Global investors</strong></a></li>
+</ul>
+            </nav>
+        </div>
+    </div>
+</div>
+
+              
+                
+<div id="searchbox"></div>
+                <article class="bd-article" role="main">
+                  
+  <div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
+<span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+<span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
+<span class="o">%</span><span class="k">matplotlib</span> inline
+<span class="c1">#GlobalFinMonthly</span>
+<span class="n">url</span><span class="o">=</span><span class="s2">&quot;https://raw.githubusercontent.com/amoreira2/Lectures/main/assets/data/GlobalFinMonthly.csv&quot;</span>
+<span class="n">Data</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="n">url</span><span class="p">,</span><span class="n">na_values</span><span class="o">=-</span><span class="mi">99</span><span class="p">)</span>
+<span class="n">Data</span><span class="p">[</span><span class="s1">&#39;Date&#39;</span><span class="p">]</span><span class="o">=</span><span class="n">pd</span><span class="o">.</span><span class="n">to_datetime</span><span class="p">(</span><span class="n">Data</span><span class="p">[</span><span class="s1">&#39;Date&#39;</span><span class="p">])</span>
+<span class="n">Data</span><span class="o">=</span><span class="n">Data</span><span class="o">.</span><span class="n">set_index</span><span class="p">([</span><span class="s1">&#39;Date&#39;</span><span class="p">])</span>
+</pre></div>
+</div>
+</div>
+</div>
+<section class="tex2jax_ignore mathjax_ignore" id="case-study-on-international-portfolio-diversification">
+<h1><span class="section-number">9.2. </span>Case study on international portfolio diversification<a class="headerlink" href="#case-study-on-international-portfolio-diversification" title="Permalink to this heading">#</a></h1>
+<p>In this section we will apply what we have learned so far on the international market. We will try to solve the optimal weights that give us the highest sharpe ratio, and how we should allocate our money between risk-free rate and risky asset to target on average return or volatility.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">Data</span><span class="o">.</span><span class="n">head</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>RF</th>
+      <th>MKT</th>
+      <th>USA30yearGovBond</th>
+      <th>EmergingMarkets</th>
+      <th>WorldxUSA</th>
+      <th>WorldxUSAGovBond</th>
+    </tr>
+    <tr>
+      <th>Date</th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>1963-02-28</th>
+      <td>0.0023</td>
+      <td>-0.0215</td>
+      <td>-0.001878</td>
+      <td>0.098222</td>
+      <td>-0.002773</td>
+      <td>NaN</td>
+    </tr>
+    <tr>
+      <th>1963-03-31</th>
+      <td>0.0023</td>
+      <td>0.0331</td>
+      <td>0.003342</td>
+      <td>0.014149</td>
+      <td>0.000371</td>
+      <td>0.001913</td>
+    </tr>
+    <tr>
+      <th>1963-04-30</th>
+      <td>0.0025</td>
+      <td>0.0476</td>
+      <td>-0.001843</td>
+      <td>-0.147055</td>
+      <td>-0.003336</td>
+      <td>0.008002</td>
+    </tr>
+    <tr>
+      <th>1963-05-31</th>
+      <td>0.0024</td>
+      <td>0.0200</td>
+      <td>-0.001807</td>
+      <td>-0.012172</td>
+      <td>-0.000186</td>
+      <td>0.004689</td>
+    </tr>
+    <tr>
+      <th>1963-06-30</th>
+      <td>0.0023</td>
+      <td>-0.0177</td>
+      <td>0.001666</td>
+      <td>-0.055699</td>
+      <td>-0.011160</td>
+      <td>0.003139</td>
+    </tr>
+  </tbody>
+</table>
+</div></div></div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># for convenience lets rename these assets</span>
+
+<span class="n">Data</span><span class="o">=</span><span class="n">Data</span><span class="o">.</span><span class="n">rename</span><span class="p">(</span><span class="n">columns</span><span class="o">=</span><span class="p">{</span><span class="n">Data</span><span class="o">.</span><span class="n">columns</span><span class="p">[</span><span class="mi">1</span><span class="p">]:</span> <span class="s2">&quot;MKTUS&quot;</span><span class="p">,</span><span class="n">Data</span><span class="o">.</span><span class="n">columns</span><span class="p">[</span><span class="mi">2</span><span class="p">]:</span> <span class="s2">&quot;BondUS&quot;</span><span class="p">,</span>
+                          <span class="n">Data</span><span class="o">.</span><span class="n">columns</span><span class="p">[</span><span class="mi">3</span><span class="p">]:</span> <span class="s2">&quot;EM&quot;</span><span class="p">,</span><span class="n">Data</span><span class="o">.</span><span class="n">columns</span><span class="p">[</span><span class="mi">4</span><span class="p">]:</span> <span class="s2">&quot;MKTxUS&quot;</span><span class="p">,</span><span class="n">Data</span><span class="o">.</span><span class="n">columns</span><span class="p">[</span><span class="mi">5</span><span class="p">]:</span> <span class="s2">&quot;BondxUS&quot;</span> <span class="p">})</span>
+<span class="n">Data</span><span class="o">.</span><span class="n">tail</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>RF</th>
+      <th>MKTUS</th>
+      <th>BondUS</th>
+      <th>EM</th>
+      <th>MKTxUS</th>
+      <th>BondxUS</th>
+    </tr>
+    <tr>
+      <th>Date</th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>2016-08-31</th>
+      <td>0.0002</td>
+      <td>0.0052</td>
+      <td>-0.008417</td>
+      <td>0.025186</td>
+      <td>0.000838</td>
+      <td>-0.009552</td>
+    </tr>
+    <tr>
+      <th>2016-09-30</th>
+      <td>0.0002</td>
+      <td>0.0027</td>
+      <td>-0.016417</td>
+      <td>0.013153</td>
+      <td>0.012736</td>
+      <td>0.009979</td>
+    </tr>
+    <tr>
+      <th>2016-10-31</th>
+      <td>0.0002</td>
+      <td>-0.0200</td>
+      <td>-0.049460</td>
+      <td>0.002474</td>
+      <td>-0.020383</td>
+      <td>-0.043476</td>
+    </tr>
+    <tr>
+      <th>2016-11-30</th>
+      <td>0.0001</td>
+      <td>0.0487</td>
+      <td>-0.081636</td>
+      <td>-0.045971</td>
+      <td>-0.019798</td>
+      <td>-0.050359</td>
+    </tr>
+    <tr>
+      <th>2016-12-31</th>
+      <td>0.0003</td>
+      <td>0.0185</td>
+      <td>-0.005296</td>
+      <td>0.002904</td>
+      <td>0.034383</td>
+      <td>-0.023207</td>
+    </tr>
+  </tbody>
+</table>
+</div></div></div>
+</div>
+<p>Lets start by constructing a matrix with only excess returns</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># </span>
+<span class="n">Re</span><span class="o">=</span><span class="p">(</span><span class="n">Data</span><span class="o">.</span><span class="n">drop</span><span class="p">(</span><span class="s1">&#39;RF&#39;</span><span class="p">,</span><span class="n">axis</span><span class="o">=</span><span class="mi">1</span><span class="p">))</span><span class="o">.</span><span class="n">subtract</span><span class="p">(</span><span class="n">Data</span><span class="p">[</span><span class="s1">&#39;RF&#39;</span><span class="p">],</span><span class="n">axis</span><span class="o">=</span><span class="s1">&#39;index&#39;</span><span class="p">)</span>
+<span class="n">Re</span><span class="o">.</span><span class="n">tail</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>MKTUS</th>
+      <th>BondUS</th>
+      <th>EM</th>
+      <th>MKTxUS</th>
+      <th>BondxUS</th>
+    </tr>
+    <tr>
+      <th>Date</th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>2016-08-31</th>
+      <td>0.0050</td>
+      <td>-0.008617</td>
+      <td>0.024986</td>
+      <td>0.000638</td>
+      <td>-0.009752</td>
+    </tr>
+    <tr>
+      <th>2016-09-30</th>
+      <td>0.0025</td>
+      <td>-0.016617</td>
+      <td>0.012953</td>
+      <td>0.012536</td>
+      <td>0.009779</td>
+    </tr>
+    <tr>
+      <th>2016-10-31</th>
+      <td>-0.0202</td>
+      <td>-0.049660</td>
+      <td>0.002274</td>
+      <td>-0.020583</td>
+      <td>-0.043676</td>
+    </tr>
+    <tr>
+      <th>2016-11-30</th>
+      <td>0.0486</td>
+      <td>-0.081736</td>
+      <td>-0.046071</td>
+      <td>-0.019898</td>
+      <td>-0.050459</td>
+    </tr>
+    <tr>
+      <th>2016-12-31</th>
+      <td>0.0182</td>
+      <td>-0.005596</td>
+      <td>0.002604</td>
+      <td>0.034083</td>
+      <td>-0.023507</td>
+    </tr>
+  </tbody>
+</table>
+</div></div></div>
+</div>
+<p>Now we estimate the expected return and the covariance using the sample moments</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">ERe</span><span class="o">=</span><span class="n">Re</span><span class="o">.</span><span class="n">mean</span><span class="p">()</span>
+<span class="n">ERe</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>MKTUS      0.005140
+BondUS     0.002523
+EM         0.006923
+MKTxUS     0.004149
+BondxUS    0.002054
+dtype: float64
+</pre></div>
+</div>
+</div>
+</div>
+<p>Now we estimate the covariance matrix</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">CovRe</span><span class="o">=</span><span class="n">Re</span><span class="o">.</span><span class="n">cov</span><span class="p">()</span>
+<span class="n">CovRe</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>MKTUS</th>
+      <th>BondUS</th>
+      <th>EM</th>
+      <th>MKTxUS</th>
+      <th>BondxUS</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>MKTUS</th>
+      <td>0.001948</td>
+      <td>0.000111</td>
+      <td>0.001292</td>
+      <td>0.001264</td>
+      <td>0.000187</td>
+    </tr>
+    <tr>
+      <th>BondUS</th>
+      <td>0.000111</td>
+      <td>0.001227</td>
+      <td>-0.000204</td>
+      <td>-0.000013</td>
+      <td>0.000264</td>
+    </tr>
+    <tr>
+      <th>EM</th>
+      <td>0.001292</td>
+      <td>-0.000204</td>
+      <td>0.003556</td>
+      <td>0.001661</td>
+      <td>0.000249</td>
+    </tr>
+    <tr>
+      <th>MKTxUS</th>
+      <td>0.001264</td>
+      <td>-0.000013</td>
+      <td>0.001661</td>
+      <td>0.002182</td>
+      <td>0.000422</td>
+    </tr>
+    <tr>
+      <th>BondxUS</th>
+      <td>0.000187</td>
+      <td>0.000264</td>
+      <td>0.000249</td>
+      <td>0.000422</td>
+      <td>0.000407</td>
+    </tr>
+  </tbody>
+</table>
+</div></div></div>
+</div>
+<ol class="arabic simple">
+<li><p>First we will solve for the maxium Sharpe ratio feasible:</p></li>
+</ol>
+<p><span class="math notranslate nohighlight">\(\begin{align}
+  SR(R^*)&amp;=\sqrt{E[R^e]'Var(R^e)^{-1}E[R^e]}
+  \end{align}\)</span></p>
+<ol class="arabic simple" start="2">
+<li><p>Then we will solve for the weights that implement this Sharpe ratio</p></li>
+</ol>
+<div class="math notranslate nohighlight">
+\[W_*=VAR(R^e)^{-1}E[R^e]\]</div>
+<ol class="arabic simple" start="3">
+<li><p>And then we will solve for the position on it that implements a desired level of volatility or expected returns</p></li>
+</ol>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">SR_int</span><span class="o">=</span><span class="p">(</span><span class="n">ERe</span> <span class="o">@</span> <span class="n">np</span><span class="o">.</span><span class="n">linalg</span><span class="o">.</span><span class="n">inv</span><span class="p">(</span><span class="n">CovRe</span><span class="p">)</span> <span class="o">@</span> <span class="n">ERe</span><span class="p">)</span><span class="o">**</span><span class="mf">0.5</span>
+<span class="n">SR_int</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>0.163687548954056
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># annualized</span>
+
+<span class="n">SR_int</span><span class="o">*</span><span class="mi">12</span><span class="o">**</span><span class="mf">0.5</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>0.5670303027096856
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># compares with market</span>
+
+<span class="n">Re</span><span class="o">.</span><span class="n">MKTUS</span><span class="o">.</span><span class="n">mean</span><span class="p">()</span><span class="o">/</span><span class="n">Re</span><span class="o">.</span><span class="n">MKTUS</span><span class="o">.</span><span class="n">std</span><span class="p">()</span><span class="o">*</span><span class="mi">12</span><span class="o">**</span><span class="mf">0.5</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>0.4034509726765917
+</pre></div>
+</div>
+</div>
+</div>
+<p>We will now initate an empty dataframe that has in the columns the names of the assets</p>
+<p>We will use it to store the different portfolios that you solve for</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">Wmve</span><span class="o">=</span><span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">([],</span><span class="n">index</span><span class="o">=</span><span class="n">Re</span><span class="o">.</span><span class="n">columns</span><span class="p">)</span>
+<span class="n">Wmve</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>MKTUS</th>
+    </tr>
+    <tr>
+      <th>BondUS</th>
+    </tr>
+    <tr>
+      <th>EM</th>
+    </tr>
+    <tr>
+      <th>MKTxUS</th>
+    </tr>
+    <tr>
+      <th>BondxUS</th>
+    </tr>
+  </tbody>
+</table>
+</div></div></div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">Wmve</span><span class="p">[</span><span class="s1">&#39;International&#39;</span><span class="p">]</span> <span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">linalg</span><span class="o">.</span><span class="n">inv</span><span class="p">(</span><span class="n">CovRe</span><span class="p">)</span> <span class="o">@</span> <span class="n">ERe</span>
+<span class="n">Wmve</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>International</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>MKTUS</th>
+      <td>1.835334</td>
+    </tr>
+    <tr>
+      <th>BondUS</th>
+      <td>1.423373</td>
+    </tr>
+    <tr>
+      <th>EM</th>
+      <td>1.605223</td>
+    </tr>
+    <tr>
+      <th>MKTxUS</th>
+      <td>-1.026421</td>
+    </tr>
+    <tr>
+      <th>BondxUS</th>
+      <td>3.365823</td>
+    </tr>
+  </tbody>
+</table>
+</div></div></div>
+</div>
+<section id="targeting-desired-voaltiltiy">
+<h2><span class="section-number">9.2.1. </span><strong>Targeting desired Voaltiltiy</strong><a class="headerlink" href="#targeting-desired-voaltiltiy" title="Permalink to this heading">#</a></h2>
+<p>We will first find the particular scaling of the tangendy porfolio that implements a desired level of volatility</p>
+<p>We shown that for weights <span class="math notranslate nohighlight">\(X=E[R^e]'Var(R^e)^{-1}\)</span>, the volatility is <span class="math notranslate nohighlight">\(\sigma(X'R^e)=\sqrt{E[R^e]'Var(R^e)^{-1}E[R^e]}\)</span></p>
+<p>Thus to get a portfolio of vol <span class="math notranslate nohighlight">\(\sigma^D\)</span> all we need to lever it up/down by this factor</p>
+<div class="math notranslate nohighlight">
+\[W^*(\sigma^D)'=\frac{\sigma^D}{\sqrt{E[R^e]'Var(R^e)^{-1}E[R^e]}}E[R^e]'Var(R^e)^{-1}\]</div>
+<p>This dominator alos happens to be Sharpe-Ratio of the tangency portfolio</p>
+<div class="math notranslate nohighlight">
+\[W^*(\sigma^D)=\frac{\sigma^D}{SR_*}W^*\]</div>
+<p>So you simply scale down the weights depending on whether your desired volatiltiy.</p>
+<p>In this case the obtained expected excess return is</p>
+<div class="math notranslate nohighlight">
+\[\mu^D-r_f=\sigma^D SR_*\]</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># I am setting the target to be annual volatiltiy of 20% and </span>
+<span class="c1"># I am converting back to monthly by dividing by square roo of 12</span>
+<span class="n">sigma_desired</span><span class="o">=</span><span class="mf">0.20</span><span class="o">/</span><span class="mi">12</span><span class="o">**</span><span class="mf">0.5</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">sigma_desired</span><span class="o">/</span><span class="n">SR_int</span><span class="p">)</span>
+<span class="n">Wmve</span><span class="p">[</span><span class="s1">&#39;International(voltarget)&#39;</span><span class="p">]</span><span class="o">=</span><span class="p">(</span><span class="n">sigma_desired</span><span class="o">/</span><span class="n">SR_int</span><span class="p">)</span><span class="o">*</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">linalg</span><span class="o">.</span><span class="n">inv</span><span class="p">(</span><span class="n">CovRe</span><span class="p">)</span> <span class="o">@</span> <span class="n">ERe</span><span class="p">)</span>
+<span class="n">Wmve</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>0.35271483559918
+</pre></div>
+</div>
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>International</th>
+      <th>International(voltarget)</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>MKTUS</th>
+      <td>1.835334</td>
+      <td>0.647349</td>
+    </tr>
+    <tr>
+      <th>BondUS</th>
+      <td>1.423373</td>
+      <td>0.502045</td>
+    </tr>
+    <tr>
+      <th>EM</th>
+      <td>1.605223</td>
+      <td>0.566186</td>
+    </tr>
+    <tr>
+      <th>MKTxUS</th>
+      <td>-1.026421</td>
+      <td>-0.362034</td>
+    </tr>
+    <tr>
+      <th>BondxUS</th>
+      <td>3.365823</td>
+      <td>1.187176</td>
+    </tr>
+  </tbody>
+</table>
+</div></div></div>
+</div>
+</section>
+<section id="targeting-desired-expected-return">
+<h2><span class="section-number">9.2.2. </span><strong>Targeting Desired Expected Return</strong><a class="headerlink" href="#targeting-desired-expected-return" title="Permalink to this heading">#</a></h2>
+<p><span class="math notranslate nohighlight">\(\begin{align}
+  \mu^{D}&amp;=r_f+wE[R^*] \\
+  w &amp;=\frac{\mu^{D}-r_f}{E[R^*]} \\
+  &amp;=\frac{\mu^{D}-r_f}{E[R^e]'VAR(R^e)^{-1}E[R^e]} \\
+  &amp;=\frac{\mu^{D}-r_f}{SR_*^2} \\
+  \end{align}\)</span></p>
+<p>where the last step simply uses that the denominator is the square of the Sharpe Ratio of the tangency portfolio</p>
+<p>Because SR is expected excess return over the volatility <span class="math notranslate nohighlight">\(\mu^D-r_f=\sigma^D SR_*\)</span>, then the obtained vol is simply</p>
+<div class="math notranslate nohighlight">
+\[\sigma^D=\frac{\mu^{D}-r_f}{SR_*}\]</div>
+<p>If one wanted to set the target for the expected returns one ould simply subtract the <strong>current</strong> risk-free rate of this desired level</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># I am setting an annual target to 10% and convert to monthly by dividing by 12</span>
+
+<span class="n">mu_desired</span><span class="o">=</span><span class="mf">0.10</span><span class="o">/</span><span class="mi">12</span>
+<span class="c1">#If setting target to expected return simply use mu_desired-rf instead of mu_desired in the formulas</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="n">mu_desired</span><span class="o">/</span><span class="n">SR_int</span><span class="o">**</span><span class="mi">2</span><span class="p">)</span>
+<span class="n">Wmve</span><span class="p">[</span><span class="s1">&#39;International(mutarget)&#39;</span><span class="p">]</span><span class="o">=</span><span class="p">(</span><span class="n">mu_desired</span><span class="o">/</span><span class="n">SR_int</span><span class="o">**</span><span class="mi">2</span><span class="p">)</span><span class="o">*</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">linalg</span><span class="o">.</span><span class="n">inv</span><span class="p">(</span><span class="n">CovRe</span><span class="p">)</span> <span class="o">@</span> <span class="n">ERe</span><span class="p">)</span>
+<span class="n">Wmve</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>0.31101938812939134
+</pre></div>
+</div>
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>International</th>
+      <th>International(voltarget)</th>
+      <th>International(mutarget)</th>
+      <th>Domestic</th>
+      <th>Domestic(voltarget)</th>
+      <th>Domestic(mutarget)</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>MKTUS</th>
+      <td>1.835334</td>
+      <td>0.647349</td>
+      <td>0.570824</td>
+      <td>2.534954</td>
+      <td>1.101918</td>
+      <td>0.159048</td>
+    </tr>
+    <tr>
+      <th>BondUS</th>
+      <td>1.423373</td>
+      <td>0.502045</td>
+      <td>0.442696</td>
+      <td>1.827591</td>
+      <td>0.794434</td>
+      <td>0.114667</td>
+    </tr>
+    <tr>
+      <th>EM</th>
+      <td>1.605223</td>
+      <td>0.566186</td>
+      <td>0.499255</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+    </tr>
+    <tr>
+      <th>MKTxUS</th>
+      <td>-1.026421</td>
+      <td>-0.362034</td>
+      <td>-0.319237</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+    </tr>
+    <tr>
+      <th>BondxUS</th>
+      <td>3.365823</td>
+      <td>1.187176</td>
+      <td>1.046836</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+    </tr>
+  </tbody>
+</table>
+</div></div></div>
+</div>
+</section>
+<section id="domestic-tangency-portfolio">
+<h2><span class="section-number">9.2.3. </span><strong>Domestic Tangency Portfolio</strong><a class="headerlink" href="#domestic-tangency-portfolio" title="Permalink to this heading">#</a></h2>
+<p>we only keep the first two columns MKT and Bonds</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1">#ERe_dom=?</span>
+<span class="c1">#CovRe_dom=?</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>The Sharpe Ratio of the domestic Tangency portolio</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1">#SR_dom=?</span>
+<span class="c1">#print(SR_dom*12**0.5)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>0.4600987547084185
+</pre></div>
+</div>
+</div>
+</div>
+<p>The weights of the domestic tangency portfolio</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">Wmvedom</span><span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linalg</span><span class="o">.</span><span class="n">inv</span><span class="p">(</span><span class="n">CovRe_dom</span><span class="p">)</span> <span class="o">@</span> <span class="n">ERe_dom</span><span class="o">.</span><span class="n">values</span>
+<span class="n">Wmve</span><span class="o">.</span><span class="n">loc</span><span class="p">[[</span><span class="s1">&#39;MKTUS&#39;</span><span class="p">,</span><span class="s1">&#39;BondUS&#39;</span><span class="p">],</span><span class="s1">&#39;Domestic&#39;</span><span class="p">]</span><span class="o">=</span><span class="n">Wmvedom</span>
+
+<span class="n">sigma_desired</span><span class="o">=</span><span class="mf">0.20</span><span class="o">/</span><span class="mi">12</span><span class="o">**</span><span class="mf">0.5</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">sigma_desired</span><span class="o">/</span><span class="n">SR_dom</span><span class="p">)</span>
+<span class="n">Wmve</span><span class="o">.</span><span class="n">loc</span><span class="p">[[</span><span class="s1">&#39;MKTUS&#39;</span><span class="p">,</span><span class="s1">&#39;BondUS&#39;</span><span class="p">],</span><span class="s1">&#39;Domestic(voltarget)&#39;</span><span class="p">]</span><span class="o">=</span><span class="p">(</span><span class="n">sigma_desired</span><span class="o">/</span><span class="n">SR_dom</span><span class="p">)</span><span class="o">*</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">linalg</span><span class="o">.</span><span class="n">inv</span><span class="p">(</span><span class="n">CovRe_dom</span><span class="p">)</span> <span class="o">@</span> <span class="n">ERe_dom</span><span class="p">)</span>
+
+<span class="n">mu_desired</span><span class="o">=</span><span class="mf">0.10</span><span class="o">/</span><span class="mi">12</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">mu_desired</span><span class="o">/</span><span class="n">SR_dom</span><span class="o">**</span><span class="mi">2</span><span class="p">)</span>
+<span class="n">Wmve</span><span class="o">.</span><span class="n">loc</span><span class="p">[[</span><span class="s1">&#39;MKTUS&#39;</span><span class="p">,</span><span class="s1">&#39;BondUS&#39;</span><span class="p">],</span><span class="s1">&#39;Domestic(mutarget)&#39;</span><span class="p">]</span><span class="o">=</span><span class="p">(</span><span class="n">mu_desired</span><span class="o">/</span><span class="n">SR_dom</span><span class="o">**</span><span class="mi">2</span><span class="p">)</span><span class="o">*</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">linalg</span><span class="o">.</span><span class="n">inv</span><span class="p">(</span><span class="n">CovRe_dom</span><span class="p">)</span> <span class="o">@</span> <span class="n">ERe_dom</span><span class="p">)</span>
+
+
+<span class="n">Wmve</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>0.43468928779593713
+0.47238694231134754
+</pre></div>
+</div>
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>International</th>
+      <th>International(voltarget)</th>
+      <th>International(mutarget)</th>
+      <th>Domestic</th>
+      <th>Domestic(voltarget)</th>
+      <th>Domestic(mutarget)</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>MKTUS</th>
+      <td>1.835334</td>
+      <td>0.647349</td>
+      <td>0.570824</td>
+      <td>2.534954</td>
+      <td>1.101918</td>
+      <td>1.197479</td>
+    </tr>
+    <tr>
+      <th>BondUS</th>
+      <td>1.423373</td>
+      <td>0.502045</td>
+      <td>0.442696</td>
+      <td>1.827591</td>
+      <td>0.794434</td>
+      <td>0.863330</td>
+    </tr>
+    <tr>
+      <th>EM</th>
+      <td>1.605223</td>
+      <td>0.566186</td>
+      <td>0.499255</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+    </tr>
+    <tr>
+      <th>MKTxUS</th>
+      <td>-1.026421</td>
+      <td>-0.362034</td>
+      <td>-0.319237</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+    </tr>
+    <tr>
+      <th>BondxUS</th>
+      <td>3.365823</td>
+      <td>1.187176</td>
+      <td>1.046836</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+    </tr>
+  </tbody>
+</table>
+</div></div></div>
+</div>
+<p><strong>The difference in Sharpe ratios reveal the benefits of internaitonal diversificaiton</strong></p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># this difference is the benefits of international diversification</span>
+
+<span class="c1">#(SR_int-SR_dom)*12**0.5</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>0.10693154800126711
+</pre></div>
+</div>
+</div>
+</div>
+<ul class="simple">
+<li><p>what does that mean?</p></li>
+<li><p>it means for example that if you want to target a portfolio with a volatility of 5% per month (about the vol of the US market portfolio), then you get</p></li>
+</ul>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># international diversification</span>
+<span class="n">voltarget</span><span class="o">=</span><span class="mf">0.2</span><span class="o">/</span><span class="mi">12</span><span class="o">**</span><span class="mf">0.5</span>
+<span class="c1">#[SR_int*voltarget,SR_dom*voltarget]</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[0.009450505045161428, 0.007668312578473642]
+</pre></div>
+</div>
+</div>
+</div>
+<p>How much your returns increase when you go global for this voltarget above?</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># in percent?</span>
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="two-mean-variance-frontiers-for-domestic-and-global-investors">
+<h2><span class="section-number">9.2.4. </span><strong>Two mean-variance frontiers: For domestic and Global investors</strong><a class="headerlink" href="#two-mean-variance-frontiers-for-domestic-and-global-investors" title="Permalink to this heading">#</a></h2>
+<p>We will now plot the two frontiers together with the underlying assets</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># # Lets visualize this in a plot including the two investment frontiers</span>
+
+<span class="c1"># # set different expected return targets</span>
+<span class="c1"># mu_target=np.linspace(0,0.1/12,20)</span>
+<span class="c1"># # international portfolios</span>
+
+<span class="c1"># plt.plot(mu_target/SR_int,mu_target)</span>
+
+<span class="c1"># #Domestic portfolios</span>
+<span class="c1"># plt.plot(mu_target/SR_dom,mu_target)</span>
+<span class="c1"># #Individual assets</span>
+<span class="c1"># plt.xlabel(&#39;standard deviation&#39;)</span>
+<span class="c1"># plt.ylabel(&#39;expected return&#39;)</span>
+<span class="c1"># plt.title(&#39;Benefits of international diversification&#39;)</span>
+<span class="c1"># plt.scatter(Re.std(),Re.mean())</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;matplotlib.collections.PathCollection at 0x216674229a0&gt;
+</pre></div>
+</div>
+<img alt="../../_images/ecd74e6b5a79b03cb583117f06a59c238055bdfd0cdad10026d46c0f9629f65f.png" src="../../_images/ecd74e6b5a79b03cb583117f06a59c238055bdfd0cdad10026d46c0f9629f65f.png" />
+</div>
+</div>
+<p>Lets add label to the dots so we know which asset corresponds to each point</p>
+<p>For that I will run the same code above and add a for loop that lopps though the column name of the <code class="docutils literal notranslate"><span class="pre">Re</span></code> dataframe and uses the text functio to write the column name in the correct position where the x-dimension is the asset volatility and y-dimension is the asset avereage return</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># mu_target=np.linspace(0,0.1/12,20)</span>
+<span class="c1"># plt.plot(mu_target/SR_int,mu_target)</span>
+<span class="c1"># plt.plot(mu_target/SR_dom,mu_target)</span>
+<span class="c1"># plt.scatter(Re.std(),Re.mean())</span>
+
+<span class="c1"># plt.xlabel(&#39;standard deviation&#39;)</span>
+<span class="c1"># plt.ylabel(&#39;expected return&#39;)</span>
+<span class="c1"># plt.title(&#39;Benefits of international diversification&#39;)</span>
+<span class="c1"># # lets add some labels so we know which point is each portfolio</span>
+
+
+<span class="c1"># for label in Re.columns :</span>
+<span class="c1">#    plt.text(Re.std()[label],Re.mean()[label],label)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../../_images/08bd4d7a180a4157cf8b034c2659ce16464c877283fe96413c35c6fe857244e6.png" src="../../_images/08bd4d7a180a4157cf8b034c2659ce16464c877283fe96413c35c6fe857244e6.png" />
+</div>
+</div>
+</section>
+</section>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "binder-examples/jupyter-stacks-datascience",
+            ref: "master",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "python"
+        },
+        kernelOptions: {
+            name: "python3",
+            path: "./chapters/Finance"
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'python3'</script>
+
+                </article>
+              
+
+              
+              
+                <footer class="bd-footer-article">
+                  
+<div class="footer-article-items footer-article__inner">
+  
+    <div class="footer-article-item"><!-- Previous / next buttons -->
+<div class="prev-next-area">
+    <a class="left-prev"
+       href="MeanVariance.html"
+       title="previous page">
+      <i class="fa-solid fa-angle-left"></i>
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">previous</p>
+        <p class="prev-next-title"><span class="section-number">9.1. </span>The Mean-Variance Frontier</p>
+      </div>
+    </a>
+    <a class="right-next"
+       href="LeverageandShorting.html"
+       title="next page">
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">next</p>
+        <p class="prev-next-title"><span class="section-number">9.3. </span>Levering up and Shorting</p>
+      </div>
+      <i class="fa-solid fa-angle-right"></i>
+    </a>
+</div></div>
+  
+</div>
+
+                </footer>
+              
+            </div>
+            
+            
+              
+                <div class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
+  <div class="sidebar-secondary-item">
+  <div class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> Contents
+  </div>
+  <nav class="bd-toc-nav page-toc">
+    <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#targeting-desired-voaltiltiy">9.2.1. <strong>Targeting desired Voaltiltiy</strong></a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#targeting-desired-expected-return">9.2.2. <strong>Targeting Desired Expected Return</strong></a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#domestic-tangency-portfolio">9.2.3. <strong>Domestic Tangency Portfolio</strong></a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#two-mean-variance-frontiers-for-domestic-and-global-investors">9.2.4. <strong>Two mean-variance frontiers: For domestic and Global investors</strong></a></li>
+</ul>
+  </nav></div>
+
+</div></div>
+              
+            
+          </div>
+          <footer class="bd-footer-content">
+            
+<div class="bd-footer-content__inner container">
+  
+  <div class="footer-item">
+    
+<p class="component-author">
+By Alan Moreira
+</p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+  <p class="copyright">
+    
+      © Copyright 2021 Creative Commons Attribution-ShareAlike 4.0 International (CC BY-SA 4.0).
+      <br/>
+    
+  </p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+</div>
+          </footer>
+        
+
+      </main>
+    </div>
+  </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script src="../../_static/scripts/bootstrap.js?digest=e353d410970836974a52"></script>
+<script src="../../_static/scripts/pydata-sphinx-theme.js?digest=e353d410970836974a52"></script>
+
+  <footer class="bd-footer">
+  </footer>
+  </body>
+</html>

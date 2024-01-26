@@ -1,0 +1,1339 @@
+
+
+<!DOCTYPE html>
+
+
+<html lang="en" >
+
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
+
+    <title>14.1. The econometrics of strategy evaluation &#8212; Quantitative Investing</title>
+  
+  
+  
+  <script data-cfasync="false">
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "light";
+  </script>
+  
+  <!-- Loaded before other Sphinx assets -->
+  <link href="../../_static/styles/theme.css?digest=e353d410970836974a52" rel="stylesheet" />
+<link href="../../_static/styles/bootstrap.css?digest=e353d410970836974a52" rel="stylesheet" />
+<link href="../../_static/styles/pydata-sphinx-theme.css?digest=e353d410970836974a52" rel="stylesheet" />
+
+  
+  <link href="../../_static/vendor/fontawesome/6.1.2/css/all.min.css?digest=e353d410970836974a52" rel="stylesheet" />
+  <link rel="preload" as="font" type="font/woff2" crossorigin href="../../_static/vendor/fontawesome/6.1.2/webfonts/fa-solid-900.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../../_static/vendor/fontawesome/6.1.2/webfonts/fa-brands-400.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../../_static/vendor/fontawesome/6.1.2/webfonts/fa-regular-400.woff2" />
+
+    <link rel="stylesheet" type="text/css" href="../../_static/pygments.css" />
+    <link rel="stylesheet" href="../../_static/styles/sphinx-book-theme.css?digest=14f4ca6b54d191a8c7657f6c759bf11a5fb86285" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/togglebutton.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/copybutton.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/sphinx-thebe.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/book.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/design-style.4045f2051d55cab465a707391d5b2007.min.css" />
+  
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="../../_static/scripts/bootstrap.js?digest=e353d410970836974a52" />
+<link rel="preload" as="script" href="../../_static/scripts/pydata-sphinx-theme.js?digest=e353d410970836974a52" />
+
+    <script data-url_root="../../" id="documentation_options" src="../../_static/documentation_options.js"></script>
+    <script src="../../_static/jquery.js"></script>
+    <script src="../../_static/underscore.js"></script>
+    <script src="../../_static/_sphinx_javascript_frameworks_compat.js"></script>
+    <script src="../../_static/doctools.js"></script>
+    <script src="../../_static/clipboard.min.js"></script>
+    <script src="../../_static/copybutton.js"></script>
+    <script src="../../_static/scripts/sphinx-book-theme.js?digest=5a5c038af52cf7bc1a1ec88eea08e6366ee68824"></script>
+    <script>let toggleHintShow = 'Click to show';</script>
+    <script>let toggleHintHide = 'Click to hide';</script>
+    <script>let toggleOpenOnPrint = 'true';</script>
+    <script src="../../_static/togglebutton.js"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script src="../../_static/design-tabs.js"></script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"
+const thebe_selector = ".thebe,.cell"
+const thebe_selector_input = "pre"
+const thebe_selector_output = ".output, .cell_output"
+</script>
+    <script async="async" src="../../_static/sphinx-thebe.js"></script>
+    <script>window.MathJax = {"options": {"processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
+    <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'chapters/Finance/Econometrics';</script>
+    <link rel="canonical" href="https://amoreira2.github.io/quantitativeinvesting/chapters/Finance/Econometrics.html" />
+    <link rel="shortcut icon" href="../../_static/figuremain2.jpg"/>
+    <link rel="index" title="Index" href="../../genindex.html" />
+    <link rel="search" title="Search" href="../../search.html" />
+    <link rel="next" title="14.2. Out of sample analysis" href="outofsample.html" />
+    <link rel="prev" title="14. Strategy Evaluation" href="Evaluation.html" />
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta name="docsearch:language" content="en"/>
+  </head>
+  
+  
+  <body data-bs-spy="scroll" data-bs-target=".bd-toc-nav" data-offset="180" data-bs-root-margin="0px 0px -60%" data-default-mode="">
+
+  
+  
+  <a class="skip-link" href="#main-content">Skip to main content</a>
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          name="__primary"
+          id="__primary"/>
+  <label class="overlay overlay-primary" for="__primary"></label>
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          name="__secondary"
+          id="__secondary"/>
+  <label class="overlay overlay-secondary" for="__secondary"></label>
+  
+  <div class="search-button__wrapper">
+    <div class="search-button__overlay"></div>
+    <div class="search-button__search-container">
+<form class="bd-search d-flex align-items-center"
+      action="../../search.html"
+      method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search"
+         class="form-control"
+         name="q"
+         id="search-input"
+         placeholder="Search this book..."
+         aria-label="Search this book..."
+         autocomplete="off"
+         autocorrect="off"
+         autocapitalize="off"
+         spellcheck="false"/>
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form></div>
+  </div>
+  
+    <nav class="bd-header navbar navbar-expand-lg bd-navbar">
+    </nav>
+  
+  <div class="bd-container">
+    <div class="bd-container__inner bd-page-width">
+      
+      <div class="bd-sidebar-primary bd-sidebar">
+        
+
+  
+  <div class="sidebar-header-items sidebar-primary__section">
+    
+    
+    
+    
+  </div>
+  
+    <div class="sidebar-primary-items__start sidebar-primary__section">
+        <div class="sidebar-primary-item">
+  
+
+<a class="navbar-brand logo" href="../intro.html">
+  
+  
+  
+  
+    
+    
+      
+    
+    
+    <img src="../../_static/figuremain2.jpg" class="logo__image only-light" alt="Logo image"/>
+    <script>document.write(`<img src="../../_static/figuremain2.jpg" class="logo__image only-dark" alt="Logo image"/>`);</script>
+  
+  
+</a></div>
+        <div class="sidebar-primary-item"><nav class="bd-links" id="bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item navbar-nav active">
+        <ul class="current nav bd-sidenav">
+<li class="toctree-l1 has-children"><a class="reference internal" href="../01/what-is-quant-investing.html">1. What is Quantitative Investing?</a><input class="toctree-checkbox" id="toctree-checkbox-1" name="toctree-checkbox-1" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-1"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l2"><a class="reference internal" href="../01/statistical-techniques.html">1.1. Statistical Techniques</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../01/computational-tools.html">1.2. Computational tools</a></li>
+</ul>
+</li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../02/getting_started.html">2. Getting Started</a><input class="toctree-checkbox" id="toctree-checkbox-2" name="toctree-checkbox-2" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-2"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l2"><a class="reference internal" href="../02/local_install.html">2.3. Local installation</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../02/cloud_setup.html">2.4. Cloud Setup</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../03/programming-in-python.html">3. First Steps with Python</a></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../essentials/essentials.html">4. Python Essentials</a><input class="toctree-checkbox" id="toctree-checkbox-3" name="toctree-checkbox-3" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-3"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l2"><a class="reference internal" href="../essentials/basics.html">4.1. Basics</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../essentials/collections.html">4.2. Collections</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../essentials/control_flow.html">4.3. Flow control</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../essentials/functions.html">4.4. Functions</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../essentials/numpy1.html">4.5. Numpy</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../essentials/plotting1.html">4.6. Plotting</a></li>
+</ul>
+</li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../pandas/workingwithdata.html">5. Working with Data</a><input class="toctree-checkbox" id="toctree-checkbox-4" name="toctree-checkbox-4" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-4"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l2"><a class="reference internal" href="../pandas/intro.html">5.1. Introduction</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../pandas/basics.html">5.2. Pandas Basics</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../pandas/the_index.html">5.3. Indexing</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../pandas/timeseries.html">5.4. Time-Series</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../pandas/data_clean.html">5.5. Cleaning data (opt)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../pandas/reshape.html">5.6. Reshape (opt)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../pandas/merge.html">5.7. Merge (opt)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../pandas/groupby.html">5.8. Group-by (opt)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../pandas/matplotlib.html">5.9. Plotting (opt)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../pandas/storage_formats.html">5.10. Data Storage (opt)</a></li>
+</ul>
+</li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="Returns.html">6. Asset Returns</a><input class="toctree-checkbox" id="toctree-checkbox-5" name="toctree-checkbox-5" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-5"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l2"><a class="reference internal" href="Returns1.html">6.1. Returns</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../scientific/randomness1.html">6.2. Modeling randomness</a></li>
+<li class="toctree-l2"><a class="reference internal" href="TheChoiceofFrequency.html">6.3. The Choice of Frequency and Annualization of Returns</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../scientific/linear_algebra1.html">6.4. Linear algebra Review</a></li>
+<li class="toctree-l2"><a class="reference internal" href="UsingAPI.html">6.5. Data APIs</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="PortfolioMath.html">7. Portfolio Math</a></li>
+<li class="toctree-l1"><a class="reference internal" href="CapitalAllocationLine.html">8. Capital Allocation</a></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="meanvariance1.html">9. Mean Variance Frontier</a><input class="toctree-checkbox" id="toctree-checkbox-6" name="toctree-checkbox-6" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-6"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l2"><a class="reference internal" href="MeanVariance.html">9.1. Mean Variance Efficient Portfolios</a></li>
+<li class="toctree-l2"><a class="reference internal" href="CaseStudy.html">9.2. Case Study in International Diversification</a></li>
+<li class="toctree-l2"><a class="reference internal" href="LeverageandShorting.html">9.3. Leverage and Shorting</a></li>
+<li class="toctree-l2"><a class="reference internal" href="Portfoliooptimizationwithconstraints.html">9.4. Portfolio Optimization with constraints</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="EstimationUncertainty.html">10. Estimation Uncertainty and It's Implications for investing</a></li>
+<li class="toctree-l1"><a class="reference internal" href="TradingStrategies.html">11. Trading Strategies</a></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="Timing.html">12. Timing Strategies</a><input class="toctree-checkbox" id="toctree-checkbox-7" name="toctree-checkbox-7" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-7"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l2"><a class="reference internal" href="Volatilitytiming.html">12.1. Volatility Timing</a></li>
+</ul>
+</li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="crosssectionalequitystrategies.html">13. Cross-Sectional Equity Strategies</a><input class="toctree-checkbox" id="toctree-checkbox-8" name="toctree-checkbox-8" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-8"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l2"><a class="reference internal" href="Valueinvesting.html">13.1. Value</a></li>
+<li class="toctree-l2"><a class="reference internal" href="Momentum.html">13.2. Momentum</a></li>
+<li class="toctree-l2"><a class="reference internal" href="OtherEquityStrategies.html">13.3. Other Equity strategies</a></li>
+</ul>
+</li>
+<li class="toctree-l1 current active has-children"><a class="reference internal" href="Evaluation.html">14. Evaluating a Trading Strategy</a><input checked="" class="toctree-checkbox" id="toctree-checkbox-9" name="toctree-checkbox-9" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-9"><i class="fa-solid fa-chevron-down"></i></label><ul class="current">
+<li class="toctree-l2 current active"><a class="current reference internal" href="#">14.1. The Econometrics of Strategy Evalaution</a></li>
+<li class="toctree-l2"><a class="reference internal" href="outofsample.html">14.2. Out of Sample Analysis</a></li>
+<li class="toctree-l2"><a class="reference internal" href="TailandBackground.html">14.3. Tail Risks and Background Risks</a></li>
+<li class="toctree-l2"><a class="reference internal" href="MultiFactorModels.html">14.4. Multifactor Models</a></li>
+</ul>
+</li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="Topics.html">15. Topics in Quantitative Investing</a><input class="toctree-checkbox" id="toctree-checkbox-10" name="toctree-checkbox-10" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-10"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l2"><a class="reference internal" href="Equilbrium.html">15.1. Intepreting Factor models</a></li>
+<li class="toctree-l2"><a class="reference internal" href="Implementation.html">15.2. Strategy Implementation</a></li>
+<li class="toctree-l2"><a class="reference internal" href="Horizon.html">15.3. Investment horizon effects</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../additional/additional.html">16. Additional Statistics Material</a></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../Assignments/Assignments.html">17. Assignments</a><input class="toctree-checkbox" id="toctree-checkbox-11" name="toctree-checkbox-11" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-11"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l2"><a class="reference internal" href="../Assignments/Assignment0.html">17.1. Assigment 0</a></li>
+
+
+
+
+
+<li class="toctree-l2"><a class="reference internal" href="../Assignments/Assignment1.html">17.7. Assignment 1</a></li>
+
+
+
+
+<li class="toctree-l2"><a class="reference internal" href="../Assignments/Assignment2.html">17.12. Assigment 2</a></li>
+
+
+
+<li class="toctree-l2"><a class="reference internal" href="../Assignments/Assignment3.html">17.16. Assignment 3</a></li>
+
+
+
+<li class="toctree-l2"><a class="reference internal" href="../Assignments/Assignment4.html">17.20. Assignment 4</a></li>
+
+
+
+<li class="toctree-l2"><a class="reference internal" href="../Assignments/Assignment5.html">17.24. Assigment 5</a></li>
+
+
+
+<li class="toctree-l2"><a class="reference internal" href="../Assignments/Assignment6.html">17.28. Assignment 6</a></li>
+
+
+
+<li class="toctree-l2"><a class="reference internal" href="../Assignments/Assignment7.html">17.32. Assignment 7</a></li>
+
+</ul>
+</li>
+</ul>
+
+    </div>
+</nav></div>
+    </div>
+  
+  
+  <div class="sidebar-primary-items__end sidebar-primary__section">
+  </div>
+  
+  <div id="rtd-footer-container"></div>
+
+
+      </div>
+      
+      <main id="main-content" class="bd-main">
+        
+        
+
+<div class="sbt-scroll-pixel-helper"></div>
+
+          <div class="bd-content">
+            <div class="bd-article-container">
+              
+              <div class="bd-header-article">
+<div class="header-article-items header-article__inner">
+  
+    <div class="header-article-items__start">
+      
+        <div class="header-article-item"><label class="sidebar-toggle primary-toggle btn btn-sm" for="__primary" title="Toggle primary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <span class="fa-solid fa-bars"></span>
+</label></div>
+      
+    </div>
+  
+  
+    <div class="header-article-items__end">
+      
+        <div class="header-article-item">
+
+<div class="article-header-buttons">
+
+
+
+
+
+<div class="dropdown dropdown-launch-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Launch interactive content">
+    <i class="fas fa-rocket"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="https://colab.research.google.com/github/amoreira2/Lectures/blob/main/chapters/Finance/Econometrics.ipynb" target="_blank"
+   class="btn btn-sm dropdown-item"
+   title="Launch onColab"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  
+    <img src="../../_static/images/logo_colab.png">
+  </span>
+<span class="btn__text-container">Colab</span>
+</a>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+
+
+<div class="dropdown dropdown-source-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Source repositories">
+    <i class="fab fa-github"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="https://github.com/amoreira2/Lectures" target="_blank"
+   class="btn btn-sm btn-source-repository-button dropdown-item"
+   title="Source repository"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fab fa-github"></i>
+  </span>
+<span class="btn__text-container">Repository</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li><a href="https://github.com/amoreira2/Lectures/issues/new?title=Issue%20on%20page%20%2Fchapters/Finance/Econometrics.html&body=Your%20issue%20content%20here." target="_blank"
+   class="btn btn-sm btn-source-issues-button dropdown-item"
+   title="Open an issue"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-lightbulb"></i>
+  </span>
+<span class="btn__text-container">Open issue</span>
+</a>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+
+
+<div class="dropdown dropdown-download-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Download this page">
+    <i class="fas fa-download"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="../../_sources/chapters/Finance/Econometrics.ipynb" target="_blank"
+   class="btn btn-sm btn-download-source-button dropdown-item"
+   title="Download source file"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file"></i>
+  </span>
+<span class="btn__text-container">.ipynb</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li>
+<button onclick="window.print()"
+  class="btn btn-sm btn-download-pdf-button dropdown-item"
+  title="Print to PDF"
+  data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file-pdf"></i>
+  </span>
+<span class="btn__text-container">.pdf</span>
+</button>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+<button onclick="toggleFullScreen()"
+  class="btn btn-sm btn-fullscreen-button"
+  title="Fullscreen mode"
+  data-bs-placement="bottom" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-expand"></i>
+  </span>
+
+</button>
+
+
+<script>
+document.write(`
+  <button class="theme-switch-button btn btn-sm btn-outline-primary navbar-btn rounded-circle" title="light/dark" aria-label="light/dark" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="theme-switch" data-mode="light"><i class="fa-solid fa-sun"></i></span>
+    <span class="theme-switch" data-mode="dark"><i class="fa-solid fa-moon"></i></span>
+    <span class="theme-switch" data-mode="auto"><i class="fa-solid fa-circle-half-stroke"></i></span>
+  </button>
+`);
+</script>
+
+<script>
+document.write(`
+  <button class="btn btn-sm navbar-btn search-button search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass"></i>
+  </button>
+`);
+</script>
+
+</div></div>
+      
+    </div>
+  
+</div>
+</div>
+              
+              
+
+<div id="jb-print-docs-body" class="onlyprint">
+    <h1>The econometrics of strategy evaluation</h1>
+    <!-- Table of contents -->
+    <div id="print-main-content">
+        <div id="jb-print-toc">
+            
+        </div>
+    </div>
+</div>
+
+              
+                
+<div id="searchbox"></div>
+                <article class="bd-article" role="main">
+                  
+  <div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># First we start loading our favourite packages with the names we used to</span>
+<span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+<span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
+<span class="o">%</span><span class="k">matplotlib</span> inline
+<span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
+<span class="c1"># import regression package</span>
+<span class="kn">import</span> <span class="nn">statsmodels.api</span> <span class="k">as</span> <span class="nn">sm</span>
+</pre></div>
+</div>
+</div>
+</div>
+<section class="tex2jax_ignore mathjax_ignore" id="the-econometrics-of-strategy-evaluation">
+<h1><span class="section-number">14.1. </span>The econometrics of strategy evaluation<a class="headerlink" href="#the-econometrics-of-strategy-evaluation" title="Permalink to this heading">#</a></h1>
+<p>Our premise here is that you are lookign to invest in the portfolio wiht the highest Sharpe Ratio. As we discussed in chapter 10, we can always combine such portfolio with the risk-ree rate to achieve the desired volatility/expected return.</p>
+<p><strong>Back to the Tangency portfolio</strong></p>
+<ul class="simple">
+<li><p>in Chapter 10 we solved the problem</p></li>
+</ul>
+<div class="math notranslate nohighlight">
+\[\begin{split}
+\begin{aligned}
+maximize_{(X)} E[r_p(X)]- \frac{\gamma}{2} Var(r_p(X))\\
+\end{aligned}
+\end{split}\]</div>
+<ul class="simple">
+<li><p>And found that the portfolio that solves this problem,i.e., has the highest sharpe ratio among the set of assets that belong in the optimization have the following form</p></li>
+</ul>
+<div class="math notranslate nohighlight">
+\[ Var(R^e)W^*=\gamma E[R^e]\]</div>
+<ul class="simple">
+<li><p>I.e., the quation above defines <span class="math notranslate nohighlight">\(W^*\)</span>, the weights of the tangency portfolio</p></li>
+<li><p>We can rewirte the left hand side as</p></li>
+</ul>
+<div class="math notranslate nohighlight">
+\[Var(R^e)W^*=Cov(R^e,R^e)W^*=Cov(R^e,(W^*)'R^e)=Cov(R^e,r^*)\]</div>
+<ul class="simple">
+<li><p>where we use that <span class="math notranslate nohighlight">\(r^*=(W^*)'R^e\)</span> is the returns of the tangency protolio</p></li>
+<li><p>The left-hand side in the covariance vector of all the assets with the tangency portfolio, so it is a vector N by 1, where N is the number of assets considered.</p></li>
+<li><p>This means that the expected return of an asset must be proportional to the covariance between the return of the asset and the return of the tangency portfolio</p></li>
+</ul>
+<div class="math notranslate nohighlight">
+\[ E[R^e]=\gamma  Cov(R^e,r^*) \]</div>
+<ul class="simple">
+<li><p>This holds for all assets in your investment opportunity set (i.e. the assets included in the minimization problem that the tangency portfolio solves)</p></li>
+<li><p>This means that for any assets <span class="math notranslate nohighlight">\(j\)</span> and <span class="math notranslate nohighlight">\(i\)</span> we have</p></li>
+</ul>
+<div class="math notranslate nohighlight">
+\[\frac{E[r^e_i]}{Cov(r^e_i,R^*)}= \frac{E[r^e_j]}{Cov(R^e_j,R^*)} \]</div>
+<ul class="simple">
+<li><p>All assets have the same expected return per-unit of covariance with the tangency portoflio</p></li>
+<li><p>We can also apply this to the tangency portfolio itself</p></li>
+</ul>
+<div class="math notranslate nohighlight">
+\[ E[R^*]=\gamma \times Cov(R^*,R^*) \]</div>
+<ul class="simple">
+<li><p>Which means that <span class="math notranslate nohighlight">\(\gamma=\frac{E[R^*]}{Var(R^*)}\)</span></p></li>
+<li><p>Plugging back in the original and we get that for any asset <span class="math notranslate nohighlight">\(j\)</span></p></li>
+</ul>
+<div class="math notranslate nohighlight">
+\[ E[r^e_j]=\frac{E[r^*]}{Var(r^*)} Cov(r^e_j,r^*) =\frac{Cov(r^e_j,r^*)}{Var(r^*)}E[r^*]=\beta_{j,*}E[r^*] \]</div>
+<div class="math notranslate nohighlight">
+\[ E[r^e_j]=\beta_{j,*}E[r^*] \]</div>
+<blockquote>
+<div><p><strong>What model you learned in 411 does that remind you?</strong></p>
+</div></blockquote>
+<ul class="simple">
+<li><p>All the information about the cross-sectional of expected returns–all the assets– can be summarized by the expected return of the tangency portfolio and the beta of each asset with respect to the tangency portfolio</p></li>
+<li><p>Or Alternatively: the risk-return trade-off  of the tangency portfolio  <span class="math notranslate nohighlight">\(\frac{E[r^*]}{Var(r^*)}\)</span> and the covariance of each asset with it.</p></li>
+<li><p>Once you have the right notion of risk, the reward to risk is the same across assets (no free lunch)</p></li>
+<li><p>What is the right notion?</p></li>
+</ul>
+<p><strong>Covariance of the asset excess return with the tangency portfolio excess returns</strong></p>
+<p>Or equivalently</p>
+<p><strong>Beta <span class="math notranslate nohighlight">\(\beta=\frac{Cov(r^e_j,r^*)}{Var(r^*)}\)</span> of the asset excess return with the tangency portfolio excess returns</strong></p>
+<p><strong>What does this mean?</strong></p>
+<p>It means that if a strategy has the highest sharpe ratio among a set of assets/strategies, then it must be the case that this rleationship holds</p>
+<div class="math notranslate nohighlight">
+\[ E[r^e_j]=\beta_{j,*}E[r^*] \]</div>
+<p>This is a linear regression!</p>
+<p>It</p>
+<p><strong>Time-series Test (or alpha test)</strong></p>
+<p>IF we run</p>
+<div class="math notranslate nohighlight">
+\[r^e_j=\alpha_j +\beta_{j,*}r^*_t +\epsilon_{j,t}\]</div>
+<ul class="simple">
+<li><p>Then this relation predicts that the intercept, the alpha, should be zero</p></li>
+<li><p>It is important here that both the test assets and the reference portfolios are all <strong>excess returns</strong>. This makes the test really simple. If you use returns instead the prediction about the intercept will be different because of the risk-free rate</p></li>
+<li><p>We refer to these assets on the Left Hand Side of the regression as <strong>Test Assets</strong> and the asset on the right as the <strong>model</strong>, which is the candidate tangency portfolio</p></li>
+<li><p>This means that we can use this to test whether a new strategy adds value realtive to another strategy (i.e. the model).</p></li>
+<li><p>If the model is “right” than we will fail to reject that the alphas are zero, i.e. the relationship between average returns and betas holds.</p></li>
+</ul>
+<p><strong>What adding value means?</strong> It means enhancing the portfolio sharpe ratio when combined appropriately with the “tangency” portfolio. Therefore, <span class="math notranslate nohighlight">\(r^*\)</span> cannot be tangency!</p>
+<p>The way that we will use it is to start with a reference <strong>model portfolio</strong> that with returns <span class="math notranslate nohighlight">\(r^p\)</span>. This can be the returns of your own portfolio if you have a long sample for it and if you hold a very complicated set of assets. But most people use as the reference portfolio the return on the market portfolio.</p>
+<p><strong>CAPM prediction: Market portfolio is the tangency portfolio</strong></p>
+<ul>
+<li><p>The most used reference portfolio is the market portoflio</p></li>
+<li><p>So we will do our first alpha test with respect to the market</p></li>
+<li><p>The CAPM holds for a set of assets i=1…N if and only if</p>
+<div class="math notranslate nohighlight">
+\[E[r_{i,t}^e] =\alpha_i+\beta_{i,MKT} E[r_{t}^{MKT,e}]\]</div>
+<p>with <span class="math notranslate nohighlight">\(\alpha_i=0\)</span> for all assets  i=1…N</p>
+</li>
+<li><p>So if you put any other portfolio in <span class="math notranslate nohighlight">\(r_{t}^{*,e}\)</span> instead of the market, then you are not testing the CAPM. The CAPM is aspecific model that predicts that the market is tangency</p></li>
+<li><p>In fact we know that there must be a portfolio * such that</p>
+<div class="math notranslate nohighlight">
+\[E[r_{i,t}^e] =\beta_{i,*} E[r_{t}^{*,e}]\]</div>
+<p>holds , such portfolio is the tangency portfolio</p>
+</li>
+<li><p>Why alpha=0 is so special? Because it tells us that the expected return of any of these assets can be captured by varying the exposure to  the tangency  with the minimum increase in risk possible</p></li>
+</ul>
+<p><strong>Beating the Model</strong></p>
+<p>Academics use this to test if the CAPM is right. Practicioners use this to see if they can beat the CAPM, i.e. <strong>beat the market</strong>. Having an alpha–a postive intercept– means that you have an average return that is higher than your strategy market risk exposure would predict.</p>
+<p>It is very important here that is all about averages, not at all about realized returns. Being tanngency does <strong>NOT</strong> mean that your relaized returns shoudl explain all the other realized returns.</p>
+<p>Instead, it means that the betas of the asset with the tangnecy should explain the average return of the asset.</p>
+<p>Of course, stuff happens, so even if your reference portfolio is in fact tangency portfolio under the true distribution, it will not be in any particular sample, so we will use statistics to tell us if the <span class="math notranslate nohighlight">\(\alpha\)</span> is different enought from zero!</p>
+<ul>
+<li><p>Test if <span class="math notranslate nohighlight">\(\alpha_i \neq 0\)</span></p>
+<ul class="simple">
+<li><p>It doesn’t matter if positive or negative, since you can always go short.</p></li>
+<li><p>While a particular manager might care to show that thir alpha is positive. Here it is symmetric. So large negative alphas are as good as large positive alphas (or as bad for the referecne portfolio) because you can enhance your Sharpe ratio by shoritng the asset. In reality you might not be able to direct short a mutual fund, but oyu cant try to replicate the opposite of whatever they are doing in case they have a alpha that is negative enough.</p></li>
+<li><p>You basically do a standard t-test</p></li>
+</ul>
+<div class="math notranslate nohighlight">
+\[t=\frac{\alpha_i }{\sigma(\alpha_i)}\]</div>
+</li>
+<li><p>We say</p></li>
+</ul>
+<ul class="simple">
+<li><p>if <span class="math notranslate nohighlight">\(|t|\geq 1.64\)</span> there is a 10% chance that the market is Tangency (or Mean-Variance Efficient, i.e MVE)</p></li>
+<li><p>if <span class="math notranslate nohighlight">\(|t|\geq 1.96\)</span> there is a 5% chance that the market is MVE</p></li>
+<li><p>if <span class="math notranslate nohighlight">\(|t|\geq 2.1\)</span> there is a 2.5% chance that the market is MVE</p></li>
+<li><p>if <span class="math notranslate nohighlight">\(|t|\geq 2.6\)</span> there is a 1% chance that the market is MVE</p></li>
+</ul>
+<ul>
+<li><p>The Time-series regression asks the following question:</p>
+<blockquote>
+<div><p>Can I replicate  the average return I get in asset <span class="math notranslate nohighlight">\(i\)</span> by investing in the reference portfolio?</p>
+</div></blockquote>
+</li>
+<li><p>Having a non-zero alpha DOES NOT mean that you prefer asset <span class="math notranslate nohighlight">\(i\)</span> to the reference portfolio!</p></li>
+<li><p>But it does mean, that you can do better by investing in both assets</p>
+<ul class="simple">
+<li><p>Obviously with a negative weight if the alpha is negative</p></li>
+<li><p>and a positive weight if the alpha is positive</p></li>
+</ul>
+</li>
+<li><p>The alpha test literally asks if the reference portfolio is the tangency portfolio with respect to the investment opportunity that includes the test asset (the asset in the left of the regression) and the reference portfolio (the asset on the right)</p></li>
+<li><p>A differet way to put it is that a non-zero alpha means that the asset expands the mean-variance frontier relative to an opportunity set that only has the reference portfolio</p></li>
+</ul>
+<blockquote>
+<div><p>Question: I show that Asset A has alpha with respect to Asset B. Does it mean that an investor should prefer asset A to asset B?</p>
+</div></blockquote>
+<p>*<em>Is the value strategy likely to increase the Sharper Ratio of someone that only hold the market portoflio?</em></p>
+<p>Or equivalently</p>
+<ol class="arabic simple">
+<li><p>Does the CAPM fail to “price” value strategies</p></li>
+<li><p>Does value portfolios expand the mean-variance frontier of somone invested in the market portfolio?</p></li>
+<li><p>Does the MARKET beta of the different portfolios explain their average returns?</p></li>
+<li><p>Do we need the value strategy to spam the mean-variance frontier of the market and value strategies?</p></li>
+</ol>
+<p>I will start by getting data from <a class="reference external" href="https://mba.tuck.dartmouth.edu/pages/faculty/ken.french/data_library.html">Ken French website</a> which he updates continiously. Uou can manually download or alternatively the <code class="docutils literal notranslate"><span class="pre">pandas_datareader</span></code> library to get it directly</p>
+<p>This below imports the library and get a lsit of the names of the datasets that are downloadable</p>
+<p>We will be getting the first one</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">pandas_datareader.famafrench</span> <span class="kn">import</span> <span class="n">get_available_datasets</span>
+<span class="kn">import</span> <span class="nn">pandas_datareader.data</span> <span class="k">as</span> <span class="nn">web</span>
+<span class="n">ds_names</span><span class="o">=</span><span class="n">get_available_datasets</span><span class="p">()</span>
+<span class="c1">#I am just displaying the first 10 data sets, but there are about 300 different data sets</span>
+<span class="n">ds_names</span><span class="p">[</span><span class="mi">0</span><span class="p">:</span><span class="mi">10</span><span class="p">]</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[&#39;F-F_Research_Data_Factors&#39;,
+ &#39;F-F_Research_Data_Factors_weekly&#39;,
+ &#39;F-F_Research_Data_Factors_daily&#39;,
+ &#39;F-F_Research_Data_5_Factors_2x3&#39;,
+ &#39;F-F_Research_Data_5_Factors_2x3_daily&#39;,
+ &#39;Portfolios_Formed_on_ME&#39;,
+ &#39;Portfolios_Formed_on_ME_Wout_Div&#39;,
+ &#39;Portfolios_Formed_on_ME_Daily&#39;,
+ &#39;Portfolios_Formed_on_BE-ME&#39;,
+ &#39;Portfolios_Formed_on_BE-ME_Wout_Div&#39;]
+</pre></div>
+</div>
+</div>
+</div>
+<p>We see below four time-series</p>
+<ol class="arabic simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">Mkt-RF</span></code>:The excess return on the market</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">SMB</span></code>:Small Minust Big, a strategy that buys firms with small market capitalization and shorts firms with large market capitalizations</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">HmL</span></code>:  High minus Low is Fama and French implementation of the value strategy. It goes low the stocks with high Book-to-market ratios (value stocks) and short firms with low Book-to-Market ratios (growth stocks). The consturction is a bit more involved than what we did in Chapter 14.1, but the idea is very similar. See the <a class="reference external" href="https://www.jstor.org/stable/2329302?seq=1#metadata_info_tab_contents">Fama and French (1996)</a> paper for details.</p></li>
+</ol>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">datetime</span> <span class="kn">import</span> <span class="n">datetime</span>
+<span class="n">start</span> <span class="o">=</span> <span class="n">datetime</span><span class="p">(</span><span class="mi">1926</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">)</span>
+<span class="n">ds</span> <span class="o">=</span> <span class="n">web</span><span class="o">.</span><span class="n">DataReader</span><span class="p">(</span><span class="n">ds_names</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="s1">&#39;famafrench&#39;</span><span class="p">,</span><span class="n">start</span><span class="o">=</span><span class="n">start</span><span class="p">)</span>
+<span class="n">df</span><span class="o">=</span><span class="n">ds</span><span class="p">[</span><span class="mi">0</span><span class="p">][:</span><span class="s1">&#39;2021-3&#39;</span><span class="p">]</span>
+<span class="n">df</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>Mkt-RF</th>
+      <th>SMB</th>
+      <th>HML</th>
+      <th>RF</th>
+    </tr>
+    <tr>
+      <th>Date</th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>1926-07</th>
+      <td>2.96</td>
+      <td>-2.30</td>
+      <td>-2.87</td>
+      <td>0.22</td>
+    </tr>
+    <tr>
+      <th>1926-08</th>
+      <td>2.64</td>
+      <td>-1.40</td>
+      <td>4.19</td>
+      <td>0.25</td>
+    </tr>
+    <tr>
+      <th>1926-09</th>
+      <td>0.36</td>
+      <td>-1.32</td>
+      <td>0.01</td>
+      <td>0.23</td>
+    </tr>
+    <tr>
+      <th>1926-10</th>
+      <td>-3.24</td>
+      <td>0.04</td>
+      <td>0.51</td>
+      <td>0.32</td>
+    </tr>
+    <tr>
+      <th>1926-11</th>
+      <td>2.53</td>
+      <td>-0.20</td>
+      <td>-0.35</td>
+      <td>0.31</td>
+    </tr>
+    <tr>
+      <th>...</th>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+    </tr>
+    <tr>
+      <th>2020-11</th>
+      <td>12.47</td>
+      <td>5.48</td>
+      <td>2.11</td>
+      <td>0.01</td>
+    </tr>
+    <tr>
+      <th>2020-12</th>
+      <td>4.63</td>
+      <td>4.81</td>
+      <td>-1.36</td>
+      <td>0.01</td>
+    </tr>
+    <tr>
+      <th>2021-01</th>
+      <td>-0.03</td>
+      <td>7.19</td>
+      <td>2.85</td>
+      <td>0.00</td>
+    </tr>
+    <tr>
+      <th>2021-02</th>
+      <td>2.78</td>
+      <td>2.11</td>
+      <td>7.08</td>
+      <td>0.00</td>
+    </tr>
+    <tr>
+      <th>2021-03</th>
+      <td>3.09</td>
+      <td>-2.48</td>
+      <td>7.40</td>
+      <td>0.00</td>
+    </tr>
+  </tbody>
+</table>
+<p>1137 rows × 4 columns</p>
+</div></div></div>
+</div>
+<p><em>Note the units here, returns here are already in percent, so the 12.47 number in march means 12.47%</em></p>
+<p>To answer our question we will need on the MKT-RF series which will be our reference portfolio and the HML series which will be our <strong>Test Asset</strong>.</p>
+<p>We are interested in estiamting the alpha and the beta of the test asset HML with respect to the market</p>
+<div class="math notranslate nohighlight">
+\[r_{HML,t}=\alpha+\beta r_{MKT,t}+\epsilon_t\]</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">temp</span><span class="o">=</span><span class="n">df</span><span class="o">.</span><span class="n">copy</span><span class="p">()</span> 
+<span class="c1"># On the right hand side, we have &#39;MKT&#39; portfolio, we will add an constant term to it</span>
+<span class="n">x</span><span class="o">=</span> <span class="n">sm</span><span class="o">.</span><span class="n">add_constant</span><span class="p">(</span><span class="n">temp</span><span class="p">[</span><span class="s1">&#39;Mkt-RF&#39;</span><span class="p">])</span>
+<span class="c1"># the coefficient on the constant is the &quot;alpha&quot;</span>
+<span class="c1"># On the left hand side, we have &#39;HML&#39; portfolio</span>
+<span class="n">y</span><span class="o">=</span> <span class="n">temp</span><span class="p">[</span><span class="s1">&#39;HML&#39;</span><span class="p">]</span>
+<span class="n">results</span><span class="o">=</span> <span class="n">sm</span><span class="o">.</span><span class="n">OLS</span><span class="p">(</span><span class="n">y</span><span class="p">,</span><span class="n">x</span><span class="p">)</span><span class="o">.</span><span class="n">fit</span><span class="p">()</span>
+<span class="n">results</span><span class="o">.</span><span class="n">summary</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><table class="simpletable">
+<caption>OLS Regression Results</caption>
+<tr>
+  <th>Dep. Variable:</th>           <td>HML</td>       <th>  R-squared:         </th> <td>   0.057</td>
+</tr>
+<tr>
+  <th>Model:</th>                   <td>OLS</td>       <th>  Adj. R-squared:    </th> <td>   0.056</td>
+</tr>
+<tr>
+  <th>Method:</th>             <td>Least Squares</td>  <th>  F-statistic:       </th> <td>   67.98</td>
+</tr>
+<tr>
+  <th>Date:</th>             <td>Fri, 30 Apr 2021</td> <th>  Prob (F-statistic):</th> <td>4.53e-16</td>
+</tr>
+<tr>
+  <th>Time:</th>                 <td>10:54:01</td>     <th>  Log-Likelihood:    </th> <td> -3007.4</td>
+</tr>
+<tr>
+  <th>No. Observations:</th>      <td>  1137</td>      <th>  AIC:               </th> <td>   6019.</td>
+</tr>
+<tr>
+  <th>Df Residuals:</th>          <td>  1135</td>      <th>  BIC:               </th> <td>   6029.</td>
+</tr>
+<tr>
+  <th>Df Model:</th>              <td>     1</td>      <th>                     </th>     <td> </td>   
+</tr>
+<tr>
+  <th>Covariance Type:</th>      <td>nonrobust</td>    <th>                     </th>     <td> </td>   
+</tr>
+</table>
+<table class="simpletable">
+<tr>
+     <td></td>       <th>coef</th>     <th>std err</th>      <th>t</th>      <th>P>|t|</th>  <th>[0.025</th>    <th>0.975]</th>  
+</tr>
+<tr>
+  <th>const</th>  <td>    0.2292</td> <td>    0.102</td> <td>    2.248</td> <td> 0.025</td> <td>    0.029</td> <td>    0.429</td>
+</tr>
+<tr>
+  <th>Mkt-RF</th> <td>    0.1560</td> <td>    0.019</td> <td>    8.245</td> <td> 0.000</td> <td>    0.119</td> <td>    0.193</td>
+</tr>
+</table>
+<table class="simpletable">
+<tr>
+  <th>Omnibus:</th>       <td>450.835</td> <th>  Durbin-Watson:     </th> <td>   1.609</td>
+</tr>
+<tr>
+  <th>Prob(Omnibus):</th> <td> 0.000</td>  <th>  Jarque-Bera (JB):  </th> <td>5826.658</td>
+</tr>
+<tr>
+  <th>Skew:</th>          <td> 1.459</td>  <th>  Prob(JB):          </th> <td>    0.00</td>
+</tr>
+<tr>
+  <th>Kurtosis:</th>      <td>13.699</td>  <th>  Cond. No.          </th> <td>    5.44</td>
+</tr>
+</table><br/><br/>Notes:<br/>[1] Standard Errors assume that the covariance matrix of the errors is correctly specified.</div></div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">results</span><span class="o">.</span><span class="n">tvalues</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>const     2.247939
+Mkt-RF    8.244886
+dtype: float64
+</pre></div>
+</div>
+</div>
+</div>
+<p><strong>What did we find?</strong></p>
+<ol class="arabic simple">
+<li><p>The HML strategy has a small market exposure. 0.15 is small since the average firm has beta of 1 with the market since the market msut have a beta of 1 with itself  and (the market weighted) average beta of the firms is mathematically the beta of the market with respect to itself.</p>
+<ul class="simple">
+<li><p>This is intutive, the long-short aspect of the strategy hedges out the market risk</p></li>
+</ul>
+</li>
+<li><p>It has a <strong>monthly</strong> alpha of 0.23% and it has a t-stat of 2.25, implying that there is a chance less than 2.5% that the market is the true tangency portfolio of the investment opportunity set that includes these two assets.</p>
+<ul class="simple">
+<li><p>This is equivalently to saying that there is a 97.5% probability that someon can increase the Sharpe Ratio of it’s portfolio by investing in HML and the MArket instead of only in the Market</p></li>
+</ul>
+</li>
+</ol>
+<p><strong>So the statistics applied to this long sample tells us that indeed adds value to the market</strong></p>
+<p>But how big deal it is economically? i.e. how much extra return do I make here?</p>
+<ul class="simple">
+<li><p>the 0.23% number translates to 2.76% per year extra return</p></li>
+<li><p>Below you see then average premiuns of the strategies :2.76% is most of the HML premium, so most of the premium is not compensation for market risk. IT is also about one third of the premium on market</p></li>
+</ul>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">df</span><span class="o">.</span><span class="n">mean</span><span class="p">()</span><span class="o">*</span><span class="mi">12</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Mkt-RF    8.217731
+SMB       2.492876
+HML       4.033034
+RF        3.238734
+dtype: float64
+</pre></div>
+</div>
+</div>
+</div>
+<p><strong>Tracking portfolios</strong></p>
+<p>Tracking portfolios are the portfolios that use a set of factors to track the returns on an asset.</p>
+<ul class="simple">
+<li><p>It can be used as a way to construct hedges for corporations, hedges for trading strategies, or a way to define a benchmark for an active management.</p></li>
+<li><p>It is used to construct what people in the industry calls “portable alpha”, because it allows one to separate the alpha of a trading strategy’s factor exposure</p></li>
+<li><p>The idea of the tracking portoflio is to track the component of an asset return that can be obtained by investing in a simple traded factor. For now, this means the market portfolio</p></li>
+</ul>
+<p>How to do it?</p>
+<ul>
+<li><p>For a given trading strategy, consider the following relation</p>
+<div class="math notranslate nohighlight">
+\[r^e_i=\alpha_i+\beta_ir^{MKT}+\epsilon_i, \]</div>
+<p>with <span class="math notranslate nohighlight">\(var(\epsilon_i)=\sigma_e^2\)</span></p>
+</li>
+<li><p>the <span class="math notranslate nohighlight">\(i^{th}\)</span> Tracking portfolio is <span class="math notranslate nohighlight">\(\beta_iW^{MKT}\)</span>, where <span class="math notranslate nohighlight">\(W^{MKT}\)</span> is the vector of weights of the market portfolio.</p></li>
+<li><p>or if one is trading directly on the total market portfolio as an asset, the tracking portfolio weight on the market portfolio asset is simply <span class="math notranslate nohighlight">\(\beta_i\)</span></p></li>
+</ul>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Returns on the tracking portfolio</span>
+<span class="n">Portfolio</span><span class="o">=</span><span class="n">df</span><span class="p">[</span><span class="s1">&#39;HML&#39;</span><span class="p">]</span>
+<span class="n">MKT</span><span class="o">=</span><span class="n">df</span><span class="p">[</span><span class="s1">&#39;Mkt-RF&#39;</span><span class="p">]</span>
+<span class="n">Tracking</span><span class="o">=</span><span class="n">MKT</span><span class="o">*</span><span class="n">results</span><span class="o">.</span><span class="n">params</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span>
+
+<span class="n">plt</span><span class="o">.</span><span class="n">scatter</span><span class="p">(</span><span class="n">x</span><span class="o">=</span><span class="n">Portfolio</span><span class="p">,</span><span class="n">y</span><span class="o">=</span><span class="n">Portfolio</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">scatter</span><span class="p">(</span><span class="n">x</span><span class="o">=</span><span class="n">Portfolio</span><span class="p">,</span><span class="n">y</span><span class="o">=</span><span class="n">Tracking</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../../_images/76adae1e115fe17846eef94c291c2e80f91dbde2336640a6e2e69ae687d3837c.png" src="../../_images/76adae1e115fe17846eef94c291c2e80f91dbde2336640a6e2e69ae687d3837c.png" />
+</div>
+</div>
+<p>We see here the obvious fact that we cannot track at all variation in HML with the market portfolio so the capture very different risks</p>
+<p><strong>Hedged portfolio</strong></p>
+<p>The Hedged strategy return (also called portable alpha) is</p>
+<div class="math notranslate nohighlight">
+\[r^{hedged}_i=r^e_i-\beta_ir^{MKT}\]</div>
+<ul class="simple">
+<li><p>This portoflio can be constructed simply by <span class="math notranslate nohighlight">\(W^i-\beta^iW^{MKT}\)</span>, the weights of the trading strategy minus the tracking portfolio weights.</p></li>
+<li><p>The excess returns take out risk-free rate effects, and the hedged portfolio takes out market factor effects</p></li>
+</ul>
+<p>A few observations</p>
+<ul class="simple">
+<li><p>The mean return of the hedged portfolio is just the time series alpha!</p></li>
+<li><p>The vol of the strategy is the vol of the residuals of the time series regression</p></li>
+<li><p>If you run a regression on the market you will see that the hedged portfolios have <span class="math notranslate nohighlight">\(\beta=0\)</span>, which is by construction. This is the reason why sometimes people call these portfolios “Pure Alpha”, or as Bridgwater calls it, “Portable Alpha”</p></li>
+<li><p>By construction, because we hedged market risk, the entire SR is enhancing the MV frontier relative to the CAPM</p></li>
+</ul>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Returns on the hedged portfolio</span>
+<span class="n">Hedged</span><span class="o">=</span><span class="n">Portfolio</span><span class="o">-</span><span class="n">Tracking</span>
+<span class="n">RF</span><span class="o">=</span><span class="n">df</span><span class="o">.</span><span class="n">RF</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">scatter</span><span class="p">(</span><span class="n">x</span><span class="o">=</span><span class="n">MKT</span><span class="p">,</span><span class="n">y</span><span class="o">=</span><span class="n">MKT</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">scatter</span><span class="p">(</span><span class="n">x</span><span class="o">=</span><span class="n">MKT</span><span class="p">,</span><span class="n">y</span><span class="o">=</span><span class="n">Hedged</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+<span class="p">(</span><span class="n">Hedged</span><span class="o">/</span><span class="mi">100</span><span class="o">+</span><span class="n">RF</span><span class="o">/</span><span class="mi">100</span><span class="o">+</span><span class="mi">1</span><span class="p">)</span><span class="o">.</span><span class="n">cumprod</span><span class="p">()</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">logy</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../../_images/d0265893267e8ef2fdb418f05457db5a60bcd036aeb21260c433c1d4bf9f667e.png" src="../../_images/d0265893267e8ef2fdb418f05457db5a60bcd036aeb21260c433c1d4bf9f667e.png" />
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;AxesSubplot:xlabel=&#39;Date&#39;&gt;
+</pre></div>
+</div>
+<img alt="../../_images/7a3b94a05c89ef92e976ac9e017881462627abd621e91dd844678dc353efaf4f.png" src="../../_images/7a3b94a05c89ef92e976ac9e017881462627abd621e91dd844678dc353efaf4f.png" />
+</div>
+</div>
+<blockquote>
+<div><p>Insight: The average excess return on the hedged portfolio is the alpha of the unhedged portfolio!
+Intution: The hedged portfolio has mechanically zero beta (in-sample) so it’s excess return is “pure” alpha</p>
+</div></blockquote>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="s1">&#39;hedge portfolio excess returns&#39;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">Hedged</span><span class="o">.</span><span class="n">mean</span><span class="p">()</span><span class="o">*</span><span class="mi">12</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;alpha of unhedge portfolio&#39;</span><span class="p">)</span>
+<span class="n">alpha</span><span class="o">=</span><span class="n">results</span><span class="o">.</span><span class="n">params</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">alpha</span><span class="o">*</span><span class="mi">12</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>hedge portfolio excess returns
+2.7509763704390657
+alpha of unhedge portfolio
+2.7509763704390675
+</pre></div>
+</div>
+</div>
+</div>
+<p><strong>Appraisal ratio</strong></p>
+<p>Appraisal ratio is the Sharpe ratio of the hedged portfolio</p>
+<div class="math notranslate nohighlight">
+\[Appraisal=AR=\frac{\alpha}{\sigma_e}=\frac{E[r^{Hedged}]}{\sigma(r^{Hedged})},\]</div>
+<p>where <span class="math notranslate nohighlight">\(\sigma_e\)</span> is the standard deviation of the regression residual</p>
+<blockquote>
+<div><p>Appraisal ratio  is key because it tells you how much extra Sharpe ratio relative to the factor you can get by investing in this asset</p>
+</div></blockquote>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="n">Hedged</span><span class="o">.</span><span class="n">mean</span><span class="p">()</span><span class="o">/</span><span class="n">Hedged</span><span class="o">.</span><span class="n">std</span><span class="p">()</span><span class="o">*</span><span class="mi">12</span><span class="o">**</span><span class="mf">0.5</span><span class="p">)</span>
+<span class="n">sigma_e</span><span class="o">=</span><span class="n">results</span><span class="o">.</span><span class="n">resid</span><span class="o">.</span><span class="n">std</span><span class="p">()</span>
+<span class="nb">print</span><span class="p">((</span><span class="n">alpha</span><span class="o">/</span><span class="n">sigma_e</span><span class="p">)</span><span class="o">*</span><span class="mi">12</span><span class="o">**</span><span class="mf">0.5</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>0.23292739985685582
+0.232927399856856
+</pre></div>
+</div>
+</div>
+</div>
+<blockquote>
+<div><p>By how much can you increase your portfolio Sharpe ratio if you combine otpimally the test asset and the refrence portfolio?</p>
+</div></blockquote>
+<ul class="simple">
+<li><p>for any two strategies A and B that have <strong>zero correlation</strong> with each other, you can find the maximum achievable Sharpe Ratio with the simple formula (this is particular case of the math we did in Chapter 10)</p></li>
+</ul>
+<div class="math notranslate nohighlight">
+\[SR_{final}=\sqrt{SR_{A}^2+SR_{B}^2}\]</div>
+<ul class="simple">
+<li><p>The Hedged and the market are orthogonal by construction–&gt; we took out any beta exposure the asset might have!</p></li>
+</ul>
+<div class="math notranslate nohighlight">
+\[SR_{final}=\sqrt{SR_{MKT}^2+SR_{Hedged}^2}\]</div>
+<p>Or</p>
+<div class="math notranslate nohighlight">
+\[SR_{final}=\sqrt{SR_{MKT}^2+(\frac{\alpha}{\sigma_e})^2}\]</div>
+<ul class="simple">
+<li><p>This is very general and  can be used any time you run time-series test.</p></li>
+</ul>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">mkt_SR</span><span class="o">=</span><span class="n">MKT</span><span class="o">.</span><span class="n">mean</span><span class="p">()</span><span class="o">/</span><span class="n">MKT</span><span class="o">.</span><span class="n">std</span><span class="p">()</span>
+<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;market annualized SR:&#39;</span><span class="o">+</span><span class="nb">str</span><span class="p">(</span><span class="n">mkt_SR</span><span class="o">*</span><span class="mi">12</span><span class="o">**</span><span class="mf">0.5</span><span class="p">))</span>
+<span class="n">AR</span><span class="o">=</span><span class="p">(</span><span class="n">alpha</span><span class="o">/</span><span class="n">sigma_e</span><span class="p">)</span>
+<span class="n">Final_SR</span><span class="o">=</span><span class="p">(</span><span class="n">mkt_SR</span><span class="o">**</span><span class="mi">2</span><span class="o">+</span><span class="n">AR</span><span class="o">**</span><span class="mi">2</span><span class="p">)</span><span class="o">**</span><span class="mf">0.5</span>
+<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;market annualized SR:&#39;</span><span class="o">+</span><span class="nb">str</span><span class="p">(</span><span class="n">Final_SR</span><span class="o">*</span><span class="mi">12</span><span class="o">**</span><span class="mf">0.5</span><span class="p">))</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>market annualized SR:0.4435623135666871
+market annualized SR:0.5010016962253798
+</pre></div>
+</div>
+</div>
+</div>
+<p>The gains here are very modest in this case, a 10% increase in the SR. We will see later that these gains were substantially larger when the paper was published. What does that suggest to you?</p>
+<hr class="docutils" />
+<p><em>Aside:  There is a tight link between the t-stat of the time-series regression and the appraisal ratio</em></p>
+<ul class="simple">
+<li><p>Note that is the t-stat was constructed under the assumption that returns are i.i.d., we have</p></li>
+</ul>
+<div class="math notranslate nohighlight">
+\[\sigma(\alpha)=\frac{\sigma(\epsilon)}{\sqrt{T}}=\frac{\sigma_e}{\sqrt{T}} \]</div>
+<ul class="simple">
+<li><p>Therefore we have
+$<span class="math notranslate nohighlight">\(
+Appraisal=\frac{\alpha}{\sigma_e}
+=\frac{\alpha}{\sigma(\alpha)\sqrt{T}}
+=\frac{\text{t-stat}}{\sqrt{T}}
+\)</span>$</p></li>
+</ul>
+<hr class="docutils" />
+<p><strong>How to Combine the  Hedged portfolio (alpha) and the Market (beta)</strong></p>
+<ul class="simple">
+<li><p>Recall our formula for the tangency portfolio weights derived in chapter 10</p></li>
+</ul>
+<div class="math notranslate nohighlight">
+\[W^*= Var(R^e)^{-1}E[R^e]\]</div>
+<ul class="simple">
+<li><p>Now this becomes really simple because the covariance of the new Hedged-MVE strategy is zero with the market</p></li>
+</ul>
+<div class="math notranslate nohighlight">
+\[\begin{split}Var(R^e)=\left[\begin{array}{cc} \sigma^2(R_{MKT}^e) &amp; 0\\0 &amp; \sigma^2(R_{Hedged,i})\end{array}\right]\end{split}\]</div>
+<ul class="simple">
+<li><p>So the optimal weights are just</p></li>
+</ul>
+<div class="math notranslate nohighlight">
+\[\begin{split}W^* = \left[\begin{array}{c} \frac{E[R^e_{MKT}]}{\sigma^2(R_{MKT}^e)} \\ \frac{\alpha}{\sigma^2(R_{Hedged,i})}\end{array}\right]\end{split}\]</div>
+<ul class="simple">
+<li><p>You invest in each strategy according to the strength of the risk-return trade-off in the strategy</p></li>
+<li><p>Note that anything that invest proportionally in those two assets will still be tangency, i.e. if <span class="math notranslate nohighlight">\(W^*\)</span> is tangency <span class="math notranslate nohighlight">\(0.3*W^*\)</span> is tangency as well!</p></li>
+<li><p>But how much you invest overall will depend on how much risk you want to take</p></li>
+</ul>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># optimal combination</span>
+<span class="n">W</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="n">MKT</span><span class="o">.</span><span class="n">mean</span><span class="p">()</span><span class="o">/</span><span class="n">MKT</span><span class="o">.</span><span class="n">var</span><span class="p">(),</span><span class="n">Hedged</span><span class="o">.</span><span class="n">mean</span><span class="p">()</span><span class="o">/</span><span class="n">Hedged</span><span class="o">.</span><span class="n">var</span><span class="p">()])</span>
+<span class="n">W</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>array([0.02394183, 0.01972215])
+</pre></div>
+</div>
+</div>
+</div>
+<ul class="simple">
+<li><p>Note that the weights are very far from adding up to one</p></li>
+<li><p>Thus this portfolio will have small volatility</p></li>
+<li><p>One could normalize the eights to add up to on, but that would also be quite arbitrary since the Hedged portfolio is itself a long-short portfolio.</p></li>
+<li><p>Below we will calibrate the <strong>leverage</strong> of the strategy to have the same volatility as the market so things are comparable</p></li>
+</ul>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># calibrating the leverage to match marekt volatility</span>
+<span class="n">R</span><span class="o">=</span><span class="n">pd</span><span class="o">.</span><span class="n">concat</span><span class="p">([</span><span class="n">MKT</span><span class="p">,</span><span class="n">Hedged</span><span class="p">],</span><span class="n">axis</span><span class="o">=</span><span class="s1">&#39;columns&#39;</span><span class="p">)</span>
+<span class="n">R</span><span class="o">.</span><span class="n">columns</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;Mkt-RF&#39;</span><span class="p">,</span><span class="s1">&#39;Hedged&#39;</span><span class="p">]</span>
+<span class="n">stdW</span><span class="o">=</span><span class="p">(</span><span class="n">W</span> <span class="o">@</span> <span class="n">R</span><span class="o">.</span><span class="n">cov</span><span class="p">()</span> <span class="o">@</span> <span class="n">W</span><span class="p">)</span><span class="o">**</span><span class="mf">0.5</span>
+<span class="n">stdMkt</span><span class="o">=</span><span class="n">MKT</span><span class="o">.</span><span class="n">std</span><span class="p">()</span>
+<span class="n">W_mktvol</span><span class="o">=</span><span class="n">W</span><span class="o">*</span><span class="p">(</span><span class="n">stdMkt</span><span class="o">/</span><span class="n">stdW</span><span class="p">)</span>
+<span class="n">W_mktvol</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>array([0.88535092, 0.72931035])
+</pre></div>
+</div>
+</div>
+</div>
+<ul class="simple">
+<li><p>You see that the weights add up to way more than one</p></li>
+<li><p>This comes from the hedged potrfolio having lower vol than the market</p></li>
+<li><p>and the diversification benefits of combining two strategies with zero correlation</p></li>
+</ul>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">R</span><span class="o">.</span><span class="n">std</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Mkt-RF    5.348188
+Hedged    3.409382
+dtype: float64
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># optimal portfolio returns</span>
+<span class="n">Optimalportfolio</span><span class="o">=</span><span class="n">W_mktvol</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">*</span><span class="n">MKT</span><span class="o">+</span><span class="n">W_mktvol</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">*</span><span class="n">Hedged</span>
+<span class="c1"># adjust optimal portfolio to have the same volatility as the market</span>
+<span class="p">(</span><span class="n">Optimalportfolio</span><span class="o">/</span><span class="mi">100</span><span class="o">+</span><span class="n">RF</span><span class="o">/</span><span class="mi">100</span><span class="o">+</span><span class="mi">1</span><span class="p">)</span><span class="o">.</span><span class="n">cumprod</span><span class="p">()</span><span class="o">.</span><span class="n">plot</span><span class="p">()</span>
+<span class="p">(</span><span class="n">MKT</span><span class="o">/</span><span class="mi">100</span><span class="o">+</span><span class="n">RF</span><span class="o">/</span><span class="mi">100</span><span class="o">+</span><span class="mi">1</span><span class="p">)</span><span class="o">.</span><span class="n">cumprod</span><span class="p">()</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">logy</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">legend</span><span class="p">([</span><span class="s1">&#39;optimal&#39;</span><span class="p">,</span><span class="s1">&#39;MKT&#39;</span><span class="p">])</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../../_images/f3ea4c9857cf700e727971abf22307f31a2763406883119537b289a4bed19c86.png" src="../../_images/f3ea4c9857cf700e727971abf22307f31a2763406883119537b289a4bed19c86.png" />
+</div>
+</div>
+<p>Note that you can side step all this and directly consturct the portfolio by applying the tagency portfolio formula to the two correlated strategies</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">W</span><span class="o">=</span><span class="n">df</span><span class="p">[[</span><span class="s1">&#39;Mkt-RF&#39;</span><span class="p">,</span><span class="s1">&#39;HML&#39;</span><span class="p">]]</span><span class="o">.</span><span class="n">mean</span><span class="p">()</span><span class="nd">@np</span><span class="o">.</span><span class="n">linalg</span><span class="o">.</span><span class="n">inv</span><span class="p">(</span><span class="n">df</span><span class="p">[[</span><span class="s1">&#39;Mkt-RF&#39;</span><span class="p">,</span><span class="s1">&#39;HML&#39;</span><span class="p">]]</span><span class="o">.</span><span class="n">cov</span><span class="p">())</span>
+<span class="c1"># formula for unlevereaged portfolio vol</span>
+<span class="n">vol_unlevered</span><span class="o">=</span><span class="p">(</span><span class="n">df</span><span class="p">[[</span><span class="s1">&#39;Mkt-RF&#39;</span><span class="p">,</span><span class="s1">&#39;HML&#39;</span><span class="p">]]</span><span class="o">.</span><span class="n">mean</span><span class="p">()</span><span class="nd">@np</span><span class="o">.</span><span class="n">linalg</span><span class="o">.</span><span class="n">inv</span><span class="p">(</span><span class="n">df</span><span class="p">[[</span><span class="s1">&#39;Mkt-RF&#39;</span><span class="p">,</span><span class="s1">&#39;HML&#39;</span><span class="p">]]</span><span class="o">.</span><span class="n">cov</span><span class="p">())</span><span class="nd">@df</span><span class="p">[[</span><span class="s1">&#39;Mkt-RF&#39;</span><span class="p">,</span><span class="s1">&#39;HML&#39;</span><span class="p">]]</span><span class="o">.</span><span class="n">mean</span><span class="p">())</span><span class="o">**</span><span class="mf">0.5</span>
+
+<span class="n">W_lev</span><span class="o">=</span><span class="n">W</span><span class="o">*</span><span class="p">(</span><span class="n">df</span><span class="p">[</span><span class="s1">&#39;Mkt-RF&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">std</span><span class="p">()</span><span class="o">/</span><span class="n">vol_unlevered</span><span class="p">)</span>
+<span class="n">Optimalportfolio2</span><span class="o">=</span> <span class="n">df</span><span class="p">[[</span><span class="s1">&#39;Mkt-RF&#39;</span><span class="p">,</span><span class="s1">&#39;HML&#39;</span><span class="p">]]</span> <span class="o">@</span> <span class="n">W_lev</span>
+<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;mean of optimal portfolio consutructed directly from tangency formula&#39;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">Optimalportfolio2</span><span class="o">.</span><span class="n">mean</span><span class="p">())</span>
+<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;mean of optimal portfolio consutructed using regression analysis and hedged portfolios&#39;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">Optimalportfolio</span><span class="o">.</span><span class="n">mean</span><span class="p">())</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>0.7734909277731046
+0.7734909277731046
+</pre></div>
+</div>
+</div>
+</div>
+<p><strong>Why do the regression analysis then?</strong></p>
+<p>Becasue ofter you will not simply invest mechanically accoridng to the MV framework</p>
+<p>You will use the regression to detect alpha and how mcuh the strategy can potentially enhance your sharpe ratio and then use other considerations like the ones we discuss in the followuing chapters to consider how much to allocate</p>
+<p>This calculation is useful because it provides a kind of upper bound on the gains you can harvest from the strategy because it is the best you can do if you only care about sharpe ratios. We will discuss more this on the chapter “equilibrium thinking”</p>
+</section>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "binder-examples/jupyter-stacks-datascience",
+            ref: "master",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "python"
+        },
+        kernelOptions: {
+            name: "python3",
+            path: "./chapters/Finance"
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'python3'</script>
+
+                </article>
+              
+
+              
+              
+                <footer class="bd-footer-article">
+                  
+<div class="footer-article-items footer-article__inner">
+  
+    <div class="footer-article-item"><!-- Previous / next buttons -->
+<div class="prev-next-area">
+    <a class="left-prev"
+       href="Evaluation.html"
+       title="previous page">
+      <i class="fa-solid fa-angle-left"></i>
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">previous</p>
+        <p class="prev-next-title"><span class="section-number">14. </span>Strategy Evaluation</p>
+      </div>
+    </a>
+    <a class="right-next"
+       href="outofsample.html"
+       title="next page">
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">next</p>
+        <p class="prev-next-title"><span class="section-number">14.2. </span>Out of sample analysis</p>
+      </div>
+      <i class="fa-solid fa-angle-right"></i>
+    </a>
+</div></div>
+  
+</div>
+
+                </footer>
+              
+            </div>
+            
+            
+              
+            
+          </div>
+          <footer class="bd-footer-content">
+            
+<div class="bd-footer-content__inner container">
+  
+  <div class="footer-item">
+    
+<p class="component-author">
+By Alan Moreira
+</p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+  <p class="copyright">
+    
+      © Copyright 2021 Creative Commons Attribution-ShareAlike 4.0 International (CC BY-SA 4.0).
+      <br/>
+    
+  </p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+</div>
+          </footer>
+        
+
+      </main>
+    </div>
+  </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script src="../../_static/scripts/bootstrap.js?digest=e353d410970836974a52"></script>
+<script src="../../_static/scripts/pydata-sphinx-theme.js?digest=e353d410970836974a52"></script>
+
+  <footer class="bd-footer">
+  </footer>
+  </body>
+</html>

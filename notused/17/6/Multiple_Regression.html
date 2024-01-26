@@ -1,0 +1,1091 @@
+
+
+<!DOCTYPE html>
+
+
+<html lang="en" >
+
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
+
+    <title>Multiple Regression &#8212; Quantitative Investing</title>
+  
+  
+  
+  <script data-cfasync="false">
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "light";
+  </script>
+  
+  <!-- Loaded before other Sphinx assets -->
+  <link href="../../../_static/styles/theme.css?digest=e353d410970836974a52" rel="stylesheet" />
+<link href="../../../_static/styles/bootstrap.css?digest=e353d410970836974a52" rel="stylesheet" />
+<link href="../../../_static/styles/pydata-sphinx-theme.css?digest=e353d410970836974a52" rel="stylesheet" />
+
+  
+  <link href="../../../_static/vendor/fontawesome/6.1.2/css/all.min.css?digest=e353d410970836974a52" rel="stylesheet" />
+  <link rel="preload" as="font" type="font/woff2" crossorigin href="../../../_static/vendor/fontawesome/6.1.2/webfonts/fa-solid-900.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../../../_static/vendor/fontawesome/6.1.2/webfonts/fa-brands-400.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../../../_static/vendor/fontawesome/6.1.2/webfonts/fa-regular-400.woff2" />
+
+    <link rel="stylesheet" type="text/css" href="../../../_static/pygments.css" />
+    <link rel="stylesheet" href="../../../_static/styles/sphinx-book-theme.css?digest=14f4ca6b54d191a8c7657f6c759bf11a5fb86285" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="../../../_static/togglebutton.css" />
+    <link rel="stylesheet" type="text/css" href="../../../_static/copybutton.css" />
+    <link rel="stylesheet" type="text/css" href="../../../_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css" />
+    <link rel="stylesheet" type="text/css" href="../../../_static/sphinx-thebe.css" />
+    <link rel="stylesheet" type="text/css" href="../../../_static/book.css" />
+    <link rel="stylesheet" type="text/css" href="../../../_static/design-style.4045f2051d55cab465a707391d5b2007.min.css" />
+  
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="../../../_static/scripts/bootstrap.js?digest=e353d410970836974a52" />
+<link rel="preload" as="script" href="../../../_static/scripts/pydata-sphinx-theme.js?digest=e353d410970836974a52" />
+
+    <script data-url_root="../../../" id="documentation_options" src="../../../_static/documentation_options.js"></script>
+    <script src="../../../_static/jquery.js"></script>
+    <script src="../../../_static/underscore.js"></script>
+    <script src="../../../_static/_sphinx_javascript_frameworks_compat.js"></script>
+    <script src="../../../_static/doctools.js"></script>
+    <script src="../../../_static/clipboard.min.js"></script>
+    <script src="../../../_static/copybutton.js"></script>
+    <script src="../../../_static/scripts/sphinx-book-theme.js?digest=5a5c038af52cf7bc1a1ec88eea08e6366ee68824"></script>
+    <script>let toggleHintShow = 'Click to show';</script>
+    <script>let toggleHintHide = 'Click to hide';</script>
+    <script>let toggleOpenOnPrint = 'true';</script>
+    <script src="../../../_static/togglebutton.js"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script src="../../../_static/design-tabs.js"></script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"
+const thebe_selector = ".thebe,.cell"
+const thebe_selector_input = "pre"
+const thebe_selector_output = ".output, .cell_output"
+</script>
+    <script async="async" src="../../../_static/sphinx-thebe.js"></script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'notused/17/6/Multiple_Regression';</script>
+    <link rel="canonical" href="https://amoreira2.github.io/quantitativeinvesting/notused/17/6/Multiple_Regression.html" />
+    <link rel="shortcut icon" href="../../../_static/figuremain2.jpg"/>
+    <link rel="index" title="Index" href="../../../genindex.html" />
+    <link rel="search" title="Search" href="../../../search.html" />
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta name="docsearch:language" content="en"/>
+  </head>
+  
+  
+  <body data-bs-spy="scroll" data-bs-target=".bd-toc-nav" data-offset="180" data-bs-root-margin="0px 0px -60%" data-default-mode="">
+
+  
+  
+  <a class="skip-link" href="#main-content">Skip to main content</a>
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          name="__primary"
+          id="__primary"/>
+  <label class="overlay overlay-primary" for="__primary"></label>
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          name="__secondary"
+          id="__secondary"/>
+  <label class="overlay overlay-secondary" for="__secondary"></label>
+  
+  <div class="search-button__wrapper">
+    <div class="search-button__overlay"></div>
+    <div class="search-button__search-container">
+<form class="bd-search d-flex align-items-center"
+      action="../../../search.html"
+      method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search"
+         class="form-control"
+         name="q"
+         id="search-input"
+         placeholder="Search this book..."
+         aria-label="Search this book..."
+         autocomplete="off"
+         autocorrect="off"
+         autocapitalize="off"
+         spellcheck="false"/>
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form></div>
+  </div>
+  
+    <nav class="bd-header navbar navbar-expand-lg bd-navbar">
+    </nav>
+  
+  <div class="bd-container">
+    <div class="bd-container__inner bd-page-width">
+      
+      <div class="bd-sidebar-primary bd-sidebar">
+        
+
+  
+  <div class="sidebar-header-items sidebar-primary__section">
+    
+    
+    
+    
+  </div>
+  
+    <div class="sidebar-primary-items__start sidebar-primary__section">
+        <div class="sidebar-primary-item">
+  
+
+<a class="navbar-brand logo" href="../../../chapters/intro.html">
+  
+  
+  
+  
+    
+    
+      
+    
+    
+    <img src="../../../_static/figuremain2.jpg" class="logo__image only-light" alt="Logo image"/>
+    <script>document.write(`<img src="../../../_static/figuremain2.jpg" class="logo__image only-dark" alt="Logo image"/>`);</script>
+  
+  
+</a></div>
+        <div class="sidebar-primary-item"><nav class="bd-links" id="bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item navbar-nav active">
+        <ul class="nav bd-sidenav">
+<li class="toctree-l1 has-children"><a class="reference internal" href="../../../chapters/01/what-is-quant-investing.html">1. What is Quantitative Investing?</a><input class="toctree-checkbox" id="toctree-checkbox-1" name="toctree-checkbox-1" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-1"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../../chapters/01/statistical-techniques.html">1.1. Statistical Techniques</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../chapters/01/computational-tools.html">1.2. Computational tools</a></li>
+</ul>
+</li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../../../chapters/02/getting_started.html">2. Getting Started</a><input class="toctree-checkbox" id="toctree-checkbox-2" name="toctree-checkbox-2" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-2"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../../chapters/02/local_install.html">2.3. Local installation</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../chapters/02/cloud_setup.html">2.4. Cloud Setup</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../../chapters/03/programming-in-python.html">3. First Steps with Python</a></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../../../chapters/essentials/essentials.html">4. Python Essentials</a><input class="toctree-checkbox" id="toctree-checkbox-3" name="toctree-checkbox-3" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-3"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../../chapters/essentials/basics.html">4.1. Basics</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../chapters/essentials/collections.html">4.2. Collections</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../chapters/essentials/control_flow.html">4.3. Flow control</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../chapters/essentials/functions.html">4.4. Functions</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../chapters/essentials/numpy1.html">4.5. Numpy</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../chapters/essentials/plotting1.html">4.6. Plotting</a></li>
+</ul>
+</li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../../../chapters/pandas/workingwithdata.html">5. Working with Data</a><input class="toctree-checkbox" id="toctree-checkbox-4" name="toctree-checkbox-4" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-4"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../../chapters/pandas/intro.html">5.1. Introduction</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../chapters/pandas/basics.html">5.2. Pandas Basics</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../chapters/pandas/the_index.html">5.3. Indexing</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../chapters/pandas/timeseries.html">5.4. Time-Series</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../chapters/pandas/data_clean.html">5.5. Cleaning data (opt)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../chapters/pandas/reshape.html">5.6. Reshape (opt)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../chapters/pandas/merge.html">5.7. Merge (opt)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../chapters/pandas/groupby.html">5.8. Group-by (opt)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../chapters/pandas/matplotlib.html">5.9. Plotting (opt)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../chapters/pandas/storage_formats.html">5.10. Data Storage (opt)</a></li>
+</ul>
+</li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../../../chapters/Finance/Returns.html">6. Asset Returns</a><input class="toctree-checkbox" id="toctree-checkbox-5" name="toctree-checkbox-5" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-5"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../../chapters/Finance/Returns1.html">6.1. Returns</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../chapters/scientific/randomness1.html">6.2. Modeling randomness</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../chapters/Finance/TheChoiceofFrequency.html">6.3. The Choice of Frequency and Annualization of Returns</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../chapters/scientific/linear_algebra1.html">6.4. Linear algebra Review</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../chapters/Finance/UsingAPI.html">6.5. Data APIs</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../../chapters/Finance/PortfolioMath.html">7. Portfolio Math</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../chapters/Finance/CapitalAllocationLine.html">8. Capital Allocation</a></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../../../chapters/Finance/meanvariance1.html">9. Mean Variance Frontier</a><input class="toctree-checkbox" id="toctree-checkbox-6" name="toctree-checkbox-6" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-6"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../../chapters/Finance/MeanVariance.html">9.1. Mean Variance Efficient Portfolios</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../chapters/Finance/CaseStudy.html">9.2. Case Study in International Diversification</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../chapters/Finance/LeverageandShorting.html">9.3. Leverage and Shorting</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../chapters/Finance/Portfoliooptimizationwithconstraints.html">9.4. Portfolio Optimization with constraints</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../../chapters/Finance/EstimationUncertainty.html">10. Estimation Uncertainty and It's Implications for investing</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../chapters/Finance/TradingStrategies.html">11. Trading Strategies</a></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../../../chapters/Finance/Timing.html">12. Timing Strategies</a><input class="toctree-checkbox" id="toctree-checkbox-7" name="toctree-checkbox-7" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-7"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../../chapters/Finance/Volatilitytiming.html">12.1. Volatility Timing</a></li>
+</ul>
+</li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../../../chapters/Finance/crosssectionalequitystrategies.html">13. Cross-Sectional Equity Strategies</a><input class="toctree-checkbox" id="toctree-checkbox-8" name="toctree-checkbox-8" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-8"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../../chapters/Finance/Valueinvesting.html">13.1. Value</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../chapters/Finance/Momentum.html">13.2. Momentum</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../chapters/Finance/OtherEquityStrategies.html">13.3. Other Equity strategies</a></li>
+</ul>
+</li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../../../chapters/Finance/Evaluation.html">14. Evaluating a Trading Strategy</a><input class="toctree-checkbox" id="toctree-checkbox-9" name="toctree-checkbox-9" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-9"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../../chapters/Finance/Econometrics.html">14.1. The Econometrics of Strategy Evalaution</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../chapters/Finance/outofsample.html">14.2. Out of Sample Analysis</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../chapters/Finance/TailandBackground.html">14.3. Tail Risks and Background Risks</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../chapters/Finance/MultiFactorModels.html">14.4. Multifactor Models</a></li>
+</ul>
+</li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../../../chapters/Finance/Topics.html">15. Topics in Quantitative Investing</a><input class="toctree-checkbox" id="toctree-checkbox-10" name="toctree-checkbox-10" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-10"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../../chapters/Finance/Equilbrium.html">15.1. Intepreting Factor models</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../chapters/Finance/Implementation.html">15.2. Strategy Implementation</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../chapters/Finance/Horizon.html">15.3. Investment horizon effects</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../../chapters/additional/additional.html">16. Additional Statistics Material</a></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../../../chapters/Assignments/Assignments.html">17. Assignments</a><input class="toctree-checkbox" id="toctree-checkbox-11" name="toctree-checkbox-11" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-11"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../../chapters/Assignments/Assignment0.html">17.1. Assigment 0</a></li>
+
+
+
+
+
+<li class="toctree-l2"><a class="reference internal" href="../../../chapters/Assignments/Assignment1.html">17.7. Assignment 1</a></li>
+
+
+
+
+<li class="toctree-l2"><a class="reference internal" href="../../../chapters/Assignments/Assignment2.html">17.12. Assigment 2</a></li>
+
+
+
+<li class="toctree-l2"><a class="reference internal" href="../../../chapters/Assignments/Assignment3.html">17.16. Assignment 3</a></li>
+
+
+
+<li class="toctree-l2"><a class="reference internal" href="../../../chapters/Assignments/Assignment4.html">17.20. Assignment 4</a></li>
+
+
+
+<li class="toctree-l2"><a class="reference internal" href="../../../chapters/Assignments/Assignment5.html">17.24. Assigment 5</a></li>
+
+
+
+<li class="toctree-l2"><a class="reference internal" href="../../../chapters/Assignments/Assignment6.html">17.28. Assignment 6</a></li>
+
+
+
+<li class="toctree-l2"><a class="reference internal" href="../../../chapters/Assignments/Assignment7.html">17.32. Assignment 7</a></li>
+
+</ul>
+</li>
+</ul>
+
+    </div>
+</nav></div>
+    </div>
+  
+  
+  <div class="sidebar-primary-items__end sidebar-primary__section">
+  </div>
+  
+  <div id="rtd-footer-container"></div>
+
+
+      </div>
+      
+      <main id="main-content" class="bd-main">
+        
+        
+
+<div class="sbt-scroll-pixel-helper"></div>
+
+          <div class="bd-content">
+            <div class="bd-article-container">
+              
+              <div class="bd-header-article">
+<div class="header-article-items header-article__inner">
+  
+    <div class="header-article-items__start">
+      
+        <div class="header-article-item"><label class="sidebar-toggle primary-toggle btn btn-sm" for="__primary" title="Toggle primary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <span class="fa-solid fa-bars"></span>
+</label></div>
+      
+    </div>
+  
+  
+    <div class="header-article-items__end">
+      
+        <div class="header-article-item">
+
+<div class="article-header-buttons">
+
+
+
+
+
+<div class="dropdown dropdown-launch-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Launch interactive content">
+    <i class="fas fa-rocket"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="https://colab.research.google.com/github/amoreira2/Lectures/blob/main/notused/17/6/Multiple_Regression.ipynb" target="_blank"
+   class="btn btn-sm dropdown-item"
+   title="Launch onColab"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  
+    <img src="../../../_static/images/logo_colab.png">
+  </span>
+<span class="btn__text-container">Colab</span>
+</a>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+
+
+<div class="dropdown dropdown-source-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Source repositories">
+    <i class="fab fa-github"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="https://github.com/amoreira2/Lectures" target="_blank"
+   class="btn btn-sm btn-source-repository-button dropdown-item"
+   title="Source repository"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fab fa-github"></i>
+  </span>
+<span class="btn__text-container">Repository</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li><a href="https://github.com/amoreira2/Lectures/issues/new?title=Issue%20on%20page%20%2Fnotused/17/6/Multiple_Regression.html&body=Your%20issue%20content%20here." target="_blank"
+   class="btn btn-sm btn-source-issues-button dropdown-item"
+   title="Open an issue"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-lightbulb"></i>
+  </span>
+<span class="btn__text-container">Open issue</span>
+</a>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+
+
+<div class="dropdown dropdown-download-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Download this page">
+    <i class="fas fa-download"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="../../../_sources/notused/17/6/Multiple_Regression.ipynb" target="_blank"
+   class="btn btn-sm btn-download-source-button dropdown-item"
+   title="Download source file"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file"></i>
+  </span>
+<span class="btn__text-container">.ipynb</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li>
+<button onclick="window.print()"
+  class="btn btn-sm btn-download-pdf-button dropdown-item"
+  title="Print to PDF"
+  data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file-pdf"></i>
+  </span>
+<span class="btn__text-container">.pdf</span>
+</button>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+<button onclick="toggleFullScreen()"
+  class="btn btn-sm btn-fullscreen-button"
+  title="Fullscreen mode"
+  data-bs-placement="bottom" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-expand"></i>
+  </span>
+
+</button>
+
+
+<script>
+document.write(`
+  <button class="theme-switch-button btn btn-sm btn-outline-primary navbar-btn rounded-circle" title="light/dark" aria-label="light/dark" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="theme-switch" data-mode="light"><i class="fa-solid fa-sun"></i></span>
+    <span class="theme-switch" data-mode="dark"><i class="fa-solid fa-moon"></i></span>
+    <span class="theme-switch" data-mode="auto"><i class="fa-solid fa-circle-half-stroke"></i></span>
+  </button>
+`);
+</script>
+
+<script>
+document.write(`
+  <button class="btn btn-sm navbar-btn search-button search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass"></i>
+  </button>
+`);
+</script>
+<label class="sidebar-toggle secondary-toggle btn btn-sm" for="__secondary"title="Toggle secondary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="fa-solid fa-list"></span>
+</label>
+</div></div>
+      
+    </div>
+  
+</div>
+</div>
+              
+              
+
+<div id="jb-print-docs-body" class="onlyprint">
+    <h1>Multiple Regression</h1>
+    <!-- Table of contents -->
+    <div id="print-main-content">
+        <div id="jb-print-toc">
+            
+            <div>
+                <h2> Contents </h2>
+            </div>
+            <nav aria-label="Page">
+                <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#home-prices">Home Prices</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#correlation">Correlation</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#multiple-linear-regression">Multiple Linear Regression</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#least-squares-regression">Least Squares Regression</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#interpreting-multiple-regression">Interpreting Multiple Regression</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#nearest-neighbors-for-regression">Nearest Neighbors for Regression</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#evaluation">Evaluation</a></li>
+</ul>
+</li>
+</ul>
+            </nav>
+        </div>
+    </div>
+</div>
+
+              
+                
+<div id="searchbox"></div>
+                <article class="bd-article" role="main">
+                  
+  <div class="cell tag_remove-input docutils container">
+</div>
+<section class="tex2jax_ignore mathjax_ignore" id="multiple-regression">
+<h1>Multiple Regression<a class="headerlink" href="#multiple-regression" title="Permalink to this heading">#</a></h1>
+<div class="cell tag_remove-input docutils container">
+</div>
+<p>Now that we have explored ways to use multiple attributes to predict a categorical variable, let us return to predicting a quantitative variable. Predicting a numerical quantity is called regression, and a commonly used method to use multiple attributes for regression is called <em>multiple linear regression</em>.</p>
+<section id="home-prices">
+<h2>Home Prices<a class="headerlink" href="#home-prices" title="Permalink to this heading">#</a></h2>
+<p>The following dataset of house prices and attributes was collected over several years for the city of Ames, Iowa. A <a class="reference external" href="http://ww2.amstat.org/publications/jse/v19n3/decock.pdf">description of the dataset appears online</a>. We will focus only a subset of the columns. We will try to predict the sale price column from the other columns.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">all_sales</span> <span class="o">=</span> <span class="n">Table</span><span class="o">.</span><span class="n">read_table</span><span class="p">(</span><span class="n">path_data</span> <span class="o">+</span> <span class="s1">&#39;house.csv&#39;</span><span class="p">)</span>
+<span class="n">sales</span> <span class="o">=</span> <span class="n">all_sales</span><span class="o">.</span><span class="n">where</span><span class="p">(</span><span class="s1">&#39;Bldg Type&#39;</span><span class="p">,</span> <span class="s1">&#39;1Fam&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">where</span><span class="p">(</span><span class="s1">&#39;Sale Condition&#39;</span><span class="p">,</span> <span class="s1">&#39;Normal&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">select</span><span class="p">(</span>
+    <span class="s1">&#39;SalePrice&#39;</span><span class="p">,</span> <span class="s1">&#39;1st Flr SF&#39;</span><span class="p">,</span> <span class="s1">&#39;2nd Flr SF&#39;</span><span class="p">,</span> 
+    <span class="s1">&#39;Total Bsmt SF&#39;</span><span class="p">,</span> <span class="s1">&#39;Garage Area&#39;</span><span class="p">,</span> 
+    <span class="s1">&#39;Wood Deck SF&#39;</span><span class="p">,</span> <span class="s1">&#39;Open Porch SF&#39;</span><span class="p">,</span> <span class="s1">&#39;Lot Area&#39;</span><span class="p">,</span> 
+    <span class="s1">&#39;Year Built&#39;</span><span class="p">,</span> <span class="s1">&#39;Yr Sold&#39;</span><span class="p">)</span>
+<span class="n">sales</span><span class="o">.</span><span class="n">sort</span><span class="p">(</span><span class="s1">&#39;SalePrice&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><table border="1" class="dataframe">
+    <thead>
+        <tr>
+            <th>SalePrice</th> <th>1st Flr SF</th> <th>2nd Flr SF</th> <th>Total Bsmt SF</th> <th>Garage Area</th> <th>Wood Deck SF</th> <th>Open Porch SF</th> <th>Lot Area</th> <th>Year Built</th> <th>Yr Sold</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr>
+            <td>35000    </td> <td>498       </td> <td>0         </td> <td>498          </td> <td>216        </td> <td>0           </td> <td>0            </td> <td>8088    </td> <td>1922      </td> <td>2006   </td>
+        </tr>
+        <tr>
+            <td>39300    </td> <td>334       </td> <td>0         </td> <td>0            </td> <td>0          </td> <td>0           </td> <td>0            </td> <td>5000    </td> <td>1946      </td> <td>2007   </td>
+        </tr>
+        <tr>
+            <td>40000    </td> <td>649       </td> <td>668       </td> <td>649          </td> <td>250        </td> <td>0           </td> <td>54           </td> <td>8500    </td> <td>1920      </td> <td>2008   </td>
+        </tr>
+        <tr>
+            <td>45000    </td> <td>612       </td> <td>0         </td> <td>0            </td> <td>308        </td> <td>0           </td> <td>0            </td> <td>5925    </td> <td>1940      </td> <td>2009   </td>
+        </tr>
+        <tr>
+            <td>52000    </td> <td>729       </td> <td>0         </td> <td>270          </td> <td>0          </td> <td>0           </td> <td>0            </td> <td>4130    </td> <td>1935      </td> <td>2008   </td>
+        </tr>
+        <tr>
+            <td>52500    </td> <td>693       </td> <td>0         </td> <td>693          </td> <td>0          </td> <td>0           </td> <td>20           </td> <td>4118    </td> <td>1941      </td> <td>2006   </td>
+        </tr>
+        <tr>
+            <td>55000    </td> <td>723       </td> <td>363       </td> <td>723          </td> <td>400        </td> <td>0           </td> <td>24           </td> <td>11340   </td> <td>1920      </td> <td>2008   </td>
+        </tr>
+        <tr>
+            <td>55000    </td> <td>796       </td> <td>0         </td> <td>796          </td> <td>0          </td> <td>0           </td> <td>0            </td> <td>3636    </td> <td>1922      </td> <td>2008   </td>
+        </tr>
+        <tr>
+            <td>57625    </td> <td>810       </td> <td>0         </td> <td>0            </td> <td>280        </td> <td>119         </td> <td>24           </td> <td>21780   </td> <td>1910      </td> <td>2009   </td>
+        </tr>
+        <tr>
+            <td>58500    </td> <td>864       </td> <td>0         </td> <td>864          </td> <td>200        </td> <td>0           </td> <td>0            </td> <td>8212    </td> <td>1914      </td> <td>2010   </td>
+        </tr>
+    </tbody>
+</table>
+<p>... (1992 rows omitted)</p></div></div>
+</div>
+<p>A histogram of sale prices shows a large amount of variability and a distribution that is clearly not normal. A long tail to the right contains a few houses that had very high prices. The short left tail does not contain any houses that sold for less than $35,000.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">sales</span><span class="o">.</span><span class="n">hist</span><span class="p">(</span><span class="s1">&#39;SalePrice&#39;</span><span class="p">,</span> <span class="n">bins</span><span class="o">=</span><span class="mi">32</span><span class="p">,</span> <span class="n">unit</span><span class="o">=</span><span class="s1">&#39;$&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../../../_images/e2660c7c9a3f7dcae3530ee7dd113b1e64986586998d532c19ced4d21cd7e790.png" src="../../../_images/e2660c7c9a3f7dcae3530ee7dd113b1e64986586998d532c19ced4d21cd7e790.png" />
+</div>
+</div>
+<section id="correlation">
+<h3>Correlation<a class="headerlink" href="#correlation" title="Permalink to this heading">#</a></h3>
+<p>No single attribute is sufficient to predict the sale price. For example, the area of first floor, measured in square feet, correlates with sale price but only explains some of its variability.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">sales</span><span class="o">.</span><span class="n">scatter</span><span class="p">(</span><span class="s1">&#39;1st Flr SF&#39;</span><span class="p">,</span> <span class="s1">&#39;SalePrice&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../../../_images/d6494894251b18ad6a55fa3d211d2c74e34b5eed5fca89a6bb80267c77bb988d.png" src="../../../_images/d6494894251b18ad6a55fa3d211d2c74e34b5eed5fca89a6bb80267c77bb988d.png" />
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">correlation</span><span class="p">(</span><span class="n">sales</span><span class="p">,</span> <span class="s1">&#39;SalePrice&#39;</span><span class="p">,</span> <span class="s1">&#39;1st Flr SF&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>0.6424662541030225
+</pre></div>
+</div>
+</div>
+</div>
+<p>In fact, none of the individual attributes have a correlation with sale price that is above 0.7 (except for the sale price itself).</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">for</span> <span class="n">label</span> <span class="ow">in</span> <span class="n">sales</span><span class="o">.</span><span class="n">labels</span><span class="p">:</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;Correlation of&#39;</span><span class="p">,</span> <span class="n">label</span><span class="p">,</span> <span class="s1">&#39;and SalePrice:</span><span class="se">\t</span><span class="s1">&#39;</span><span class="p">,</span> <span class="n">correlation</span><span class="p">(</span><span class="n">sales</span><span class="p">,</span> <span class="n">label</span><span class="p">,</span> <span class="s1">&#39;SalePrice&#39;</span><span class="p">))</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Correlation of SalePrice and SalePrice:	 1.0
+Correlation of 1st Flr SF and SalePrice:	 0.6424662541030225
+Correlation of 2nd Flr SF and SalePrice:	 0.3575218942800824
+Correlation of Total Bsmt SF and SalePrice:	 0.652978626757169
+Correlation of Garage Area and SalePrice:	 0.6385944852520443
+Correlation of Wood Deck SF and SalePrice:	 0.3526986661950492
+Correlation of Open Porch SF and SalePrice:	 0.3369094170263733
+Correlation of Lot Area and SalePrice:	 0.2908234551157694
+Correlation of Year Built and SalePrice:	 0.5651647537135916
+Correlation of Yr Sold and SalePrice:	 0.02594857908072111
+</pre></div>
+</div>
+</div>
+</div>
+<p>However, combining attributes can provide higher correlation. In particular, if we sum the first floor and second floor areas, the result has a higher correlation than any single attribute alone.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">both_floors</span> <span class="o">=</span> <span class="n">sales</span><span class="o">.</span><span class="n">column</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span> <span class="o">+</span> <span class="n">sales</span><span class="o">.</span><span class="n">column</span><span class="p">(</span><span class="mi">2</span><span class="p">)</span>
+<span class="n">correlation</span><span class="p">(</span><span class="n">sales</span><span class="o">.</span><span class="n">with_column</span><span class="p">(</span><span class="s1">&#39;Both Floors&#39;</span><span class="p">,</span> <span class="n">both_floors</span><span class="p">),</span> <span class="s1">&#39;SalePrice&#39;</span><span class="p">,</span> <span class="s1">&#39;Both Floors&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>0.7821920556134877
+</pre></div>
+</div>
+</div>
+</div>
+<p>This high correlation indicates that we should try to use more than one attribute to predict the sale price. In a dataset with multiple observed attributes and a single numerical value to be predicted (the sale price in this case), multiple linear regression can be an effective technique.</p>
+</section>
+</section>
+<section id="multiple-linear-regression">
+<h2>Multiple Linear Regression<a class="headerlink" href="#multiple-linear-regression" title="Permalink to this heading">#</a></h2>
+<p>In multiple linear regression, a numerical output is predicted from numerical input attributes by multiplying each attribute value by a different slope, then summing the results. In this example, the slope for the <code class="docutils literal notranslate"><span class="pre">1st</span> <span class="pre">Flr</span> <span class="pre">SF</span></code> would represent the dollars per square foot of area on the first floor of the house that should be used in our prediction.</p>
+<p>Before we begin prediction, we split our data randomly into a training and test set of equal size.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">train</span><span class="p">,</span> <span class="n">test</span> <span class="o">=</span> <span class="n">sales</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="mi">1001</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">train</span><span class="o">.</span><span class="n">num_rows</span><span class="p">,</span> <span class="s1">&#39;training and&#39;</span><span class="p">,</span> <span class="n">test</span><span class="o">.</span><span class="n">num_rows</span><span class="p">,</span> <span class="s1">&#39;test instances.&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>1001 training and 1001 test instances.
+</pre></div>
+</div>
+</div>
+</div>
+<p>The slopes in multiple regression is an array that has one slope value for each attribute in an example. Predicting the sale price involves multiplying each attribute by the slope and summing the result.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">predict</span><span class="p">(</span><span class="n">slopes</span><span class="p">,</span> <span class="n">row</span><span class="p">):</span>
+    <span class="k">return</span> <span class="nb">sum</span><span class="p">(</span><span class="n">slopes</span> <span class="o">*</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="n">row</span><span class="p">))</span>
+
+<span class="n">example_row</span> <span class="o">=</span> <span class="n">test</span><span class="o">.</span><span class="n">drop</span><span class="p">(</span><span class="s1">&#39;SalePrice&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">row</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;Predicting sale price for:&#39;</span><span class="p">,</span> <span class="n">example_row</span><span class="p">)</span>
+<span class="n">example_slopes</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">normal</span><span class="p">(</span><span class="mi">10</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="nb">len</span><span class="p">(</span><span class="n">example_row</span><span class="p">))</span>
+<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;Using slopes:&#39;</span><span class="p">,</span> <span class="n">example_slopes</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;Result:&#39;</span><span class="p">,</span> <span class="n">predict</span><span class="p">(</span><span class="n">example_slopes</span><span class="p">,</span> <span class="n">example_row</span><span class="p">))</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Predicting sale price for: Row(1st Flr SF=1207, 2nd Flr SF=0, Total Bsmt SF=1135.0, Garage Area=264.0, Wood Deck SF=0, Open Porch SF=240, Lot Area=9510, Year Built=1962, Yr Sold=2006)
+Using slopes: [ 9.52065867  8.58939769 11.48702417  9.50389131  9.09151019  9.86944284
+ 10.71929443 10.88966608  8.33339346]
+Result: 169429.7032316262
+</pre></div>
+</div>
+</div>
+</div>
+<p>The result is an estimated sale price, which can be compared to the actual sale price to assess whether the slopes provide accurate predictions. Since the <code class="docutils literal notranslate"><span class="pre">example_slopes</span></code> above were chosen at random, we should not expect them to provide accurate predictions at all.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="s1">&#39;Actual sale price:&#39;</span><span class="p">,</span> <span class="n">test</span><span class="o">.</span><span class="n">column</span><span class="p">(</span><span class="s1">&#39;SalePrice&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">item</span><span class="p">(</span><span class="mi">0</span><span class="p">))</span>
+<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;Predicted sale price using random slopes:&#39;</span><span class="p">,</span> <span class="n">predict</span><span class="p">(</span><span class="n">example_slopes</span><span class="p">,</span> <span class="n">example_row</span><span class="p">))</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Actual sale price: 147000
+Predicted sale price using random slopes: 169429.7032316262
+</pre></div>
+</div>
+</div>
+</div>
+<section id="least-squares-regression">
+<h3>Least Squares Regression<a class="headerlink" href="#least-squares-regression" title="Permalink to this heading">#</a></h3>
+<p>The next step in performing multiple regression is to define the least squares objective. We perform the prediction for each row in the training set, and then compute the root mean squared error (RMSE) of the predictions from the actual prices.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">train_prices</span> <span class="o">=</span> <span class="n">train</span><span class="o">.</span><span class="n">column</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span>
+<span class="n">train_attributes</span> <span class="o">=</span> <span class="n">train</span><span class="o">.</span><span class="n">drop</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span>
+
+<span class="k">def</span> <span class="nf">rmse</span><span class="p">(</span><span class="n">slopes</span><span class="p">,</span> <span class="n">attributes</span><span class="p">,</span> <span class="n">prices</span><span class="p">):</span>
+    <span class="n">errors</span> <span class="o">=</span> <span class="p">[]</span>
+    <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">prices</span><span class="p">)):</span>
+        <span class="n">predicted</span> <span class="o">=</span> <span class="n">predict</span><span class="p">(</span><span class="n">slopes</span><span class="p">,</span> <span class="n">attributes</span><span class="o">.</span><span class="n">row</span><span class="p">(</span><span class="n">i</span><span class="p">))</span>
+        <span class="n">actual</span> <span class="o">=</span> <span class="n">prices</span><span class="o">.</span><span class="n">item</span><span class="p">(</span><span class="n">i</span><span class="p">)</span>
+        <span class="n">errors</span><span class="o">.</span><span class="n">append</span><span class="p">((</span><span class="n">predicted</span> <span class="o">-</span> <span class="n">actual</span><span class="p">)</span> <span class="o">**</span> <span class="mi">2</span><span class="p">)</span>
+    <span class="k">return</span> <span class="n">np</span><span class="o">.</span><span class="n">mean</span><span class="p">(</span><span class="n">errors</span><span class="p">)</span> <span class="o">**</span> <span class="mf">0.5</span>
+
+<span class="k">def</span> <span class="nf">rmse_train</span><span class="p">(</span><span class="n">slopes</span><span class="p">):</span>
+    <span class="k">return</span> <span class="n">rmse</span><span class="p">(</span><span class="n">slopes</span><span class="p">,</span> <span class="n">train_attributes</span><span class="p">,</span> <span class="n">train_prices</span><span class="p">)</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;RMSE of all training examples using random slopes:&#39;</span><span class="p">,</span> <span class="n">rmse_train</span><span class="p">(</span><span class="n">example_slopes</span><span class="p">))</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>RMSE of all training examples using random slopes: 68153.56796456952
+</pre></div>
+</div>
+</div>
+</div>
+<p>Finally, we use the <code class="docutils literal notranslate"><span class="pre">minimize</span></code> function to find the slopes with the lowest RMSE. Since the function we want to minimize, <code class="docutils literal notranslate"><span class="pre">rmse_train</span></code>, takes an array instead of a number, we must pass the <code class="docutils literal notranslate"><span class="pre">array=True</span></code> argument to <code class="docutils literal notranslate"><span class="pre">minimize</span></code>. When this argument is used, <code class="docutils literal notranslate"><span class="pre">minimize</span></code> also requires an initial guess of the slopes so that it knows the dimension of the input array. Finally, to speed up optimization, we indicate that <code class="docutils literal notranslate"><span class="pre">rmse_train</span></code> is a smooth function using the <code class="docutils literal notranslate"><span class="pre">smooth=True</span></code> attribute. Computation of the best slopes may take several minutes.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">best_slopes</span> <span class="o">=</span> <span class="n">minimize</span><span class="p">(</span><span class="n">rmse_train</span><span class="p">,</span> <span class="n">start</span><span class="o">=</span><span class="n">example_slopes</span><span class="p">,</span> <span class="n">smooth</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">array</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;The best slopes for the training set:&#39;</span><span class="p">)</span>
+<span class="n">Table</span><span class="p">(</span><span class="n">train_attributes</span><span class="o">.</span><span class="n">labels</span><span class="p">)</span><span class="o">.</span><span class="n">with_row</span><span class="p">(</span><span class="nb">list</span><span class="p">(</span><span class="n">best_slopes</span><span class="p">))</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;RMSE of all training examples using the best slopes:&#39;</span><span class="p">,</span> <span class="n">rmse_train</span><span class="p">(</span><span class="n">best_slopes</span><span class="p">))</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>The best slopes for the training set:
+</pre></div>
+</div>
+<div class="output text_html"><table border="1" class="dataframe">
+    <thead>
+        <tr>
+            <th>1st Flr SF</th> <th>2nd Flr SF</th> <th>Total Bsmt SF</th> <th>Garage Area</th> <th>Wood Deck SF</th> <th>Open Porch SF</th> <th>Lot Area</th> <th>Year Built</th> <th>Yr Sold</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr>
+            <td>68.7068   </td> <td>74.3857   </td> <td>56.0494      </td> <td>36.1706    </td> <td>26.4397     </td> <td>21.4779      </td> <td>0.558904</td> <td>534.101   </td> <td>-528.216</td>
+        </tr>
+    </tbody>
+</table></div><div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>RMSE of all training examples using the best slopes: 29311.117940347867
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="interpreting-multiple-regression">
+<h3>Interpreting Multiple Regression<a class="headerlink" href="#interpreting-multiple-regression" title="Permalink to this heading">#</a></h3>
+<p>Let’s interpret these results. The best slopes give us a method for estimating the price of a house from its attributes. A square foot of area on the first floor is worth about $75 (the first slope), while one on the second floor is worth about $70 (the second slope). The final negative value describes the market: prices in later years were lower on average.</p>
+<p>The RMSE of around $30,000 means that our best linear prediction of the sale price based on all of the attributes is off by around $30,000 on the training set, on average.  We find a similar error when predicting prices on the test set, which indicates that our prediction method will generalize to other samples from the same population.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">test_prices</span> <span class="o">=</span> <span class="n">test</span><span class="o">.</span><span class="n">column</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span>
+<span class="n">test_attributes</span> <span class="o">=</span> <span class="n">test</span><span class="o">.</span><span class="n">drop</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span>
+
+<span class="k">def</span> <span class="nf">rmse_test</span><span class="p">(</span><span class="n">slopes</span><span class="p">):</span>
+    <span class="k">return</span> <span class="n">rmse</span><span class="p">(</span><span class="n">slopes</span><span class="p">,</span> <span class="n">test_attributes</span><span class="p">,</span> <span class="n">test_prices</span><span class="p">)</span>
+
+<span class="n">rmse_linear</span> <span class="o">=</span> <span class="n">rmse_test</span><span class="p">(</span><span class="n">best_slopes</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;Test set RMSE for multiple linear regression:&#39;</span><span class="p">,</span> <span class="n">rmse_linear</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Test set RMSE for multiple linear regression: 33025.064938240575
+</pre></div>
+</div>
+</div>
+</div>
+<p>If the predictions were perfect, then a scatter plot of the predicted and actual values would be a straight line with slope 1. We see that most dots fall near that line, but there is some error in the predictions.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">fit</span><span class="p">(</span><span class="n">row</span><span class="p">):</span>
+    <span class="k">return</span> <span class="nb">sum</span><span class="p">(</span><span class="n">best_slopes</span> <span class="o">*</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="n">row</span><span class="p">))</span>
+
+<span class="n">test</span><span class="o">.</span><span class="n">with_column</span><span class="p">(</span><span class="s1">&#39;Fitted&#39;</span><span class="p">,</span> <span class="n">test</span><span class="o">.</span><span class="n">drop</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span><span class="o">.</span><span class="n">apply</span><span class="p">(</span><span class="n">fit</span><span class="p">))</span><span class="o">.</span><span class="n">scatter</span><span class="p">(</span><span class="s1">&#39;Fitted&#39;</span><span class="p">,</span> <span class="mi">0</span><span class="p">)</span>
+<span class="n">plots</span><span class="o">.</span><span class="n">plot</span><span class="p">([</span><span class="mi">0</span><span class="p">,</span> <span class="mf">5e5</span><span class="p">],</span> <span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="mf">5e5</span><span class="p">]);</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../../../_images/fd99e58f2cde0338ca7da338a79335227dbb00f6c263e7ccef97d5aa8d3b9326.png" src="../../../_images/fd99e58f2cde0338ca7da338a79335227dbb00f6c263e7ccef97d5aa8d3b9326.png" />
+</div>
+</div>
+<p>A residual plot for multiple regression typically compares the errors (residuals) to the actual values of the predicted variable. We see in the residual plot below that we have systematically underestimated the value of expensive houses, shown by the many positive residual values on the right side of the graph.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">test</span><span class="o">.</span><span class="n">with_column</span><span class="p">(</span><span class="s1">&#39;Residual&#39;</span><span class="p">,</span> <span class="n">test_prices</span><span class="o">-</span><span class="n">test</span><span class="o">.</span><span class="n">drop</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span><span class="o">.</span><span class="n">apply</span><span class="p">(</span><span class="n">fit</span><span class="p">))</span><span class="o">.</span><span class="n">scatter</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="s1">&#39;Residual&#39;</span><span class="p">)</span>
+<span class="n">plots</span><span class="o">.</span><span class="n">plot</span><span class="p">([</span><span class="mi">0</span><span class="p">,</span> <span class="mf">7e5</span><span class="p">],</span> <span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">]);</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../../../_images/109b382d1bfa62e5da2959c9fdea5af929fa5c24c80c6606e4c39399872397f9.png" src="../../../_images/109b382d1bfa62e5da2959c9fdea5af929fa5c24c80c6606e4c39399872397f9.png" />
+</div>
+</div>
+<p>As with simple linear regression, interpreting the result of a predictor is at least as important as making predictions. There are many lessons about interpreting multiple regression that are not included in this textbook. A natural next step after completing this text would be to study linear modeling and regression in further depth.</p>
+</section>
+</section>
+<section id="nearest-neighbors-for-regression">
+<h2>Nearest Neighbors for Regression<a class="headerlink" href="#nearest-neighbors-for-regression" title="Permalink to this heading">#</a></h2>
+<p>Another approach to predicting the sale price of a house is to use the price of similar houses. This <em>nearest neighbor</em> approach is very similar to our classifier. To speed up computation, we will only use the attributes that had the highest correlation with the sale price in our original analysis.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">train_nn</span> <span class="o">=</span> <span class="n">train</span><span class="o">.</span><span class="n">select</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">4</span><span class="p">,</span> <span class="mi">8</span><span class="p">)</span>
+<span class="n">test_nn</span> <span class="o">=</span> <span class="n">test</span><span class="o">.</span><span class="n">select</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">4</span><span class="p">,</span> <span class="mi">8</span><span class="p">)</span>
+<span class="n">train_nn</span><span class="o">.</span><span class="n">show</span><span class="p">(</span><span class="mi">3</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><table border="1" class="dataframe">
+    <thead>
+        <tr>
+            <th>SalePrice</th> <th>1st Flr SF</th> <th>2nd Flr SF</th> <th>Total Bsmt SF</th> <th>Garage Area</th> <th>Year Built</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr>
+            <td>270000   </td> <td>1673      </td> <td>0         </td> <td>1673         </td> <td>583        </td> <td>2000      </td>
+        </tr>
+        <tr>
+            <td>158000   </td> <td>986       </td> <td>537       </td> <td>1067         </td> <td>295        </td> <td>1949      </td>
+        </tr>
+        <tr>
+            <td>249000   </td> <td>1506      </td> <td>0         </td> <td>1494         </td> <td>672        </td> <td>2005      </td>
+        </tr>
+    </tbody>
+</table>
+<p>... (998 rows omitted)</p></div></div>
+</div>
+<p>The computation of closest neighbors is identical to a nearest-neighbor classifier. In this case, we will exclude the <code class="docutils literal notranslate"><span class="pre">'SalePrice'</span></code> rather than the <code class="docutils literal notranslate"><span class="pre">'Class'</span></code> column from the distance computation. The five nearest neighbors of the first test row are shown below.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">distance</span><span class="p">(</span><span class="n">pt1</span><span class="p">,</span> <span class="n">pt2</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;The distance between two points, represented as arrays.&quot;&quot;&quot;</span>
+    <span class="k">return</span> <span class="n">np</span><span class="o">.</span><span class="n">sqrt</span><span class="p">(</span><span class="nb">sum</span><span class="p">((</span><span class="n">pt1</span> <span class="o">-</span> <span class="n">pt2</span><span class="p">)</span> <span class="o">**</span> <span class="mi">2</span><span class="p">))</span>
+
+<span class="k">def</span> <span class="nf">row_distance</span><span class="p">(</span><span class="n">row1</span><span class="p">,</span> <span class="n">row2</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;The distance between two rows of a table.&quot;&quot;&quot;</span>
+    <span class="k">return</span> <span class="n">distance</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="n">row1</span><span class="p">),</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="n">row2</span><span class="p">))</span>
+
+<span class="k">def</span> <span class="nf">distances</span><span class="p">(</span><span class="n">training</span><span class="p">,</span> <span class="n">example</span><span class="p">,</span> <span class="n">output</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Compute the distance from example for each row in training.&quot;&quot;&quot;</span>
+    <span class="n">dists</span> <span class="o">=</span> <span class="p">[]</span>
+    <span class="n">attributes</span> <span class="o">=</span> <span class="n">training</span><span class="o">.</span><span class="n">drop</span><span class="p">(</span><span class="n">output</span><span class="p">)</span>
+    <span class="k">for</span> <span class="n">row</span> <span class="ow">in</span> <span class="n">attributes</span><span class="o">.</span><span class="n">rows</span><span class="p">:</span>
+        <span class="n">dists</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">row_distance</span><span class="p">(</span><span class="n">row</span><span class="p">,</span> <span class="n">example</span><span class="p">))</span>
+    <span class="k">return</span> <span class="n">training</span><span class="o">.</span><span class="n">with_column</span><span class="p">(</span><span class="s1">&#39;Distance&#39;</span><span class="p">,</span> <span class="n">dists</span><span class="p">)</span>
+
+<span class="k">def</span> <span class="nf">closest</span><span class="p">(</span><span class="n">training</span><span class="p">,</span> <span class="n">example</span><span class="p">,</span> <span class="n">k</span><span class="p">,</span> <span class="n">output</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Return a table of the k closest neighbors to example.&quot;&quot;&quot;</span>
+    <span class="k">return</span> <span class="n">distances</span><span class="p">(</span><span class="n">training</span><span class="p">,</span> <span class="n">example</span><span class="p">,</span> <span class="n">output</span><span class="p">)</span><span class="o">.</span><span class="n">sort</span><span class="p">(</span><span class="s1">&#39;Distance&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">take</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="n">k</span><span class="p">))</span>
+
+<span class="n">example_nn_row</span> <span class="o">=</span> <span class="n">test_nn</span><span class="o">.</span><span class="n">drop</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span><span class="o">.</span><span class="n">row</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span>
+<span class="n">closest</span><span class="p">(</span><span class="n">train_nn</span><span class="p">,</span> <span class="n">example_nn_row</span><span class="p">,</span> <span class="mi">5</span><span class="p">,</span> <span class="s1">&#39;SalePrice&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><table border="1" class="dataframe">
+    <thead>
+        <tr>
+            <th>SalePrice</th> <th>1st Flr SF</th> <th>2nd Flr SF</th> <th>Total Bsmt SF</th> <th>Garage Area</th> <th>Year Built</th> <th>Distance</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr>
+            <td>137000   </td> <td>1176      </td> <td>0         </td> <td>1158         </td> <td>303        </td> <td>1958      </td> <td>55.0182 </td>
+        </tr>
+        <tr>
+            <td>146000   </td> <td>1150      </td> <td>0         </td> <td>1150         </td> <td>288        </td> <td>1961      </td> <td>63.6475 </td>
+        </tr>
+        <tr>
+            <td>126175   </td> <td>1163      </td> <td>0         </td> <td>1162         </td> <td>220        </td> <td>1955      </td> <td>68.1909 </td>
+        </tr>
+        <tr>
+            <td>157900   </td> <td>1188      </td> <td>0         </td> <td>1188         </td> <td>312        </td> <td>1962      </td> <td>73.9865 </td>
+        </tr>
+        <tr>
+            <td>150000   </td> <td>1144      </td> <td>0         </td> <td>1169         </td> <td>286        </td> <td>1956      </td> <td>75.1332 </td>
+        </tr>
+    </tbody>
+</table></div></div>
+</div>
+<p>One simple method for predicting the price is to average the prices of the nearest neighbors.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">predict_nn</span><span class="p">(</span><span class="n">example</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Return the majority class among the k nearest neighbors.&quot;&quot;&quot;</span>
+    <span class="k">return</span> <span class="n">np</span><span class="o">.</span><span class="n">average</span><span class="p">(</span><span class="n">closest</span><span class="p">(</span><span class="n">train_nn</span><span class="p">,</span> <span class="n">example</span><span class="p">,</span> <span class="mi">5</span><span class="p">,</span> <span class="s1">&#39;SalePrice&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">column</span><span class="p">(</span><span class="s1">&#39;SalePrice&#39;</span><span class="p">))</span>
+
+<span class="n">predict_nn</span><span class="p">(</span><span class="n">example_nn_row</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>143415.0
+</pre></div>
+</div>
+</div>
+</div>
+<p>Finally, we can inspect whether our prediction is close to the true sale price for our one test example. Looks reasonable!</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="s1">&#39;Actual sale price:&#39;</span><span class="p">,</span> <span class="n">test_nn</span><span class="o">.</span><span class="n">column</span><span class="p">(</span><span class="s1">&#39;SalePrice&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">item</span><span class="p">(</span><span class="mi">0</span><span class="p">))</span>
+<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;Predicted sale price using nearest neighbors:&#39;</span><span class="p">,</span> <span class="n">predict_nn</span><span class="p">(</span><span class="n">example_nn_row</span><span class="p">))</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Actual sale price: 147000
+Predicted sale price using nearest neighbors: 143415.0
+</pre></div>
+</div>
+</div>
+</div>
+<section id="evaluation">
+<h3>Evaluation<a class="headerlink" href="#evaluation" title="Permalink to this heading">#</a></h3>
+<p>To evaluate the performance of this approach for the whole test set, we apply <code class="docutils literal notranslate"><span class="pre">predict_nn</span></code> to each test example, then compute the root mean squared error of the predictions. Computation of the predictions may take several minutes.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">nn_test_predictions</span> <span class="o">=</span> <span class="n">test_nn</span><span class="o">.</span><span class="n">drop</span><span class="p">(</span><span class="s1">&#39;SalePrice&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">apply</span><span class="p">(</span><span class="n">predict_nn</span><span class="p">)</span>
+<span class="n">rmse_nn</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">mean</span><span class="p">((</span><span class="n">test_prices</span> <span class="o">-</span> <span class="n">nn_test_predictions</span><span class="p">)</span> <span class="o">**</span> <span class="mi">2</span><span class="p">)</span> <span class="o">**</span> <span class="mf">0.5</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;Test set RMSE for multiple linear regression: &#39;</span><span class="p">,</span> <span class="n">rmse_linear</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;Test set RMSE for nearest neighbor regression:&#39;</span><span class="p">,</span> <span class="n">rmse_nn</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Test set RMSE for multiple linear regression:  33025.064938240575
+Test set RMSE for nearest neighbor regression: 36067.116043510105
+</pre></div>
+</div>
+</div>
+</div>
+<p>For these data, the errors of the two techniques are quite similar! For different data sets, one technique might outperform another. By computing the RMSE of both techniques on the same data, we can compare methods fairly. One note of caution: the difference in performance might not be due to the technique at all; it might be due to the random variation due to sampling the training and test sets in the first place.</p>
+<p>Finally, we can draw a residual plot for these predictions. We still underestimate the prices of the most expensive houses, but the bias does not appear to be as systematic. However, fewer residuals are very close to zero, indicating that fewer prices were predicted with very high accuracy.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">test</span><span class="o">.</span><span class="n">with_column</span><span class="p">(</span><span class="s1">&#39;Residual&#39;</span><span class="p">,</span> <span class="n">test_prices</span><span class="o">-</span><span class="n">nn_test_predictions</span><span class="p">)</span><span class="o">.</span><span class="n">scatter</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="s1">&#39;Residual&#39;</span><span class="p">)</span>
+<span class="n">plots</span><span class="o">.</span><span class="n">plot</span><span class="p">([</span><span class="mi">0</span><span class="p">,</span> <span class="mf">7e5</span><span class="p">],</span> <span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">]);</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../../../_images/cceeb51afd138609f69e89c6d7f431e2e3653b36556f22158579bd05c6968d51.png" src="../../../_images/cceeb51afd138609f69e89c6d7f431e2e3653b36556f22158579bd05c6968d51.png" />
+</div>
+</div>
+</section>
+</section>
+</section>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "binder-examples/jupyter-stacks-datascience",
+            ref: "master",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "python"
+        },
+        kernelOptions: {
+            name: "python3",
+            path: "./notused/17/6"
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'python3'</script>
+
+                </article>
+              
+
+              
+              
+                <footer class="bd-footer-article">
+                  
+<div class="footer-article-items footer-article__inner">
+  
+    <div class="footer-article-item"><!-- Previous / next buttons -->
+<div class="prev-next-area">
+</div></div>
+  
+</div>
+
+                </footer>
+              
+            </div>
+            
+            
+              
+                <div class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
+  <div class="sidebar-secondary-item">
+  <div class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> Contents
+  </div>
+  <nav class="bd-toc-nav page-toc">
+    <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#home-prices">Home Prices</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#correlation">Correlation</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#multiple-linear-regression">Multiple Linear Regression</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#least-squares-regression">Least Squares Regression</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#interpreting-multiple-regression">Interpreting Multiple Regression</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#nearest-neighbors-for-regression">Nearest Neighbors for Regression</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#evaluation">Evaluation</a></li>
+</ul>
+</li>
+</ul>
+  </nav></div>
+
+</div></div>
+              
+            
+          </div>
+          <footer class="bd-footer-content">
+            
+<div class="bd-footer-content__inner container">
+  
+  <div class="footer-item">
+    
+<p class="component-author">
+By Alan Moreira
+</p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+  <p class="copyright">
+    
+      © Copyright 2021 Creative Commons Attribution-ShareAlike 4.0 International (CC BY-SA 4.0).
+      <br/>
+    
+  </p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+</div>
+          </footer>
+        
+
+      </main>
+    </div>
+  </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script src="../../../_static/scripts/bootstrap.js?digest=e353d410970836974a52"></script>
+<script src="../../../_static/scripts/pydata-sphinx-theme.js?digest=e353d410970836974a52"></script>
+
+  <footer class="bd-footer">
+  </footer>
+  </body>
+</html>

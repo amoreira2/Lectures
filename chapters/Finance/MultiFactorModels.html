@@ -1,0 +1,1887 @@
+
+
+<!DOCTYPE html>
+
+
+<html lang="en" >
+
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
+
+    <title>14.4. Multi-factor models &#8212; Quantitative Investing</title>
+  
+  
+  
+  <script data-cfasync="false">
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "light";
+  </script>
+  
+  <!-- Loaded before other Sphinx assets -->
+  <link href="../../_static/styles/theme.css?digest=e353d410970836974a52" rel="stylesheet" />
+<link href="../../_static/styles/bootstrap.css?digest=e353d410970836974a52" rel="stylesheet" />
+<link href="../../_static/styles/pydata-sphinx-theme.css?digest=e353d410970836974a52" rel="stylesheet" />
+
+  
+  <link href="../../_static/vendor/fontawesome/6.1.2/css/all.min.css?digest=e353d410970836974a52" rel="stylesheet" />
+  <link rel="preload" as="font" type="font/woff2" crossorigin href="../../_static/vendor/fontawesome/6.1.2/webfonts/fa-solid-900.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../../_static/vendor/fontawesome/6.1.2/webfonts/fa-brands-400.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../../_static/vendor/fontawesome/6.1.2/webfonts/fa-regular-400.woff2" />
+
+    <link rel="stylesheet" type="text/css" href="../../_static/pygments.css" />
+    <link rel="stylesheet" href="../../_static/styles/sphinx-book-theme.css?digest=14f4ca6b54d191a8c7657f6c759bf11a5fb86285" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/togglebutton.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/copybutton.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/sphinx-thebe.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/book.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/design-style.4045f2051d55cab465a707391d5b2007.min.css" />
+  
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="../../_static/scripts/bootstrap.js?digest=e353d410970836974a52" />
+<link rel="preload" as="script" href="../../_static/scripts/pydata-sphinx-theme.js?digest=e353d410970836974a52" />
+
+    <script data-url_root="../../" id="documentation_options" src="../../_static/documentation_options.js"></script>
+    <script src="../../_static/jquery.js"></script>
+    <script src="../../_static/underscore.js"></script>
+    <script src="../../_static/_sphinx_javascript_frameworks_compat.js"></script>
+    <script src="../../_static/doctools.js"></script>
+    <script src="../../_static/clipboard.min.js"></script>
+    <script src="../../_static/copybutton.js"></script>
+    <script src="../../_static/scripts/sphinx-book-theme.js?digest=5a5c038af52cf7bc1a1ec88eea08e6366ee68824"></script>
+    <script>let toggleHintShow = 'Click to show';</script>
+    <script>let toggleHintHide = 'Click to hide';</script>
+    <script>let toggleOpenOnPrint = 'true';</script>
+    <script src="../../_static/togglebutton.js"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script src="../../_static/design-tabs.js"></script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"
+const thebe_selector = ".thebe,.cell"
+const thebe_selector_input = "pre"
+const thebe_selector_output = ".output, .cell_output"
+</script>
+    <script async="async" src="../../_static/sphinx-thebe.js"></script>
+    <script>window.MathJax = {"options": {"processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
+    <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'chapters/Finance/MultiFactorModels';</script>
+    <link rel="canonical" href="https://amoreira2.github.io/quantitativeinvesting/chapters/Finance/MultiFactorModels.html" />
+    <link rel="shortcut icon" href="../../_static/figuremain2.jpg"/>
+    <link rel="index" title="Index" href="../../genindex.html" />
+    <link rel="search" title="Search" href="../../search.html" />
+    <link rel="next" title="15. Topics in Quantitative investing" href="Topics.html" />
+    <link rel="prev" title="14.3. Tail Risks and Background risks" href="TailandBackground.html" />
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta name="docsearch:language" content="en"/>
+  </head>
+  
+  
+  <body data-bs-spy="scroll" data-bs-target=".bd-toc-nav" data-offset="180" data-bs-root-margin="0px 0px -60%" data-default-mode="">
+
+  
+  
+  <a class="skip-link" href="#main-content">Skip to main content</a>
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          name="__primary"
+          id="__primary"/>
+  <label class="overlay overlay-primary" for="__primary"></label>
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          name="__secondary"
+          id="__secondary"/>
+  <label class="overlay overlay-secondary" for="__secondary"></label>
+  
+  <div class="search-button__wrapper">
+    <div class="search-button__overlay"></div>
+    <div class="search-button__search-container">
+<form class="bd-search d-flex align-items-center"
+      action="../../search.html"
+      method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search"
+         class="form-control"
+         name="q"
+         id="search-input"
+         placeholder="Search this book..."
+         aria-label="Search this book..."
+         autocomplete="off"
+         autocorrect="off"
+         autocapitalize="off"
+         spellcheck="false"/>
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form></div>
+  </div>
+  
+    <nav class="bd-header navbar navbar-expand-lg bd-navbar">
+    </nav>
+  
+  <div class="bd-container">
+    <div class="bd-container__inner bd-page-width">
+      
+      <div class="bd-sidebar-primary bd-sidebar">
+        
+
+  
+  <div class="sidebar-header-items sidebar-primary__section">
+    
+    
+    
+    
+  </div>
+  
+    <div class="sidebar-primary-items__start sidebar-primary__section">
+        <div class="sidebar-primary-item">
+  
+
+<a class="navbar-brand logo" href="../intro.html">
+  
+  
+  
+  
+    
+    
+      
+    
+    
+    <img src="../../_static/figuremain2.jpg" class="logo__image only-light" alt="Logo image"/>
+    <script>document.write(`<img src="../../_static/figuremain2.jpg" class="logo__image only-dark" alt="Logo image"/>`);</script>
+  
+  
+</a></div>
+        <div class="sidebar-primary-item"><nav class="bd-links" id="bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item navbar-nav active">
+        <ul class="current nav bd-sidenav">
+<li class="toctree-l1 has-children"><a class="reference internal" href="../01/what-is-quant-investing.html">1. What is Quantitative Investing?</a><input class="toctree-checkbox" id="toctree-checkbox-1" name="toctree-checkbox-1" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-1"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l2"><a class="reference internal" href="../01/statistical-techniques.html">1.1. Statistical Techniques</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../01/computational-tools.html">1.2. Computational tools</a></li>
+</ul>
+</li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../02/getting_started.html">2. Getting Started</a><input class="toctree-checkbox" id="toctree-checkbox-2" name="toctree-checkbox-2" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-2"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l2"><a class="reference internal" href="../02/local_install.html">2.3. Local installation</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../02/cloud_setup.html">2.4. Cloud Setup</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../03/programming-in-python.html">3. First Steps with Python</a></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../essentials/essentials.html">4. Python Essentials</a><input class="toctree-checkbox" id="toctree-checkbox-3" name="toctree-checkbox-3" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-3"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l2"><a class="reference internal" href="../essentials/basics.html">4.1. Basics</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../essentials/collections.html">4.2. Collections</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../essentials/control_flow.html">4.3. Flow control</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../essentials/functions.html">4.4. Functions</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../essentials/numpy1.html">4.5. Numpy</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../essentials/plotting1.html">4.6. Plotting</a></li>
+</ul>
+</li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../pandas/workingwithdata.html">5. Working with Data</a><input class="toctree-checkbox" id="toctree-checkbox-4" name="toctree-checkbox-4" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-4"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l2"><a class="reference internal" href="../pandas/intro.html">5.1. Introduction</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../pandas/basics.html">5.2. Pandas Basics</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../pandas/the_index.html">5.3. Indexing</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../pandas/timeseries.html">5.4. Time-Series</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../pandas/data_clean.html">5.5. Cleaning data (opt)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../pandas/reshape.html">5.6. Reshape (opt)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../pandas/merge.html">5.7. Merge (opt)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../pandas/groupby.html">5.8. Group-by (opt)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../pandas/matplotlib.html">5.9. Plotting (opt)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../pandas/storage_formats.html">5.10. Data Storage (opt)</a></li>
+</ul>
+</li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="Returns.html">6. Asset Returns</a><input class="toctree-checkbox" id="toctree-checkbox-5" name="toctree-checkbox-5" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-5"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l2"><a class="reference internal" href="Returns1.html">6.1. Returns</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../scientific/randomness1.html">6.2. Modeling randomness</a></li>
+<li class="toctree-l2"><a class="reference internal" href="TheChoiceofFrequency.html">6.3. The Choice of Frequency and Annualization of Returns</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../scientific/linear_algebra1.html">6.4. Linear algebra Review</a></li>
+<li class="toctree-l2"><a class="reference internal" href="UsingAPI.html">6.5. Data APIs</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="PortfolioMath.html">7. Portfolio Math</a></li>
+<li class="toctree-l1"><a class="reference internal" href="CapitalAllocationLine.html">8. Capital Allocation</a></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="meanvariance1.html">9. Mean Variance Frontier</a><input class="toctree-checkbox" id="toctree-checkbox-6" name="toctree-checkbox-6" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-6"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l2"><a class="reference internal" href="MeanVariance.html">9.1. Mean Variance Efficient Portfolios</a></li>
+<li class="toctree-l2"><a class="reference internal" href="CaseStudy.html">9.2. Case Study in International Diversification</a></li>
+<li class="toctree-l2"><a class="reference internal" href="LeverageandShorting.html">9.3. Leverage and Shorting</a></li>
+<li class="toctree-l2"><a class="reference internal" href="Portfoliooptimizationwithconstraints.html">9.4. Portfolio Optimization with constraints</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="EstimationUncertainty.html">10. Estimation Uncertainty and It's Implications for investing</a></li>
+<li class="toctree-l1"><a class="reference internal" href="TradingStrategies.html">11. Trading Strategies</a></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="Timing.html">12. Timing Strategies</a><input class="toctree-checkbox" id="toctree-checkbox-7" name="toctree-checkbox-7" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-7"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l2"><a class="reference internal" href="Volatilitytiming.html">12.1. Volatility Timing</a></li>
+</ul>
+</li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="crosssectionalequitystrategies.html">13. Cross-Sectional Equity Strategies</a><input class="toctree-checkbox" id="toctree-checkbox-8" name="toctree-checkbox-8" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-8"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l2"><a class="reference internal" href="Valueinvesting.html">13.1. Value</a></li>
+<li class="toctree-l2"><a class="reference internal" href="Momentum.html">13.2. Momentum</a></li>
+<li class="toctree-l2"><a class="reference internal" href="OtherEquityStrategies.html">13.3. Other Equity strategies</a></li>
+</ul>
+</li>
+<li class="toctree-l1 current active has-children"><a class="reference internal" href="Evaluation.html">14. Evaluating a Trading Strategy</a><input checked="" class="toctree-checkbox" id="toctree-checkbox-9" name="toctree-checkbox-9" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-9"><i class="fa-solid fa-chevron-down"></i></label><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="Econometrics.html">14.1. The Econometrics of Strategy Evalaution</a></li>
+<li class="toctree-l2"><a class="reference internal" href="outofsample.html">14.2. Out of Sample Analysis</a></li>
+<li class="toctree-l2"><a class="reference internal" href="TailandBackground.html">14.3. Tail Risks and Background Risks</a></li>
+<li class="toctree-l2 current active"><a class="current reference internal" href="#">14.4. Multifactor Models</a></li>
+</ul>
+</li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="Topics.html">15. Topics in Quantitative Investing</a><input class="toctree-checkbox" id="toctree-checkbox-10" name="toctree-checkbox-10" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-10"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l2"><a class="reference internal" href="Equilbrium.html">15.1. Intepreting Factor models</a></li>
+<li class="toctree-l2"><a class="reference internal" href="Implementation.html">15.2. Strategy Implementation</a></li>
+<li class="toctree-l2"><a class="reference internal" href="Horizon.html">15.3. Investment horizon effects</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../additional/additional.html">16. Additional Statistics Material</a></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../Assignments/Assignments.html">17. Assignments</a><input class="toctree-checkbox" id="toctree-checkbox-11" name="toctree-checkbox-11" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-11"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l2"><a class="reference internal" href="../Assignments/Assignment0.html">17.1. Assigment 0</a></li>
+
+
+
+
+
+<li class="toctree-l2"><a class="reference internal" href="../Assignments/Assignment1.html">17.7. Assignment 1</a></li>
+
+
+
+
+<li class="toctree-l2"><a class="reference internal" href="../Assignments/Assignment2.html">17.12. Assigment 2</a></li>
+
+
+
+<li class="toctree-l2"><a class="reference internal" href="../Assignments/Assignment3.html">17.16. Assignment 3</a></li>
+
+
+
+<li class="toctree-l2"><a class="reference internal" href="../Assignments/Assignment4.html">17.20. Assignment 4</a></li>
+
+
+
+<li class="toctree-l2"><a class="reference internal" href="../Assignments/Assignment5.html">17.24. Assigment 5</a></li>
+
+
+
+<li class="toctree-l2"><a class="reference internal" href="../Assignments/Assignment6.html">17.28. Assignment 6</a></li>
+
+
+
+<li class="toctree-l2"><a class="reference internal" href="../Assignments/Assignment7.html">17.32. Assignment 7</a></li>
+
+</ul>
+</li>
+</ul>
+
+    </div>
+</nav></div>
+    </div>
+  
+  
+  <div class="sidebar-primary-items__end sidebar-primary__section">
+  </div>
+  
+  <div id="rtd-footer-container"></div>
+
+
+      </div>
+      
+      <main id="main-content" class="bd-main">
+        
+        
+
+<div class="sbt-scroll-pixel-helper"></div>
+
+          <div class="bd-content">
+            <div class="bd-article-container">
+              
+              <div class="bd-header-article">
+<div class="header-article-items header-article__inner">
+  
+    <div class="header-article-items__start">
+      
+        <div class="header-article-item"><label class="sidebar-toggle primary-toggle btn btn-sm" for="__primary" title="Toggle primary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <span class="fa-solid fa-bars"></span>
+</label></div>
+      
+    </div>
+  
+  
+    <div class="header-article-items__end">
+      
+        <div class="header-article-item">
+
+<div class="article-header-buttons">
+
+
+
+
+
+<div class="dropdown dropdown-launch-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Launch interactive content">
+    <i class="fas fa-rocket"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="https://colab.research.google.com/github/amoreira2/Lectures/blob/main/chapters/Finance/MultiFactorModels.ipynb" target="_blank"
+   class="btn btn-sm dropdown-item"
+   title="Launch onColab"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  
+    <img src="../../_static/images/logo_colab.png">
+  </span>
+<span class="btn__text-container">Colab</span>
+</a>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+
+
+<div class="dropdown dropdown-source-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Source repositories">
+    <i class="fab fa-github"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="https://github.com/amoreira2/Lectures" target="_blank"
+   class="btn btn-sm btn-source-repository-button dropdown-item"
+   title="Source repository"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fab fa-github"></i>
+  </span>
+<span class="btn__text-container">Repository</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li><a href="https://github.com/amoreira2/Lectures/issues/new?title=Issue%20on%20page%20%2Fchapters/Finance/MultiFactorModels.html&body=Your%20issue%20content%20here." target="_blank"
+   class="btn btn-sm btn-source-issues-button dropdown-item"
+   title="Open an issue"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-lightbulb"></i>
+  </span>
+<span class="btn__text-container">Open issue</span>
+</a>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+
+
+<div class="dropdown dropdown-download-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Download this page">
+    <i class="fas fa-download"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="../../_sources/chapters/Finance/MultiFactorModels.ipynb" target="_blank"
+   class="btn btn-sm btn-download-source-button dropdown-item"
+   title="Download source file"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file"></i>
+  </span>
+<span class="btn__text-container">.ipynb</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li>
+<button onclick="window.print()"
+  class="btn btn-sm btn-download-pdf-button dropdown-item"
+  title="Print to PDF"
+  data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file-pdf"></i>
+  </span>
+<span class="btn__text-container">.pdf</span>
+</button>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+<button onclick="toggleFullScreen()"
+  class="btn btn-sm btn-fullscreen-button"
+  title="Fullscreen mode"
+  data-bs-placement="bottom" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-expand"></i>
+  </span>
+
+</button>
+
+
+<script>
+document.write(`
+  <button class="theme-switch-button btn btn-sm btn-outline-primary navbar-btn rounded-circle" title="light/dark" aria-label="light/dark" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="theme-switch" data-mode="light"><i class="fa-solid fa-sun"></i></span>
+    <span class="theme-switch" data-mode="dark"><i class="fa-solid fa-moon"></i></span>
+    <span class="theme-switch" data-mode="auto"><i class="fa-solid fa-circle-half-stroke"></i></span>
+  </button>
+`);
+</script>
+
+<script>
+document.write(`
+  <button class="btn btn-sm navbar-btn search-button search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass"></i>
+  </button>
+`);
+</script>
+
+</div></div>
+      
+    </div>
+  
+</div>
+</div>
+              
+              
+
+<div id="jb-print-docs-body" class="onlyprint">
+    <h1>Multi-factor models</h1>
+    <!-- Table of contents -->
+    <div id="print-main-content">
+        <div id="jb-print-toc">
+            
+        </div>
+    </div>
+</div>
+
+              
+                
+<div id="searchbox"></div>
+                <article class="bd-article" role="main">
+                  
+  <div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+<span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
+<span class="o">%</span><span class="k">matplotlib</span> inline
+<span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
+</pre></div>
+</div>
+</div>
+</div>
+<section class="tex2jax_ignore mathjax_ignore" id="multi-factor-models">
+<h1><span class="section-number">14.4. </span>Multi-factor models<a class="headerlink" href="#multi-factor-models" title="Permalink to this heading">#</a></h1>
+<p><strong>Adding factors to proxy for the total wealth portfolio</strong></p>
+<ul class="simple">
+<li><p>According to the  CAPM the Wealth portfolio is the tangency portfolio</p></li>
+<li><p>The return on the wealth portfolio summarizes how Bad the times are</p></li>
+<li><p>Assets that co-vary more with the market must earn higher returns</p></li>
+<li><p>They pay poorly exactly when things are worse</p></li>
+<li><p>What is the wealth portfolio? It is the portfolio that holds all assets in proportion to their value</p></li>
+<li><p>We often use the equity market as a proxy for this, but that is not the CAPM</p></li>
+<li><p>In a way that CAPM is untestable because it is impossible to construct the true wealth portfolio</p></li>
+</ul>
+<div class="math notranslate nohighlight">
+\[E[R_t^i-R_t^f]=\beta_{i,mkt}E[R^{mkt}_t-R^f_t]\]</div>
+<ul class="simple">
+<li><p>The fact that we cannot really measure the returns of the total wealth protfolio gives us a reason to add other facts in additons to the returns to the equity market. Under this logic you add returns to other assets classes&gt;</p>
+<ul>
+<li><p>Real estate</p></li>
+<li><p>Corporate debt</p></li>
+<li><p>Human capital</p></li>
+<li><p>Private equity</p></li>
+<li><p>Venture Capital
+-…</p></li>
+</ul>
+</li>
+</ul>
+<p>So you get:</p>
+<div class="math notranslate nohighlight">
+\[E[R_t^i-R_t^f]=\beta_{i,mkt}E[R^{mkt}_t-R^f_t]+\sum_a^A\beta_{i,a}E[R^{a}_t-R^f_t]\]</div>
+<ul class="simple">
+<li><p>where <span class="math notranslate nohighlight">\(a\)</span> are the different asset classes.</p></li>
+<li><p>Sometimes people refer to these other hard to trade assets as “background risks”, basically risks that are you are exposed to that are not capture by your financial assets</p></li>
+</ul>
+<p><strong>ICAPM: Intertemporal Capital Asset Pricing Model</strong></p>
+<ul class="simple">
+<li><p>Another way to rationalize additional  factors is to realize that the premium and the volatiltiy of the market are time-varying.</p></li>
+<li><p>This means that assets that allow you to hedge this investment opportunity set risk will be valuable</p>
+<ul>
+<li><p>For example, an asset that pays well when the market is more/less volatile or one that pays well when the expected reutrns of market going froward are higher/lower</p></li>
+</ul>
+</li>
+<li><p>Under this logic, any strategy that is related to the market moments can also explain average returns on top of the marker beta</p></li>
+<li><p>Sometimes people refer to the background risks discussed earlier in this framework as well. But in this case it is not about the moments of the market portfolio per se, but about correlation of the strategy with the background risks investors bear</p></li>
+<li><p>The end result is the same</p></li>
+</ul>
+<div class="math notranslate nohighlight">
+\[E[R_t^i-R_t^f]=\beta_{i,mkt}E[R^{mkt}_t-R^f_t]+\sum_{j=1}^J\beta_{i,j}E[Factor^j_t]\]</div>
+<ul class="simple">
+<li><p>but now these are “Factors” and do no need to be components of the total wealth</p></li>
+<li><p>but these factors must still be excess returns, i.e. they must be strategies based on financial assets that have price zero</p></li>
+</ul>
+<p><strong>APT: Arbitrage Pricing Theory</strong></p>
+<ul class="simple">
+<li><p>Yet another model that has exaclty the same prediction</p></li>
+</ul>
+<div class="math notranslate nohighlight">
+\[E[R_t^i-R_t^f]=\beta_{i,mkt}E[R^{mkt}_t-R^f_t]+\sum_{j=1}^J\beta_{i,j}E[Factor^j_t]\]</div>
+<ul class="simple">
+<li><p>but now the factors are motivated because the explain time-seires variation in realized return</p></li>
+<li><p>the idea is that if you have enough factors you explain enough of the variaiton in the returns of an asset that if the betas do no explain the average reuturns than an arbitrage opportunity wouldd open up</p></li>
+<li><p>So you can think of the first two moticaiton being more about “economic factors” while this one being abotu “fianncail factors”. The factors belong if they help you explain reuturs.</p></li>
+<li><p>APT in the end is a very statistical model</p></li>
+</ul>
+<p><strong>How to work with multifactor models?</strong></p>
+<ul class="simple">
+<li><p>These models make less restrictive assumptions and predict that we will need additional factors beyond the market to “span” the tangency portfolio</p></li>
+<li><p>What does “span” mean?</p></li>
+</ul>
+<div class="math notranslate nohighlight">
+\[E[R_t^i-R_t^f]=\beta_{i,mkt}E[R^{mkt}_t-R^f_t]+\sum_{j=1}^J\beta_{i,j}E[Factor^j_t]\]</div>
+<ul>
+<li><p>It is basically the same as before, but now we run a multivariate regression</p>
+<div class="math notranslate nohighlight">
+\[R_{i,t}=\alpha_i+\beta_{mkt}R^{mkt}_t+\beta_1 Factor_1+\beta_2 Factor_2+\beta_3 Factor_3+....+\beta_n Factor_n+\epsilon_{i,t}\]</div>
+</li>
+<li><p>As long as the factors <strong>are also excess returns</strong>, the time-series alpha test is still valid and indentical as before.</p></li>
+<li><p>You can do single asset tests and simply use the alpha t-stat to test the model</p></li>
+<li><p>Everything that we discussed with the hedging/tracking portfolios apply here as well, but now</p></li>
+</ul>
+<div class="math notranslate nohighlight">
+\[Hedged_{i,t}=R_{i,t}-(\beta_{mkt}R^{mkt}_t+\beta_1 Factor_1+\beta_2 Factor_2+\beta_3 Factor_3+....+\beta_n Factor_n)\]</div>
+<p>where <span class="math notranslate nohighlight">\((\beta_{mkt}R^{mkt}_t+\beta_1 Factor_1+\beta_2 Factor_2+\beta_3 Factor_3+....+\beta_n Factor_n)\)</span> is the tracking portfolio</p>
+<p><strong>Which Multi-factor models?</strong></p>
+<p>It really depends on the application. Practicioners ofen use factor models with 10 or more factors becasue they are interested in peformance attibution.</p>
+<p>You use the regression to see which factor explain some particular realized performance while not thinking to much about whether the factor there explains average returns.</p>
+<p>This is a perferctly good use mulitfactor models. In this case you are not really thinking whether the factors help you span the tangency portfolio, but only if it help explain the realized reutrn of the strategy.</p>
+<p>If you interesting in accounting for a fund/strategy/stock averagare return you have look for factors that help you span the tangency portfolio, i.e. facots that generate high sharpe ratios.</p>
+<p>In the academic world and also in a good chunk of practicioners people use the following factor models</p>
+<ol class="arabic simple">
+<li><p>Fama French 3 factor model:</p></li>
+</ol>
+<div class="math notranslate nohighlight">
+\[E[R_t^i-R_t^f]=\beta_{i,mkt}E[R^{mkt}_t-R^f_t]+\beta_{i,smb}E[SmB_t]+\beta_{i,HmL}E[HmL_t]\]</div>
+<ol class="arabic simple" start="2">
+<li><p>Carhart 4 factor model:</p></li>
+</ol>
+<div class="math notranslate nohighlight">
+\[E[R_t^i-R_t^f]=\beta_{i,mkt}E[R^{mkt}_t-R^f_t]+\beta_{i,smb}E[SmB_t]+\beta_{i,HmL}E[HmL_t]+\beta_{i,WmL}E[WmL_t]\]</div>
+<ol class="arabic simple" start="3">
+<li><p>Fama French  5 factor model:</p></li>
+</ol>
+<div class="math notranslate nohighlight">
+\[E[R_t^i-R_t^f]=\beta_{i,mkt}E[R^{mkt}_t-R^f_t]+\beta_{i,smb}E[SmB_t]+\beta_{i,HmL}E[HmL_t]+\beta_{i,rmw}E[RmW_t]+\beta_{i,cma}E[CmA_t]\]</div>
+<ol class="arabic simple" start="4">
+<li><p>Fama French  5 factor model + Momentum:</p></li>
+</ol>
+<div class="math notranslate nohighlight">
+\[E[R_t^i-R_t^f]=\beta_{i,mkt}E[R^{mkt}_t-R^f_t]+\beta_{i,smb}E[SmB_t]+\beta_{i,HmL}E[HmL_t]+\beta_{i,rmw}E[RmW_t]+\beta_{i,cma}E[CmA_t]+\beta_{i,WmL}E[WmL_t]\]</div>
+<p>Where :</p>
+<ul class="simple">
+<li><p>HmL is the value strategy that buys high book to market firms and sell low book to market firms</p></li>
+<li><p>SmB is a size strategy that buys firms with low market capitalization and sell firms with high market capitalizations</p></li>
+<li><p>WmL is the momentum strategy that buy stocks that did well in the last 12 months and short the ones that did poorly</p></li>
+<li><p>RmW is the strategy that buys firms with high gross proftiability and sell firms with low gross profitability</p></li>
+<li><p>CmA is the strategy that buys firms that are investing little (low CAPEX) and sell firms that are investing a lot (high CAPEX)</p></li>
+</ul>
+<p><strong>Three applications to evalauting asset managers</strong></p>
+<p>We will do this in three steps</p>
+<ol class="arabic simple">
+<li><p>Get time-series of the factors in our factor model and the risk-free rate</p></li>
+<li><p>For each application get the time-series return data of the asset  being evaluated</p></li>
+<li><p>Merge with factor series</p></li>
+<li><p>Convert the returns of the asset being evaluate to excess returns</p></li>
+<li><p>Run a time-series regression of the asset excess returns on the relevant factors</p></li>
+</ol>
+<p><strong>Factors for our factor model</strong></p>
+<ul class="simple">
+<li><p>We will start by dowloading he Five factors from Fama Frency 5 factors model plus the momentum factor which is in separate data set</p></li>
+<li><p>We of course could have constructed them ourselves as well, but this is obviously faster and less error prone</p></li>
+</ul>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">datetime</span> <span class="kn">import</span> <span class="n">datetime</span>
+<span class="kn">import</span> <span class="nn">pandas_datareader.data</span> <span class="k">as</span> <span class="nn">web</span>
+<span class="n">start</span> <span class="o">=</span> <span class="n">datetime</span><span class="p">(</span><span class="mi">1926</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">)</span>
+<span class="n">ds</span> <span class="o">=</span> <span class="n">web</span><span class="o">.</span><span class="n">DataReader</span><span class="p">(</span><span class="s1">&#39;F-F_Research_Data_5_Factors_2x3&#39;</span><span class="p">,</span> <span class="s1">&#39;famafrench&#39;</span><span class="p">,</span><span class="n">start</span><span class="o">=</span><span class="n">start</span><span class="p">)</span>
+<span class="n">dff5</span><span class="o">=</span><span class="n">ds</span><span class="p">[</span><span class="mi">0</span><span class="p">][:</span><span class="s1">&#39;2021-3&#39;</span><span class="p">]</span>
+<span class="n">dff5</span>
+<span class="n">ds</span> <span class="o">=</span> <span class="n">web</span><span class="o">.</span><span class="n">DataReader</span><span class="p">(</span><span class="s1">&#39;F-F_Momentum_Factor&#39;</span><span class="p">,</span> <span class="s1">&#39;famafrench&#39;</span><span class="p">,</span><span class="n">start</span><span class="o">=</span><span class="n">start</span><span class="p">)</span>
+<span class="n">dmom</span><span class="o">=</span><span class="n">ds</span><span class="p">[</span><span class="mi">0</span><span class="p">][:</span><span class="s1">&#39;2021-3&#39;</span><span class="p">]</span>
+<span class="n">dmom</span>
+<span class="n">dff6</span><span class="o">=</span><span class="n">dff5</span><span class="o">.</span><span class="n">merge</span><span class="p">(</span><span class="n">dmom</span><span class="p">,</span><span class="n">left_index</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span><span class="n">right_index</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span><span class="n">how</span><span class="o">=</span><span class="s1">&#39;inner&#39;</span><span class="p">)</span>
+<span class="n">dff6</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>Mkt-RF</th>
+      <th>SMB</th>
+      <th>HML</th>
+      <th>RMW</th>
+      <th>CMA</th>
+      <th>RF</th>
+      <th>Mom</th>
+    </tr>
+    <tr>
+      <th>Date</th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>1963-07</th>
+      <td>-0.39</td>
+      <td>-0.45</td>
+      <td>-0.94</td>
+      <td>0.66</td>
+      <td>-1.15</td>
+      <td>0.27</td>
+      <td>1.00</td>
+    </tr>
+    <tr>
+      <th>1963-08</th>
+      <td>5.07</td>
+      <td>-0.82</td>
+      <td>1.82</td>
+      <td>0.40</td>
+      <td>-0.40</td>
+      <td>0.25</td>
+      <td>1.03</td>
+    </tr>
+    <tr>
+      <th>1963-09</th>
+      <td>-1.57</td>
+      <td>-0.48</td>
+      <td>0.17</td>
+      <td>-0.76</td>
+      <td>0.24</td>
+      <td>0.27</td>
+      <td>0.16</td>
+    </tr>
+    <tr>
+      <th>1963-10</th>
+      <td>2.53</td>
+      <td>-1.30</td>
+      <td>-0.04</td>
+      <td>2.75</td>
+      <td>-2.24</td>
+      <td>0.29</td>
+      <td>3.14</td>
+    </tr>
+    <tr>
+      <th>1963-11</th>
+      <td>-0.85</td>
+      <td>-0.85</td>
+      <td>1.70</td>
+      <td>-0.45</td>
+      <td>2.22</td>
+      <td>0.27</td>
+      <td>-0.75</td>
+    </tr>
+    <tr>
+      <th>...</th>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+    </tr>
+    <tr>
+      <th>2020-11</th>
+      <td>12.47</td>
+      <td>6.75</td>
+      <td>2.11</td>
+      <td>-2.78</td>
+      <td>1.05</td>
+      <td>0.01</td>
+      <td>-12.25</td>
+    </tr>
+    <tr>
+      <th>2020-12</th>
+      <td>4.63</td>
+      <td>4.67</td>
+      <td>-1.36</td>
+      <td>-2.15</td>
+      <td>0.00</td>
+      <td>0.01</td>
+      <td>-2.42</td>
+    </tr>
+    <tr>
+      <th>2021-01</th>
+      <td>-0.03</td>
+      <td>6.88</td>
+      <td>2.85</td>
+      <td>-3.33</td>
+      <td>4.68</td>
+      <td>0.00</td>
+      <td>4.37</td>
+    </tr>
+    <tr>
+      <th>2021-02</th>
+      <td>2.78</td>
+      <td>4.51</td>
+      <td>7.08</td>
+      <td>0.09</td>
+      <td>-1.97</td>
+      <td>0.00</td>
+      <td>-7.68</td>
+    </tr>
+    <tr>
+      <th>2021-03</th>
+      <td>3.09</td>
+      <td>-0.98</td>
+      <td>7.40</td>
+      <td>6.43</td>
+      <td>3.44</td>
+      <td>0.00</td>
+      <td>-5.83</td>
+    </tr>
+  </tbody>
+</table>
+<p>693 rows × 7 columns</p>
+</div></div></div>
+</div>
+<p><strong>Aplication 1: Performance evaluation of <a class="reference external" href="https://en.wikipedia.org/wiki/Berkshire_Hathaway">Berkshire Hathaway</a></strong></p>
+<ul class="simple">
+<li><p>How much of WB performance can be explained by his exposure to the differnet risk factors?</p></li>
+<li><p>How much of WB performance is due to his ability to buy good business for cheap?</p></li>
+</ul>
+<p><strong>Getting the Data</strong></p>
+<p>We will do the data at monthly frequency.</p>
+<p>While daily data is helpful in estiamting betas we have do be mindful of liqudiity effects, for example bid-ask bounces</p>
+<p>One could do daily and add lagged returns as a way to deal with this</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">wrds</span>
+<span class="kn">import</span> <span class="nn">psycopg2</span> 
+<span class="kn">from</span> <span class="nn">codesnippets</span> <span class="kn">import</span> <span class="n">get_returns</span>
+<span class="n">conn</span><span class="o">=</span><span class="n">wrds</span><span class="o">.</span><span class="n">Connection</span><span class="p">()</span>
+
+<span class="k">def</span> <span class="nf">get_returns</span><span class="p">(</span><span class="n">tickers</span><span class="p">,</span><span class="n">conn</span><span class="p">,</span><span class="n">startdate</span><span class="p">,</span><span class="n">enddate</span><span class="p">,</span><span class="n">variable</span><span class="o">=</span><span class="s1">&#39;ret&#39;</span><span class="p">):</span>
+    <span class="n">ticker</span><span class="o">=</span><span class="n">tickers</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
+    <span class="n">df</span> <span class="o">=</span> <span class="n">conn</span><span class="o">.</span><span class="n">raw_sql</span><span class="p">(</span><span class="s2">&quot;&quot;&quot;</span>
+<span class="s2">                          select a.permno, b.ncusip, b.ticker, a.date, b.shrcd,</span>
+<span class="s2">                          a.ret, a.vol, a.shrout, a.prc, a.cfacpr, a.cfacshr,a.retx</span>
+<span class="s2">                          from crsp.msf as a</span>
+<span class="s2">                          left join crsp.msenames as b</span>
+<span class="s2">                          on a.permno=b.permno</span>
+<span class="s2">                          and b.namedt&lt;=a.date</span>
+<span class="s2">                          and a.date&lt;=b.nameendt</span>
+<span class="s2">                          where a.date between &#39;&quot;&quot;&quot;</span><span class="o">+</span> <span class="n">startdate</span><span class="o">+</span><span class="s2">&quot;&quot;&quot;&#39;  and &#39;&quot;&quot;&quot;</span><span class="o">+</span> <span class="n">enddate</span><span class="o">+</span>            
+<span class="w">                          </span><span class="sd">&quot;&quot;&quot;&#39; and  b.ticker=&#39;&quot;&quot;&quot;</span><span class="o">+</span><span class="n">ticker</span><span class="o">+</span><span class="s2">&quot;&#39;&quot;</span><span class="p">)</span>
+    <span class="c1"># and b.shrcd between 10 and 11</span>
+    <span class="c1"># and b.exchcd between 1 and 3</span>
+            
+    <span class="n">df</span><span class="o">.</span><span class="n">set_index</span><span class="p">([</span><span class="s1">&#39;date&#39;</span><span class="p">,</span><span class="s1">&#39;permno&#39;</span><span class="p">],</span><span class="n">inplace</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+    <span class="n">df</span><span class="o">=</span><span class="n">df</span><span class="p">[</span><span class="n">variable</span><span class="p">]</span><span class="o">.</span><span class="n">unstack</span><span class="p">()</span>
+    <span class="k">return</span> <span class="n">df</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>WRDS recommends setting up a .pgpass file.
+You can find more info here:
+https://www.postgresql.org/docs/9.5/static/libpq-pgpass.html.
+Loading library list...
+Done
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">df</span><span class="o">=</span><span class="n">get_returns</span><span class="p">([</span><span class="s1">&#39;BRK&#39;</span><span class="p">],</span><span class="n">conn</span><span class="p">,</span><span class="s1">&#39;1/1/1960&#39;</span><span class="p">,</span><span class="s1">&#39;1/1/2022&#39;</span><span class="p">,</span><span class="n">variable</span><span class="o">=</span><span class="s1">&#39;prc&#39;</span><span class="p">)</span>
+<span class="n">df</span><span class="o">.</span><span class="n">abs</span><span class="p">()</span><span class="o">.</span><span class="n">plot</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;AxesSubplot:xlabel=&#39;date&#39;&gt;
+</pre></div>
+</div>
+<img alt="../../_images/f01eaeaa2c3181bd539d22b818c904ac5ef32e6a47f3776fb8443bf1d4937c68.png" src="../../_images/f01eaeaa2c3181bd539d22b818c904ac5ef32e6a47f3776fb8443bf1d4937c68.png" />
+</div>
+</div>
+<p>Berkshire seems to have multiple securities issue over time</p>
+<p>We will simply use the blue series which matches wha tI see in <a class="reference external" href="https://www.google.com/finance/quote/BRK.A:NYSE?sa=X&amp;ved=2ahUKEwixoeeWi6_wAhX4Ap0JHXMsCD4Q3ecFMAB6BAgjEBo&amp;window=MAX">google</a>, but you could think about piecing toghether the blue and the green to expand the sample. But one would have to read in detail to see what happened and if that really makes sense</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">df</span><span class="o">=</span><span class="n">get_returns</span><span class="p">([</span><span class="s1">&#39;BRK&#39;</span><span class="p">],</span><span class="n">conn</span><span class="p">,</span><span class="s1">&#39;1/1/1960&#39;</span><span class="p">,</span><span class="s1">&#39;1/1/2022&#39;</span><span class="p">,</span><span class="n">variable</span><span class="o">=</span><span class="s1">&#39;ret&#39;</span><span class="p">)</span>
+<span class="p">(</span><span class="n">df</span><span class="p">[</span><span class="mf">17778.0</span><span class="p">]</span><span class="o">+</span><span class="mi">1</span><span class="p">)</span><span class="o">.</span><span class="n">cumprod</span><span class="p">()</span><span class="o">.</span><span class="n">plot</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;AxesSubplot:xlabel=&#39;date&#39;&gt;
+</pre></div>
+</div>
+<img alt="../../_images/78fa12a978cd65b733edca4fc5bfc1f4d20d3a50f505c1348e05acfa6b661baa.png" src="../../_images/78fa12a978cd65b733edca4fc5bfc1f4d20d3a50f505c1348e05acfa6b661baa.png" />
+</div>
+</div>
+<p>Lets now merge with the factors</p>
+<p>Firs note that they are both monthy bu the factors index is period type while the Berkshire index is date time</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">dff6</span><span class="o">.</span><span class="n">index</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>PeriodIndex([&#39;1963-07&#39;, &#39;1963-08&#39;, &#39;1963-09&#39;, &#39;1963-10&#39;, &#39;1963-11&#39;, &#39;1963-12&#39;,
+             &#39;1964-01&#39;, &#39;1964-02&#39;, &#39;1964-03&#39;, &#39;1964-04&#39;,
+             ...
+             &#39;2020-06&#39;, &#39;2020-07&#39;, &#39;2020-08&#39;, &#39;2020-09&#39;, &#39;2020-10&#39;, &#39;2020-11&#39;,
+             &#39;2020-12&#39;, &#39;2021-01&#39;, &#39;2021-02&#39;, &#39;2021-03&#39;],
+            dtype=&#39;period[M]&#39;, name=&#39;Date&#39;, length=693, freq=&#39;M&#39;)
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">df</span><span class="o">.</span><span class="n">index</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>DatetimeIndex([&#39;1962-08-31&#39;, &#39;1962-09-28&#39;, &#39;1962-10-31&#39;, &#39;1962-11-30&#39;,
+               &#39;1962-12-31&#39;, &#39;1963-01-31&#39;, &#39;1963-02-28&#39;, &#39;1963-03-29&#39;,
+               &#39;1963-04-30&#39;, &#39;1963-05-31&#39;,
+               ...
+               &#39;2020-03-31&#39;, &#39;2020-04-30&#39;, &#39;2020-05-29&#39;, &#39;2020-06-30&#39;,
+               &#39;2020-07-31&#39;, &#39;2020-08-31&#39;, &#39;2020-09-30&#39;, &#39;2020-10-30&#39;,
+               &#39;2020-11-30&#39;, &#39;2020-12-31&#39;],
+              dtype=&#39;datetime64[ns]&#39;, name=&#39;date&#39;, length=644, freq=None)
+</pre></div>
+</div>
+</div>
+</div>
+<p>We can deal with this by converting either the <code class="docutils literal notranslate"><span class="pre">df</span></code> dataframe to period or the <code class="docutils literal notranslate"><span class="pre">dff6</span></code> dataframe to datetime</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">df</span><span class="p">[</span><span class="mf">17778.0</span><span class="p">]</span><span class="o">.</span><span class="n">to_period</span><span class="p">(</span><span class="s2">&quot;M&quot;</span><span class="p">)</span><span class="o">.</span><span class="n">tail</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>date
+2020-08    0.115550
+2020-09   -0.023077
+2020-10   -0.054690
+2020-11    0.136159
+2020-12    0.012008
+Freq: M, Name: 17778.0, dtype: float64
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">dff6</span><span class="o">.</span><span class="n">to_timestamp</span><span class="p">(</span><span class="s1">&#39;M&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">tail</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>Mkt-RF</th>
+      <th>SMB</th>
+      <th>HML</th>
+      <th>RMW</th>
+      <th>CMA</th>
+      <th>RF</th>
+      <th>Mom</th>
+    </tr>
+    <tr>
+      <th>Date</th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>2020-11-30</th>
+      <td>12.47</td>
+      <td>6.75</td>
+      <td>2.11</td>
+      <td>-2.78</td>
+      <td>1.05</td>
+      <td>0.01</td>
+      <td>-12.25</td>
+    </tr>
+    <tr>
+      <th>2020-12-31</th>
+      <td>4.63</td>
+      <td>4.67</td>
+      <td>-1.36</td>
+      <td>-2.15</td>
+      <td>0.00</td>
+      <td>0.01</td>
+      <td>-2.42</td>
+    </tr>
+    <tr>
+      <th>2021-01-31</th>
+      <td>-0.03</td>
+      <td>6.88</td>
+      <td>2.85</td>
+      <td>-3.33</td>
+      <td>4.68</td>
+      <td>0.00</td>
+      <td>4.37</td>
+    </tr>
+    <tr>
+      <th>2021-02-28</th>
+      <td>2.78</td>
+      <td>4.51</td>
+      <td>7.08</td>
+      <td>0.09</td>
+      <td>-1.97</td>
+      <td>0.00</td>
+      <td>-7.68</td>
+    </tr>
+    <tr>
+      <th>2021-03-31</th>
+      <td>3.09</td>
+      <td>-0.98</td>
+      <td>7.40</td>
+      <td>6.43</td>
+      <td>3.44</td>
+      <td>0.00</td>
+      <td>-5.83</td>
+    </tr>
+  </tbody>
+</table>
+</div></div></div>
+</div>
+<p>Here I will use the first method</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">df</span><span class="o">=</span><span class="p">(</span><span class="n">dff6</span><span class="o">/</span><span class="mi">100</span><span class="p">)</span><span class="o">.</span><span class="n">merge</span><span class="p">(</span><span class="n">df</span><span class="p">[</span><span class="mf">17778.0</span><span class="p">]</span><span class="o">.</span><span class="n">to_period</span><span class="p">(</span><span class="s2">&quot;M&quot;</span><span class="p">),</span><span class="n">left_index</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span><span class="n">right_index</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span><span class="n">how</span><span class="o">=</span><span class="s1">&#39;inner&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">dropna</span><span class="p">(</span><span class="n">how</span><span class="o">=</span><span class="s1">&#39;any&#39;</span><span class="p">)</span>
+<span class="n">df</span><span class="o">.</span><span class="n">rename</span><span class="p">(</span><span class="n">columns</span><span class="o">=</span><span class="p">{</span><span class="mi">17778</span><span class="p">:</span><span class="s1">&#39;BRK&#39;</span><span class="p">},</span><span class="n">inplace</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+<span class="n">df</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>Mkt-RF</th>
+      <th>SMB</th>
+      <th>HML</th>
+      <th>RMW</th>
+      <th>CMA</th>
+      <th>RF</th>
+      <th>Mom</th>
+      <th>BRK</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>1988-11</th>
+      <td>-0.0229</td>
+      <td>-0.0166</td>
+      <td>0.0130</td>
+      <td>-0.0028</td>
+      <td>0.0160</td>
+      <td>0.0057</td>
+      <td>0.0042</td>
+      <td>-0.005291</td>
+    </tr>
+    <tr>
+      <th>1988-12</th>
+      <td>0.0149</td>
+      <td>0.0201</td>
+      <td>-0.0154</td>
+      <td>0.0063</td>
+      <td>-0.0037</td>
+      <td>0.0063</td>
+      <td>0.0042</td>
+      <td>0.000000</td>
+    </tr>
+    <tr>
+      <th>1989-01</th>
+      <td>0.0610</td>
+      <td>-0.0223</td>
+      <td>0.0049</td>
+      <td>-0.0103</td>
+      <td>0.0016</td>
+      <td>0.0055</td>
+      <td>-0.0014</td>
+      <td>0.047872</td>
+    </tr>
+    <tr>
+      <th>1989-02</th>
+      <td>-0.0225</td>
+      <td>0.0267</td>
+      <td>0.0090</td>
+      <td>-0.0081</td>
+      <td>0.0190</td>
+      <td>0.0061</td>
+      <td>0.0094</td>
+      <td>-0.040609</td>
+    </tr>
+    <tr>
+      <th>1989-03</th>
+      <td>0.0157</td>
+      <td>0.0077</td>
+      <td>0.0047</td>
+      <td>0.0000</td>
+      <td>0.0079</td>
+      <td>0.0067</td>
+      <td>0.0356</td>
+      <td>0.047619</td>
+    </tr>
+    <tr>
+      <th>...</th>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+    </tr>
+    <tr>
+      <th>2020-08</th>
+      <td>0.0763</td>
+      <td>-0.0094</td>
+      <td>-0.0294</td>
+      <td>0.0427</td>
+      <td>-0.0144</td>
+      <td>0.0001</td>
+      <td>0.0051</td>
+      <td>0.115550</td>
+    </tr>
+    <tr>
+      <th>2020-09</th>
+      <td>-0.0363</td>
+      <td>0.0007</td>
+      <td>-0.0251</td>
+      <td>-0.0115</td>
+      <td>-0.0177</td>
+      <td>0.0001</td>
+      <td>0.0305</td>
+      <td>-0.023077</td>
+    </tr>
+    <tr>
+      <th>2020-10</th>
+      <td>-0.0210</td>
+      <td>0.0476</td>
+      <td>0.0403</td>
+      <td>-0.0060</td>
+      <td>-0.0053</td>
+      <td>0.0001</td>
+      <td>-0.0303</td>
+      <td>-0.054690</td>
+    </tr>
+    <tr>
+      <th>2020-11</th>
+      <td>0.1247</td>
+      <td>0.0675</td>
+      <td>0.0211</td>
+      <td>-0.0278</td>
+      <td>0.0105</td>
+      <td>0.0001</td>
+      <td>-0.1225</td>
+      <td>0.136159</td>
+    </tr>
+    <tr>
+      <th>2020-12</th>
+      <td>0.0463</td>
+      <td>0.0467</td>
+      <td>-0.0136</td>
+      <td>-0.0215</td>
+      <td>0.0000</td>
+      <td>0.0001</td>
+      <td>-0.0242</td>
+      <td>0.012008</td>
+    </tr>
+  </tbody>
+</table>
+<p>386 rows × 8 columns</p>
+</div></div></div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">df</span><span class="o">.</span><span class="n">BRK</span><span class="o">=</span><span class="n">df</span><span class="o">.</span><span class="n">BRK</span><span class="o">-</span><span class="n">df</span><span class="o">.</span><span class="n">RF</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>Start with the CAPM</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">statsmodels.api</span> <span class="k">as</span> <span class="nn">sm</span>
+<span class="n">temp</span><span class="o">=</span><span class="n">df</span><span class="o">.</span><span class="n">copy</span><span class="p">()</span> 
+<span class="n">x</span><span class="o">=</span> <span class="n">sm</span><span class="o">.</span><span class="n">add_constant</span><span class="p">(</span><span class="n">temp</span><span class="p">[</span><span class="s1">&#39;Mkt-RF&#39;</span><span class="p">])</span>
+<span class="n">y</span><span class="o">=</span> <span class="n">temp</span><span class="p">[</span><span class="s1">&#39;BRK&#39;</span><span class="p">]</span>
+<span class="n">results</span><span class="o">=</span> <span class="n">sm</span><span class="o">.</span><span class="n">OLS</span><span class="p">(</span><span class="n">y</span><span class="p">,</span><span class="n">x</span><span class="p">)</span><span class="o">.</span><span class="n">fit</span><span class="p">()</span>
+<span class="n">results</span><span class="o">.</span><span class="n">summary</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><table class="simpletable">
+<caption>OLS Regression Results</caption>
+<tr>
+  <th>Dep. Variable:</th>           <td>BRK</td>       <th>  R-squared:         </th> <td>   0.212</td>
+</tr>
+<tr>
+  <th>Model:</th>                   <td>OLS</td>       <th>  Adj. R-squared:    </th> <td>   0.210</td>
+</tr>
+<tr>
+  <th>Method:</th>             <td>Least Squares</td>  <th>  F-statistic:       </th> <td>   103.6</td>
+</tr>
+<tr>
+  <th>Date:</th>             <td>Tue, 04 May 2021</td> <th>  Prob (F-statistic):</th> <td>1.06e-21</td>
+</tr>
+<tr>
+  <th>Time:</th>                 <td>09:25:48</td>     <th>  Log-Likelihood:    </th> <td>  592.00</td>
+</tr>
+<tr>
+  <th>No. Observations:</th>      <td>   386</td>      <th>  AIC:               </th> <td>  -1180.</td>
+</tr>
+<tr>
+  <th>Df Residuals:</th>          <td>   384</td>      <th>  BIC:               </th> <td>  -1172.</td>
+</tr>
+<tr>
+  <th>Df Model:</th>              <td>     1</td>      <th>                     </th>     <td> </td>   
+</tr>
+<tr>
+  <th>Covariance Type:</th>      <td>nonrobust</td>    <th>                     </th>     <td> </td>   
+</tr>
+</table>
+<table class="simpletable">
+<tr>
+     <td></td>       <th>coef</th>     <th>std err</th>      <th>t</th>      <th>P>|t|</th>  <th>[0.025</th>    <th>0.975]</th>  
+</tr>
+<tr>
+  <th>const</th>  <td>    0.0060</td> <td>    0.003</td> <td>    2.210</td> <td> 0.028</td> <td>    0.001</td> <td>    0.011</td>
+</tr>
+<tr>
+  <th>Mkt-RF</th> <td>    0.6236</td> <td>    0.061</td> <td>   10.178</td> <td> 0.000</td> <td>    0.503</td> <td>    0.744</td>
+</tr>
+</table>
+<table class="simpletable">
+<tr>
+  <th>Omnibus:</th>       <td>83.751</td> <th>  Durbin-Watson:     </th> <td>   2.060</td>
+</tr>
+<tr>
+  <th>Prob(Omnibus):</th> <td> 0.000</td> <th>  Jarque-Bera (JB):  </th> <td> 261.498</td>
+</tr>
+<tr>
+  <th>Skew:</th>          <td> 0.974</td> <th>  Prob(JB):          </th> <td>1.65e-57</td>
+</tr>
+<tr>
+  <th>Kurtosis:</th>      <td> 6.530</td> <th>  Cond. No.          </th> <td>    23.0</td>
+</tr>
+</table><br/><br/>Notes:<br/>[1] Standard Errors assume that the covariance matrix of the errors is correctly specified.</div></div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">results</span><span class="o">.</span><span class="n">params</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">*</span><span class="mi">12</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>0.07164885662375453
+</pre></div>
+</div>
+</div>
+</div>
+<p>Market beta of about 0.6 and alpha of 7% per year!</p>
+<p><em>Six factor model</em></p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">temp</span><span class="o">=</span><span class="n">df</span><span class="o">.</span><span class="n">copy</span><span class="p">()</span> 
+<span class="n">x</span><span class="o">=</span> <span class="n">sm</span><span class="o">.</span><span class="n">add_constant</span><span class="p">(</span><span class="n">temp</span><span class="o">.</span><span class="n">drop</span><span class="p">([</span><span class="s1">&#39;BRK&#39;</span><span class="p">,</span><span class="s1">&#39;RF&#39;</span><span class="p">],</span><span class="n">axis</span><span class="o">=</span><span class="mi">1</span><span class="p">))</span>
+<span class="n">y</span><span class="o">=</span> <span class="n">temp</span><span class="p">[</span><span class="s1">&#39;BRK&#39;</span><span class="p">]</span>
+<span class="n">results</span><span class="o">=</span> <span class="n">sm</span><span class="o">.</span><span class="n">OLS</span><span class="p">(</span><span class="n">y</span><span class="p">,</span><span class="n">x</span><span class="p">)</span><span class="o">.</span><span class="n">fit</span><span class="p">()</span>
+<span class="n">results</span><span class="o">.</span><span class="n">summary</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><table class="simpletable">
+<caption>OLS Regression Results</caption>
+<tr>
+  <th>Dep. Variable:</th>           <td>BRK</td>       <th>  R-squared:         </th> <td>   0.348</td>
+</tr>
+<tr>
+  <th>Model:</th>                   <td>OLS</td>       <th>  Adj. R-squared:    </th> <td>   0.338</td>
+</tr>
+<tr>
+  <th>Method:</th>             <td>Least Squares</td>  <th>  F-statistic:       </th> <td>   33.74</td>
+</tr>
+<tr>
+  <th>Date:</th>             <td>Tue, 04 May 2021</td> <th>  Prob (F-statistic):</th> <td>1.35e-32</td>
+</tr>
+<tr>
+  <th>Time:</th>                 <td>09:26:02</td>     <th>  Log-Likelihood:    </th> <td>  628.50</td>
+</tr>
+<tr>
+  <th>No. Observations:</th>      <td>   386</td>      <th>  AIC:               </th> <td>  -1243.</td>
+</tr>
+<tr>
+  <th>Df Residuals:</th>          <td>   379</td>      <th>  BIC:               </th> <td>  -1215.</td>
+</tr>
+<tr>
+  <th>Df Model:</th>              <td>     6</td>      <th>                     </th>     <td> </td>   
+</tr>
+<tr>
+  <th>Covariance Type:</th>      <td>nonrobust</td>    <th>                     </th>     <td> </td>   
+</tr>
+</table>
+<table class="simpletable">
+<tr>
+     <td></td>       <th>coef</th>     <th>std err</th>      <th>t</th>      <th>P>|t|</th>  <th>[0.025</th>    <th>0.975]</th>  
+</tr>
+<tr>
+  <th>const</th>  <td>    0.0046</td> <td>    0.003</td> <td>    1.774</td> <td> 0.077</td> <td>   -0.001</td> <td>    0.010</td>
+</tr>
+<tr>
+  <th>Mkt-RF</th> <td>    0.7599</td> <td>    0.067</td> <td>   11.357</td> <td> 0.000</td> <td>    0.628</td> <td>    0.892</td>
+</tr>
+<tr>
+  <th>SMB</th>    <td>   -0.3946</td> <td>    0.091</td> <td>   -4.316</td> <td> 0.000</td> <td>   -0.574</td> <td>   -0.215</td>
+</tr>
+<tr>
+  <th>HML</th>    <td>    0.4836</td> <td>    0.118</td> <td>    4.091</td> <td> 0.000</td> <td>    0.251</td> <td>    0.716</td>
+</tr>
+<tr>
+  <th>RMW</th>    <td>    0.2687</td> <td>    0.121</td> <td>    2.214</td> <td> 0.027</td> <td>    0.030</td> <td>    0.507</td>
+</tr>
+<tr>
+  <th>CMA</th>    <td>   -0.1286</td> <td>    0.172</td> <td>   -0.749</td> <td> 0.454</td> <td>   -0.466</td> <td>    0.209</td>
+</tr>
+<tr>
+  <th>Mom   </th> <td>   -0.0077</td> <td>    0.057</td> <td>   -0.135</td> <td> 0.892</td> <td>   -0.119</td> <td>    0.104</td>
+</tr>
+</table>
+<table class="simpletable">
+<tr>
+  <th>Omnibus:</th>       <td>89.527</td> <th>  Durbin-Watson:     </th> <td>   2.143</td>
+</tr>
+<tr>
+  <th>Prob(Omnibus):</th> <td> 0.000</td> <th>  Jarque-Bera (JB):  </th> <td> 237.376</td>
+</tr>
+<tr>
+  <th>Skew:</th>          <td> 1.105</td> <th>  Prob(JB):          </th> <td>2.85e-52</td>
+</tr>
+<tr>
+  <th>Kurtosis:</th>      <td> 6.143</td> <th>  Cond. No.          </th> <td>    80.7</td>
+</tr>
+</table><br/><br/>Notes:<br/>[1] Standard Errors assume that the covariance matrix of the errors is correctly specified.</div></div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="n">results</span><span class="o">.</span><span class="n">params</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">*</span><span class="mi">12</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>0.055415983696528254
+</pre></div>
+</div>
+</div>
+</div>
+<ul class="simple">
+<li><p>What do we learn about Warren Investment style?</p></li>
+<li><p>What do we learn about Warren specific stock picking skills?</p></li>
+</ul>
+<p><strong>Aplication 2: Does Cathie Wood has some secret sauce? Performance evalaution of <a class="reference external" href="https://ark-funds.com/arkk">ARKK</a></strong></p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">df</span><span class="o">=</span><span class="n">get_returns</span><span class="p">([</span><span class="s1">&#39;ARKK&#39;</span><span class="p">],</span><span class="n">conn</span><span class="p">,</span><span class="s1">&#39;1/1/1960&#39;</span><span class="p">,</span><span class="s1">&#39;1/1/2022&#39;</span><span class="p">,</span><span class="n">variable</span><span class="o">=</span><span class="s1">&#39;ret&#39;</span><span class="p">)</span>
+<span class="p">(</span><span class="n">df</span><span class="o">+</span><span class="mi">1</span><span class="p">)</span><span class="o">.</span><span class="n">cumprod</span><span class="p">()</span><span class="o">.</span><span class="n">plot</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;AxesSubplot:xlabel=&#39;date&#39;&gt;
+</pre></div>
+</div>
+<img alt="../../_images/c5b9beb8488bb09c45d52b4a11aba719898edf97297135a7be834ba54812436d.png" src="../../_images/c5b9beb8488bb09c45d52b4a11aba719898edf97297135a7be834ba54812436d.png" />
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">df</span><span class="o">=</span><span class="p">(</span><span class="n">dff6</span><span class="o">/</span><span class="mi">100</span><span class="p">)</span><span class="o">.</span><span class="n">merge</span><span class="p">(</span><span class="n">df</span><span class="o">.</span><span class="n">to_period</span><span class="p">(</span><span class="s2">&quot;M&quot;</span><span class="p">),</span><span class="n">left_index</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span><span class="n">right_index</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span><span class="n">how</span><span class="o">=</span><span class="s1">&#39;inner&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">dropna</span><span class="p">(</span><span class="n">how</span><span class="o">=</span><span class="s1">&#39;any&#39;</span><span class="p">)</span>
+<span class="n">df</span><span class="o">.</span><span class="n">rename</span><span class="p">(</span><span class="n">columns</span><span class="o">=</span><span class="p">{</span><span class="mf">14948.0</span><span class="p">:</span><span class="s1">&#39;ARKK&#39;</span><span class="p">},</span><span class="n">inplace</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+<span class="n">df</span><span class="o">.</span><span class="n">ARKK</span><span class="o">=</span><span class="n">df</span><span class="o">.</span><span class="n">ARKK</span><span class="o">-</span><span class="n">df</span><span class="o">.</span><span class="n">RF</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">temp</span><span class="o">=</span><span class="n">df</span><span class="o">.</span><span class="n">copy</span><span class="p">()</span> 
+<span class="n">x</span><span class="o">=</span> <span class="n">sm</span><span class="o">.</span><span class="n">add_constant</span><span class="p">(</span><span class="n">temp</span><span class="p">[</span><span class="s1">&#39;Mkt-RF&#39;</span><span class="p">])</span>
+<span class="n">y</span><span class="o">=</span> <span class="n">temp</span><span class="p">[</span><span class="s1">&#39;ARKK&#39;</span><span class="p">]</span>
+<span class="n">results</span><span class="o">=</span> <span class="n">sm</span><span class="o">.</span><span class="n">OLS</span><span class="p">(</span><span class="n">y</span><span class="p">,</span><span class="n">x</span><span class="p">)</span><span class="o">.</span><span class="n">fit</span><span class="p">()</span>
+<span class="n">results</span><span class="o">.</span><span class="n">summary</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><table class="simpletable">
+<caption>OLS Regression Results</caption>
+<tr>
+  <th>Dep. Variable:</th>          <td>ARKK</td>       <th>  R-squared:         </th> <td>   0.691</td>
+</tr>
+<tr>
+  <th>Model:</th>                   <td>OLS</td>       <th>  Adj. R-squared:    </th> <td>   0.687</td>
+</tr>
+<tr>
+  <th>Method:</th>             <td>Least Squares</td>  <th>  F-statistic:       </th> <td>   160.9</td>
+</tr>
+<tr>
+  <th>Date:</th>             <td>Tue, 04 May 2021</td> <th>  Prob (F-statistic):</th> <td>4.98e-20</td>
+</tr>
+<tr>
+  <th>Time:</th>                 <td>09:28:12</td>     <th>  Log-Likelihood:    </th> <td>  120.93</td>
+</tr>
+<tr>
+  <th>No. Observations:</th>      <td>    74</td>      <th>  AIC:               </th> <td>  -237.9</td>
+</tr>
+<tr>
+  <th>Df Residuals:</th>          <td>    72</td>      <th>  BIC:               </th> <td>  -233.2</td>
+</tr>
+<tr>
+  <th>Df Model:</th>              <td>     1</td>      <th>                     </th>     <td> </td>   
+</tr>
+<tr>
+  <th>Covariance Type:</th>      <td>nonrobust</td>    <th>                     </th>     <td> </td>   
+</tr>
+</table>
+<table class="simpletable">
+<tr>
+     <td></td>       <th>coef</th>     <th>std err</th>      <th>t</th>      <th>P>|t|</th>  <th>[0.025</th>    <th>0.975]</th>  
+</tr>
+<tr>
+  <th>const</th>  <td>    0.0115</td> <td>    0.006</td> <td>    2.016</td> <td> 0.048</td> <td>    0.000</td> <td>    0.023</td>
+</tr>
+<tr>
+  <th>Mkt-RF</th> <td>    1.5768</td> <td>    0.124</td> <td>   12.684</td> <td> 0.000</td> <td>    1.329</td> <td>    1.825</td>
+</tr>
+</table>
+<table class="simpletable">
+<tr>
+  <th>Omnibus:</th>       <td> 4.334</td> <th>  Durbin-Watson:     </th> <td>   1.974</td>
+</tr>
+<tr>
+  <th>Prob(Omnibus):</th> <td> 0.115</td> <th>  Jarque-Bera (JB):  </th> <td>   3.484</td>
+</tr>
+<tr>
+  <th>Skew:</th>          <td> 0.465</td> <th>  Prob(JB):          </th> <td>   0.175</td>
+</tr>
+<tr>
+  <th>Kurtosis:</th>      <td> 3.516</td> <th>  Cond. No.          </th> <td>    22.3</td>
+</tr>
+</table><br/><br/>Notes:<br/>[1] Standard Errors assume that the covariance matrix of the errors is correctly specified.</div></div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="n">results</span><span class="o">.</span><span class="n">params</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">*</span><span class="mi">12</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>0.1385421007873513
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">temp</span><span class="o">=</span><span class="n">df</span><span class="o">.</span><span class="n">copy</span><span class="p">()</span> 
+<span class="n">x</span><span class="o">=</span> <span class="n">sm</span><span class="o">.</span><span class="n">add_constant</span><span class="p">(</span><span class="n">temp</span><span class="o">.</span><span class="n">drop</span><span class="p">([</span><span class="s1">&#39;ARKK&#39;</span><span class="p">,</span><span class="s1">&#39;RF&#39;</span><span class="p">],</span><span class="n">axis</span><span class="o">=</span><span class="mi">1</span><span class="p">))</span>
+<span class="n">y</span><span class="o">=</span> <span class="n">temp</span><span class="p">[</span><span class="s1">&#39;ARKK&#39;</span><span class="p">]</span>
+<span class="n">results</span><span class="o">=</span> <span class="n">sm</span><span class="o">.</span><span class="n">OLS</span><span class="p">(</span><span class="n">y</span><span class="p">,</span><span class="n">x</span><span class="p">)</span><span class="o">.</span><span class="n">fit</span><span class="p">()</span>
+<span class="n">results</span><span class="o">.</span><span class="n">summary</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><table class="simpletable">
+<caption>OLS Regression Results</caption>
+<tr>
+  <th>Dep. Variable:</th>          <td>ARKK</td>       <th>  R-squared:         </th> <td>   0.818</td>
+</tr>
+<tr>
+  <th>Model:</th>                   <td>OLS</td>       <th>  Adj. R-squared:    </th> <td>   0.802</td>
+</tr>
+<tr>
+  <th>Method:</th>             <td>Least Squares</td>  <th>  F-statistic:       </th> <td>   50.21</td>
+</tr>
+<tr>
+  <th>Date:</th>             <td>Tue, 04 May 2021</td> <th>  Prob (F-statistic):</th> <td>6.69e-23</td>
+</tr>
+<tr>
+  <th>Time:</th>                 <td>09:28:44</td>     <th>  Log-Likelihood:    </th> <td>  140.55</td>
+</tr>
+<tr>
+  <th>No. Observations:</th>      <td>    74</td>      <th>  AIC:               </th> <td>  -267.1</td>
+</tr>
+<tr>
+  <th>Df Residuals:</th>          <td>    67</td>      <th>  BIC:               </th> <td>  -251.0</td>
+</tr>
+<tr>
+  <th>Df Model:</th>              <td>     6</td>      <th>                     </th>     <td> </td>   
+</tr>
+<tr>
+  <th>Covariance Type:</th>      <td>nonrobust</td>    <th>                     </th>     <td> </td>   
+</tr>
+</table>
+<table class="simpletable">
+<tr>
+     <td></td>       <th>coef</th>     <th>std err</th>      <th>t</th>      <th>P>|t|</th>  <th>[0.025</th>    <th>0.975]</th>  
+</tr>
+<tr>
+  <th>const</th>  <td>    0.0059</td> <td>    0.005</td> <td>    1.234</td> <td> 0.221</td> <td>   -0.004</td> <td>    0.015</td>
+</tr>
+<tr>
+  <th>Mkt-RF</th> <td>    1.3860</td> <td>    0.126</td> <td>   11.009</td> <td> 0.000</td> <td>    1.135</td> <td>    1.637</td>
+</tr>
+<tr>
+  <th>SMB</th>    <td>    0.5065</td> <td>    0.210</td> <td>    2.410</td> <td> 0.019</td> <td>    0.087</td> <td>    0.926</td>
+</tr>
+<tr>
+  <th>HML</th>    <td>   -0.8120</td> <td>    0.200</td> <td>   -4.067</td> <td> 0.000</td> <td>   -1.211</td> <td>   -0.413</td>
+</tr>
+<tr>
+  <th>RMW</th>    <td>   -0.1642</td> <td>    0.326</td> <td>   -0.504</td> <td> 0.616</td> <td>   -0.815</td> <td>    0.487</td>
+</tr>
+<tr>
+  <th>CMA</th>    <td>   -0.9219</td> <td>    0.351</td> <td>   -2.624</td> <td> 0.011</td> <td>   -1.623</td> <td>   -0.221</td>
+</tr>
+<tr>
+  <th>Mom   </th> <td>   -0.2654</td> <td>    0.152</td> <td>   -1.747</td> <td> 0.085</td> <td>   -0.569</td> <td>    0.038</td>
+</tr>
+</table>
+<table class="simpletable">
+<tr>
+  <th>Omnibus:</th>       <td>10.376</td> <th>  Durbin-Watson:     </th> <td>   2.119</td>
+</tr>
+<tr>
+  <th>Prob(Omnibus):</th> <td> 0.006</td> <th>  Jarque-Bera (JB):  </th> <td>  10.331</td>
+</tr>
+<tr>
+  <th>Skew:</th>          <td> 0.806</td> <th>  Prob(JB):          </th> <td> 0.00571</td>
+</tr>
+<tr>
+  <th>Kurtosis:</th>      <td> 3.866</td> <th>  Cond. No.          </th> <td>    83.6</td>
+</tr>
+</table><br/><br/>Notes:<br/>[1] Standard Errors assume that the covariance matrix of the errors is correctly specified.</div></div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="n">results</span><span class="o">.</span><span class="n">params</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">*</span><span class="mi">12</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>0.0704257048781867
+</pre></div>
+</div>
+</div>
+</div>
+<ul class="simple">
+<li><p>What do we learn about Cathie Wood investment style?</p></li>
+<li><p>What do we learn about Cathie Wook investment skills?</p></li>
+<li><p>How do you think about the R-squared? Is a large Rsquared good or bad in this case?</p></li>
+</ul>
+<p><strong>Application 3: what is a good Momentum ETF?</strong></p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">names</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;VFMO&#39;</span><span class="p">,</span><span class="s1">&#39;QMOM&#39;</span><span class="p">,</span><span class="s1">&#39;FDMO&#39;</span><span class="p">,</span><span class="s1">&#39;MTUM&#39;</span><span class="p">,</span><span class="s1">&#39;IMTM&#39;</span><span class="p">,</span><span class="s1">&#39;IMOM&#39;</span><span class="p">]</span>
+<span class="n">dmom</span><span class="o">=</span><span class="n">get_returns</span><span class="p">([</span><span class="n">names</span><span class="p">[</span><span class="mi">0</span><span class="p">]],</span><span class="n">conn</span><span class="p">,</span><span class="s1">&#39;1/1/1960&#39;</span><span class="p">,</span><span class="s1">&#39;1/1/2022&#39;</span><span class="p">)</span>
+<span class="k">for</span> <span class="n">n</span> <span class="ow">in</span> <span class="n">names</span><span class="p">[</span><span class="mi">1</span><span class="p">:]:</span>
+    <span class="n">df</span><span class="o">=</span><span class="n">get_returns</span><span class="p">([</span><span class="n">n</span><span class="p">],</span><span class="n">conn</span><span class="p">,</span><span class="s1">&#39;1/1/1960&#39;</span><span class="p">,</span><span class="s1">&#39;1/1/2022&#39;</span><span class="p">)</span>
+    <span class="n">dmom</span><span class="o">=</span><span class="n">dmom</span><span class="o">.</span><span class="n">merge</span><span class="p">(</span><span class="n">df</span><span class="p">,</span><span class="n">left_index</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span><span class="n">right_index</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span><span class="n">how</span><span class="o">=</span><span class="s1">&#39;outer&#39;</span><span class="p">)</span>
+<span class="n">dmom</span><span class="o">.</span><span class="n">columns</span><span class="o">=</span><span class="n">names</span>    
+<span class="p">(</span><span class="n">dmom</span><span class="o">+</span><span class="mi">1</span><span class="p">)</span><span class="o">.</span><span class="n">cumprod</span><span class="p">()</span><span class="o">.</span><span class="n">plot</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;AxesSubplot:xlabel=&#39;date&#39;&gt;
+</pre></div>
+</div>
+<img alt="../../_images/4c020ec0e0abb4a84814286f60ac473c37e83396940f17578d21edac59501565.png" src="../../_images/4c020ec0e0abb4a84814286f60ac473c37e83396940f17578d21edac59501565.png" />
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># lets merge</span>
+<span class="n">df</span><span class="o">=</span><span class="p">(</span><span class="n">dff6</span><span class="o">/</span><span class="mi">100</span><span class="p">)</span><span class="o">.</span><span class="n">merge</span><span class="p">(</span><span class="n">dmom</span><span class="o">.</span><span class="n">to_period</span><span class="p">(</span><span class="s2">&quot;M&quot;</span><span class="p">),</span><span class="n">left_index</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span><span class="n">right_index</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span><span class="n">how</span><span class="o">=</span><span class="s1">&#39;inner&#39;</span><span class="p">)</span>
+<span class="c1"># lets conver to excess returns</span>
+<span class="n">df</span><span class="p">[</span><span class="n">names</span><span class="p">]</span><span class="o">=</span><span class="n">df</span><span class="p">[</span><span class="n">names</span><span class="p">]</span><span class="o">.</span><span class="n">subtract</span><span class="p">(</span><span class="n">df</span><span class="p">[</span><span class="s1">&#39;RF&#39;</span><span class="p">],</span><span class="n">axis</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">temp</span><span class="o">.</span><span class="n">columns</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Index([&#39;Mkt-RF&#39;, &#39;SMB&#39;, &#39;HML&#39;, &#39;RMW&#39;, &#39;CMA&#39;, &#39;RF&#39;, &#39;Mom   &#39;, &#39;VFMO&#39;, &#39;QMOM&#39;,
+       &#39;FDMO&#39;, &#39;MTUM&#39;, &#39;IMTM&#39;, &#39;IMOM&#39;],
+      dtype=&#39;object&#39;)
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">temp</span><span class="o">=</span><span class="n">df</span><span class="o">.</span><span class="n">copy</span><span class="p">()</span> 
+<span class="n">x</span><span class="o">=</span> <span class="n">sm</span><span class="o">.</span><span class="n">add_constant</span><span class="p">(</span><span class="n">temp</span><span class="p">[[</span><span class="s1">&#39;Mkt-RF&#39;</span><span class="p">,</span><span class="s1">&#39;Mom   &#39;</span><span class="p">]])</span>
+<span class="n">results</span><span class="o">=</span><span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">([],</span><span class="n">index</span><span class="o">=</span><span class="p">[],</span><span class="n">columns</span><span class="o">=</span><span class="n">names</span><span class="p">)</span>
+<span class="k">for</span> <span class="n">n</span> <span class="ow">in</span> <span class="n">names</span><span class="p">:</span>
+    <span class="n">y</span><span class="o">=</span> <span class="n">temp</span><span class="p">[</span><span class="n">n</span><span class="p">]</span>
+    <span class="n">res</span><span class="o">=</span> <span class="n">sm</span><span class="o">.</span><span class="n">OLS</span><span class="p">(</span><span class="n">y</span><span class="p">,</span><span class="n">x</span><span class="p">,</span><span class="n">missing</span><span class="o">=</span><span class="s1">&#39;drop&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">fit</span><span class="p">()</span>
+    <span class="n">results</span><span class="o">.</span><span class="n">at</span><span class="p">[</span><span class="s1">&#39;alpha&#39;</span><span class="p">,</span><span class="n">n</span><span class="p">]</span><span class="o">=</span><span class="n">res</span><span class="o">.</span><span class="n">params</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
+    <span class="n">results</span><span class="o">.</span><span class="n">at</span><span class="p">[</span><span class="s1">&#39;t(alpha)&#39;</span><span class="p">,</span><span class="n">n</span><span class="p">]</span><span class="o">=</span><span class="n">res</span><span class="o">.</span><span class="n">tvalues</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
+    <span class="n">results</span><span class="o">.</span><span class="n">at</span><span class="p">[</span><span class="s1">&#39;betamkt&#39;</span><span class="p">,</span><span class="n">n</span><span class="p">]</span><span class="o">=</span><span class="n">res</span><span class="o">.</span><span class="n">params</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span>
+    <span class="n">results</span><span class="o">.</span><span class="n">at</span><span class="p">[</span><span class="s1">&#39;t(betamkt)&#39;</span><span class="p">,</span><span class="n">n</span><span class="p">]</span><span class="o">=</span><span class="n">res</span><span class="o">.</span><span class="n">tvalues</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span>
+    <span class="n">results</span><span class="o">.</span><span class="n">at</span><span class="p">[</span><span class="s1">&#39;betamom&#39;</span><span class="p">,</span><span class="n">n</span><span class="p">]</span><span class="o">=</span><span class="n">res</span><span class="o">.</span><span class="n">params</span><span class="p">[</span><span class="mi">2</span><span class="p">]</span>
+    <span class="n">results</span><span class="o">.</span><span class="n">at</span><span class="p">[</span><span class="s1">&#39;t(betamom)&#39;</span><span class="p">,</span><span class="n">n</span><span class="p">]</span><span class="o">=</span><span class="n">res</span><span class="o">.</span><span class="n">tvalues</span><span class="p">[</span><span class="mi">2</span><span class="p">]</span>
+    <span class="n">results</span><span class="o">.</span><span class="n">at</span><span class="p">[</span><span class="s1">&#39;R-squared&#39;</span><span class="p">,</span><span class="n">n</span><span class="p">]</span><span class="o">=</span><span class="n">res</span><span class="o">.</span><span class="n">rsquared</span>
+    <span class="n">results</span><span class="o">.</span><span class="n">at</span><span class="p">[</span><span class="s1">&#39;indio risk&#39;</span><span class="p">,</span><span class="n">n</span><span class="p">]</span><span class="o">=</span><span class="n">res</span><span class="o">.</span><span class="n">resid</span><span class="o">.</span><span class="n">std</span><span class="p">()</span><span class="o">*</span><span class="mi">12</span><span class="o">**</span><span class="mf">0.5</span>
+    <span class="n">results</span><span class="o">.</span><span class="n">at</span><span class="p">[</span><span class="s1">&#39;sample size&#39;</span><span class="p">,</span><span class="n">n</span><span class="p">]</span><span class="o">=</span><span class="n">res</span><span class="o">.</span><span class="n">nobs</span>
+<span class="n">results</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>VFMO</th>
+      <th>QMOM</th>
+      <th>FDMO</th>
+      <th>MTUM</th>
+      <th>IMTM</th>
+      <th>IMOM</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>alpha</th>
+      <td>-0.001458</td>
+      <td>-0.002718</td>
+      <td>-0.002354</td>
+      <td>0.001112</td>
+      <td>-0.002008</td>
+      <td>-0.005894</td>
+    </tr>
+    <tr>
+      <th>t(alpha)</th>
+      <td>-0.430959</td>
+      <td>-0.63581</td>
+      <td>-1.664363</td>
+      <td>0.869311</td>
+      <td>-0.847557</td>
+      <td>-1.459713</td>
+    </tr>
+    <tr>
+      <th>betamkt</th>
+      <td>1.132283</td>
+      <td>1.39176</td>
+      <td>1.024135</td>
+      <td>1.00483</td>
+      <td>0.761741</td>
+      <td>0.958616</td>
+    </tr>
+    <tr>
+      <th>t(betamkt)</th>
+      <td>16.762846</td>
+      <td>13.753471</td>
+      <td>31.996319</td>
+      <td>31.597999</td>
+      <td>13.558808</td>
+      <td>10.029335</td>
+    </tr>
+    <tr>
+      <th>betamom</th>
+      <td>0.186237</td>
+      <td>0.394746</td>
+      <td>0.254752</td>
+      <td>0.345416</td>
+      <td>0.09699</td>
+      <td>0.15187</td>
+    </tr>
+    <tr>
+      <th>t(betamom)</th>
+      <td>2.178768</td>
+      <td>3.281823</td>
+      <td>6.461063</td>
+      <td>9.626601</td>
+      <td>1.568105</td>
+      <td>1.336749</td>
+    </tr>
+    <tr>
+      <th>R-squared</th>
+      <td>0.917845</td>
+      <td>0.782982</td>
+      <td>0.960205</td>
+      <td>0.919332</td>
+      <td>0.756383</td>
+      <td>0.674357</td>
+    </tr>
+    <tr>
+      <th>indio risk</th>
+      <td>0.064076</td>
+      <td>0.107838</td>
+      <td>0.032342</td>
+      <td>0.039782</td>
+      <td>0.065174</td>
+      <td>0.101857</td>
+    </tr>
+    <tr>
+      <th>sample size</th>
+      <td>34.0</td>
+      <td>60.0</td>
+      <td>51.0</td>
+      <td>92.0</td>
+      <td>71.0</td>
+      <td>60.0</td>
+    </tr>
+  </tbody>
+</table>
+</div></div></div>
+</div>
+<ul class="simple">
+<li><p>what do you conclude?</p></li>
+<li><p>Which ETF would you pick?</p></li>
+<li><p>How to think about the alpha here?</p></li>
+<li><p>How do you think about the R-squared? Is a large Rsquared good or bad in this case?</p></li>
+<li><p>How do you account for the differnece in market betas when investing?</p></li>
+</ul>
+</section>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "binder-examples/jupyter-stacks-datascience",
+            ref: "master",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "python"
+        },
+        kernelOptions: {
+            name: "python3",
+            path: "./chapters/Finance"
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'python3'</script>
+
+                </article>
+              
+
+              
+              
+                <footer class="bd-footer-article">
+                  
+<div class="footer-article-items footer-article__inner">
+  
+    <div class="footer-article-item"><!-- Previous / next buttons -->
+<div class="prev-next-area">
+    <a class="left-prev"
+       href="TailandBackground.html"
+       title="previous page">
+      <i class="fa-solid fa-angle-left"></i>
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">previous</p>
+        <p class="prev-next-title"><span class="section-number">14.3. </span>Tail Risks and Background risks</p>
+      </div>
+    </a>
+    <a class="right-next"
+       href="Topics.html"
+       title="next page">
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">next</p>
+        <p class="prev-next-title"><span class="section-number">15. </span>Topics in Quantitative investing</p>
+      </div>
+      <i class="fa-solid fa-angle-right"></i>
+    </a>
+</div></div>
+  
+</div>
+
+                </footer>
+              
+            </div>
+            
+            
+              
+            
+          </div>
+          <footer class="bd-footer-content">
+            
+<div class="bd-footer-content__inner container">
+  
+  <div class="footer-item">
+    
+<p class="component-author">
+By Alan Moreira
+</p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+  <p class="copyright">
+    
+      © Copyright 2021 Creative Commons Attribution-ShareAlike 4.0 International (CC BY-SA 4.0).
+      <br/>
+    
+  </p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+</div>
+          </footer>
+        
+
+      </main>
+    </div>
+  </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script src="../../_static/scripts/bootstrap.js?digest=e353d410970836974a52"></script>
+<script src="../../_static/scripts/pydata-sphinx-theme.js?digest=e353d410970836974a52"></script>
+
+  <footer class="bd-footer">
+  </footer>
+  </body>
+</html>

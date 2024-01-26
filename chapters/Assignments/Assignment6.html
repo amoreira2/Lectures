@@ -1,0 +1,988 @@
+
+
+<!DOCTYPE html>
+
+
+<html lang="en" >
+
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
+
+    <title>17.28. Assignment 6 &#8212; Quantitative Investing</title>
+  
+  
+  
+  <script data-cfasync="false">
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "light";
+  </script>
+  
+  <!-- Loaded before other Sphinx assets -->
+  <link href="../../_static/styles/theme.css?digest=e353d410970836974a52" rel="stylesheet" />
+<link href="../../_static/styles/bootstrap.css?digest=e353d410970836974a52" rel="stylesheet" />
+<link href="../../_static/styles/pydata-sphinx-theme.css?digest=e353d410970836974a52" rel="stylesheet" />
+
+  
+  <link href="../../_static/vendor/fontawesome/6.1.2/css/all.min.css?digest=e353d410970836974a52" rel="stylesheet" />
+  <link rel="preload" as="font" type="font/woff2" crossorigin href="../../_static/vendor/fontawesome/6.1.2/webfonts/fa-solid-900.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../../_static/vendor/fontawesome/6.1.2/webfonts/fa-brands-400.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../../_static/vendor/fontawesome/6.1.2/webfonts/fa-regular-400.woff2" />
+
+    <link rel="stylesheet" type="text/css" href="../../_static/pygments.css" />
+    <link rel="stylesheet" href="../../_static/styles/sphinx-book-theme.css?digest=14f4ca6b54d191a8c7657f6c759bf11a5fb86285" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/togglebutton.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/copybutton.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/sphinx-thebe.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/book.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/design-style.4045f2051d55cab465a707391d5b2007.min.css" />
+  
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="../../_static/scripts/bootstrap.js?digest=e353d410970836974a52" />
+<link rel="preload" as="script" href="../../_static/scripts/pydata-sphinx-theme.js?digest=e353d410970836974a52" />
+
+    <script data-url_root="../../" id="documentation_options" src="../../_static/documentation_options.js"></script>
+    <script src="../../_static/jquery.js"></script>
+    <script src="../../_static/underscore.js"></script>
+    <script src="../../_static/_sphinx_javascript_frameworks_compat.js"></script>
+    <script src="../../_static/doctools.js"></script>
+    <script src="../../_static/clipboard.min.js"></script>
+    <script src="../../_static/copybutton.js"></script>
+    <script src="../../_static/scripts/sphinx-book-theme.js?digest=5a5c038af52cf7bc1a1ec88eea08e6366ee68824"></script>
+    <script>let toggleHintShow = 'Click to show';</script>
+    <script>let toggleHintHide = 'Click to hide';</script>
+    <script>let toggleOpenOnPrint = 'true';</script>
+    <script src="../../_static/togglebutton.js"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script src="../../_static/design-tabs.js"></script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"
+const thebe_selector = ".thebe,.cell"
+const thebe_selector_input = "pre"
+const thebe_selector_output = ".output, .cell_output"
+</script>
+    <script async="async" src="../../_static/sphinx-thebe.js"></script>
+    <script>window.MathJax = {"options": {"processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
+    <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'chapters/Assignments/Assignment6';</script>
+    <link rel="canonical" href="https://amoreira2.github.io/quantitativeinvesting/chapters/Assignments/Assignment6.html" />
+    <link rel="shortcut icon" href="../../_static/figuremain2.jpg"/>
+    <link rel="index" title="Index" href="../../genindex.html" />
+    <link rel="search" title="Search" href="../../search.html" />
+    <link rel="next" title="17.32. Assignment 7" href="Assignment7.html" />
+    <link rel="prev" title="17.24. Assigment 5" href="Assignment5.html" />
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta name="docsearch:language" content="en"/>
+  </head>
+  
+  
+  <body data-bs-spy="scroll" data-bs-target=".bd-toc-nav" data-offset="180" data-bs-root-margin="0px 0px -60%" data-default-mode="">
+
+  
+  
+  <a class="skip-link" href="#main-content">Skip to main content</a>
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          name="__primary"
+          id="__primary"/>
+  <label class="overlay overlay-primary" for="__primary"></label>
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          name="__secondary"
+          id="__secondary"/>
+  <label class="overlay overlay-secondary" for="__secondary"></label>
+  
+  <div class="search-button__wrapper">
+    <div class="search-button__overlay"></div>
+    <div class="search-button__search-container">
+<form class="bd-search d-flex align-items-center"
+      action="../../search.html"
+      method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search"
+         class="form-control"
+         name="q"
+         id="search-input"
+         placeholder="Search this book..."
+         aria-label="Search this book..."
+         autocomplete="off"
+         autocorrect="off"
+         autocapitalize="off"
+         spellcheck="false"/>
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form></div>
+  </div>
+  
+    <nav class="bd-header navbar navbar-expand-lg bd-navbar">
+    </nav>
+  
+  <div class="bd-container">
+    <div class="bd-container__inner bd-page-width">
+      
+      <div class="bd-sidebar-primary bd-sidebar">
+        
+
+  
+  <div class="sidebar-header-items sidebar-primary__section">
+    
+    
+    
+    
+  </div>
+  
+    <div class="sidebar-primary-items__start sidebar-primary__section">
+        <div class="sidebar-primary-item">
+  
+
+<a class="navbar-brand logo" href="../intro.html">
+  
+  
+  
+  
+    
+    
+      
+    
+    
+    <img src="../../_static/figuremain2.jpg" class="logo__image only-light" alt="Logo image"/>
+    <script>document.write(`<img src="../../_static/figuremain2.jpg" class="logo__image only-dark" alt="Logo image"/>`);</script>
+  
+  
+</a></div>
+        <div class="sidebar-primary-item"><nav class="bd-links" id="bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item navbar-nav active">
+        <ul class="current nav bd-sidenav">
+<li class="toctree-l1 has-children"><a class="reference internal" href="../01/what-is-quant-investing.html">1. What is Quantitative Investing?</a><input class="toctree-checkbox" id="toctree-checkbox-1" name="toctree-checkbox-1" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-1"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l2"><a class="reference internal" href="../01/statistical-techniques.html">1.1. Statistical Techniques</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../01/computational-tools.html">1.2. Computational tools</a></li>
+</ul>
+</li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../02/getting_started.html">2. Getting Started</a><input class="toctree-checkbox" id="toctree-checkbox-2" name="toctree-checkbox-2" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-2"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l2"><a class="reference internal" href="../02/local_install.html">2.3. Local installation</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../02/cloud_setup.html">2.4. Cloud Setup</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../03/programming-in-python.html">3. First Steps with Python</a></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../essentials/essentials.html">4. Python Essentials</a><input class="toctree-checkbox" id="toctree-checkbox-3" name="toctree-checkbox-3" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-3"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l2"><a class="reference internal" href="../essentials/basics.html">4.1. Basics</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../essentials/collections.html">4.2. Collections</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../essentials/control_flow.html">4.3. Flow control</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../essentials/functions.html">4.4. Functions</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../essentials/numpy1.html">4.5. Numpy</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../essentials/plotting1.html">4.6. Plotting</a></li>
+</ul>
+</li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../pandas/workingwithdata.html">5. Working with Data</a><input class="toctree-checkbox" id="toctree-checkbox-4" name="toctree-checkbox-4" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-4"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l2"><a class="reference internal" href="../pandas/intro.html">5.1. Introduction</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../pandas/basics.html">5.2. Pandas Basics</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../pandas/the_index.html">5.3. Indexing</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../pandas/timeseries.html">5.4. Time-Series</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../pandas/data_clean.html">5.5. Cleaning data (opt)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../pandas/reshape.html">5.6. Reshape (opt)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../pandas/merge.html">5.7. Merge (opt)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../pandas/groupby.html">5.8. Group-by (opt)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../pandas/matplotlib.html">5.9. Plotting (opt)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../pandas/storage_formats.html">5.10. Data Storage (opt)</a></li>
+</ul>
+</li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../Finance/Returns.html">6. Asset Returns</a><input class="toctree-checkbox" id="toctree-checkbox-5" name="toctree-checkbox-5" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-5"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l2"><a class="reference internal" href="../Finance/Returns1.html">6.1. Returns</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../scientific/randomness1.html">6.2. Modeling randomness</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../Finance/TheChoiceofFrequency.html">6.3. The Choice of Frequency and Annualization of Returns</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../scientific/linear_algebra1.html">6.4. Linear algebra Review</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../Finance/UsingAPI.html">6.5. Data APIs</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../Finance/PortfolioMath.html">7. Portfolio Math</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../Finance/CapitalAllocationLine.html">8. Capital Allocation</a></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../Finance/meanvariance1.html">9. Mean Variance Frontier</a><input class="toctree-checkbox" id="toctree-checkbox-6" name="toctree-checkbox-6" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-6"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l2"><a class="reference internal" href="../Finance/MeanVariance.html">9.1. Mean Variance Efficient Portfolios</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../Finance/CaseStudy.html">9.2. Case Study in International Diversification</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../Finance/LeverageandShorting.html">9.3. Leverage and Shorting</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../Finance/Portfoliooptimizationwithconstraints.html">9.4. Portfolio Optimization with constraints</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../Finance/EstimationUncertainty.html">10. Estimation Uncertainty and It's Implications for investing</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../Finance/TradingStrategies.html">11. Trading Strategies</a></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../Finance/Timing.html">12. Timing Strategies</a><input class="toctree-checkbox" id="toctree-checkbox-7" name="toctree-checkbox-7" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-7"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l2"><a class="reference internal" href="../Finance/Volatilitytiming.html">12.1. Volatility Timing</a></li>
+</ul>
+</li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../Finance/crosssectionalequitystrategies.html">13. Cross-Sectional Equity Strategies</a><input class="toctree-checkbox" id="toctree-checkbox-8" name="toctree-checkbox-8" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-8"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l2"><a class="reference internal" href="../Finance/Valueinvesting.html">13.1. Value</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../Finance/Momentum.html">13.2. Momentum</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../Finance/OtherEquityStrategies.html">13.3. Other Equity strategies</a></li>
+</ul>
+</li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../Finance/Evaluation.html">14. Evaluating a Trading Strategy</a><input class="toctree-checkbox" id="toctree-checkbox-9" name="toctree-checkbox-9" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-9"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l2"><a class="reference internal" href="../Finance/Econometrics.html">14.1. The Econometrics of Strategy Evalaution</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../Finance/outofsample.html">14.2. Out of Sample Analysis</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../Finance/TailandBackground.html">14.3. Tail Risks and Background Risks</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../Finance/MultiFactorModels.html">14.4. Multifactor Models</a></li>
+</ul>
+</li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../Finance/Topics.html">15. Topics in Quantitative Investing</a><input class="toctree-checkbox" id="toctree-checkbox-10" name="toctree-checkbox-10" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-10"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l2"><a class="reference internal" href="../Finance/Equilbrium.html">15.1. Intepreting Factor models</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../Finance/Implementation.html">15.2. Strategy Implementation</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../Finance/Horizon.html">15.3. Investment horizon effects</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../additional/additional.html">16. Additional Statistics Material</a></li>
+<li class="toctree-l1 current active has-children"><a class="reference internal" href="Assignments.html">17. Assignments</a><input checked="" class="toctree-checkbox" id="toctree-checkbox-11" name="toctree-checkbox-11" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-11"><i class="fa-solid fa-chevron-down"></i></label><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="Assignment0.html">17.1. Assigment 0</a></li>
+
+
+
+
+
+<li class="toctree-l2"><a class="reference internal" href="Assignment1.html">17.7. Assignment 1</a></li>
+
+
+
+
+<li class="toctree-l2"><a class="reference internal" href="Assignment2.html">17.12. Assigment 2</a></li>
+
+
+
+<li class="toctree-l2"><a class="reference internal" href="Assignment3.html">17.16. Assignment 3</a></li>
+
+
+
+<li class="toctree-l2"><a class="reference internal" href="Assignment4.html">17.20. Assignment 4</a></li>
+
+
+
+<li class="toctree-l2"><a class="reference internal" href="Assignment5.html">17.24. Assigment 5</a></li>
+
+
+
+<li class="toctree-l2 current active"><a class="current reference internal" href="#">17.28. Assignment 6</a></li>
+
+
+
+<li class="toctree-l2"><a class="reference internal" href="Assignment7.html">17.32. Assignment 7</a></li>
+
+</ul>
+</li>
+</ul>
+
+    </div>
+</nav></div>
+    </div>
+  
+  
+  <div class="sidebar-primary-items__end sidebar-primary__section">
+  </div>
+  
+  <div id="rtd-footer-container"></div>
+
+
+      </div>
+      
+      <main id="main-content" class="bd-main">
+        
+        
+
+<div class="sbt-scroll-pixel-helper"></div>
+
+          <div class="bd-content">
+            <div class="bd-article-container">
+              
+              <div class="bd-header-article">
+<div class="header-article-items header-article__inner">
+  
+    <div class="header-article-items__start">
+      
+        <div class="header-article-item"><label class="sidebar-toggle primary-toggle btn btn-sm" for="__primary" title="Toggle primary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <span class="fa-solid fa-bars"></span>
+</label></div>
+      
+    </div>
+  
+  
+    <div class="header-article-items__end">
+      
+        <div class="header-article-item">
+
+<div class="article-header-buttons">
+
+
+
+
+
+<div class="dropdown dropdown-launch-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Launch interactive content">
+    <i class="fas fa-rocket"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="https://colab.research.google.com/github/amoreira2/Lectures/blob/main/chapters/Assignments/Assignment6.ipynb" target="_blank"
+   class="btn btn-sm dropdown-item"
+   title="Launch onColab"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  
+    <img src="../../_static/images/logo_colab.png">
+  </span>
+<span class="btn__text-container">Colab</span>
+</a>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+
+
+<div class="dropdown dropdown-source-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Source repositories">
+    <i class="fab fa-github"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="https://github.com/amoreira2/Lectures" target="_blank"
+   class="btn btn-sm btn-source-repository-button dropdown-item"
+   title="Source repository"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fab fa-github"></i>
+  </span>
+<span class="btn__text-container">Repository</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li><a href="https://github.com/amoreira2/Lectures/issues/new?title=Issue%20on%20page%20%2Fchapters/Assignments/Assignment6.html&body=Your%20issue%20content%20here." target="_blank"
+   class="btn btn-sm btn-source-issues-button dropdown-item"
+   title="Open an issue"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-lightbulb"></i>
+  </span>
+<span class="btn__text-container">Open issue</span>
+</a>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+
+
+<div class="dropdown dropdown-download-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Download this page">
+    <i class="fas fa-download"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="../../_sources/chapters/Assignments/Assignment6.ipynb" target="_blank"
+   class="btn btn-sm btn-download-source-button dropdown-item"
+   title="Download source file"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file"></i>
+  </span>
+<span class="btn__text-container">.ipynb</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li>
+<button onclick="window.print()"
+  class="btn btn-sm btn-download-pdf-button dropdown-item"
+  title="Print to PDF"
+  data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file-pdf"></i>
+  </span>
+<span class="btn__text-container">.pdf</span>
+</button>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+<button onclick="toggleFullScreen()"
+  class="btn btn-sm btn-fullscreen-button"
+  title="Fullscreen mode"
+  data-bs-placement="bottom" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-expand"></i>
+  </span>
+
+</button>
+
+
+<script>
+document.write(`
+  <button class="theme-switch-button btn btn-sm btn-outline-primary navbar-btn rounded-circle" title="light/dark" aria-label="light/dark" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="theme-switch" data-mode="light"><i class="fa-solid fa-sun"></i></span>
+    <span class="theme-switch" data-mode="dark"><i class="fa-solid fa-moon"></i></span>
+    <span class="theme-switch" data-mode="auto"><i class="fa-solid fa-circle-half-stroke"></i></span>
+  </button>
+`);
+</script>
+
+<script>
+document.write(`
+  <button class="btn btn-sm navbar-btn search-button search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass"></i>
+  </button>
+`);
+</script>
+<label class="sidebar-toggle secondary-toggle btn btn-sm" for="__secondary"title="Toggle secondary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="fa-solid fa-list"></span>
+</label>
+</div></div>
+      
+    </div>
+  
+</div>
+</div>
+              
+              
+
+<div id="jb-print-docs-body" class="onlyprint">
+    <h1>Assignment 6</h1>
+    <!-- Table of contents -->
+    <div id="print-main-content">
+        <div id="jb-print-toc">
+            
+            <div>
+                <h2> Contents </h2>
+            </div>
+            <nav aria-label="Page">
+                <ul class="visible nav section-nav flex-column">
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#">17.28. Assignment 6</a></li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#names-of-your-group-members">17.29. Names of your group members</a></li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#discussion-forum-assignment">17.30. Discussion Forum Assignment</a></li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#exercises">17.31. Exercises</a></li>
+</ul>
+
+            </nav>
+        </div>
+    </div>
+</div>
+
+              
+                
+<div id="searchbox"></div>
+                <article class="bd-article" role="main">
+                  
+  <section class="tex2jax_ignore mathjax_ignore" id="assignment-6">
+<h1><span class="section-number">17.28. </span>Assignment 6<a class="headerlink" href="#assignment-6" title="Permalink to this heading">#</a></h1>
+<p>Instructions: This problem set should be done in a <strong>group</strong>.</p>
+<p>Your group was assigned at orientation and you can find it in blackboard as well.</p>
+<p>You will use this same group to do your final project.</p>
+<p>Answer each question in the designated space below.</p>
+<p>After you are done. save and upload in blackboard.</p>
+<p>Please check that you are submitting the correct file. One way to avoid mistakes is to save it with a different name.</p>
+</section>
+<section class="tex2jax_ignore mathjax_ignore" id="names-of-your-group-members">
+<h1><span class="section-number">17.29. </span>Names of your group members<a class="headerlink" href="#names-of-your-group-members" title="Permalink to this heading">#</a></h1>
+<p>Please write names below</p>
+<ul class="simple">
+<li><p>[Name]:</p></li>
+<li><p>[Name]:</p></li>
+<li><p>[Name]:</p></li>
+<li><p>[Name]:</p></li>
+<li><p>[Name]:</p></li>
+</ul>
+</section>
+<section class="tex2jax_ignore mathjax_ignore" id="discussion-forum-assignment">
+<h1><span class="section-number">17.30. </span>Discussion Forum Assignment<a class="headerlink" href="#discussion-forum-assignment" title="Permalink to this heading">#</a></h1>
+<p>Do the Value investing assignment in the discussion forum</p>
+<p><a class="reference external" href="https://edstem.org/us/courses/30665/discussion/1987699">https://edstem.org/us/courses/30665/discussion/1987699</a></p>
+</section>
+<section class="tex2jax_ignore mathjax_ignore" id="exercises">
+<h1><span class="section-number">17.31. </span>Exercises<a class="headerlink" href="#exercises" title="Permalink to this heading">#</a></h1>
+<p><strong>1. Data Cleaning</strong></p>
+<p>You will work with the same dataset as in Assigment 5.
+The dataset has address</p>
+<p><code class="docutils literal notranslate"><span class="pre">url='https://github.com/amoreira2/Lectures/blob/main/assets/data/Assignment5.xlsx?raw=true'</span></code></p>
+<p>Do the followings:</p>
+<ul class="simple">
+<li><p>Import pandas, numpy, matplotlib, and load the data set.</p></li>
+<li><p>Import the datasets of industry returns and risk free rate.</p></li>
+<li><p>Parse the date.</p></li>
+<li><p>Set the index.</p></li>
+<li><p>Drop missing observations.</p></li>
+<li><p>Construct a dataframe with only excess returns.</p></li>
+<li><p>Call this dataframe with the 49 excess returns time series <code class="docutils literal notranslate"><span class="pre">df</span></code>.</p></li>
+<li><p>Call <code class="docutils literal notranslate"><span class="pre">df.head()</span></code> to check if everything works</p></li>
+</ul>
+<p><strong><em>Hint:</em></strong>
+You did it in assignment 5, simply copy and paste your code.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+<span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
+<span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span> 
+<span class="kn">from</span> <span class="nn">pandas.tseries.offsets</span> <span class="kn">import</span> <span class="n">MonthEnd</span>
+
+<span class="c1"># your code below</span>
+
+<span class="n">df</span><span class="o">.</span><span class="n">head</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p><strong>2. Expected excess return estimation</strong></p>
+<p>Compute the sample mean as the estimators for the expected excess returns of the 49 assets.</p>
+<p>Call this <code class="docutils literal notranslate"><span class="pre">ERe</span></code>.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># your code below</span>
+
+<span class="n">ERe</span><span class="o">.</span><span class="n">head</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p><strong>3. Expected excess return uncertainty</strong></p>
+<p>We will now construct an estimator for the amount of uncertainty in our sample mean estimator. If we assume that each individual asset is uncorrelated over time (not terrible assumption), then the variance of the mean is</p>
+<div class="math notranslate nohighlight">
+\[var(\bar{r_i}) = var(\frac{\sum_t^T r_{i,t}}{T})=\frac{\sum_t^T var( r_{i,t})}{T^2} = \frac{var(r_{i,t})}{T}\]</div>
+<p>So all you need is the sample size (T) and the variance of each asset to obtain the varaince of our estimator.</p>
+<p>Please use this formula to compute the <strong>STANDARD DEVIATION</strong> of sample average estimator of each 49 asset. Call this <code class="docutils literal notranslate"><span class="pre">ERe_se</span></code>.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># your code below</span>
+
+<span class="n">ERe_se</span><span class="o">.</span><span class="n">head</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p><strong>4. Constructing a confidence interval for the expected excess return, part 1</strong></p>
+<p>We will now want to construct the 95% confidence interval for our estimator. The interval is such that it contains the true mean 95% of the time.</p>
+<p>The way to do this is to use the normal distribution CDF to figure out the threshold that leaves only 2.5% probability at the each side of the tails.</p>
+<p>Why 2.5% and not 5%? Because it is symmetric, so there is 2.5% probability in the left tail and 2.5 % in the right tail so overall there is only 5% probability that the expected return is out of the interval. Thus there is 95% probability that it is in the interval.</p>
+<p>In this exercise, you will find the threshold by doing the followings:</p>
+<ol class="arabic simple">
+<li><p>import the stats library from the scipy package with <code class="docutils literal notranslate"><span class="pre">from</span> <span class="pre">scipy</span> <span class="pre">import</span> <span class="pre">stats</span></code></p></li>
+<li><p>get the standard normal distribution with <code class="docutils literal notranslate"><span class="pre">sn=stats.norm(0,1)</span></code>, where 0 is the mean and 1 is the standard deviation</p></li>
+<li><p>get the threshold by using inverse cumulative distribution function for the appropriate <code class="docutils literal notranslate"><span class="pre">prob_value</span></code> to create a 95% CI (see discussion above). <code class="docutils literal notranslate"><span class="pre">threshold=sn.isf(prob_value)</span></code></p></li>
+<li><p>make sure that this threshold is positive (if you got from the left tail, you will have to take the absolute value or just get from the right tail).</p></li>
+<li><p>make sure you did things correctly by calling <code class="docutils literal notranslate"><span class="pre">print(threshold)</span></code>.</p></li>
+</ol>
+<p><strong><em>Hint:</em></strong></p>
+<p>You can always check in the normal table that you did things correctly <a class="reference external" href="https://en.wikipedia.org/wiki/Normal_distribution">https://en.wikipedia.org/wiki/Normal_distribution</a>.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># your code below</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="n">threshold</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p><strong>5. Constructing a confidence interval for the expected excess return, part 2</strong></p>
+<p>Armed with these threshold you can construct the interval as follows</p>
+<div class="math notranslate nohighlight">
+\[[\bar{r}-threshold\times\sigma(\bar{r}),\bar{r}+threshold\times\sigma(\bar{r})]\]</div>
+<p>Do the followings:</p>
+<ol class="arabic simple">
+<li><p>create an empty dataframe which has the names of industries as index and ‘lower’ and ‘upper’ as column names. Name it <code class="docutils literal notranslate"><span class="pre">ERe_ci</span></code>.</p></li>
+<li><p>construct the lower bound of the interval, <span class="math notranslate nohighlight">\(\bar{r}-threshold\times\sigma(\bar{r})\)</span>, and store it in the column of ‘lower’</p></li>
+<li><p>compute the upper bound symmetrically, and store it in the column of ‘upper’</p></li>
+<li><p>call <code class="docutils literal notranslate"><span class="pre">ERe_ci.head()</span></code></p></li>
+</ol>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># your code below</span>
+
+<span class="n">ERe_ci</span><span class="o">.</span><span class="n">head</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p><strong>6. Compute the tangency portfolio weights for a portfolio with annualized volatility of 10%</strong></p>
+<p>Store these in a dataframe whose rows are the names of the assets and the first column has the label ‘mve_data’.</p>
+<p>Name this data frame <code class="docutils literal notranslate"><span class="pre">Weights</span></code>.</p>
+<p><code class="docutils literal notranslate"><span class="pre">print(Weights)</span></code></p>
+<p>TIP: You did this in Assigment 5.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># your code below</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="n">Weights</span><span class="o">.</span><span class="n">head</span><span class="p">())</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p><strong>7. Sensitivity to uncertainty of the Tangent portfolio calculation</strong></p>
+<p>Now we will compute the tangency portfolio but using a slightly different estimate for the mean.</p>
+<p>Do the followings.</p>
+<ol class="arabic simple">
+<li><p>instead of using the sample mean for each asset, first we will pick one asset, <code class="docutils literal notranslate"><span class="pre">Hlth</span></code>.</p></li>
+<li><p>change its mean to be its lower bound of CI in Exercise 5 and then recalculate the tangency portfolio weights.</p></li>
+<li><p>store this in dataframe Weights with the column name <code class="docutils literal notranslate"><span class="pre">mve_Hlth-1.95</span></code>.</p></li>
+<li><p>create another column with weights computed from the perturbation in which its mean is changed to be the upper bound of CI, label this column <code class="docutils literal notranslate"><span class="pre">mve_Hlth+1.95</span> </code>.</p></li>
+<li><p>do a bar plot of these three sets of weights using Weights.plot.bar().</p></li>
+</ol>
+<p>Discuss what you notice in the bar plot:</p>
+<ol class="arabic simple">
+<li><p>How much do the weights change?</p></li>
+<li><p>Which assets are impacted? Why?</p></li>
+</ol>
+<p><strong><em>Hint:</em></strong></p>
+<p>you might want to create a copy of your ERe estimator before you do the perturbation.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># your code below</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># your discussion below</span>
+
+<span class="c1"># 1. How much do the weights change?</span>
+
+<span class="c1"># 2. Which assets are impacted? Why?</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p><strong>8. Performance impact of estimation uncertainty</strong></p>
+<p>Your Weight dataframe has 3 different weight schemes.</p>
+<p>Do the followings:</p>
+<ol class="arabic simple">
+<li><p>compute the in-sample Sharpe Ratio for these 3 different weight schemes.</p></li>
+<li><p>discuss the results that you obtained</p></li>
+</ol>
+<p><strong><em>Hint:</em></strong>
+You should use the <strong>real</strong> data (e.g. <code class="docutils literal notranslate"><span class="pre">df</span></code>,<code class="docutils literal notranslate"><span class="pre">ERe</span></code>,<code class="docutils literal notranslate"><span class="pre">CovRe</span></code> ) to compute the Sharpe ratio.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># your code below</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># your discussion below</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p><strong>9. Reporduce analysis of Exercises 7-8 for all assets</strong></p>
+<p>Do the followings:</p>
+<ol class="arabic simple">
+<li><p>use a for loop to loop through the 49 portfolios and create the “perturbed” weights and the Sharpe Ratio of the perturbed weights.</p></li>
+<li><p>record for each asset the average drop in the Sharpe Ratio associated with the perturbation in the tangency portfolio weights.</p></li>
+<li><p>store the results in a dataframe named <code class="docutils literal notranslate"><span class="pre">dSR</span></code> (difference in SR):
+$<span class="math notranslate nohighlight">\(dSR[asset]=\frac{1}{2}\frac{SR(asset+1.95)+SR(asset-1.95)}{SR(data)}\)</span>$
+where SR(asset+1.95) and SR(asset-1.95) were the Sharpe ratios obtained when you perturb the expected excess return of that asset to the upper and lower bound of the CI.
+<code class="docutils literal notranslate"><span class="pre">dSR</span></code> should be a dataframe with industry names as index and a column, called <code class="docutils literal notranslate"><span class="pre">SR_change</span></code>, containing the results of the calculation from the expression above.</p></li>
+<li><p>do a bar plot of this Sharpe ratio change.</p></li>
+</ol>
+<p>Discuss the bar plot:</p>
+<ol class="arabic simple">
+<li><p>What do you think is the key takeaway from the analysis above</p></li>
+</ol>
+<p><em><strong>Hint:</strong></em>
+Note that all you need to do here is to get the code you developed above and adapt it to work with a for loop.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># your code below</span>
+    
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># your discussion below</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p><strong>10. Monte Carlo, part 1</strong></p>
+<p>So far our focus is on the estimation uncertainty of risk premiums. Covariance matrices also need to be estimated.</p>
+<p>You will now implement a Monte-Carlo method to evaluate the overall uncertainty in the construction of the tangency portfolio.</p>
+<p>You already have the sample estimates from the vector of expected excess returns <code class="docutils literal notranslate"><span class="pre">ERe</span></code> and the variance-covariance matrix <code class="docutils literal notranslate"><span class="pre">CovRe</span></code>  (you used those in Exercise 6).</p>
+<p>Now you use the function <code class="docutils literal notranslate"><span class="pre">np.random.multivariate_normal</span></code> to simulate draws from a multivariate normal distribution with vector of mean equal to <code class="docutils literal notranslate"><span class="pre">ERe</span></code> and the covariance matrix equal to <code class="docutils literal notranslate"><span class="pre">CovRe</span></code>.</p>
+<p>Do the following:</p>
+<ol class="arabic simple">
+<li><p>write the code that draws ONE realization of returns for this set of 49 assets.</p></li>
+</ol>
+<p><em><strong>Hint:</strong></em></p>
+<p>you should get a vector 49 by 1 that changes every time you run the cell.</p>
+<p>type <code class="docutils literal notranslate"><span class="pre">np.random.multivariate_normal?</span></code> to see how this function works</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># your code below</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p><strong>11. Monte Carlo, part 2</strong></p>
+<p>Do the followings:</p>
+<ol class="arabic simple">
+<li><p>now set the parameter <code class="docutils literal notranslate"><span class="pre">size</span></code> in the <code class="docutils literal notranslate"><span class="pre">multivaraite_normal</span></code> function to draw T realizations of the 49 assets, where you set T to the number of months you have in the data set.</p></li>
+<li><p>print the shape of your draw. This should return you a T by N matrix of returns, something with exactly the same shape as our data set.</p></li>
+</ol>
+<p><em><strong>Hint:</strong></em>
+every time you run the cell again you get a different realization.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># your code below</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p><strong>12. Monte Carlo, part 3</strong></p>
+<p>Do the followings:</p>
+<ol class="arabic simple">
+<li><p>copy the code above, so you have a simulated sample of monthly industry returns.</p></li>
+<li><p>use the simulated return data and the weights in <code class="docutils literal notranslate"><span class="pre">mve_data</span></code> column of the dataframe <code class="docutils literal notranslate"><span class="pre">Weights</span></code> to construct a time-series of portfolio excess return.</p></li>
+<li><p>compute and print its Sharpe Ratio.</p></li>
+</ol>
+<p><em><strong>Hint:</strong></em></p>
+<p>Every time you run this cell you should get a different Sharpe Ratio. This variation reflects the amount of overall uncertainty built in our investment strategy.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># your code below</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p><strong>13. Monte Carlo, part 4</strong></p>
+<p>Now copy the code of the question above and write a foor loop around it.</p>
+<p>Do the followings:</p>
+<ol class="arabic simple">
+<li><p>loop throught this code 1000 times and each time record the resulting Sharpe Ratio.</p></li>
+<li><p>cave this in a dataframe called <code class="docutils literal notranslate"><span class="pre">MC</span></code>.</p></li>
+<li><p>create a histogram of these Sharpe Ratios with 50 bins using the method <code class="docutils literal notranslate"><span class="pre">.hist</span></code></p></li>
+</ol>
+<p>Discuss the plot:</p>
+<ol class="arabic simple">
+<li><p>what do you conclude?</p></li>
+</ol>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># your code below</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># your discussion below</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p><strong>14. Bootstrap</strong></p>
+<p>The Monte-Carlo approach assumes that the distribution of returns is normal which is a good approximation but not literally true. It turns out that we can use another approach called Bootstrap that instead of sampling from the normal distribution, we sample from the actual data.</p>
+<p>Basically, bootstrap approach randomly draws one observation (one month of 49 industy returns in our case) from the real dataset, treats it as a new observation in the simulated sample and repeats this process until the simulated sample has needed sample size. Observations are drawn with replacement, which means we draw from the whole real dataset every time so it is very likely that some data points are drawn more than once.</p>
+<p>Do the followings:</p>
+<ol class="arabic simple">
+<li><p>start with your code from question 13,</p></li>
+<li><p>instead of calling <code class="docutils literal notranslate"><span class="pre">np.random.multivariate_normal</span></code> to draw a sample, we will use the method <code class="docutils literal notranslate"><span class="pre">sample</span></code></p>
+<ul class="simple">
+<li><p>refer to <a class="reference external" href="https://pandas.pydata.org/pandas-docs/stable/reference/api/pandas.DataFrame.sample.html">https://pandas.pydata.org/pandas-docs/stable/reference/api/pandas.DataFrame.sample.html</a></p></li>
+<li><p>set the parameter ‘frac’ to 1 so it draws a distribution of excactly same size as our original sample</p></li>
+<li><p>set the parameter ‘replace’ to ‘True’ so it samples with replacement (otherwise you will get exactly the same realizations, only in different order).</p></li>
+</ul>
+</li>
+<li><p>now you can simply plug this realization in your code from question 13.</p></li>
+<li><p>save the results in a dataframe called <code class="docutils literal notranslate"><span class="pre">Boot</span></code>.</p></li>
+<li><p>create a histogram of these Sharpe Ratios with 50 bins using the method <code class="docutils literal notranslate"><span class="pre">.hist</span></code></p></li>
+</ol>
+<p>Compare the results in 13 and 14, and explain:</p>
+<ol class="arabic simple">
+<li><p>does the key takeway change?</p></li>
+<li><p>does the distribution of the SR of our strategy change?</p></li>
+</ol>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># your code below</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># your discussion below</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p><strong>15. Please explain why an investor should care about these results.</strong></p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># your answer below</span>
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "binder-examples/jupyter-stacks-datascience",
+            ref: "master",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "python"
+        },
+        kernelOptions: {
+            name: "python3",
+            path: "./chapters/Assignments"
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'python3'</script>
+
+                </article>
+              
+
+              
+              
+                <footer class="bd-footer-article">
+                  
+<div class="footer-article-items footer-article__inner">
+  
+    <div class="footer-article-item"><!-- Previous / next buttons -->
+<div class="prev-next-area">
+    <a class="left-prev"
+       href="Assignment5.html"
+       title="previous page">
+      <i class="fa-solid fa-angle-left"></i>
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">previous</p>
+        <p class="prev-next-title"><span class="section-number">17.24. </span>Assigment 5</p>
+      </div>
+    </a>
+    <a class="right-next"
+       href="Assignment7.html"
+       title="next page">
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">next</p>
+        <p class="prev-next-title"><span class="section-number">17.32. </span>Assignment 7</p>
+      </div>
+      <i class="fa-solid fa-angle-right"></i>
+    </a>
+</div></div>
+  
+</div>
+
+                </footer>
+              
+            </div>
+            
+            
+              
+                <div class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
+  <div class="sidebar-secondary-item">
+  <div class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> Contents
+  </div>
+  <nav class="bd-toc-nav page-toc">
+    <ul class="visible nav section-nav flex-column">
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#">17.28. Assignment 6</a></li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#names-of-your-group-members">17.29. Names of your group members</a></li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#discussion-forum-assignment">17.30. Discussion Forum Assignment</a></li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#exercises">17.31. Exercises</a></li>
+</ul>
+
+  </nav></div>
+
+</div></div>
+              
+            
+          </div>
+          <footer class="bd-footer-content">
+            
+<div class="bd-footer-content__inner container">
+  
+  <div class="footer-item">
+    
+<p class="component-author">
+By Alan Moreira
+</p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+  <p class="copyright">
+    
+      © Copyright 2021 Creative Commons Attribution-ShareAlike 4.0 International (CC BY-SA 4.0).
+      <br/>
+    
+  </p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+</div>
+          </footer>
+        
+
+      </main>
+    </div>
+  </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script src="../../_static/scripts/bootstrap.js?digest=e353d410970836974a52"></script>
+<script src="../../_static/scripts/pydata-sphinx-theme.js?digest=e353d410970836974a52"></script>
+
+  <footer class="bd-footer">
+  </footer>
+  </body>
+</html>

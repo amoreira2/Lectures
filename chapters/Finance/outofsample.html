@@ -1,0 +1,1514 @@
+
+
+<!DOCTYPE html>
+
+
+<html lang="en" >
+
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
+
+    <title>14.2. Out of sample analysis &#8212; Quantitative Investing</title>
+  
+  
+  
+  <script data-cfasync="false">
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "light";
+  </script>
+  
+  <!-- Loaded before other Sphinx assets -->
+  <link href="../../_static/styles/theme.css?digest=e353d410970836974a52" rel="stylesheet" />
+<link href="../../_static/styles/bootstrap.css?digest=e353d410970836974a52" rel="stylesheet" />
+<link href="../../_static/styles/pydata-sphinx-theme.css?digest=e353d410970836974a52" rel="stylesheet" />
+
+  
+  <link href="../../_static/vendor/fontawesome/6.1.2/css/all.min.css?digest=e353d410970836974a52" rel="stylesheet" />
+  <link rel="preload" as="font" type="font/woff2" crossorigin href="../../_static/vendor/fontawesome/6.1.2/webfonts/fa-solid-900.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../../_static/vendor/fontawesome/6.1.2/webfonts/fa-brands-400.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../../_static/vendor/fontawesome/6.1.2/webfonts/fa-regular-400.woff2" />
+
+    <link rel="stylesheet" type="text/css" href="../../_static/pygments.css" />
+    <link rel="stylesheet" href="../../_static/styles/sphinx-book-theme.css?digest=14f4ca6b54d191a8c7657f6c759bf11a5fb86285" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/togglebutton.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/copybutton.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/sphinx-thebe.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/book.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/design-style.4045f2051d55cab465a707391d5b2007.min.css" />
+  
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="../../_static/scripts/bootstrap.js?digest=e353d410970836974a52" />
+<link rel="preload" as="script" href="../../_static/scripts/pydata-sphinx-theme.js?digest=e353d410970836974a52" />
+
+    <script data-url_root="../../" id="documentation_options" src="../../_static/documentation_options.js"></script>
+    <script src="../../_static/jquery.js"></script>
+    <script src="../../_static/underscore.js"></script>
+    <script src="../../_static/_sphinx_javascript_frameworks_compat.js"></script>
+    <script src="../../_static/doctools.js"></script>
+    <script src="../../_static/clipboard.min.js"></script>
+    <script src="../../_static/copybutton.js"></script>
+    <script src="../../_static/scripts/sphinx-book-theme.js?digest=5a5c038af52cf7bc1a1ec88eea08e6366ee68824"></script>
+    <script>let toggleHintShow = 'Click to show';</script>
+    <script>let toggleHintHide = 'Click to hide';</script>
+    <script>let toggleOpenOnPrint = 'true';</script>
+    <script src="../../_static/togglebutton.js"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script src="../../_static/design-tabs.js"></script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"
+const thebe_selector = ".thebe,.cell"
+const thebe_selector_input = "pre"
+const thebe_selector_output = ".output, .cell_output"
+</script>
+    <script async="async" src="../../_static/sphinx-thebe.js"></script>
+    <script>window.MathJax = {"options": {"processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
+    <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'chapters/Finance/outofsample';</script>
+    <link rel="canonical" href="https://amoreira2.github.io/quantitativeinvesting/chapters/Finance/outofsample.html" />
+    <link rel="shortcut icon" href="../../_static/figuremain2.jpg"/>
+    <link rel="index" title="Index" href="../../genindex.html" />
+    <link rel="search" title="Search" href="../../search.html" />
+    <link rel="next" title="14.3. Tail Risks and Background risks" href="TailandBackground.html" />
+    <link rel="prev" title="14.1. The econometrics of strategy evaluation" href="Econometrics.html" />
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta name="docsearch:language" content="en"/>
+  </head>
+  
+  
+  <body data-bs-spy="scroll" data-bs-target=".bd-toc-nav" data-offset="180" data-bs-root-margin="0px 0px -60%" data-default-mode="">
+
+  
+  
+  <a class="skip-link" href="#main-content">Skip to main content</a>
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          name="__primary"
+          id="__primary"/>
+  <label class="overlay overlay-primary" for="__primary"></label>
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          name="__secondary"
+          id="__secondary"/>
+  <label class="overlay overlay-secondary" for="__secondary"></label>
+  
+  <div class="search-button__wrapper">
+    <div class="search-button__overlay"></div>
+    <div class="search-button__search-container">
+<form class="bd-search d-flex align-items-center"
+      action="../../search.html"
+      method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search"
+         class="form-control"
+         name="q"
+         id="search-input"
+         placeholder="Search this book..."
+         aria-label="Search this book..."
+         autocomplete="off"
+         autocorrect="off"
+         autocapitalize="off"
+         spellcheck="false"/>
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form></div>
+  </div>
+  
+    <nav class="bd-header navbar navbar-expand-lg bd-navbar">
+    </nav>
+  
+  <div class="bd-container">
+    <div class="bd-container__inner bd-page-width">
+      
+      <div class="bd-sidebar-primary bd-sidebar">
+        
+
+  
+  <div class="sidebar-header-items sidebar-primary__section">
+    
+    
+    
+    
+  </div>
+  
+    <div class="sidebar-primary-items__start sidebar-primary__section">
+        <div class="sidebar-primary-item">
+  
+
+<a class="navbar-brand logo" href="../intro.html">
+  
+  
+  
+  
+    
+    
+      
+    
+    
+    <img src="../../_static/figuremain2.jpg" class="logo__image only-light" alt="Logo image"/>
+    <script>document.write(`<img src="../../_static/figuremain2.jpg" class="logo__image only-dark" alt="Logo image"/>`);</script>
+  
+  
+</a></div>
+        <div class="sidebar-primary-item"><nav class="bd-links" id="bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item navbar-nav active">
+        <ul class="current nav bd-sidenav">
+<li class="toctree-l1 has-children"><a class="reference internal" href="../01/what-is-quant-investing.html">1. What is Quantitative Investing?</a><input class="toctree-checkbox" id="toctree-checkbox-1" name="toctree-checkbox-1" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-1"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l2"><a class="reference internal" href="../01/statistical-techniques.html">1.1. Statistical Techniques</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../01/computational-tools.html">1.2. Computational tools</a></li>
+</ul>
+</li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../02/getting_started.html">2. Getting Started</a><input class="toctree-checkbox" id="toctree-checkbox-2" name="toctree-checkbox-2" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-2"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l2"><a class="reference internal" href="../02/local_install.html">2.3. Local installation</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../02/cloud_setup.html">2.4. Cloud Setup</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../03/programming-in-python.html">3. First Steps with Python</a></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../essentials/essentials.html">4. Python Essentials</a><input class="toctree-checkbox" id="toctree-checkbox-3" name="toctree-checkbox-3" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-3"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l2"><a class="reference internal" href="../essentials/basics.html">4.1. Basics</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../essentials/collections.html">4.2. Collections</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../essentials/control_flow.html">4.3. Flow control</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../essentials/functions.html">4.4. Functions</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../essentials/numpy1.html">4.5. Numpy</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../essentials/plotting1.html">4.6. Plotting</a></li>
+</ul>
+</li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../pandas/workingwithdata.html">5. Working with Data</a><input class="toctree-checkbox" id="toctree-checkbox-4" name="toctree-checkbox-4" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-4"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l2"><a class="reference internal" href="../pandas/intro.html">5.1. Introduction</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../pandas/basics.html">5.2. Pandas Basics</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../pandas/the_index.html">5.3. Indexing</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../pandas/timeseries.html">5.4. Time-Series</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../pandas/data_clean.html">5.5. Cleaning data (opt)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../pandas/reshape.html">5.6. Reshape (opt)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../pandas/merge.html">5.7. Merge (opt)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../pandas/groupby.html">5.8. Group-by (opt)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../pandas/matplotlib.html">5.9. Plotting (opt)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../pandas/storage_formats.html">5.10. Data Storage (opt)</a></li>
+</ul>
+</li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="Returns.html">6. Asset Returns</a><input class="toctree-checkbox" id="toctree-checkbox-5" name="toctree-checkbox-5" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-5"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l2"><a class="reference internal" href="Returns1.html">6.1. Returns</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../scientific/randomness1.html">6.2. Modeling randomness</a></li>
+<li class="toctree-l2"><a class="reference internal" href="TheChoiceofFrequency.html">6.3. The Choice of Frequency and Annualization of Returns</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../scientific/linear_algebra1.html">6.4. Linear algebra Review</a></li>
+<li class="toctree-l2"><a class="reference internal" href="UsingAPI.html">6.5. Data APIs</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="PortfolioMath.html">7. Portfolio Math</a></li>
+<li class="toctree-l1"><a class="reference internal" href="CapitalAllocationLine.html">8. Capital Allocation</a></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="meanvariance1.html">9. Mean Variance Frontier</a><input class="toctree-checkbox" id="toctree-checkbox-6" name="toctree-checkbox-6" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-6"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l2"><a class="reference internal" href="MeanVariance.html">9.1. Mean Variance Efficient Portfolios</a></li>
+<li class="toctree-l2"><a class="reference internal" href="CaseStudy.html">9.2. Case Study in International Diversification</a></li>
+<li class="toctree-l2"><a class="reference internal" href="LeverageandShorting.html">9.3. Leverage and Shorting</a></li>
+<li class="toctree-l2"><a class="reference internal" href="Portfoliooptimizationwithconstraints.html">9.4. Portfolio Optimization with constraints</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="EstimationUncertainty.html">10. Estimation Uncertainty and It's Implications for investing</a></li>
+<li class="toctree-l1"><a class="reference internal" href="TradingStrategies.html">11. Trading Strategies</a></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="Timing.html">12. Timing Strategies</a><input class="toctree-checkbox" id="toctree-checkbox-7" name="toctree-checkbox-7" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-7"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l2"><a class="reference internal" href="Volatilitytiming.html">12.1. Volatility Timing</a></li>
+</ul>
+</li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="crosssectionalequitystrategies.html">13. Cross-Sectional Equity Strategies</a><input class="toctree-checkbox" id="toctree-checkbox-8" name="toctree-checkbox-8" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-8"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l2"><a class="reference internal" href="Valueinvesting.html">13.1. Value</a></li>
+<li class="toctree-l2"><a class="reference internal" href="Momentum.html">13.2. Momentum</a></li>
+<li class="toctree-l2"><a class="reference internal" href="OtherEquityStrategies.html">13.3. Other Equity strategies</a></li>
+</ul>
+</li>
+<li class="toctree-l1 current active has-children"><a class="reference internal" href="Evaluation.html">14. Evaluating a Trading Strategy</a><input checked="" class="toctree-checkbox" id="toctree-checkbox-9" name="toctree-checkbox-9" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-9"><i class="fa-solid fa-chevron-down"></i></label><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="Econometrics.html">14.1. The Econometrics of Strategy Evalaution</a></li>
+<li class="toctree-l2 current active"><a class="current reference internal" href="#">14.2. Out of Sample Analysis</a></li>
+<li class="toctree-l2"><a class="reference internal" href="TailandBackground.html">14.3. Tail Risks and Background Risks</a></li>
+<li class="toctree-l2"><a class="reference internal" href="MultiFactorModels.html">14.4. Multifactor Models</a></li>
+</ul>
+</li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="Topics.html">15. Topics in Quantitative Investing</a><input class="toctree-checkbox" id="toctree-checkbox-10" name="toctree-checkbox-10" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-10"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l2"><a class="reference internal" href="Equilbrium.html">15.1. Intepreting Factor models</a></li>
+<li class="toctree-l2"><a class="reference internal" href="Implementation.html">15.2. Strategy Implementation</a></li>
+<li class="toctree-l2"><a class="reference internal" href="Horizon.html">15.3. Investment horizon effects</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../additional/additional.html">16. Additional Statistics Material</a></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../Assignments/Assignments.html">17. Assignments</a><input class="toctree-checkbox" id="toctree-checkbox-11" name="toctree-checkbox-11" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-11"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l2"><a class="reference internal" href="../Assignments/Assignment0.html">17.1. Assigment 0</a></li>
+
+
+
+
+
+<li class="toctree-l2"><a class="reference internal" href="../Assignments/Assignment1.html">17.7. Assignment 1</a></li>
+
+
+
+
+<li class="toctree-l2"><a class="reference internal" href="../Assignments/Assignment2.html">17.12. Assigment 2</a></li>
+
+
+
+<li class="toctree-l2"><a class="reference internal" href="../Assignments/Assignment3.html">17.16. Assignment 3</a></li>
+
+
+
+<li class="toctree-l2"><a class="reference internal" href="../Assignments/Assignment4.html">17.20. Assignment 4</a></li>
+
+
+
+<li class="toctree-l2"><a class="reference internal" href="../Assignments/Assignment5.html">17.24. Assigment 5</a></li>
+
+
+
+<li class="toctree-l2"><a class="reference internal" href="../Assignments/Assignment6.html">17.28. Assignment 6</a></li>
+
+
+
+<li class="toctree-l2"><a class="reference internal" href="../Assignments/Assignment7.html">17.32. Assignment 7</a></li>
+
+</ul>
+</li>
+</ul>
+
+    </div>
+</nav></div>
+    </div>
+  
+  
+  <div class="sidebar-primary-items__end sidebar-primary__section">
+  </div>
+  
+  <div id="rtd-footer-container"></div>
+
+
+      </div>
+      
+      <main id="main-content" class="bd-main">
+        
+        
+
+<div class="sbt-scroll-pixel-helper"></div>
+
+          <div class="bd-content">
+            <div class="bd-article-container">
+              
+              <div class="bd-header-article">
+<div class="header-article-items header-article__inner">
+  
+    <div class="header-article-items__start">
+      
+        <div class="header-article-item"><label class="sidebar-toggle primary-toggle btn btn-sm" for="__primary" title="Toggle primary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <span class="fa-solid fa-bars"></span>
+</label></div>
+      
+    </div>
+  
+  
+    <div class="header-article-items__end">
+      
+        <div class="header-article-item">
+
+<div class="article-header-buttons">
+
+
+
+
+
+<div class="dropdown dropdown-launch-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Launch interactive content">
+    <i class="fas fa-rocket"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="https://colab.research.google.com/github/amoreira2/Lectures/blob/main/chapters/Finance/outofsample.ipynb" target="_blank"
+   class="btn btn-sm dropdown-item"
+   title="Launch onColab"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  
+    <img src="../../_static/images/logo_colab.png">
+  </span>
+<span class="btn__text-container">Colab</span>
+</a>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+
+
+<div class="dropdown dropdown-source-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Source repositories">
+    <i class="fab fa-github"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="https://github.com/amoreira2/Lectures" target="_blank"
+   class="btn btn-sm btn-source-repository-button dropdown-item"
+   title="Source repository"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fab fa-github"></i>
+  </span>
+<span class="btn__text-container">Repository</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li><a href="https://github.com/amoreira2/Lectures/issues/new?title=Issue%20on%20page%20%2Fchapters/Finance/outofsample.html&body=Your%20issue%20content%20here." target="_blank"
+   class="btn btn-sm btn-source-issues-button dropdown-item"
+   title="Open an issue"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-lightbulb"></i>
+  </span>
+<span class="btn__text-container">Open issue</span>
+</a>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+
+
+<div class="dropdown dropdown-download-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Download this page">
+    <i class="fas fa-download"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="../../_sources/chapters/Finance/outofsample.ipynb" target="_blank"
+   class="btn btn-sm btn-download-source-button dropdown-item"
+   title="Download source file"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file"></i>
+  </span>
+<span class="btn__text-container">.ipynb</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li>
+<button onclick="window.print()"
+  class="btn btn-sm btn-download-pdf-button dropdown-item"
+  title="Print to PDF"
+  data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file-pdf"></i>
+  </span>
+<span class="btn__text-container">.pdf</span>
+</button>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+<button onclick="toggleFullScreen()"
+  class="btn btn-sm btn-fullscreen-button"
+  title="Fullscreen mode"
+  data-bs-placement="bottom" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-expand"></i>
+  </span>
+
+</button>
+
+
+<script>
+document.write(`
+  <button class="theme-switch-button btn btn-sm btn-outline-primary navbar-btn rounded-circle" title="light/dark" aria-label="light/dark" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="theme-switch" data-mode="light"><i class="fa-solid fa-sun"></i></span>
+    <span class="theme-switch" data-mode="dark"><i class="fa-solid fa-moon"></i></span>
+    <span class="theme-switch" data-mode="auto"><i class="fa-solid fa-circle-half-stroke"></i></span>
+  </button>
+`);
+</script>
+
+<script>
+document.write(`
+  <button class="btn btn-sm navbar-btn search-button search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass"></i>
+  </button>
+`);
+</script>
+
+</div></div>
+      
+    </div>
+  
+</div>
+</div>
+              
+              
+
+<div id="jb-print-docs-body" class="onlyprint">
+    <h1>Out of sample analysis</h1>
+    <!-- Table of contents -->
+    <div id="print-main-content">
+        <div id="jb-print-toc">
+            
+        </div>
+    </div>
+</div>
+
+              
+                
+<div id="searchbox"></div>
+                <article class="bd-article" role="main">
+                  
+  <div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># First we start loading our favourite packages with the names we used to</span>
+<span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+<span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
+<span class="o">%</span><span class="k">matplotlib</span> inline
+<span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
+<span class="c1"># import regression package</span>
+<span class="kn">import</span> <span class="nn">statsmodels.api</span> <span class="k">as</span> <span class="nn">sm</span>
+</pre></div>
+</div>
+</div>
+</div>
+<section class="tex2jax_ignore mathjax_ignore" id="out-of-sample-analysis">
+<h1><span class="section-number">14.2. </span>Out of sample analysis<a class="headerlink" href="#out-of-sample-analysis" title="Permalink to this heading">#</a></h1>
+<ul class="simple">
+<li><p>In Chapter 11 we saw how in sample results are often a poor guide to how things behave out of sample</p></li>
+<li><p>The abit of lookign for large t-stats only partially guard agaisnt that because you will be searching for things that have high t-stats and you are bound to find high t-stat strategies <strong>in sample</strong> even if no true large alpha strategy exists.</p></li>
+<li><p>the literature on the biases that the “strategy discovery” process creates is vast and growing and plagues lots and lots of fields beyond investing where data is costly to generate (you cannot ask the market to rerun the last 100 years!)</p></li>
+</ul>
+<p><strong>Literature</strong></p>
+<ul class="simple">
+<li><p><a class="reference external" href="https://faculty.fuqua.duke.edu/~charvey/Research/Published_Papers/P143_False_and_missed_OL.pdf">False (and Missed) Discoveries in Financial Economics</a></p></li>
+<li><p><a class="reference external" href="http://rnm.simon.rochester.edu/research/PPiCToAPA.pdf">Predicting Anomaly Performance with Politics, the Weather, Global Warming, Sunspots, and the Stars</a> by Rober Novy Marx</p></li>
+<li><p><a class="reference external" href="https://academic.oup.com/rfs/article-abstract/21/4/1455/1565737">A comprehensive look at the empirical performance of equity premium prediction</a></p></li>
+</ul>
+<p>Inspecting whether your discovery is <strong>TRUE</strong> or just a statistical abnormality is science as much as it is art.</p>
+<p>Patterns that are so statisitcally reliable that eveyone can easily detect are unlikely to stay for long unless it is compensation for true risk.</p>
+<p>So you are unlikely to find something that makes sense only based on the stats and you will need to use your <strong>economic logic</strong> to evalaute if you cna understand why the premium is as high as it is. We will discuss this less “quantitative” part of the process in the chapter Equilibrium Thinking.</p>
+<p>Here we will highlight the problem and discuss a few statistical techiniques.</p>
+<p>Here are a few Twitter threads from people in the industry about this</p>
+<ul class="simple">
+<li><p><a class="reference external" href="https://twitter.com/macrocephalopod/status/1359810769433616384">someone tells you they have a strategy with a Sharpe of S. What questions should you be asking about the strategy to verify that it’s real?</a></p></li>
+<li><p><a class="reference external" href="https://twitter.com/macrocephalopod/status/1362165448205295620?s=20">overfiting</a></p></li>
+</ul>
+<p>It has this really nice plot</p>
+<p><img alt="outofsample" src="../../_images/outofsample1.jpg" /></p>
+<blockquote>
+<div><p>What does it tell us?</p>
+</div></blockquote>
+<ul class="simple">
+<li><p><a class="reference external" href="https://imarketsignals.com/2021/outperforming-the-sp-500-with-50-consensus-stock-holdings-of-40-large-hedge-funds/">The dumbest strategy ever created</a></p></li>
+<li><p><a class="reference external" href="https://twitter.com/nope_its_lily/status/1368623837961621505">We are always looking for patterns, be careful!</a></p></li>
+</ul>
+<p><strong>Estimation and Test Samples</strong></p>
+<p>Last chapter we used MV logic to constuct a portfolio with the maximum SR.</p>
+<p>To evaluate whether this approach works well in the data what can we do?</p>
+<p>Jsut looking at the sample where we did the estiamtion is not a realistic description of how you actually deploy the strategy whcih will have to trade on data that was was never seen/digested by your methodology</p>
+<p>One way to do it is to split the sample in two:</p>
+<ul class="simple">
+<li><p><strong>Estimation sample</strong>: This is the sample we will use to estimate moments, construct the portfolios, and so on. That is where your discovery process will take place. Where you will play with different parameters of the strategy. Statistical tests here are not valid</p></li>
+<li><p><strong>Test sample</strong>: You will use this to run statistical test and see how your meothod to construct weights .</p></li>
+</ul>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">SR</span><span class="p">(</span><span class="n">R</span><span class="p">,</span><span class="n">W</span><span class="o">=</span><span class="p">[],</span><span class="n">freq</span><span class="o">=</span><span class="mi">12</span><span class="p">):</span>
+    <span class="k">if</span> <span class="n">np</span><span class="o">.</span><span class="n">empty</span><span class="p">(</span><span class="n">W</span><span class="p">):</span>
+        <span class="n">sr</span><span class="o">=</span><span class="n">R</span><span class="o">.</span><span class="n">mean</span><span class="p">()</span><span class="o">/</span><span class="n">R</span><span class="o">.</span><span class="n">std</span><span class="p">()</span><span class="o">*</span><span class="n">freq</span><span class="o">**</span><span class="mf">0.5</span>
+    <span class="k">else</span><span class="p">:</span>
+        <span class="n">r</span><span class="o">=</span><span class="n">R</span><span class="nd">@W</span>
+        <span class="n">sr</span><span class="o">=</span><span class="n">r</span><span class="o">.</span><span class="n">mean</span><span class="p">()</span><span class="o">/</span><span class="n">r</span><span class="o">.</span><span class="n">std</span><span class="p">()</span><span class="o">*</span><span class="n">freq</span><span class="o">**</span><span class="mf">0.5</span>
+    <span class="k">return</span> <span class="n">sr</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p><strong>Aplication 1: optimal combitation of market and value strategies</strong></p>
+<p>Below is our full sample optimal portfolio</p>
+<p>We will split our sample into two halves:</p>
+<ol class="arabic simple">
+<li><p>take all observations from odd months in even years and even months in odd years (i.e., if starting in 1980, this would look like:  01/1980, 03/1980, … , 11/1980, 02/1981, 04/1981, … 12/1981, 01/1982, 03/1982, …); and</p></li>
+<li><p>the opposite (take all observations from even months in even years and odd months in odd years).</p></li>
+</ol>
+<p>A nice thing to do in halves is that we can cross-validated  use first sample 1 as estiamtion sample and sample2 as test sample, and then invert</p>
+<p>If you have lot of data one migh split the data in 5 folds and do the estimation in one and test on the rest.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># loading the data</span>
+<span class="kn">from</span> <span class="nn">pandas_datareader.famafrench</span> <span class="kn">import</span> <span class="n">get_available_datasets</span>
+<span class="kn">import</span> <span class="nn">pandas_datareader.data</span> <span class="k">as</span> <span class="nn">web</span>
+<span class="n">ds_names</span><span class="o">=</span><span class="n">get_available_datasets</span><span class="p">()</span>
+<span class="kn">from</span> <span class="nn">datetime</span> <span class="kn">import</span> <span class="n">datetime</span>
+<span class="n">start</span> <span class="o">=</span> <span class="n">datetime</span><span class="p">(</span><span class="mi">1926</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">)</span>
+<span class="n">ds</span> <span class="o">=</span> <span class="n">web</span><span class="o">.</span><span class="n">DataReader</span><span class="p">(</span><span class="n">ds_names</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="s1">&#39;famafrench&#39;</span><span class="p">,</span><span class="n">start</span><span class="o">=</span><span class="n">start</span><span class="p">)</span>
+<span class="n">df</span><span class="o">=</span><span class="n">ds</span><span class="p">[</span><span class="mi">0</span><span class="p">][:</span><span class="s1">&#39;2021-3&#39;</span><span class="p">]</span>
+<span class="n">df</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>Mkt-RF</th>
+      <th>SMB</th>
+      <th>HML</th>
+      <th>RF</th>
+    </tr>
+    <tr>
+      <th>Date</th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>1926-07</th>
+      <td>2.96</td>
+      <td>-2.30</td>
+      <td>-2.87</td>
+      <td>0.22</td>
+    </tr>
+    <tr>
+      <th>1926-08</th>
+      <td>2.64</td>
+      <td>-1.40</td>
+      <td>4.19</td>
+      <td>0.25</td>
+    </tr>
+    <tr>
+      <th>1926-09</th>
+      <td>0.36</td>
+      <td>-1.32</td>
+      <td>0.01</td>
+      <td>0.23</td>
+    </tr>
+    <tr>
+      <th>1926-10</th>
+      <td>-3.24</td>
+      <td>0.04</td>
+      <td>0.51</td>
+      <td>0.32</td>
+    </tr>
+    <tr>
+      <th>1926-11</th>
+      <td>2.53</td>
+      <td>-0.20</td>
+      <td>-0.35</td>
+      <td>0.31</td>
+    </tr>
+    <tr>
+      <th>...</th>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+    </tr>
+    <tr>
+      <th>2020-11</th>
+      <td>12.47</td>
+      <td>5.48</td>
+      <td>2.11</td>
+      <td>0.01</td>
+    </tr>
+    <tr>
+      <th>2020-12</th>
+      <td>4.63</td>
+      <td>4.81</td>
+      <td>-1.36</td>
+      <td>0.01</td>
+    </tr>
+    <tr>
+      <th>2021-01</th>
+      <td>-0.03</td>
+      <td>7.19</td>
+      <td>2.85</td>
+      <td>0.00</td>
+    </tr>
+    <tr>
+      <th>2021-02</th>
+      <td>2.78</td>
+      <td>2.11</td>
+      <td>7.08</td>
+      <td>0.00</td>
+    </tr>
+    <tr>
+      <th>2021-03</th>
+      <td>3.09</td>
+      <td>-2.48</td>
+      <td>7.40</td>
+      <td>0.00</td>
+    </tr>
+  </tbody>
+</table>
+<p>1137 rows × 4 columns</p>
+</div></div></div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">W</span><span class="o">=</span><span class="n">df</span><span class="p">[[</span><span class="s1">&#39;Mkt-RF&#39;</span><span class="p">,</span><span class="s1">&#39;HML&#39;</span><span class="p">]]</span><span class="o">.</span><span class="n">mean</span><span class="p">()</span><span class="nd">@np</span><span class="o">.</span><span class="n">linalg</span><span class="o">.</span><span class="n">inv</span><span class="p">(</span><span class="n">df</span><span class="p">[[</span><span class="s1">&#39;Mkt-RF&#39;</span><span class="p">,</span><span class="s1">&#39;HML&#39;</span><span class="p">]]</span><span class="o">.</span><span class="n">cov</span><span class="p">())</span>
+<span class="c1"># formula for unlevereaged portfolio vol</span>
+<span class="n">vol_unlevered</span><span class="o">=</span><span class="p">(</span><span class="n">df</span><span class="p">[[</span><span class="s1">&#39;Mkt-RF&#39;</span><span class="p">,</span><span class="s1">&#39;HML&#39;</span><span class="p">]]</span><span class="o">.</span><span class="n">mean</span><span class="p">()</span><span class="nd">@np</span><span class="o">.</span><span class="n">linalg</span><span class="o">.</span><span class="n">inv</span><span class="p">(</span><span class="n">df</span><span class="p">[[</span><span class="s1">&#39;Mkt-RF&#39;</span><span class="p">,</span><span class="s1">&#39;HML&#39;</span><span class="p">]]</span><span class="o">.</span><span class="n">cov</span><span class="p">())</span><span class="nd">@df</span><span class="p">[[</span><span class="s1">&#39;Mkt-RF&#39;</span><span class="p">,</span><span class="s1">&#39;HML&#39;</span><span class="p">]]</span><span class="o">.</span><span class="n">mean</span><span class="p">())</span><span class="o">**</span><span class="mf">0.5</span>
+<span class="n">W_lev</span><span class="o">=</span><span class="n">W</span><span class="o">*</span><span class="p">(</span><span class="n">df</span><span class="p">[</span><span class="s1">&#39;Mkt-RF&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">std</span><span class="p">()</span><span class="o">/</span><span class="n">vol_unlevered</span><span class="p">)</span>
+<span class="n">Optimalportfolio</span><span class="o">=</span> <span class="n">df</span><span class="p">[[</span><span class="s1">&#39;Mkt-RF&#39;</span><span class="p">,</span><span class="s1">&#39;HML&#39;</span><span class="p">]]</span> <span class="o">@</span> <span class="n">W_lev</span>
+<span class="n">SR</span><span class="p">(</span><span class="n">Optimalportfolio</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>0.5010016962253796
+</pre></div>
+</div>
+</div>
+</div>
+<p>Letss construct both samples by using a function that returns <code class="docutils literal notranslate"><span class="pre">True</span></code> if the number is odd and then apply this function to the months and years of our dataset.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">is_odd</span><span class="p">(</span><span class="n">num</span><span class="p">):</span>
+    <span class="k">return</span> <span class="n">num</span> <span class="o">%</span> <span class="mi">2</span> <span class="o">!=</span> <span class="mi">0</span>
+
+<span class="n">evenyear_oddmonth</span><span class="o">=</span><span class="p">(</span><span class="n">is_odd</span><span class="p">(</span><span class="n">df</span><span class="o">.</span><span class="n">index</span><span class="o">.</span><span class="n">year</span><span class="p">)</span><span class="o">==</span><span class="kc">False</span><span class="p">)</span> <span class="o">&amp;</span> <span class="p">(</span><span class="n">is_odd</span><span class="p">(</span><span class="n">df</span><span class="o">.</span><span class="n">index</span><span class="o">.</span><span class="n">month</span><span class="p">)</span><span class="o">==</span><span class="kc">True</span><span class="p">)</span>
+<span class="n">oddyear_evenmonth</span><span class="o">=</span><span class="p">(</span><span class="n">is_odd</span><span class="p">(</span><span class="n">df</span><span class="o">.</span><span class="n">index</span><span class="o">.</span><span class="n">year</span><span class="p">)</span><span class="o">==</span><span class="kc">True</span><span class="p">)</span> <span class="o">&amp;</span> <span class="p">(</span><span class="n">is_odd</span><span class="p">(</span><span class="n">df</span><span class="o">.</span><span class="n">index</span><span class="o">.</span><span class="n">month</span><span class="p">)</span><span class="o">==</span><span class="kc">False</span><span class="p">)</span>
+
+<span class="n">sample1</span><span class="o">=</span><span class="n">evenyear_oddmonth</span> <span class="o">|</span> <span class="n">oddyear_evenmonth</span>
+<span class="c1"># sample2 is just the opposite of sample 1.What is true becomes false and what is false becomes true</span>
+<span class="n">sample2</span><span class="o">=~</span><span class="n">sample1</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>Lets construct a function that takes the sample and returns the SR</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">Strategy</span><span class="p">(</span><span class="n">df1</span><span class="p">,</span><span class="n">estsample</span><span class="p">):</span>
+    <span class="n">W</span><span class="o">=</span><span class="n">df1</span><span class="p">[</span><span class="n">estsample</span><span class="p">]</span><span class="o">.</span><span class="n">mean</span><span class="p">()</span><span class="nd">@np</span><span class="o">.</span><span class="n">linalg</span><span class="o">.</span><span class="n">inv</span><span class="p">(</span><span class="n">df1</span><span class="p">[</span><span class="n">estsample</span><span class="p">]</span><span class="o">.</span><span class="n">cov</span><span class="p">())</span>
+    <span class="c1"># formula for unlevereaged portfolio vol</span>
+    <span class="n">vol_unlevered</span><span class="o">=</span><span class="p">(</span><span class="n">df1</span><span class="p">[</span><span class="n">estsample</span><span class="p">]</span><span class="o">.</span><span class="n">mean</span><span class="p">()</span><span class="nd">@np</span><span class="o">.</span><span class="n">linalg</span><span class="o">.</span><span class="n">inv</span><span class="p">(</span><span class="n">df1</span><span class="p">[</span><span class="n">estsample</span><span class="p">]</span><span class="o">.</span><span class="n">cov</span><span class="p">())</span><span class="nd">@df1</span><span class="p">[</span><span class="n">estsample</span><span class="p">]</span><span class="o">.</span><span class="n">mean</span><span class="p">())</span><span class="o">**</span><span class="mf">0.5</span>
+    <span class="n">W_lev</span><span class="o">=</span><span class="n">W</span><span class="o">*</span><span class="p">(</span><span class="n">df1</span><span class="p">[</span><span class="s1">&#39;Mkt-RF&#39;</span><span class="p">][</span><span class="n">estsample</span><span class="p">]</span><span class="o">.</span><span class="n">std</span><span class="p">()</span><span class="o">/</span><span class="n">vol_unlevered</span><span class="p">)</span>
+    <span class="n">Optimalportfolio</span><span class="o">=</span> <span class="n">df1</span><span class="p">[</span><span class="o">~</span><span class="n">estsample</span><span class="p">]</span> <span class="o">@</span> <span class="n">W_lev</span>
+    <span class="k">return</span> <span class="n">SR</span><span class="p">(</span><span class="n">Optimalportfolio</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;Optimal portfolio perfomance in sample 2 (estimation sample 1)&#39;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">Strategy</span><span class="p">(</span><span class="n">df</span><span class="p">[[</span><span class="s1">&#39;Mkt-RF&#39;</span><span class="p">,</span><span class="s1">&#39;HML&#39;</span><span class="p">]],</span><span class="n">sample1</span><span class="p">))</span>
+<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;Market perfomance in sample 2&#39;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">SR</span><span class="p">(</span><span class="n">df</span><span class="p">[[</span><span class="s1">&#39;Mkt-RF&#39;</span><span class="p">]][</span><span class="n">sample2</span><span class="p">]))</span>
+<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;Optimal portfolio perfomance in sample 1 (estimation sample 2)&#39;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">Strategy</span><span class="p">(</span><span class="n">df</span><span class="p">[[</span><span class="s1">&#39;Mkt-RF&#39;</span><span class="p">,</span><span class="s1">&#39;HML&#39;</span><span class="p">]],</span><span class="n">sample2</span><span class="p">))</span>
+<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;Market perfomance in sample 1&#39;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">SR</span><span class="p">(</span><span class="n">df</span><span class="p">[[</span><span class="s1">&#39;Mkt-RF&#39;</span><span class="p">]][</span><span class="n">sample1</span><span class="p">]))</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Optimal portfolio perfomance in sample 2 (estimation sample 1)
+0.5398648872236791
+Market perfomance in sample 2
+Mkt-RF    0.502882
+dtype: float64
+Optimal portfolio perfomance in sample 1 (estimation sample 2)
+0.4543626900658743
+Market perfomance in sample 1
+Mkt-RF    0.386996
+dtype: float64
+</pre></div>
+</div>
+</div>
+</div>
+<p>In terms of Sharpe Ratios it seems to pass the test.</p>
+<p>But this is simply one number. We can use our regression approach to formally test if indeed the optimal portfolio is likely to add value to the market</p>
+<p>Lets modify our function to include the estimation of the alpha</p>
+<p>While we are at it I will also add a <code class="docutils literal notranslate"><span class="pre">results</span></code> container so I can store the test sample SR and vol of the optimal portfolio and the market and the alpha and t-value as well</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">results</span><span class="o">=</span><span class="n">pd</span><span class="o">.</span><span class="n">Series</span><span class="p">([],</span><span class="n">index</span><span class="o">=</span><span class="p">[],</span><span class="n">dtype</span><span class="o">=</span><span class="nb">float</span><span class="p">)</span>
+<span class="n">results</span><span class="o">.</span><span class="n">at</span><span class="p">[</span><span class="s1">&#39;test&#39;</span><span class="p">]</span><span class="o">=</span><span class="mf">1.6</span>
+<span class="n">results</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>test    1.6
+dtype: float64
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">Strategy</span><span class="p">(</span><span class="n">df1</span><span class="p">,</span><span class="n">estsample</span><span class="p">):</span>
+    <span class="n">results</span><span class="o">=</span><span class="n">pd</span><span class="o">.</span><span class="n">Series</span><span class="p">([],</span><span class="n">index</span><span class="o">=</span><span class="p">[],</span><span class="n">dtype</span><span class="o">=</span><span class="nb">float</span><span class="p">)</span>
+    <span class="n">W1</span><span class="o">=</span><span class="n">df1</span><span class="p">[</span><span class="n">estsample</span><span class="p">]</span><span class="o">.</span><span class="n">mean</span><span class="p">()</span><span class="nd">@np</span><span class="o">.</span><span class="n">linalg</span><span class="o">.</span><span class="n">inv</span><span class="p">(</span><span class="n">df1</span><span class="p">[</span><span class="n">estsample</span><span class="p">]</span><span class="o">.</span><span class="n">cov</span><span class="p">())</span>
+    <span class="c1"># formula for unlevereaged portfolio vol</span>
+    <span class="n">vol_unlevered</span><span class="o">=</span><span class="p">(</span><span class="n">df1</span><span class="p">[</span><span class="n">estsample</span><span class="p">]</span><span class="o">.</span><span class="n">mean</span><span class="p">()</span><span class="nd">@np</span><span class="o">.</span><span class="n">linalg</span><span class="o">.</span><span class="n">inv</span><span class="p">(</span><span class="n">df1</span><span class="p">[</span><span class="n">estsample</span><span class="p">]</span><span class="o">.</span><span class="n">cov</span><span class="p">())</span><span class="nd">@df1</span><span class="p">[</span><span class="n">estsample</span><span class="p">]</span><span class="o">.</span><span class="n">mean</span><span class="p">())</span><span class="o">**</span><span class="mf">0.5</span>
+    <span class="n">W_lev</span><span class="o">=</span><span class="n">W1</span><span class="o">*</span><span class="p">(</span><span class="n">df1</span><span class="p">[</span><span class="s1">&#39;Mkt-RF&#39;</span><span class="p">][</span><span class="n">estsample</span><span class="p">]</span><span class="o">.</span><span class="n">std</span><span class="p">()</span><span class="o">/</span><span class="n">vol_unlevered</span><span class="p">)</span>
+    <span class="n">Optimalportfolio</span><span class="o">=</span> <span class="n">df1</span><span class="p">[</span><span class="o">~</span><span class="n">estsample</span><span class="p">]</span> <span class="o">@</span> <span class="n">W_lev</span>
+    <span class="n">results</span><span class="o">.</span><span class="n">at</span><span class="p">[</span><span class="s1">&#39;Optimal:SR&#39;</span><span class="p">]</span><span class="o">=</span><span class="n">SR</span><span class="p">(</span><span class="n">Optimalportfolio</span><span class="p">)</span>
+    <span class="n">results</span><span class="o">.</span><span class="n">at</span><span class="p">[</span><span class="s1">&#39;Optimal:std&#39;</span><span class="p">]</span><span class="o">=</span><span class="n">Optimalportfolio</span><span class="o">.</span><span class="n">std</span><span class="p">()</span><span class="o">*</span><span class="mi">12</span><span class="o">**</span><span class="mf">0.5</span>
+    <span class="n">results</span><span class="o">.</span><span class="n">at</span><span class="p">[</span><span class="s1">&#39;MKT:SR&#39;</span><span class="p">]</span><span class="o">=</span><span class="n">SR</span><span class="p">(</span><span class="n">df1</span><span class="p">[</span><span class="o">~</span><span class="n">estsample</span><span class="p">][</span><span class="s1">&#39;Mkt-RF&#39;</span><span class="p">])</span>
+    <span class="n">results</span><span class="o">.</span><span class="n">at</span><span class="p">[</span><span class="s1">&#39;MKT:std&#39;</span><span class="p">]</span><span class="o">=</span><span class="n">df1</span><span class="p">[</span><span class="o">~</span><span class="n">estsample</span><span class="p">][</span><span class="s1">&#39;Mkt-RF&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">std</span><span class="p">()</span><span class="o">*</span><span class="mi">12</span><span class="o">**</span><span class="mf">0.5</span>
+    <span class="c1"># now run the regression</span>
+    <span class="n">x</span><span class="o">=</span> <span class="n">sm</span><span class="o">.</span><span class="n">add_constant</span><span class="p">(</span><span class="n">df1</span><span class="p">[</span><span class="o">~</span><span class="n">estsample</span><span class="p">][</span><span class="s1">&#39;Mkt-RF&#39;</span><span class="p">])</span>
+    <span class="n">y</span><span class="o">=</span> <span class="n">Optimalportfolio</span><span class="o">.</span><span class="n">copy</span><span class="p">()</span>
+    <span class="n">regresult</span><span class="o">=</span> <span class="n">sm</span><span class="o">.</span><span class="n">OLS</span><span class="p">(</span><span class="n">y</span><span class="p">,</span><span class="n">x</span><span class="p">)</span><span class="o">.</span><span class="n">fit</span><span class="p">()</span>
+    <span class="n">results</span><span class="o">.</span><span class="n">at</span><span class="p">[</span><span class="s1">&#39;alpha&#39;</span><span class="p">]</span><span class="o">=</span><span class="n">regresult</span><span class="o">.</span><span class="n">params</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
+    <span class="n">results</span><span class="o">.</span><span class="n">at</span><span class="p">[</span><span class="s1">&#39;t(alpha)&#39;</span><span class="p">]</span><span class="o">=</span><span class="n">regresult</span><span class="o">.</span><span class="n">tvalues</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
+    
+    <span class="k">return</span> <span class="n">results</span>
+<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;Results for  test sample 2 (estimation sample 1)&#39;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">Strategy</span><span class="p">(</span><span class="n">df</span><span class="p">[[</span><span class="s1">&#39;Mkt-RF&#39;</span><span class="p">,</span><span class="s1">&#39;HML&#39;</span><span class="p">]],</span><span class="n">sample1</span><span class="p">))</span>
+<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;Results for  test sample 1 (estimation sample 2)&#39;</span><span class="p">)</span>
+<span class="n">Strategy</span><span class="p">(</span><span class="n">df</span><span class="p">[[</span><span class="s1">&#39;Mkt-RF&#39;</span><span class="p">,</span><span class="s1">&#39;HML&#39;</span><span class="p">]],</span><span class="n">sample2</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Results for  test sample 2 (estimation sample 1)
+Optimal:SR      0.539865
+Optimal:std    18.266698
+MKT:SR          0.502882
+MKT:std        18.065852
+alpha           0.171085
+t(alpha)        1.452817
+dtype: float64
+Results for  test sample 1 (estimation sample 2)
+</pre></div>
+</div>
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Optimal:SR      0.454363
+Optimal:std    18.799615
+MKT:SR          0.386996
+MKT:std        18.989705
+alpha           0.156391
+t(alpha)        1.701049
+dtype: float64
+</pre></div>
+</div>
+</div>
+</div>
+<p>We see several intersting things</p>
+<ul class="simple">
+<li><p>The vol targeting works pretty well out of sample. Our portfolio ended up with a similar vol to the market.</p></li>
+</ul>
+<blockquote>
+<div><p>Why is that? Is it surprising/expected? Do you expect to do as well in vol targeting in real life trading? Why why not?</p>
+</div></blockquote>
+<ul class="simple">
+<li><p>The alphas are there (given that the SR were higher , this mechanically means that the alphas would be non zero), but the t-values do not suggest this was a super robust feauture of the data.</p></li>
+<li><p>What does that mean? It means that <span class="math notranslate nohighlight">\(\sigma(r^{optimal}_t-\beta r^{mkt}_t)\)</span> was sufficienly volatile in the test sample that there is a greater than 10% change that the market is tangency in sample 2 and a slight lower than 10% chance that is tangency in sample 1.</p></li>
+<li><p>this is not bad, but it is not good either. If both were above 2 it would be prettry solid.</p></li>
+</ul>
+<p><strong>How to split your sample</strong></p>
+<ul class="simple">
+<li><p>You can split the sample in a variety of ways. I did a fancy one above just to showcase it.</p></li>
+<li><p>But I would typically recommend to keep it simple and simply split the sample down the middle.</p></li>
+<li><p>This has the advantage of keeping any non-homocedastic features of the data intact. For example, volatiltiy is highly clustered, so when we split the way we split above we are almost makign sure that the volatiltiy is about the same in both months. So this is not a great method to split if your strategy really depends on timing volaitltiy well.</p></li>
+<li><p>You don’t even need to split the samples equally, but you have to have in mind that a long sample is useful to both get precise point estimates (so you need a long estiamtion sample), but a logn sample is also required to have enought power to test. IF you make the test sample too short, you are guarantteing that you will fail to reject your reference portfolio</p></li>
+</ul>
+<p><strong>Fine tuning your strategy</strong></p>
+<p>We know have three piece of data.</p>
+<ul class="simple">
+<li><p><strong>Estimation sample</strong>: The estiamtion sample is exactyl as before. This is the sample we will use to estimate moments, construct the portfolios, and so on. That is where your discovery process will take place. Where you will play with different parameters of the strategy. Statistical tests here are not valid</p></li>
+</ul>
+<p>But now the Test sample will change and we will introduce the concept of the hold out sample</p>
+<ul class="simple">
+<li><p><strong>Test sample</strong>: You will use this to run statistical test and see how a particular parameter configuration works on unseen data. In practice you will do the testing multiple times. For example in this example we will play with the look back windown of the covariance estimator, mean estimator and so on.</p>
+<ul>
+<li><p>So information of the test sample will leak to your method as you do the search.</p></li>
+<li><p>You might settle on a particular specification becasue it worked on this particular sample, but not becasuse it is the most robust out of sample</p></li>
+<li><p>So when you are searching for the specification that works you have the be very careful to not search “TOO MUCH”” so you are overfitting the Test sample</p></li>
+</ul>
+</li>
+<li><p><strong>Holdout sample</strong>: This is data that your method never looked. That is the true test. You only look at it once you are confident you have a good specification. The hold sample are a much closer reflection of the reality of trading.</p>
+<ul>
+<li><p>of course it is impossible to really reproduce the reality of trading on future data and information of the holdout sample might leak through the fact that the researcher know what happened in that sample: there was a fiancial crash, a crypto boom, value did poorly and so on.</p></li>
+<li><p>This knowledge migth implicly guide your search process.</p></li>
+<li><p>So you have to be mindful of why you are makign the choices you are making to gaurd against this form of <strong>look-ahead bias</strong></p></li>
+</ul>
+</li>
+</ul>
+<p><strong>Aplication 2: fine-tuning the look-back window</strong></p>
+<p>Once you start playing with the look-back window that we use to estimate our moments we will need to figure out what works.</p>
+<p>The trade-off here is:</p>
+<ul class="simple">
+<li><p>If you make to short you jsut pick up noise</p></li>
+<li><p>If you make too long the moments might not be that informative about future data</p></li>
+<li><p>Particularly true in he case of volatility, but also true for correlations</p></li>
+</ul>
+<p>We will split the sample in two. The first half will be estiamtion+test, second hald will be hold out</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">df</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>Mkt-RF</th>
+      <th>SMB</th>
+      <th>HML</th>
+      <th>RF</th>
+    </tr>
+    <tr>
+      <th>Date</th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>1926-07</th>
+      <td>2.96</td>
+      <td>-2.30</td>
+      <td>-2.87</td>
+      <td>0.22</td>
+    </tr>
+    <tr>
+      <th>1926-08</th>
+      <td>2.64</td>
+      <td>-1.40</td>
+      <td>4.19</td>
+      <td>0.25</td>
+    </tr>
+    <tr>
+      <th>1926-09</th>
+      <td>0.36</td>
+      <td>-1.32</td>
+      <td>0.01</td>
+      <td>0.23</td>
+    </tr>
+    <tr>
+      <th>1926-10</th>
+      <td>-3.24</td>
+      <td>0.04</td>
+      <td>0.51</td>
+      <td>0.32</td>
+    </tr>
+    <tr>
+      <th>1926-11</th>
+      <td>2.53</td>
+      <td>-0.20</td>
+      <td>-0.35</td>
+      <td>0.31</td>
+    </tr>
+    <tr>
+      <th>...</th>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+    </tr>
+    <tr>
+      <th>2020-11</th>
+      <td>12.47</td>
+      <td>5.48</td>
+      <td>2.11</td>
+      <td>0.01</td>
+    </tr>
+    <tr>
+      <th>2020-12</th>
+      <td>4.63</td>
+      <td>4.81</td>
+      <td>-1.36</td>
+      <td>0.01</td>
+    </tr>
+    <tr>
+      <th>2021-01</th>
+      <td>-0.03</td>
+      <td>7.19</td>
+      <td>2.85</td>
+      <td>0.00</td>
+    </tr>
+    <tr>
+      <th>2021-02</th>
+      <td>2.78</td>
+      <td>2.11</td>
+      <td>7.08</td>
+      <td>0.00</td>
+    </tr>
+    <tr>
+      <th>2021-03</th>
+      <td>3.09</td>
+      <td>-2.48</td>
+      <td>7.40</td>
+      <td>0.00</td>
+    </tr>
+  </tbody>
+</table>
+<p>1137 rows × 4 columns</p>
+</div></div></div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">sample1</span><span class="o">=</span><span class="n">df</span><span class="o">.</span><span class="n">index</span><span class="o">&lt;=</span><span class="n">df</span><span class="o">.</span><span class="n">iloc</span><span class="p">[</span><span class="nb">int</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">floor</span><span class="p">(</span><span class="n">df</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">/</span><span class="mi">2</span><span class="p">))]</span><span class="o">.</span><span class="n">name</span>
+<span class="n">sample2</span><span class="o">=</span><span class="n">df</span><span class="o">.</span><span class="n">index</span><span class="o">&gt;</span><span class="n">df</span><span class="o">.</span><span class="n">iloc</span><span class="p">[</span><span class="nb">int</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">floor</span><span class="p">(</span><span class="n">df</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">/</span><span class="mi">2</span><span class="p">))]</span><span class="o">.</span><span class="n">name</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="s1">&#39;Results for  test sample 2 (estimation sample 1)&#39;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">Strategy</span><span class="p">(</span><span class="n">df</span><span class="p">[[</span><span class="s1">&#39;Mkt-RF&#39;</span><span class="p">,</span><span class="s1">&#39;HML&#39;</span><span class="p">]],</span><span class="n">sample1</span><span class="p">))</span>
+<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;Results for  test sample 1 (estimation sample 2)&#39;</span><span class="p">)</span>
+<span class="n">Strategy</span><span class="p">(</span><span class="n">df</span><span class="p">[[</span><span class="s1">&#39;Mkt-RF&#39;</span><span class="p">,</span><span class="s1">&#39;HML&#39;</span><span class="p">]],</span><span class="n">sample2</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Results for  test sample 2 (estimation sample 1)
+Optimal:SR      0.644581
+Optimal:std    11.635633
+MKT:SR          0.500860
+MKT:std        15.859210
+alpha           0.258585
+t(alpha)        2.764342
+dtype: float64
+Results for  test sample 1 (estimation sample 2)
+</pre></div>
+</div>
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Optimal:SR      0.449700
+Optimal:std    28.292410
+MKT:SR          0.406965
+MKT:std        20.866012
+alpha           0.185466
+t(alpha)        1.308342
+dtype: float64
+</pre></div>
+</div>
+</div>
+</div>
+<ul class="simple">
+<li><p>We can already see that the volatility targeting aspect worked substantially less wll. We undershoot the volatiltiy in sample 2 and overshoot by a lot in sample</p></li>
+<li><p>We will now do the estimation fine-tuning. Lets start by building a code that gets our desired window, do the estiamtion and construct the return series on the test sample</p></li>
+<li><p>lets start with 36 months</p></li>
+</ul>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">estsample</span><span class="o">=</span><span class="n">sample1</span>
+<span class="n">window</span><span class="o">=</span><span class="mi">36</span>
+<span class="n">Returns_test</span><span class="o">=</span><span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">([],</span><span class="n">index</span><span class="o">=</span><span class="n">df</span><span class="o">.</span><span class="n">index</span><span class="p">,</span><span class="n">dtype</span><span class="o">=</span><span class="nb">float</span><span class="p">)</span>
+<span class="n">df1</span><span class="o">=</span><span class="n">df</span><span class="p">[[</span><span class="s1">&#39;Mkt-RF&#39;</span><span class="p">,</span><span class="s1">&#39;HML&#39;</span><span class="p">]][</span><span class="n">estsample</span><span class="p">]</span><span class="o">.</span><span class="n">copy</span><span class="p">()</span>
+<span class="n">results</span><span class="o">=</span><span class="n">pd</span><span class="o">.</span><span class="n">Series</span><span class="p">([],</span><span class="n">index</span><span class="o">=</span><span class="p">[],</span><span class="n">dtype</span><span class="o">=</span><span class="nb">float</span><span class="p">)</span>
+<span class="k">for</span> <span class="n">d</span> <span class="ow">in</span> <span class="n">df1</span><span class="o">.</span><span class="n">index</span><span class="p">[</span><span class="n">window</span><span class="p">:]:</span>
+    <span class="n">df_temp</span><span class="o">=</span><span class="n">df1</span><span class="p">[</span><span class="n">d</span><span class="o">-</span><span class="n">window</span><span class="p">:</span><span class="n">d</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">copy</span><span class="p">()</span>
+    <span class="n">W1</span><span class="o">=</span><span class="n">df_temp</span><span class="o">.</span><span class="n">mean</span><span class="p">()</span><span class="nd">@np</span><span class="o">.</span><span class="n">linalg</span><span class="o">.</span><span class="n">inv</span><span class="p">(</span><span class="n">df_temp</span><span class="o">.</span><span class="n">cov</span><span class="p">())</span>
+    <span class="n">vol_unlevered</span><span class="o">=</span><span class="p">(</span><span class="n">df_temp</span><span class="o">.</span><span class="n">mean</span><span class="p">()</span><span class="nd">@np</span><span class="o">.</span><span class="n">linalg</span><span class="o">.</span><span class="n">inv</span><span class="p">(</span><span class="n">df_temp</span><span class="o">.</span><span class="n">cov</span><span class="p">())</span><span class="nd">@df_temp</span><span class="o">.</span><span class="n">mean</span><span class="p">())</span><span class="o">**</span><span class="mf">0.5</span>
+    <span class="n">W_lev</span><span class="o">=</span><span class="n">W1</span><span class="o">*</span><span class="p">(</span><span class="n">df_temp</span><span class="o">.</span><span class="n">std</span><span class="p">()</span><span class="o">/</span><span class="n">vol_unlevered</span><span class="p">)</span>
+    <span class="n">Returns_test</span><span class="o">.</span><span class="n">at</span><span class="p">[</span><span class="n">d</span><span class="p">,</span><span class="s1">&#39;Opt&#39;</span><span class="p">]</span><span class="o">=</span> <span class="n">df1</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="n">d</span><span class="p">]</span> <span class="o">@</span> <span class="n">W_lev</span>
+    <span class="n">Returns_test</span><span class="o">.</span><span class="n">at</span><span class="p">[</span><span class="n">d</span><span class="p">,</span><span class="s1">&#39;Mkt-RF&#39;</span><span class="p">]</span><span class="o">=</span> <span class="n">df1</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="n">d</span><span class="p">,</span><span class="s1">&#39;Mkt-RF&#39;</span><span class="p">]</span>
+
+    
+<span class="n">Returns_test</span><span class="o">.</span><span class="n">plot</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;AxesSubplot:xlabel=&#39;Date&#39;&gt;
+</pre></div>
+</div>
+<img alt="../../_images/243dda528e455bca91e47946ec291c682207735949a6c31eea1c9e8add203eab.png" src="../../_images/243dda528e455bca91e47946ec291c682207735949a6c31eea1c9e8add203eab.png" />
+</div>
+</div>
+<ul class="simple">
+<li><p>Note that we have no observations early on as we need at the 36 months to estimate and none in the second half, that is the sample that we will hold out</p></li>
+<li><p>Now that we have this code we can put ina function and simply evaluate at a whole unch of different windows</p></li>
+</ul>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">RollingEval</span><span class="p">(</span><span class="n">df</span><span class="p">,</span><span class="n">window</span><span class="p">,</span><span class="n">estsample</span><span class="p">):</span>
+    <span class="n">Returns_test</span><span class="o">=</span><span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">([],</span><span class="n">index</span><span class="o">=</span><span class="n">df</span><span class="o">.</span><span class="n">index</span><span class="p">,</span><span class="n">dtype</span><span class="o">=</span><span class="nb">float</span><span class="p">)</span>
+    <span class="n">df1</span><span class="o">=</span><span class="n">df</span><span class="p">[[</span><span class="s1">&#39;Mkt-RF&#39;</span><span class="p">,</span><span class="s1">&#39;HML&#39;</span><span class="p">]][</span><span class="n">estsample</span><span class="p">]</span><span class="o">.</span><span class="n">copy</span><span class="p">()</span>
+    <span class="k">for</span> <span class="n">d</span> <span class="ow">in</span> <span class="n">df1</span><span class="o">.</span><span class="n">index</span><span class="p">[</span><span class="n">window</span><span class="p">:]:</span>
+        <span class="n">df_temp</span><span class="o">=</span><span class="n">df1</span><span class="p">[</span><span class="n">d</span><span class="o">-</span><span class="n">window</span><span class="p">:</span><span class="n">d</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">copy</span><span class="p">()</span>
+        <span class="n">W1</span><span class="o">=</span><span class="n">df_temp</span><span class="o">.</span><span class="n">mean</span><span class="p">()</span><span class="nd">@np</span><span class="o">.</span><span class="n">linalg</span><span class="o">.</span><span class="n">inv</span><span class="p">(</span><span class="n">df_temp</span><span class="o">.</span><span class="n">cov</span><span class="p">())</span>
+        <span class="n">vol_unlevered</span><span class="o">=</span><span class="p">(</span><span class="n">df_temp</span><span class="o">.</span><span class="n">mean</span><span class="p">()</span><span class="nd">@np</span><span class="o">.</span><span class="n">linalg</span><span class="o">.</span><span class="n">inv</span><span class="p">(</span><span class="n">df_temp</span><span class="o">.</span><span class="n">cov</span><span class="p">())</span><span class="nd">@df_temp</span><span class="o">.</span><span class="n">mean</span><span class="p">())</span><span class="o">**</span><span class="mf">0.5</span>
+        <span class="n">W_lev</span><span class="o">=</span><span class="n">W1</span><span class="o">*</span><span class="p">(</span><span class="n">df_temp</span><span class="o">.</span><span class="n">std</span><span class="p">()</span><span class="o">/</span><span class="n">vol_unlevered</span><span class="p">)</span>
+        <span class="n">Returns_test</span><span class="o">.</span><span class="n">at</span><span class="p">[</span><span class="n">d</span><span class="p">,</span><span class="s1">&#39;Opt&#39;</span><span class="p">]</span><span class="o">=</span> <span class="n">df1</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="n">d</span><span class="p">]</span> <span class="o">@</span> <span class="n">W_lev</span>
+        <span class="n">Returns_test</span><span class="o">.</span><span class="n">at</span><span class="p">[</span><span class="n">d</span><span class="p">,</span><span class="s1">&#39;Mkt-RF&#39;</span><span class="p">]</span><span class="o">=</span> <span class="n">df1</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="n">d</span><span class="p">,</span><span class="s1">&#39;Mkt-RF&#39;</span><span class="p">]</span>
+    <span class="k">return</span> <span class="n">Returns_test</span>
+
+<span class="n">Returns_test</span><span class="o">=</span><span class="n">RollingEval</span><span class="p">(</span><span class="n">df</span><span class="p">,</span><span class="mi">36</span><span class="p">,</span><span class="n">sample1</span><span class="p">)</span>        
+<span class="n">Returns_test</span><span class="o">.</span><span class="n">plot</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;AxesSubplot:xlabel=&#39;Date&#39;&gt;
+</pre></div>
+</div>
+<img alt="../../_images/243dda528e455bca91e47946ec291c682207735949a6c31eea1c9e8add203eab.png" src="../../_images/243dda528e455bca91e47946ec291c682207735949a6c31eea1c9e8add203eab.png" />
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">windows</span><span class="o">=</span><span class="p">[</span><span class="mi">24</span><span class="p">,</span><span class="mi">36</span><span class="p">,</span><span class="mi">48</span><span class="p">,</span><span class="mi">60</span><span class="p">,</span><span class="mi">72</span><span class="p">]</span>
+<span class="n">results</span><span class="o">=</span><span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">([],</span><span class="n">index</span><span class="o">=</span><span class="p">[],</span><span class="n">columns</span><span class="o">=</span><span class="n">windows</span><span class="p">,</span><span class="n">dtype</span><span class="o">=</span><span class="nb">float</span><span class="p">)</span>
+<span class="k">for</span> <span class="n">w</span> <span class="ow">in</span> <span class="n">windows</span><span class="p">:</span>
+    <span class="n">Returns_test</span><span class="o">=</span><span class="n">RollingEval</span><span class="p">(</span><span class="n">df</span><span class="p">,</span><span class="n">w</span><span class="p">,</span><span class="n">sample1</span><span class="p">)</span>    
+    <span class="n">results</span><span class="o">.</span><span class="n">at</span><span class="p">[</span><span class="s1">&#39;Optimal:SR&#39;</span><span class="p">,</span><span class="n">w</span><span class="p">]</span><span class="o">=</span><span class="n">SR</span><span class="p">(</span><span class="n">Returns_test</span><span class="o">.</span><span class="n">Opt</span><span class="p">)</span>
+    <span class="n">results</span><span class="o">.</span><span class="n">at</span><span class="p">[</span><span class="s1">&#39;Optimal:std&#39;</span><span class="p">,</span><span class="n">w</span><span class="p">]</span><span class="o">=</span><span class="n">Returns_test</span><span class="o">.</span><span class="n">Opt</span><span class="o">.</span><span class="n">std</span><span class="p">()</span><span class="o">*</span><span class="mi">12</span><span class="o">**</span><span class="mf">0.5</span>
+    <span class="n">results</span><span class="o">.</span><span class="n">at</span><span class="p">[</span><span class="s1">&#39;MKT:SR&#39;</span><span class="p">,</span><span class="n">w</span><span class="p">]</span><span class="o">=</span><span class="n">SR</span><span class="p">(</span><span class="n">Returns_test</span><span class="p">[</span><span class="s1">&#39;Mkt-RF&#39;</span><span class="p">])</span>
+    <span class="n">results</span><span class="o">.</span><span class="n">at</span><span class="p">[</span><span class="s1">&#39;MKT:std&#39;</span><span class="p">,</span><span class="n">w</span><span class="p">]</span><span class="o">=</span><span class="n">Returns_test</span><span class="p">[</span><span class="s1">&#39;Mkt-RF&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">std</span><span class="p">()</span><span class="o">*</span><span class="mi">12</span><span class="o">**</span><span class="mf">0.5</span>
+    <span class="c1"># now run the regression</span>
+    <span class="n">x</span><span class="o">=</span> <span class="n">sm</span><span class="o">.</span><span class="n">add_constant</span><span class="p">(</span><span class="n">Returns_test</span><span class="p">[</span><span class="s1">&#39;Mkt-RF&#39;</span><span class="p">])</span>
+    <span class="n">y</span><span class="o">=</span> <span class="n">Returns_test</span><span class="o">.</span><span class="n">Opt</span><span class="o">.</span><span class="n">copy</span><span class="p">()</span>
+    <span class="n">regresult</span><span class="o">=</span> <span class="n">sm</span><span class="o">.</span><span class="n">OLS</span><span class="p">(</span><span class="n">y</span><span class="p">,</span><span class="n">x</span><span class="p">,</span><span class="n">missing</span><span class="o">=</span><span class="s1">&#39;drop&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">fit</span><span class="p">()</span>
+    <span class="n">results</span><span class="o">.</span><span class="n">at</span><span class="p">[</span><span class="s1">&#39;alpha&#39;</span><span class="p">,</span><span class="n">w</span><span class="p">]</span><span class="o">=</span><span class="n">regresult</span><span class="o">.</span><span class="n">params</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
+    <span class="n">results</span><span class="o">.</span><span class="n">at</span><span class="p">[</span><span class="s1">&#39;t(alpha)&#39;</span><span class="p">,</span><span class="n">w</span><span class="p">]</span><span class="o">=</span><span class="n">regresult</span><span class="o">.</span><span class="n">tvalues</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
+    
+<span class="n">results</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>24</th>
+      <th>36</th>
+      <th>48</th>
+      <th>60</th>
+      <th>72</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>Optimal:SR</th>
+      <td>0.729121</td>
+      <td>0.662446</td>
+      <td>0.559205</td>
+      <td>0.613927</td>
+      <td>0.604021</td>
+    </tr>
+    <tr>
+      <th>Optimal:std</th>
+      <td>18.261577</td>
+      <td>17.478699</td>
+      <td>17.143940</td>
+      <td>16.599580</td>
+      <td>14.608167</td>
+    </tr>
+    <tr>
+      <th>MKT:SR</th>
+      <td>0.376006</td>
+      <td>0.349442</td>
+      <td>0.395631</td>
+      <td>0.442297</td>
+      <td>0.599587</td>
+    </tr>
+    <tr>
+      <th>MKT:std</th>
+      <td>21.156627</td>
+      <td>21.225400</td>
+      <td>20.875629</td>
+      <td>20.531663</td>
+      <td>19.393643</td>
+    </tr>
+    <tr>
+      <th>alpha</th>
+      <td>1.168284</td>
+      <td>0.956486</td>
+      <td>0.690608</td>
+      <td>0.703350</td>
+      <td>0.426639</td>
+    </tr>
+    <tr>
+      <th>t(alpha)</th>
+      <td>5.165939</td>
+      <td>4.350827</td>
+      <td>3.221188</td>
+      <td>3.379011</td>
+      <td>2.449945</td>
+    </tr>
+  </tbody>
+</table>
+</div></div></div>
+</div>
+<p>From this it seems that 24 looks best.</p>
+<p>We will now look at how the 24 performed in the <strong>Hold out sample</strong></p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">windows</span><span class="o">=</span><span class="p">[</span><span class="mi">24</span><span class="p">]</span>
+<span class="n">results</span><span class="o">=</span><span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">([],</span><span class="n">index</span><span class="o">=</span><span class="p">[],</span><span class="n">columns</span><span class="o">=</span><span class="n">windows</span><span class="p">,</span><span class="n">dtype</span><span class="o">=</span><span class="nb">float</span><span class="p">)</span>
+<span class="k">for</span> <span class="n">w</span> <span class="ow">in</span> <span class="n">windows</span><span class="p">:</span>
+    <span class="n">Returns_test</span><span class="o">=</span><span class="n">RollingEval</span><span class="p">(</span><span class="n">df</span><span class="p">,</span><span class="n">w</span><span class="p">,</span><span class="n">sample2</span><span class="p">)</span>    
+    <span class="n">results</span><span class="o">.</span><span class="n">at</span><span class="p">[</span><span class="s1">&#39;Optimal:SR&#39;</span><span class="p">,</span><span class="n">w</span><span class="p">]</span><span class="o">=</span><span class="n">SR</span><span class="p">(</span><span class="n">Returns_test</span><span class="o">.</span><span class="n">Opt</span><span class="p">)</span>
+    <span class="n">results</span><span class="o">.</span><span class="n">at</span><span class="p">[</span><span class="s1">&#39;Optimal:std&#39;</span><span class="p">,</span><span class="n">w</span><span class="p">]</span><span class="o">=</span><span class="n">Returns_test</span><span class="o">.</span><span class="n">Opt</span><span class="o">.</span><span class="n">std</span><span class="p">()</span><span class="o">*</span><span class="mi">12</span><span class="o">**</span><span class="mf">0.5</span>
+    <span class="n">results</span><span class="o">.</span><span class="n">at</span><span class="p">[</span><span class="s1">&#39;MKT:SR&#39;</span><span class="p">,</span><span class="n">w</span><span class="p">]</span><span class="o">=</span><span class="n">SR</span><span class="p">(</span><span class="n">Returns_test</span><span class="p">[</span><span class="s1">&#39;Mkt-RF&#39;</span><span class="p">])</span>
+    <span class="n">results</span><span class="o">.</span><span class="n">at</span><span class="p">[</span><span class="s1">&#39;MKT:std&#39;</span><span class="p">,</span><span class="n">w</span><span class="p">]</span><span class="o">=</span><span class="n">Returns_test</span><span class="p">[</span><span class="s1">&#39;Mkt-RF&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">std</span><span class="p">()</span><span class="o">*</span><span class="mi">12</span><span class="o">**</span><span class="mf">0.5</span>
+    <span class="c1"># now run the regression</span>
+    <span class="n">x</span><span class="o">=</span> <span class="n">sm</span><span class="o">.</span><span class="n">add_constant</span><span class="p">(</span><span class="n">Returns_test</span><span class="p">[</span><span class="s1">&#39;Mkt-RF&#39;</span><span class="p">])</span>
+    <span class="n">y</span><span class="o">=</span> <span class="n">Returns_test</span><span class="o">.</span><span class="n">Opt</span><span class="o">.</span><span class="n">copy</span><span class="p">()</span>
+    <span class="n">regresult</span><span class="o">=</span> <span class="n">sm</span><span class="o">.</span><span class="n">OLS</span><span class="p">(</span><span class="n">y</span><span class="p">,</span><span class="n">x</span><span class="p">,</span><span class="n">missing</span><span class="o">=</span><span class="s1">&#39;drop&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">fit</span><span class="p">()</span>
+    <span class="n">results</span><span class="o">.</span><span class="n">at</span><span class="p">[</span><span class="s1">&#39;alpha&#39;</span><span class="p">,</span><span class="n">w</span><span class="p">]</span><span class="o">=</span><span class="n">regresult</span><span class="o">.</span><span class="n">params</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
+    <span class="n">results</span><span class="o">.</span><span class="n">at</span><span class="p">[</span><span class="s1">&#39;t(alpha)&#39;</span><span class="p">,</span><span class="n">w</span><span class="p">]</span><span class="o">=</span><span class="n">regresult</span><span class="o">.</span><span class="n">tvalues</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
+    
+<span class="n">results</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>24</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>Optimal:SR</th>
+      <td>1.093922</td>
+    </tr>
+    <tr>
+      <th>Optimal:std</th>
+      <td>13.521201</td>
+    </tr>
+    <tr>
+      <th>MKT:SR</th>
+      <td>0.545364</td>
+    </tr>
+    <tr>
+      <th>MKT:std</th>
+      <td>15.462008</td>
+    </tr>
+    <tr>
+      <th>alpha</th>
+      <td>0.989791</td>
+    </tr>
+    <tr>
+      <th>t(alpha)</th>
+      <td>6.354080</td>
+    </tr>
+  </tbody>
+</table>
+</div></div></div>
+</div>
+<ul class="simple">
+<li><p>Even better!</p></li>
+<li><p>That is pretty good</p></li>
+<li><p>you can see the t-stat goign through the roof and the SR of the optimal portfolio is almost twice as large as only investing in the market</p></li>
+<li><p>Note that here the bulk of the gains are form <strong>Timing across these factors</strong>.</p></li>
+<li><p>You might also look to time between cash and this optimal portfolio</p></li>
+<li><p>The idea would be exactyl the same. You get a signal for the expected return and/or volatiltiy of the optimal portfolio</p>
+<ul>
+<li><p>You already have one here, but the fact that the 24 months worked great to time across factors does not mean that it will work great to time between the factor and cash</p></li>
+<li><p>But you would have some way to decide the weigths perhaps based on the mean-variance criteria, see how it works in the test sample across a variety of signal specifications and then you would ultimaterly test on the hold out sample</p></li>
+</ul>
+</li>
+</ul>
+<p><strong>Publication bias (or Famous bias or incubation bias…)</strong></p>
+<p>We discussed that we often look at past perfomance exactly becasue a strategy did well. This mechanism of selection renders our statisitcal analysis biased in the direction of findings that the strategy is amazing.</p>
+<p>It is often hard to deal with this becasue you need all the data of strategies that look like the one you are interested from the perspective of someone in the start of the relvant sample. That is hard.</p>
+<p>One way to deal with this is to use some hard metric of saliency. For example, in chapter we used google trends to see when Bitcoin became popular and we did our analysis after that.</p>
+<p>You could imagine doing that for fund managers as well. While google trends is only available after 2004 there is data from New York Times and Wall Street Journal that allows you to go back to the start of the <strong>Last</strong> century. (<a class="reference external" href="http://www.google.com/url?q=http%3A%2F%2Fwww.sciencedirect.com%2Fscience%2Farticle%2Fpii%2FS0304405X16301751&amp;sa=D&amp;sntz=1&amp;usg=AFQjCNFWO63SSQXSteNhgTI4oOhtmh0ZUQ">for example, I use data like that that in this paper</a>)</p>
+<p>A setting where we can do this very cleanly is in the context of acadmic work. We know exactyl when the paper was first published and what the sample that was used there</p>
+<p>A nice paper that investigates this for a bunch of strategies is <a class="reference external" href="https://onlinelibrary.wiley.com/doi/pdf/10.1111/jofi.12365?casa_token=gSqvouNM61EAAAAA:JyTl4yxx9xTfKo8-VEBIE-4c4ha7kRFGvirWzEZRXhYw2AtueM3yzpRDcpcXgnsDdlvlXflKp1Nw_ss">Does academic research destroy stock return predictability?</a></p>
+<p><strong>Aplication: Evalauting the publication bias in Fama French 1996, Multifactor Anomalies…</strong></p>
+<p>Teh original paper has the followign key table</p>
+<p><img alt="outofsample" src="../../_images/outofsample2.jpg" /></p>
+<ul class="simple">
+<li><p>You see here that the sample runs from 63 to 93. Back in 93 we didn’t have digitalized accounting data that went back to the 30’s</p></li>
+<li><p>Looking at the very last row we see that the alpha of the HML withresepect to HML is enormous, 0.56% per month, and it has a negative beta with the market!</p></li>
+<li><p>so now we will look at two different samples that the authors never looked before doing their study.</p>
+<ul>
+<li><p>The pre 63 sample</p></li>
+<li><p>the post 93.</p></li>
+</ul>
+</li>
+</ul>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">sample1</span><span class="o">=</span><span class="n">df</span><span class="o">.</span><span class="n">index</span><span class="o">&lt;</span><span class="n">df</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="s1">&#39;1963-7&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">name</span>
+<span class="n">sample2</span><span class="o">=</span><span class="n">df</span><span class="o">.</span><span class="n">index</span><span class="o">&gt;</span><span class="n">df</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="s1">&#39;1993-12&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">name</span>
+<span class="n">sample3</span><span class="o">=</span><span class="p">((</span><span class="n">df</span><span class="o">.</span><span class="n">index</span><span class="o">&gt;=</span><span class="n">df</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="s1">&#39;1963-7&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">name</span><span class="p">)</span> <span class="o">&amp;</span><span class="p">(</span><span class="n">df</span><span class="o">.</span><span class="n">index</span><span class="o">&lt;=</span><span class="n">df</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="s1">&#39;1993-12&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">name</span><span class="p">))</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">Strategy</span><span class="p">(</span><span class="n">df1</span><span class="p">,</span><span class="n">sample</span><span class="p">):</span>
+    <span class="n">results</span><span class="o">=</span><span class="n">pd</span><span class="o">.</span><span class="n">Series</span><span class="p">([],</span><span class="n">index</span><span class="o">=</span><span class="p">[],</span><span class="n">dtype</span><span class="o">=</span><span class="nb">float</span><span class="p">)</span>
+    <span class="n">x</span><span class="o">=</span> <span class="n">sm</span><span class="o">.</span><span class="n">add_constant</span><span class="p">(</span><span class="n">df1</span><span class="p">[</span><span class="n">sample</span><span class="p">][</span><span class="s1">&#39;Mkt-RF&#39;</span><span class="p">])</span>
+    <span class="n">y</span><span class="o">=</span> <span class="n">df1</span><span class="p">[</span><span class="n">sample</span><span class="p">][</span><span class="s1">&#39;HML&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">copy</span><span class="p">()</span>
+    <span class="n">regresult</span><span class="o">=</span> <span class="n">sm</span><span class="o">.</span><span class="n">OLS</span><span class="p">(</span><span class="n">y</span><span class="p">,</span><span class="n">x</span><span class="p">)</span><span class="o">.</span><span class="n">fit</span><span class="p">()</span>
+    <span class="n">results</span><span class="o">.</span><span class="n">at</span><span class="p">[</span><span class="s1">&#39;HML:SR&#39;</span><span class="p">]</span><span class="o">=</span><span class="n">SR</span><span class="p">(</span><span class="n">y</span><span class="p">)</span>
+    <span class="n">results</span><span class="o">.</span><span class="n">at</span><span class="p">[</span><span class="s1">&#39;MKT:SR&#39;</span><span class="p">]</span><span class="o">=</span><span class="n">SR</span><span class="p">(</span><span class="n">df1</span><span class="p">[</span><span class="n">sample</span><span class="p">][</span><span class="s1">&#39;Mkt-RF&#39;</span><span class="p">])</span>
+    <span class="n">results</span><span class="o">.</span><span class="n">at</span><span class="p">[</span><span class="s1">&#39;alpha&#39;</span><span class="p">]</span><span class="o">=</span><span class="n">regresult</span><span class="o">.</span><span class="n">params</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
+    <span class="n">results</span><span class="o">.</span><span class="n">at</span><span class="p">[</span><span class="s1">&#39;beta&#39;</span><span class="p">]</span><span class="o">=</span><span class="n">regresult</span><span class="o">.</span><span class="n">params</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span>
+    <span class="n">results</span><span class="o">.</span><span class="n">at</span><span class="p">[</span><span class="s1">&#39;t(alpha)&#39;</span><span class="p">]</span><span class="o">=</span><span class="n">regresult</span><span class="o">.</span><span class="n">tvalues</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
+    <span class="n">results</span><span class="o">.</span><span class="n">at</span><span class="p">[</span><span class="s1">&#39;AR&#39;</span><span class="p">]</span><span class="o">=</span><span class="n">regresult</span><span class="o">.</span><span class="n">tvalues</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">/</span><span class="n">regresult</span><span class="o">.</span><span class="n">resid</span><span class="o">.</span><span class="n">std</span><span class="p">()</span>
+    <span class="n">W</span><span class="o">=</span><span class="n">df1</span><span class="p">[</span><span class="n">sample</span><span class="p">]</span><span class="o">.</span><span class="n">mean</span><span class="p">()</span><span class="nd">@np</span><span class="o">.</span><span class="n">linalg</span><span class="o">.</span><span class="n">inv</span><span class="p">(</span><span class="n">df1</span><span class="p">[</span><span class="n">sample</span><span class="p">]</span><span class="o">.</span><span class="n">cov</span><span class="p">())</span>
+    <span class="n">W</span><span class="o">=</span><span class="n">W</span><span class="o">/</span><span class="n">np</span><span class="o">.</span><span class="n">sum</span><span class="p">(</span><span class="n">W</span><span class="p">)</span>
+    <span class="n">results</span><span class="o">.</span><span class="n">at</span><span class="p">[</span><span class="s1">&#39;HML weight on MVE&#39;</span><span class="p">]</span><span class="o">=</span><span class="n">W</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span>
+
+    <span class="k">return</span> <span class="n">results</span>
+<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;Pre publication sample&#39;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">Strategy</span><span class="p">(</span><span class="n">df</span><span class="p">[[</span><span class="s1">&#39;Mkt-RF&#39;</span><span class="p">,</span><span class="s1">&#39;HML&#39;</span><span class="p">]],</span><span class="n">sample1</span><span class="p">))</span>
+<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;Publication sample&#39;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">Strategy</span><span class="p">(</span><span class="n">df</span><span class="p">[[</span><span class="s1">&#39;Mkt-RF&#39;</span><span class="p">,</span><span class="s1">&#39;HML&#39;</span><span class="p">]],</span><span class="n">sample3</span><span class="p">))</span>
+<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;Post publication sample&#39;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">Strategy</span><span class="p">(</span><span class="n">df</span><span class="p">[[</span><span class="s1">&#39;Mkt-RF&#39;</span><span class="p">,</span><span class="s1">&#39;HML&#39;</span><span class="p">]],</span><span class="n">sample2</span><span class="p">))</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Pre publication sample
+HML:SR               0.346962
+MKT:SR               0.457366
+alpha                0.113160
+beta                 0.371094
+t(alpha)             0.661317
+AR                   0.185219
+HML weight on MVE    0.342709
+dtype: float64
+Publication sample
+HML:SR               0.608203
+MKT:SR               0.325699
+alpha                0.542778
+beta                -0.207224
+t(alpha)             4.257801
+AR                   1.755981
+HML weight on MVE    0.696805
+dtype: float64
+Post publication sample
+HML:SR               0.079270
+MKT:SR               0.580553
+alpha                0.113256
+beta                -0.054502
+t(alpha)             0.637514
+AR                   0.201533
+HML weight on MVE    0.228248
+dtype: float64
+</pre></div>
+</div>
+</div>
+</div>
+<p><strong>what do we learn?</strong></p>
+<ul class="simple">
+<li><p>In the Pre-publication sample HML has a respectable SR, but the asset is much more correlated with the market so it’s betas with respect to the market leaves only a statistically insignifcant 0.37% per month, 1.2% per year.</p></li>
+<li><p>Thus in the pre-sample the HML has a nice SR but the CAPM works so you would not have gained/lost too much of tilting your portfolio towards the HML strategy</p></li>
+<li><p>In the post-publication sample the results are very ugly</p>
+<ul>
+<li><p>Sharpe ratio is now 0.08–compared with the 0.58 SR on the market</p></li>
+<li><p>the alpha is still about the same as in the pre-publication, but now the betas become negative</p></li>
+<li><p>the HML premium goes away almost completely</p></li>
+</ul>
+</li>
+</ul>
+<p>To have a sense of the shift we can look at the risk-return trade-off of the market and HML across samples.</p>
+<ul class="simple">
+<li><p>The optimal weight on HML shifts from 0.72 in the publication sample to 0.34 in the pre publication and 0.2 in the post publication</p></li>
+<li><p>someone that jsut invested on the market would be actually be closer to the optimal portfolio than someone that invested 0.7 in HML</p></li>
+</ul>
+<p><strong>Does that mean it was data snooping?</strong></p>
+<p>We don’t know. It is possible that the publication drove people to the strategies which made the resuls go away goign forward. This <a class="reference external" href="https://onlinelibrary.wiley.com/doi/pdf/10.1111/jofi.12365?casa_token=gSqvouNM61EAAAAA:JyTl4yxx9xTfKo8-VEBIE-4c4ha7kRFGvirWzEZRXhYw2AtueM3yzpRDcpcXgnsDdlvlXflKp1Nw_ss">paper</a> I cited before argues that this is the case</p>
+</section>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "binder-examples/jupyter-stacks-datascience",
+            ref: "master",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "python"
+        },
+        kernelOptions: {
+            name: "python3",
+            path: "./chapters/Finance"
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'python3'</script>
+
+                </article>
+              
+
+              
+              
+                <footer class="bd-footer-article">
+                  
+<div class="footer-article-items footer-article__inner">
+  
+    <div class="footer-article-item"><!-- Previous / next buttons -->
+<div class="prev-next-area">
+    <a class="left-prev"
+       href="Econometrics.html"
+       title="previous page">
+      <i class="fa-solid fa-angle-left"></i>
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">previous</p>
+        <p class="prev-next-title"><span class="section-number">14.1. </span>The econometrics of strategy evaluation</p>
+      </div>
+    </a>
+    <a class="right-next"
+       href="TailandBackground.html"
+       title="next page">
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">next</p>
+        <p class="prev-next-title"><span class="section-number">14.3. </span>Tail Risks and Background risks</p>
+      </div>
+      <i class="fa-solid fa-angle-right"></i>
+    </a>
+</div></div>
+  
+</div>
+
+                </footer>
+              
+            </div>
+            
+            
+              
+            
+          </div>
+          <footer class="bd-footer-content">
+            
+<div class="bd-footer-content__inner container">
+  
+  <div class="footer-item">
+    
+<p class="component-author">
+By Alan Moreira
+</p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+  <p class="copyright">
+    
+      © Copyright 2021 Creative Commons Attribution-ShareAlike 4.0 International (CC BY-SA 4.0).
+      <br/>
+    
+  </p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+</div>
+          </footer>
+        
+
+      </main>
+    </div>
+  </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script src="../../_static/scripts/bootstrap.js?digest=e353d410970836974a52"></script>
+<script src="../../_static/scripts/pydata-sphinx-theme.js?digest=e353d410970836974a52"></script>
+
+  <footer class="bd-footer">
+  </footer>
+  </body>
+</html>
