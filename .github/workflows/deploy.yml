@@ -32,6 +32,17 @@ jobs:
       run: |
         jupyter-book build .
 
+
+    - uses: webfactory/ssh-agent@v0.5.2
+      with:
+        ssh-private-key: ${{ secrets.DEPLOY_KEY }}
+
+    - run: chmod 600 /home/runner/.ssh/github
+    - run: ssh-keygen -l -f /home/runner/.ssh/github
+
+
+
+
      # Set up SSH for pushing to the external repository
     - name: Set up SSH
       run: |
