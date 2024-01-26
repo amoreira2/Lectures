@@ -33,31 +33,10 @@ jobs:
         jupyter-book build .
 
 
-    - uses: webfactory/ssh-agent@v0.5.2
-      with:
-        ssh-private-key: ${{ secrets.DEPLOY_KEY }}
-
-    - run: chmod 600 /home/runner/.ssh/github
-    - run: ssh-keygen -l -f /home/runner/.ssh/github
-
-
-
-
-     # Set up SSH for pushing to the external repository
-    - name: Set up SSH
-      run: |
-        mkdir -p ~/.ssh
-        echo "${{ secrets.DEPLOY_KEY }}" > ~/.ssh/deploy_key
-        chmod 600 ~/.ssh/deploy_key
-        ssh-keyscan github.com >> ~/.ssh/known_hosts
-        chmod 644 ~/.ssh/known_hosts
-
-    # Push the book's HTML to GitHub Pages
-    - name: GitHub Pages action
-      uses: peaceiris/actions-gh-pages@v3
-      if: github.event_name == 'push'
-      with:
-        deploy_key: ${{ secrets.DEPLOY_KEY }}
-        publish_branch: master
-        publish_dir: ./_build/html
-        external_repository: amoreira2/quantitativeinvesting
+    # - name: GitHub Pages action
+    #   uses: peaceiris/actions-gh-pages@v3
+    #   if: ${{ github.event_name == 'push' }}
+    #   with:
+    #     github_token: ${{ secrets.GITHUB_TOKEN }}
+    #     publish_branch: gh-pages
+    #     publish_dir: ./_build/html
